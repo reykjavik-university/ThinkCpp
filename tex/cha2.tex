@@ -1,0 +1,573 @@
+% LaTeX source for textbook ``How to think like a computer scientist''
+% Copyright (C) 1999  Allen B. Downey
+
+% This LaTeX source is free software; you can redistribute it and/or
+% modify it under the terms of the GNU General Public License as
+% published by the Free Software Foundation (version 2).
+
+% This LaTeX source is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+% General Public License for more details.
+
+% Compiling this LaTeX source has the effect of generating
+% a device-independent representation of a textbook, which
+% can be converted to other formats and printed.  All intermediate
+% representations (including DVI and Postscript), and all printed
+% copies of the textbook are also covered by the GNU General
+% Public License.
+
+% This distribution includes a file named COPYING that contains the text
+% of the GNU General Public License.  If it is missing, you can obtain
+% it from www.gnu.org or by writing to the Free Software Foundation,
+% Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
+
+
+\chapter{Breytur og tög}
+
+\section{Meira úttak}
+\index{úttak}
+\index{setning!úttak}
+
+Eins og bent var á í síðasta kafla þá getur þú haft eins margar setningar og þú vilt í {\tt main}.
+T.d., til að skrifa út fleiri en eina línu: 
+
+\begin{verbatim}
+#include <iostream>
+using namespace std;
+// main: generate some simple output
+
+int main ()
+{
+  cout << "Hello, world." << endl;     // output one line
+  cout << "How are you?" << endl;      // output another
+  return 0;
+}
+\end{verbatim}
+%
+Eins og hér sést þá er löglegt að setja inn athugasemdir í enda línu sem og í sér línu.
+
+\index{String}
+\index{type!String}
+
+Þeir hlutar setninganna að ofan sem birtir eru innan gæsalappa eru kallaðir {\bf strengir} (e. strings),
+vegna þess að þeir samanstanda af röð (streng) af bókstöfum.
+Reyndar vill svo til að strengir get innhaldið hvað samsetningu sem er af bókstöfum, tölum, greinarmerkjum og öðrum sérstökum táknum.
+because they are made up of a sequence (string) of letters.  Actually,
+
+%\index{newline}
+\index{lína!ný}
+
+Oft er gagnlegt að sýna úttak úr mörgum úttakssetningum í einni og sömu línunni.
+Þetta er hægt að gera með því að sleppa fyrsta {\tt endl}:
+
+\begin{verbatim}
+int main ()
+{
+  cout << "Goodbye, ";
+  cout << "cruel world!" << endl;
+  return 0
+}
+\end{verbatim}
+%
+Í þessu tilviki birtist úttakið í einni línu sem {\tt Goodbye, cruel world!}.
+Athugið að í forritinu er eitt bil (e. space) á milli stafarununnar ``Goodbye,'' og seinni gæsalapparinnar.
+Þetta bil birtist í úttaki forritsins og bilið í forritinu sjálfu hefur því áhrif á virkni þess.
+
+Bil sem koma fyrir utan gæsalappa í forriti hafa aftur á móti ekki áhrif á virkni forritsins.
+Ég gæti t.d. hafa skrifað:
+
+\begin{verbatim}
+int main ()
+{
+  cout<<"Goodbye, ";
+  cout<<"cruel world!"<<endl;
+  return 0;
+}
+\end{verbatim}
+%
+Þetta forrit þýðist og keyrist á sama hátt og upphaflega forritið.
+Skil (e. break) í enda línu (e. newline) hafa heldur ekki áhrif á virkni forritsins.
+Ég gæti því einnig hafa skrifað:
+
+\begin{verbatim}
+int main(){cout<<"Goodbye, ";cout<<"cruel world!"<<endl;return 0;}
+\end{verbatim}
+%
+Þetta myndi líka virka en eins og þú hefur væntanlega tekið eftir þá hafa þessar breytingar gert það að verkum að forrritið hefur orðið ólæsilegra.
+Skil á milli lína og bil eru einmitt gagnleg fyrir okkur því lestur forritsins verður auðveldari og gerir okkur jafnframt auðveldara um vik við að finna málskipunarvillur.
+
+\section{Gildi}
+\index{gildi}
+\index{tag}
+
+{\bf Gildi} (e. value) (t.d. bókstafur eða tala) er eitt af þeim megin atriðum sem forrit vinnur með.
+Einu gildin sem við höfum unnið með hingað til eru strengjagildi, eins og {\tt "Hello, world."}.
+Þú (og þýðandinn) getur borið kennsl á strengjagildi vegna þess að strengir eru runa af stöfum innan gæsalappa.
+
+Önnur dæmi um gildi eru heiltölur (e. integers) og stafir (e. characters).
+Dæmi um heiltölu er {\tt 1} eða {\tt 17}. 
+Þú getur skrifað út heiltölugildi á sama hátt og þú skrifar út gildi á strengjum:
+
+\begin{verbatim}
+  cout << 17 << endl;
+\end{verbatim}
+%
+Stafagildi er bókstafur, tölustafur eða greinarmerki innan einfaldra gæsalappa, t.d. {\tt 'a'} eða {\tt '5'}.
+Þú getur skrifað út stafagildi á sama hátt:
+
+\begin{verbatim}
+  cout << '}' << endl;
+\end{verbatim}
+%
+Í þessu dæmi er slaufusvigi skrifaður út einn og sér í línu.
+
+Það er einfalt á ruglast á hinum ýmsu tegundum af gildum eins og 
+{\tt "5"}, {\tt '5'} og {\tt 5}, en ef þú skoðar greinarmerkin þá ætti að vera ljóst að
+fyrsta gildið er strengur, annað gildi er stafur og þriðja gildið er heiltala.
+Ástæðan fyrir mikilvægi þessarar aðgreiningar mun bráðum verða ljós.
+
+\section {Breytur}
+\index{breyta}
+\index{gildi}
+
+Einn öflugasti eiginleiki forritunarmáls er að sá að gera forritara kleift að vinna með {\bf breytur} (e. variables).
+Breyta er í nafn sem stendur fyrir minnissvæði sem geymir gildi. 
+
+Ýmsar mismunandi tegundir af breytum eru til (á sama hátt og mismunandi tegundir af gildum).
+Þegar þú býrð til nýja breytu þá þarftu (í C++) að skilgreina af hvaða {\bf tagi} (e. type) breytan er.
+Í C++ er stafur t.d. kallaður (skilgreindur sem) {\tt char}.
+Eftirfarandi setning býr til nýja breytu með nafninu {\tt fred} sem hefur tagið {\tt char}.
+
+\begin{verbatim}
+    char fred;
+\end{verbatim}
+%
+Ofangreind setning er kölluð {\bf yfirlýsing} (e. declaration) (því setningin lýsir yfir breytu með tilteknu tagi).
+
+Tag breytu ákvarðar hvers konar gildi hún getur geymt.
+Breyta af taginu {\tt char} getur geymt stafi og það ætti ekki að koma á óvart að {\tt int} breyta geti geymt heiltölur.
+
+Í C++ eru nokkur tög sem geta geymt strengjagildi en við skoðum það seinna í kafla~\ref{strings}.
+
+\index{yfirlýsing}
+\index{setning!yfirlýsing}
+
+Málskipanin sem notuð er til að lýsa yfir heiltölubreytu er: 
+
+\begin{verbatim}
+  int bob;
+\end{verbatim}
+%
+Hér er {\tt bob} eitthvað handahófskennt nafn á heiltölubreytunni.
+Almennt séð er góð regla að gefa breytum nöfn sem gefa til kynna fyrir hvað þær standa.
+Ef þú sæir t.d. eftirfarandi yfirlýsingar: 
+
+\begin{verbatim}
+    char firstLetter;
+    char lastLetter;
+    int hour, minute;
+\end{verbatim}
+%
+þá gætir þú væntanlega getið þér til um hvað gildi stendur til að geyma í þessum breytum.
+Þetta dæmi sýnir líka málskipanina sem notuð er til þess að lýsa yfir mörgum breytum með sama tagið: {\tt hour} og {\tt minute}
+eru bæði heiltölur með tagið {\tt int}.
+
+\section{Gildisveiting}
+\index{gildisveiting}
+\index{setning!gildisveiting}
+
+Þegar við höfum lýst yfir (búið til) breytum þá myndum við gjarnan vilja geyma einhver gildi í þeim.
+Það gerum við með svokölluðum {\bf gildisveitingum} (e. assignments):
+
+\begin{verbatim}
+    firstLetter = 'a';   // give firstLetter the value 'a'
+    hour = 11;           // assign the value 11 to hour
+    minute = 59;         // set minute to 59
+\end{verbatim}
+%
+Þetta dæmi sýnir þrjár gildisveitingar og athugasemdirnar sýna hvernig hægt er að tala um gildisveitingarsetningar á mismunandi hátt.
+Það má vera að orðaforðinn sé ruglingslegur en hugmyndin er einföld: 
+
+\begin{itemize}
+\item Þegar þú lýsir yfir breytu þá býrð þú til minnissvæði sem geymir gildi breytunnar.
+\item Í gildisveitingarsetningu er breytu gefið gildi. 
+\end{itemize}
+
+Algeng leið til að tákna breytu á pappír er að teikna kassa
+með nafni breytunnar fyrir utan kassann og gildi breytunnar inna í kassanum.
+Þessi tegund af mynd er kölluð {\bf stöðurit} (e. state diagram) vegna þess að hún sýnir hver staða sérhverrar breytu er (hægt er að hugsa sér að breyta hafi ``state of mind'').
+because is shows what state each of the
+Eftirfarandi mynd sýnir hvaða áhrif gildisveitingarsetningarnar þrjár hafa: 
+
+\vspace{0.1in}
+\centerline{\epsfig{figure=assign.eps}}
+\vspace{0.1in}
+
+Ég nota stundum mismunandi form til að gefa til kynna mismunandi tög breytna.
+Þessi form ættu að minna þig á að ein C++ reglan krefst þess að breyta hafa sama tag og gildið sem þú gefur henni.
+Þú getur t.d. ekki geymt streng í {\tt int} breytu.
+C++ þýðandi samþykkir t.d. ekki eftirfarandi setningu: 
+
+\begin{verbatim}
+  int hour;
+  hour = "Hello.";       // WRONG !!
+\end{verbatim}
+%
+Þessi regla veldur stundum ruglingi því þar eru margar leiðir til að breyta gildi af einu tagi í annað og C++ breytir meira að segja tagi stundum sjálkrafa.
+Sem stendur skaltu muna að almenna reglan er sú að breytur og gildi þurfa að vera af sama tagi en við munum tala um sérstök tilfelli síðar.
+
+Annað sem getur valdið misskilningi er að sumir strengir {\em líta út} eins og heiltölur en eru það ekki.
+Strengurinn {\tt "123"}, sem samanstendur af stöfunum {\tt 1}, {\tt 2} og {\tt 3}, er t.d. ekki sami hluturinn og {\em talan} {\tt 123}.
+Eftirfarandi gildisveiting er ólögleg:
+
+\begin{verbatim}
+  minute = "59";         // WRONG!
+\end{verbatim}
+%
+\section{Outputting variables}
+\label{output}
+
+You can output the value of a variable using the same commands
+we used to output simple values.
+
+\begin{verbatim}
+  int hour, minute;
+  char colon;
+
+  hour = 11;
+  minute = 59;
+  colon = ':';
+
+  cout << "The current time is ";
+  cout << hour;
+  cout << colon;
+  cout << minute;
+  cout << endl;
+\end{verbatim}
+%
+This program creates two integer variables named {\tt hour} and {\tt
+minute}, and a character variable named {\tt colon}.  It assigns
+appropriate values to each of the variables and then uses a series
+of output statements to generate the following:
+
+\begin{verbatim}
+The current time is 11:59
+\end{verbatim}
+
+When we talk about ``outputting a variable,'' we mean outputting the
+{\em value} of the variable.  To output the {\em name} of a variable,
+you have to put it in quotes.  For example: {\tt cout << "hour";}
+
+As we have seen before, you can include more than one value in
+a single output statement, which can make the previous program more
+concise:
+
+\begin{verbatim}
+  int hour, minute;
+  char colon;
+
+  hour = 11;
+  minute = 59;
+  colon = ':';
+
+  cout << "The current time is " << hour << colon << minute << endl;
+\end{verbatim}
+%
+On one line, this program outputs a string, two integers, a character,
+and the special value {\tt endl}.  Very impressive!
+
+\section{Keywords}
+\index{keyword}
+
+A few sections ago, I said that you can make up any name you
+want for your variables, but that's not quite true.  There
+are certain words that are reserved in C++ because they are
+used by the compiler to parse the structure of your program,
+and if you use them as variable names, it will get confused.
+These words, called {\bf keywords}, include {\tt int},
+{\tt char}, {\tt void}, {\tt endl} and many more.
+
+The complete list of keywords is included in the C++ Standard, which
+is the official language definition adopted by the the International
+Organization for Standardization (ISO) on September 1, 1998.  You
+can download a copy electronically from
+
+\begin{verbatim}
+    http://www.ansi.org/
+\end{verbatim}
+%
+Rather than memorize the list, I would suggest that you
+take advantage of a feature provided in many development
+environments: code highlighting.  As you type, different
+parts of your program should appear in different colors.  For
+example, keywords might be blue, strings red, and other code
+black.  If you type a variable name and it turns blue, watch
+out!  You might get some strange behavior from the compiler.
+
+\section{Operators}
+\index{operator}
+
+{\bf Operators} are special symbols that are used to represent
+simple computations like addition and multiplication.  Most
+of the operators in C++ do exactly what you would expect them
+to do, because they are common mathematical symbols.  For
+example, the operator for adding two integers is {\tt +}.
+
+The following are all legal C++ expressions whose meaning is
+more or less obvious:
+
+\begin{verbatim}
+1+1        hour-1       hour*60 + minute     minute/60
+\end{verbatim}
+%
+Expressions can contain both variables
+names and integer values.  In each case the name of the variable is
+replaced with its value before the computation is performed.
+
+\index{expression}
+
+Addition, subtraction and multiplication all do what you
+expect, but you might be surprised by division.  For example,
+the following program:
+
+\begin{verbatim}
+  int hour, minute;
+  hour = 11;
+  minute = 59;
+  cout << "Number of minutes since midnight: ";
+  cout << hour*60 + minute << endl;
+  cout << "Fraction of the hour that has passed: ";
+  cout << minute/60 << endl;
+\end{verbatim}
+%
+would generate the following output:
+
+\begin{verbatim}
+Number of minutes since midnight: 719
+Fraction of the hour that has passed: 0
+\end{verbatim}
+%
+The first line is what we expected, but the second line is
+odd.  The value of the variable {\tt minute} is 59, and
+59 divided by 60 is 0.98333, not 0.  The reason for the
+discrepancy is that C++ is performing {\bf integer division}.
+
+\index{type!int}
+\index{integer division}
+\index{arithmetic!integer}
+\index{division!integer}
+\index{operand}
+
+When both of the {\bf operands} are integers (operands are the things
+operators operate on), the result must also be an integer,
+and by definition integer division always rounds {\em down},
+even in cases like this where the next integer is so close.
+
+A possible alternative in this case is to calculate a percentage
+rather than a fraction:
+
+\begin{verbatim}
+  cout << "Percentage of the hour that has passed: ";
+  cout << minute*100/60 << endl;
+\end{verbatim}
+%
+The result is:
+
+\begin{verbatim}
+Percentage of the hour that has passed: 98
+\end{verbatim}
+%
+Again the result is rounded down, but at least now the answer
+is approximately correct.  In order to get an even more accurate
+answer, we could use a different type of variable, called
+floating-point, that is capable of storing fractional values.
+We'll get to that in the next chapter.
+
+\section{Order of operations}
+\index{precedence}
+\index{order of operations}
+
+When more than one operator appears in an expression the order
+of evaluation depends on the rules of {\bf precedence}.  A
+complete explanation of precedence can get complicated, but
+just to get you started:
+
+\begin{itemize}
+
+\item Multiplication and division happen before
+addition and subtraction.  So {\tt 2*3-1} yields 5, not 4, and {\tt
+2/3-1} yields -1, not 1 (remember that in integer division {\tt 2/3}
+is 0).
+
+\item If the operators have the same precedence they are evaluated
+from left to right.  So in the expression {\tt minute*100/60},
+the multiplication happens first, yielding {\tt 5900/60}, which
+in turn yields {\tt 98}.  If the operations had gone from right
+to left, the result would be {\tt 59*1} which is {\tt 59}, which
+is wrong.
+
+\item Any time you want to override the rules of precedence (or
+you are not sure what they are) you can use parentheses.  Expressions
+in parentheses are evaluated first, so {\tt 2 * (3-1)} is 4.
+You can also use parentheses to make an expression easier to
+read, as in {\tt (minute * 100) / 60}, even though it doesn't
+change the result.
+
+\end{itemize}
+
+\section{Operators for characters}
+\index{character operator}
+\index{operator!character}
+
+Interestingly, the same mathematical operations that work on
+integers also work on characters.  For example,
+
+\begin{verbatim}
+  char letter;
+  letter = 'a' + 1;
+  cout << letter << endl;
+\end{verbatim}
+%
+outputs the letter {\tt b}.  Although it is syntactically legal
+to multiply characters, it is almost never useful to do it.
+
+Earlier I said that you can only assign integer values to
+integer variables and character values to character variables,
+but that is not completely true.  In some cases, C++ converts
+automatically between types.  For example, the following is
+legal.
+
+\begin{verbatim}
+  int number;
+  number = 'a';
+  cout << number << endl;
+\end{verbatim}
+%
+The result is 97, which is the number that is used internally
+by C++ to represent the letter {\tt 'a'}.  However, it is
+generally a good idea to treat characters as characters, and
+integers as integers, and only convert from one to the other
+if there is a good reason.
+
+Automatic type conversion is an example of a common problem in designing a
+programming language, which is that there is a conflict between {\bf
+formalism}, which is the requirement that formal languages should have
+simple rules with few exceptions, and {\bf convenience}, which is the
+requirement that programming languages be easy to use in practice.
+
+More often than not, convenience wins, which is usually good for
+expert programmers, who are spared from rigorous but unwieldy
+formalism, but bad for beginning programmers, who are often baffled
+by the complexity of the rules and the number of exceptions.  In this
+book I have tried to simplify things by emphasizing the rules and
+omitting many of the exceptions.
+
+
+\section{Composition}
+\index{composition}
+\index{expression}
+
+So far we have looked at the elements of a programming
+language---variables, expressions, and statements---in
+isolation, without talking about how to combine them.
+
+One of the most useful features of programming languages
+is their ability to take small building blocks and
+{\bf compose} them.  For example, we know how to multiply
+integers and we know how to output values; it turns out we can
+do both at the same time:
+
+\begin{verbatim}
+    cout << 17 * 3;
+\end{verbatim}
+%
+Actually, I shouldn't say ``at the same time,'' since in reality
+the multiplication has to happen before the output, but
+the point is that any expression, involving numbers, characters,
+and variables, can be used inside an output statement.  We've
+already seen one example:
+
+\begin{verbatim}
+  cout << hour*60 + minute << endl;
+\end{verbatim}
+%
+You can also put arbitrary expressions on the right-hand
+side of an assignment statement:
+
+\begin{verbatim}
+  int percentage;
+  percentage = (minute * 100) / 60;
+\end{verbatim}
+%
+This ability may not seem so impressive now, but we will see
+other examples where composition makes it possible
+to express complex computations neatly and concisely.
+
+WARNING: There are limits on where you can use certain
+expressions; most notably, the left-hand side of an assignment
+statement has to be a {\em variable} name, not an expression.
+That's because the left side indicates the storage location
+where the result will go.  Expressions
+do not represent storage locations, only values.  So the
+following is illegal:  {\tt minute+1 = hour;}.
+
+\section{Glossary}
+
+\begin{description}
+
+\item[variable:] A named storage location for values.  All
+variables have a type, which determines which values it can
+store.
+
+\item[value:] A letter, or number, or other thing that can be
+stored in a variable.  
+
+\item[type:] A set of values.  The types
+we have seen are integers ({\tt int} in C++) and characters ({\tt
+char} in C++).
+
+\item[keyword:]  A reserved word that is used by the compiler
+to parse programs.  Examples we have seen include {\tt int},
+{\tt void} and {\tt endl}.
+
+\item[statement:] A line of code that represents a command or
+action.  So far, the statements we have seen are declarations,
+assignments, and output statements.
+
+\item[declaration:] A statement that creates a new variable and
+determines its type.
+
+\item[assignment:] A statement that assigns a value to a variable.
+
+\item[expression:] A combination of variables, operators and
+values that represents a single result value.  Expressions also
+have types, as determined by their operators and operands.
+
+\item[operator:] A special symbol that represents a simple
+computation like addition or multiplication.
+
+\item[operand:] One of the values on which an operator operates. 
+
+\item[precedence:] The order in which operations are evaluated.
+
+\item[composition:] The ability to combine simple
+expressions and statements into compound statements and expressions
+in order to represent complex computations concisely.
+
+\index{variable}
+\index{value}
+\index{type}
+\index{keyword}
+\index{statement}
+\index{assignment}
+\index{expression}
+\index{operator}
+\index{operand}
+\index{composition}
+
+\end{description}
+
+
