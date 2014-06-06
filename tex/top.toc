@@ -14,7 +14,7 @@
 \contentsline {section}{\numberline {2.2}Gildi}{12}
 \contentsline {section}{\numberline {2.3}Breytur}{13}
 \contentsline {section}{\numberline {2.4}Gildisveiting}{13}
-\contentsline {section}{\numberline {2.5}Outputting variables}{14}
+\contentsline {section}{\numberline {2.5}A\IeC {\dh } skrifa \IeC {\'u}t breytur}{14}
 \contentsline {section}{\numberline {2.6}Keywords}{15}
 \contentsline {section}{\numberline {2.7}Operators}{16}
 \contentsline {section}{\numberline {2.8}Order of operations}{17}

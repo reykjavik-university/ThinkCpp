@@ -219,22 +219,18 @@ C++ þýðandi samþykkir t.d. ekki eftirfarandi setningu:
 Þessi regla veldur stundum ruglingi því þar eru margar leiðir til að breyta gildi af einu tagi í annað og C++ breytir meira að segja tagi stundum sjálkrafa.
 Sem stendur skaltu muna að almenna reglan er sú að breytur og gildi þurfa að vera af sama tagi en við munum tala um sérstök tilfelli síðar.
 
-Another source of confusion is that some strings {\em look}
-like integers, but they are not.  For example,
-the string {\tt "123"}, which is made up of the
-characters {\tt 1}, {\tt 2} and {\tt 3}, is not
-the same thing as the {\em number} {\tt 123}.
-This assignment is illegal:
+Annað sem getur valdið misskilningi er að sumir strengir {\em líta út} eins og heiltölur en eru það ekki.
+Strengurinn {\tt "123"}, sem samanstendur af stöfunum {\tt 1}, {\tt 2} og {\tt 3}, er t.d. ekki sami hluturinn og {\em talan} {\tt 123}.
+Eftirfarandi gildisveiting er ólögleg:
 
 \begin{verbatim}
   minute = "59";         // WRONG!
 \end{verbatim}
 %
-\section{Outputting variables}
+\section{Skrifa út breytur}
 \label{output}
 
-You can output the value of a variable using the same commands
-we used to output simple values.
+Þú getur skrifað út gildi breytu með því að nota sömu skipanir og við notuðum til að skrifa út ``einföld'' gildi:
 
 \begin{verbatim}
   int hour, minute;
@@ -251,22 +247,19 @@ we used to output simple values.
   cout << endl;
 \end{verbatim}
 %
-This program creates two integer variables named {\tt hour} and {\tt
-minute}, and a character variable named {\tt colon}.  It assigns
-appropriate values to each of the variables and then uses a series
-of output statements to generate the following:
+Þetta forrit býr til tvær heiltölubreytur með nöfnunum {\tt hour} og {\tt minute}, og stafabreytu með nafninu {\tt colon}.
+Forritið gefur þessum breytum viðeigandi gildi og notar síðan runu af úttakssetningum til að skrifa út eftirfarandi: 
 
 \begin{verbatim}
 The current time is 11:59
 \end{verbatim}
 
-When we talk about ``outputting a variable,'' we mean outputting the
-{\em value} of the variable.  To output the {\em name} of a variable,
-you have to put it in quotes.  For example: {\tt cout << "hour";}
+Þegar við tölum um að ``skrifa út breytu'' þá eigum við við að skrifa út 
+{\em gildi} breytunnar.
+Til að skrifa út {\em nafn} breytu þurfum við að setja nafnið inni í gæsalappir, t.d. {\tt cout << "hour";}
 
-As we have seen before, you can include more than one value in
-a single output statement, which can make the previous program more
-concise:
+Eins og við höfum áður séð þá er hægt að hafa fleiri en eitt gildi í einni og sömu úttakssetningunni.
+Það gerir forritið að ofan ``hnitmiðaðra'' (e. concise):
 
 \begin{verbatim}
   int hour, minute;
@@ -279,8 +272,7 @@ concise:
   cout << "The current time is " << hour << colon << minute << endl;
 \end{verbatim}
 %
-On one line, this program outputs a string, two integers, a character,
-and the special value {\tt endl}.  Very impressive!
+Í einni og sömu línunni skrifar þetta forrit út streng, tvær heiltölur, staf og sérstaka gildið {\tt endl} -- þetta er mjög áhrifamikið!
 
 \section{Keywords}
 \index{keyword}

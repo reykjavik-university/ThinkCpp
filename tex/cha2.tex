@@ -227,11 +227,10 @@ Eftirfarandi gildisveiting er ólögleg:
   minute = "59";         // WRONG!
 \end{verbatim}
 %
-\section{Outputting variables}
+\section{Að skrifa út breytur}
 \label{output}
 
-You can output the value of a variable using the same commands
-we used to output simple values.
+Þú getur skrifað út gildi breytu með því að nota sömu skipanir og við notuðum til að skrifa út ``einföld'' gildi:
 
 \begin{verbatim}
   int hour, minute;
@@ -248,22 +247,19 @@ we used to output simple values.
   cout << endl;
 \end{verbatim}
 %
-This program creates two integer variables named {\tt hour} and {\tt
-minute}, and a character variable named {\tt colon}.  It assigns
-appropriate values to each of the variables and then uses a series
-of output statements to generate the following:
+Þetta forrit býr til tvær heiltölubreytur með nöfnunum {\tt hour} og {\tt minute}, og stafabreytu með nafninu {\tt colon}.
+Forritið gefur þessum breytum viðeigandi gildi og notar síðan runu af úttakssetningum til að skrifa út eftirfarandi: 
 
 \begin{verbatim}
 The current time is 11:59
 \end{verbatim}
 
-When we talk about ``outputting a variable,'' we mean outputting the
-{\em value} of the variable.  To output the {\em name} of a variable,
-you have to put it in quotes.  For example: {\tt cout << "hour";}
+Þegar við tölum um að ``skrifa út breytu'' þá eigum við við að skrifa út 
+{\em gildi} breytunnar.
+Til að skrifa út {\em nafn} breytu þurfum við að setja nafnið inni í gæsalappir, t.d. {\tt cout << "hour";}
 
-As we have seen before, you can include more than one value in
-a single output statement, which can make the previous program more
-concise:
+Eins og við höfum áður séð þá er hægt að hafa fleiri en eitt gildi í einni og sömu úttakssetningunni.
+Það gerir forritið að ofan ``hnitmiðaðra'' (e. concise):
 
 \begin{verbatim}
   int hour, minute;
@@ -276,8 +272,7 @@ concise:
   cout << "The current time is " << hour << colon << minute << endl;
 \end{verbatim}
 %
-On one line, this program outputs a string, two integers, a character,
-and the special value {\tt endl}.  Very impressive!
+Í einni og sömu línunni skrifar þetta forrit út streng, tvær heiltölur, staf og sérstaka gildið {\tt endl} -- þetta er mjög áhrifamikið!
 
 \section{Keywords}
 \index{keyword}
