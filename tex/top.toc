@@ -15,10 +15,10 @@
 \contentsline {section}{\numberline {2.3}Breytur}{13}
 \contentsline {section}{\numberline {2.4}Gildisveiting}{13}
 \contentsline {section}{\numberline {2.5}A\IeC {\dh } skrifa \IeC {\'u}t breytur}{14}
-\contentsline {section}{\numberline {2.6}Keywords}{15}
-\contentsline {section}{\numberline {2.7}Operators}{16}
-\contentsline {section}{\numberline {2.8}Order of operations}{17}
-\contentsline {section}{\numberline {2.9}Operators for characters}{17}
+\contentsline {section}{\numberline {2.6}Lykilor\IeC {\dh }}{15}
+\contentsline {section}{\numberline {2.7}Virkjar}{16}
+\contentsline {section}{\numberline {2.8}Forgangur a\IeC {\dh }ger\IeC {\dh }a}{17}
+\contentsline {section}{\numberline {2.9}Stafavirkjar}{17}
 \contentsline {section}{\numberline {2.10}Composition}{18}
 \contentsline {section}{\numberline {2.11}Glossary}{19}
 \contentsline {chapter}{\numberline {3}Function}{21}

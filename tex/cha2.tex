@@ -274,59 +274,47 @@ Eins og við höfum áður séð þá er hægt að hafa fleiri en eitt gildi í 
 %
 Í einni og sömu línunni skrifar þetta forrit út streng, tvær heiltölur, staf og sérstaka gildið {\tt endl} -- þetta er mjög áhrifamikið!
 
-\section{Keywords}
-\index{keyword}
+\section{Lykilorð}
+\index{lykilorð}
 
-A few sections ago, I said that you can make up any name you
-want for your variables, but that's not quite true.  There
-are certain words that are reserved in C++ because they are
-used by the compiler to parse the structure of your program,
-and if you use them as variable names, it will get confused.
-These words, called {\bf keywords}, include {\tt int},
-{\tt char}, {\tt void}, {\tt endl} and many more.
+Ég nefndi að ofan að þú gætir gefið breytum hvaða nafn sem þér dettur í hug, en það er ekki alls kostar rétt.
+Það eru nefnilega nokkur orð í C++ sem er frátekin vegna þess að þau eru notuð af þýðandanum til að þátta forritið þitt og ef þú notar þessi nöfn fyrir breytunöfn þá ``ruglast'' þýðandinn.
+Meðal þessara nafna, sem kölluð eru {\bf lykilorð} (e. keywords), eru {\tt int},
+{\tt char}, {\tt void}, {\tt endl} og mörg fleiri.
 
-The complete list of keywords is included in the C++ Standard, which
-is the official language definition adopted by the the International
-Organization for Standardization (ISO) on September 1, 1998.  You
-can download a copy electronically from
-
+Heildarlistinn yfir lykilorð má finna í C++ staðlinum, sem er obinbera skilgreiningin á málinu samþykkt af 
+``International Organization for Standardization (ISO)'', þann 1. september 1998.
+Hægt er að hlað niður afriti af staðlinum frá 
 \begin{verbatim}
     http://www.ansi.org/
 \end{verbatim}
 %
-Rather than memorize the list, I would suggest that you
-take advantage of a feature provided in many development
-environments: code highlighting.  As you type, different
-parts of your program should appear in different colors.  For
-example, keywords might be blue, strings red, and other code
-black.  If you type a variable name and it turns blue, watch
-out!  You might get some strange behavior from the compiler.
+Í stað þess að læra listann af lykilorðum utan að þá legg ég til að þú nýtir þér eiginleikann sem boðið er upp á í mörgum þróunarumhverfum, þ.e. ``code highlighting''.
+Þetta merkir að þegar þú forritar þá birtast mismunandi hlutar forritsins í mismunandi litum.
+Til að mynda gætu lykilorð birst í bláum lit, strengir í rauðum og annar kóði í svörtum.
+Ef þú býrð til breytunafn sem birtist í bláum lit þá veistu að um lykilorð er að ræða!
+Í því tilviki mun þýðandinn væntanlega ``hegða sér'' undarlega.
 
-\section{Operators}
-\index{operator}
+\section{Virkjar}
+\index{virki}
 
-{\bf Operators} are special symbols that are used to represent
-simple computations like addition and multiplication.  Most
-of the operators in C++ do exactly what you would expect them
-to do, because they are common mathematical symbols.  For
-example, the operator for adding two integers is {\tt +}.
+{\bf Virkjar} (e. operators) eru sérstök tákn sem standa fyrir einfalda útreikninga eins og samlagningu og margföldun.
+Flestir virkjar í C++ gera nákvæmalega það sem þú myndir búast við vegna þess að þeir eru þekkt stærðfræðitákn.
+T.d. er {\tt +} notað til að leggja saman tvær heiltölur.
 
-The following are all legal C++ expressions whose meaning is
-more or less obvious:
+Hér má sjá dæmi um leyfilegar segðir (e. expressions) hvers merking ætti að vera augljós:
 
 \begin{verbatim}
 1+1        hour-1       hour*60 + minute     minute/60
 \end{verbatim}
 %
-Expressions can contain both variables
-names and integer values.  In each case the name of the variable is
-replaced with its value before the computation is performed.
+Segðir geta bæði innhaldið breytunöfn og gildi.
+Í sérhverju tilviki er nafn breytu skipti út fyrir gildi hennar áður en útreikningurinn er framkvæmdur.
 
-\index{expression}
+\index{segð}
 
-Addition, subtraction and multiplication all do what you
-expect, but you might be surprised by division.  For example,
-the following program:
+Samlagning, frádráttur og margföldun skila því sem búast má við en deiling gæti komið á óvart!
+Þetta forrit:
 
 \begin{verbatim}
   int hour, minute;
@@ -338,87 +326,73 @@ the following program:
   cout << minute/60 << endl;
 \end{verbatim}
 %
-would generate the following output:
+myndi skila eftirfarandi úttaki:
 
 \begin{verbatim}
 Number of minutes since midnight: 719
 Fraction of the hour that has passed: 0
 \end{verbatim}
 %
-The first line is what we expected, but the second line is
-odd.  The value of the variable {\tt minute} is 59, and
-59 divided by 60 is 0.98333, not 0.  The reason for the
-discrepancy is that C++ is performing {\bf integer division}.
+Fyrri línan í úttakinu er það sem við mátti búast en seinni línan er skrýtin.
+Gildi breytunnar {\tt minute} er 59 og 59 deilt með 60 er 0,98333 en ekki 0.
+Ástæðan fyrir þessu misræmi er sú að C++ framkvæmir það sem kallast {\bf heiltöludeiling} (integer division).
 
-\index{type!int}
-\index{integer division}
-\index{arithmetic!integer}
-\index{division!integer}
-\index{operand}
+\index{tag!int}
+\index{heiltöludeiling}
+%\index{arithmetic!integer}
+\index{deiling!heiltölur}
+\index{þolandi}
 
-When both of the {\bf operands} are integers (operands are the things
-operators operate on), the result must also be an integer,
-and by definition integer division always rounds {\em down},
-even in cases like this where the next integer is so close.
+Þegar báðir {\bf þolendur} (e. operands) virkja eru heiltölur þá verður niðurstaðan líka heiltala.
+Samkvæmt skilgreiningu er niðurstaða heiltöludeilingar rúnuð {\em niður} jafnvel þó næsta heiltala sé mjög ``nálægt''.
 
-A possible alternative in this case is to calculate a percentage
-rather than a fraction:
+Í þessu dæmi væri mögulegt að reikna út prósentur í stað almenns brots:
 
 \begin{verbatim}
   cout << "Percentage of the hour that has passed: ";
   cout << minute*100/60 << endl;
 \end{verbatim}
 %
-The result is:
+Niðurstaðan er:
 
 \begin{verbatim}
 Percentage of the hour that has passed: 98
 \end{verbatim}
 %
-Again the result is rounded down, but at least now the answer
-is approximately correct.  In order to get an even more accurate
-answer, we could use a different type of variable, called
-floating-point, that is capable of storing fractional values.
-We'll get to that in the next chapter.
+Í þessu tilviki er niðurstaðan líka rúnuð niður en nú er svarið aftur á móti um það bil rétt.
+Til að fá enn réttara svar getum við notað annað tag á breytu en heiltölutag, þ.e. kommutölutag (e. floating-point type).
+Kommutölubreytur geta geymt brot en við munum skoða kommutölur betur í næsta kafla.
 
-\section{Order of operations}
-\index{precedence}
-\index{order of operations}
+\section{Forgangur aðgerða}
+\index{forgangur}
+%\index{order of operations}
 
-When more than one operator appears in an expression the order
-of evaluation depends on the rules of {\bf precedence}.  A
-complete explanation of precedence can get complicated, but
-just to get you started:
+Þegar fleiri en einn virki er notaður í segð þá fer röð aðgerðanna eftir reglum um {\bf forgang} (e. precedence).
+Nákvæm skýring á forgangsreglum getur verið flókin en svona til að byrja með:
 
 \begin{itemize}
 
-\item Multiplication and division happen before
-addition and subtraction.  So {\tt 2*3-1} yields 5, not 4, and {\tt
-2/3-1} yields -1, not 1 (remember that in integer division {\tt 2/3}
-is 0).
+\item Margföldun og deiling hafa hærri forgang en samlagning og frádráttur.
+M.ö.o. margfjöldun og deiling eru framkvæmdar áður en samlagning og frádráttur.
+Þannig er útkoman úr {\tt 2*3-1} 5 en ekki 4 og {\tt
+2/3-1} skilar -1 en ekki 1 (útkoman úr heiltöludeilingunni {\tt 2/3} er 0).
 
-\item If the operators have the same precedence they are evaluated
-from left to right.  So in the expression {\tt minute*100/60},
-the multiplication happens first, yielding {\tt 5900/60}, which
-in turn yields {\tt 98}.  If the operations had gone from right
-to left, the result would be {\tt 59*1} which is {\tt 59}, which
-is wrong.
+\item Ef virkjar hafa sama forgang þá eru þeim beitt frá vinstri til hægri.
+Í segðinni {\tt minute*100/60} er margfjölduninni beitt fyrst sem skilar {\tt 5900/60} og lokaniðurstaðan verður þá {\tt 98}.
+Ef virkjunum væri beitt frá hægri til vinstri þá yrði niðurstaðan {\tt 59*1} = {\tt 59} sem væri rangt.
 
-\item Any time you want to override the rules of precedence (or
-you are not sure what they are) you can use parentheses.  Expressions
-in parentheses are evaluated first, so {\tt 2 * (3-1)} is 4.
-You can also use parentheses to make an expression easier to
-read, as in {\tt (minute * 100) / 60}, even though it doesn't
-change the result.
+\item Ef þú vilt beita annarri forgangsröðun aðgerða en þeirri innbyggðu þá getur þú notað sviga.
+Segðir í svigum eru reiknaðar fyrst og því er niðurstaðan úr {\tt 2 * (3-1)} 4.
+Einnig er hægt að nota sviga til að gera segðir læsilegri eins og í {\tt (minute * 100) / 60} þó svo að niðurstaðan sé sú sama án þess að nota sviga í þessu tilfelli.
 
 \end{itemize}
 
-\section{Operators for characters}
-\index{character operator}
-\index{operator!character}
+\section{Stafavirkjar}
+\index{Stafavirkjar}
+\index{Virki!stafir}
 
-Interestingly, the same mathematical operations that work on
-integers also work on characters.  For example,
+Það er athyglisvert að hægt er að beita sömu stærðfræðivirkjum á heiltölur og stafir.
+Dæmi: 
 
 \begin{verbatim}
   char letter;
@@ -426,14 +400,12 @@ integers also work on characters.  For example,
   cout << letter << endl;
 \end{verbatim}
 %
-outputs the letter {\tt b}.  Although it is syntactically legal
-to multiply characters, it is almost never useful to do it.
+Þessi forritsbútur skrifar út stafinn {\tt b}.
+Þrátt fyrir að það sér í raun setningafræðilega löglegt að margfalda stafi þá er nánast aldrei nauðsyn til að gera það.
 
-Earlier I said that you can only assign integer values to
-integer variables and character values to character variables,
-but that is not completely true.  In some cases, C++ converts
-automatically between types.  For example, the following is
-legal.
+Ég hef áður sagt að það sé eingöngu hægt að gefa heiltölubreytum heiltölugildi og stafabreytum stafagildi en það er ekki alveg rétt.
+Í ákveðnum tilfellum breytir C++ sjálfkrafa um tög.
+Eftirfarandi forritsbútur er til að mynda löglegur:
 
 \begin{verbatim}
   int number;
@@ -441,25 +413,16 @@ legal.
   cout << number << endl;
 \end{verbatim}
 %
-The result is 97, which is the number that is used internally
-by C++ to represent the letter {\tt 'a'}.  However, it is
-generally a good idea to treat characters as characters, and
-integers as integers, and only convert from one to the other
-if there is a good reason.
+Útkoman er 97 en það er sú tala sem notuð er í C++ til að tákna stafinn {\tt 'a'}.
+Samt sem áður er almennt séð góð regla að meðhöndla stafi sem stafi og heiltölur sem heiltölur og aðeins að breyta einu tagi í annað ef nauðsyn krefur.
 
-Automatic type conversion is an example of a common problem in designing a
-programming language, which is that there is a conflict between {\bf
-formalism}, which is the requirement that formal languages should have
-simple rules with few exceptions, and {\bf convenience}, which is the
-requirement that programming languages be easy to use in practice.
+Sjálfvirk tagbreyting (e. type conversion) er dæmi um þekkt vandamál við hönnun forritunarmáls --
+annars vegar er áhersla á {\bf formhyggju} (e. formalism) (skilyrði um að formlegt mál skuli hafa einfaldara reglur með fáum undantekningum) 
+og hins vegar áhersla á {\bf þægindi} (e. convenience) (skilyrði um að forritunarmál skuli vera þægilegt í notkun).
 
-More often than not, convenience wins, which is usually good for
-expert programmers, who are spared from rigorous but unwieldy
-formalism, but bad for beginning programmers, who are often baffled
-by the complexity of the rules and the number of exceptions.  In this
-book I have tried to simplify things by emphasizing the rules and
-omitting many of the exceptions.
-
+Oftar en ekki vinna þægindin sem er yfirleitt gott fyrir vana forritara sem er þá hlíft við strangri formhyggju.
+Aftur á móti er það stundum slæmt fyrir byrjendur í forritun sem finnast oft reglurnar vera flóknar og með fjölda undantekninga.
+Í þessari bók hef ég reynt að einfalda hlutina með því að leggja áherslu á reglurnar og sleppa að fjalla um margar undantekningar.
 
 \section{Composition}
 \index{composition}
