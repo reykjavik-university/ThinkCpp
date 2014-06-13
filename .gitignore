@@ -5,3 +5,6 @@
 *.idx
 *.dvi
 *.backup
+*.tex~
+*.pdf
+*.toc

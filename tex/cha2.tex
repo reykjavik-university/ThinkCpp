@@ -104,7 +104,7 @@ Skil á milli lína og bil eru einmitt gagnleg fyrir okkur því lestur forritsi
 
 {\bf Gildi} (e. value) (t.d. bókstafur eða tala) er eitt af þeim megin atriðum sem forrit vinnur með.
 Einu gildin sem við höfum unnið með hingað til eru strengjagildi, eins og {\tt "Hello, world."}.
-Þú (og þýðandinn) getur borið kennsl á strengjagildi vegna þess að strengir eru runa af stöfum innan gæsalappa.
+Þú (og þýðandinn) þekkir strengjagildi frá öðrum gildum vegna þess að strengir eru runa af stöfum innan gæsalappa.
 
 Önnur dæmi um gildi eru heiltölur (e. integers) og stafir (e. characters).
 Dæmi um heiltölu er {\tt 1} eða {\tt 17}. 
@@ -132,7 +132,7 @@ fyrsta gildið er strengur, annað gildi er stafur og þriðja gildið er heilta
 \index{breyta}
 \index{gildi}
 
-Einn öflugasti eiginleiki forritunarmáls er að sá að gera forritara kleift að vinna með {\bf breytur} (e. variables).
+Einn öflugasti eiginleiki forritunarmáls er að sá að gera forriturum kleift að vinna með {\bf breytur} (e. variables).
 Breyta er nafn sem stendur fyrir minnissvæði sem geymir gildi. 
 
 Ýmsar mismunandi tegundir af breytum eru til (á sama hátt og mismunandi tegundir af gildum).
@@ -144,11 +144,10 @@ Eftirfarandi setning býr til nýja breytu með nafninu {\tt fred} sem hefur tag
     char fred;
 \end{verbatim}
 %
-Ofangreind setning er kölluð {\bf yfirlýsing} (e. declaration) (því setningin lýsir yfir breytu með tilteknu tagi).
+Ofangreind setning er kölluð {\bf yfirlýsing} (e. declaration) því setningin lýsir yfir breytu af tilteknu tagi.
 
 Tag breytu ákvarðar hvers konar gildi hún getur geymt.
 Breyta af taginu {\tt char} getur geymt stafi og það ætti ekki að koma á óvart að {\tt int} breyta geti geymt heiltölur.
-
 Í C++ eru nokkur tög sem geta geymt strengjagildi en við skoðum það seinna í kafla~\ref{strings}.
 
 \index{yfirlýsing}
@@ -170,15 +169,15 @@ Ef þú sæir t.d. eftirfarandi yfirlýsingar:
     int hour, minute;
 \end{verbatim}
 %
-þá gætir þú væntanlega getið þér til um hvað gildi stendur til að geyma í þessum breytum.
-Þetta dæmi sýnir líka málskipanina sem notuð er til þess að lýsa yfir mörgum breytum með sama tagið: {\tt hour} og {\tt minute}
+þá gætir þú væntanlega getið þér til um hvaða gildi stendur til að geyma í þessum breytum.
+Þetta dæmi sýnir líka málskipanina sem notuð er til þess að lýsa yfir mörgum breytum af sama tagi: {\tt hour} og {\tt minute}
 eru bæði heiltölur með tagið {\tt int}.
 
 \section{Gildisveiting}
 \index{gildisveiting}
 \index{setning!gildisveiting}
 
-Þegar við höfum lýst yfir (búið til) breytum þá myndum við gjarnan vilja geyma einhver gildi í þeim.
+Þegar við höfum lýst yfir (búið til) breytum þá viljum við gjarnan geyma einhver gildi í þeim.
 Það gerum við með svokölluðum {\bf gildisveitingum} (e. assignments):
 
 \begin{verbatim}
@@ -196,9 +195,8 @@ eru bæði heiltölur með tagið {\tt int}.
 \end{itemize}
 
 Algeng leið til að tákna breytu á pappír er að teikna kassa
-með nafni breytunnar fyrir utan kassann og gildi breytunnar inna í kassanum.
+með nafni breytunnar fyrir utan kassann og gildi breytunnar innan í kassanum.
 Þessi tegund af mynd er kölluð {\bf stöðurit} (e. state diagram) vegna þess að hún sýnir hver staða sérhverrar breytu er (hægt er að hugsa sér að breyta hafi ``state of mind'').
-because is shows what state each of the
 Eftirfarandi mynd sýnir hvaða áhrif gildisveitingarsetningarnar þrjár hafa: 
 
 \vspace{0.1in}
@@ -208,7 +206,7 @@ Eftirfarandi mynd sýnir hvaða áhrif gildisveitingarsetningarnar þrjár hafa:
 Ég nota stundum mismunandi form til að gefa til kynna mismunandi tög breytna.
 Þessi form ættu að minna þig á að ein C++ reglan krefst þess að breyta hafa sama tag og gildið sem þú gefur henni.
 Þú getur t.d. ekki geymt streng í {\tt int} breytu.
-C++ þýðandi samþykkir t.d. ekki eftirfarandi setningu: 
+C++ þýðandi samþykkir ekki eftirfarandi setningu: 
 
 \begin{verbatim}
   int hour;
@@ -276,14 +274,14 @@ Eins og við höfum áður séð þá er hægt að hafa fleiri en eitt gildi í 
 \section{Lykilorð}
 \index{lykilorð}
 
-Ég nefndi að ofan að þú gætir gefið breytum hvaða nafn sem þér dettur í hug, en það er ekki alls kostar rétt.
-Það eru nefnilega nokkur orð í C++ sem er frátekin vegna þess að þau eru notuð af þýðandanum til að þátta forritið þitt og ef þú notar þessi nöfn fyrir breytunöfn þá ``ruglast'' þýðandinn.
+Ég nefndi að ofan að þú gætir gefið breytum hvaða nafn sem þér dettur í hug en það er ekki alls kostar rétt.
+Það eru nefnilega nokkur orð í C++ sem eru frátekin vegna þess að þau eru notuð af þýðandanum til að þátta (e. parse) forritið þitt og ef þú notar þessi nöfn fyrir breytunöfn þá ``ruglast'' þýðandinn.
 Meðal þessara nafna, sem kölluð eru {\bf lykilorð} (e. keywords), eru {\tt int},
 {\tt char}, {\tt void}, {\tt endl} og mörg fleiri.
 
 Heildarlistinn yfir lykilorð má finna í C++ staðlinum, sem er obinbera skilgreiningin á málinu samþykkt af 
 ``International Organization for Standardization (ISO)'', þann 1. september 1998.
-Hægt er að hlað niður afriti af staðlinum frá 
+Hægt er að hlaða niður afriti af staðlinum frá 
 \begin{verbatim}
     http://www.ansi.org/
 \end{verbatim}
@@ -292,7 +290,7 @@ Hægt er að hlað niður afriti af staðlinum frá
 Þetta merkir að þegar þú forritar þá birtast mismunandi hlutar forritsins í mismunandi litum.
 Til að mynda gætu lykilorð birst í bláum lit, strengir í rauðum og annar kóði í svörtum.
 Ef þú býrð til breytunafn sem birtist í bláum lit þá veistu að um lykilorð er að ræða!
-Í því tilviki mun þýðandinn væntanlega ``hegða sér'' undarlega.
+%Í því tilviki mun þýðandinn væntanlega ``hegða sér'' undarlega.
 
 \section{Virkjar}
 \index{virki}
@@ -308,7 +306,7 @@ Hér má sjá dæmi um leyfilegar segðir (e. expressions) hvers merking ætti a
 \end{verbatim}
 %
 Segðir geta bæði innhaldið breytunöfn og gildi.
-Í sérhverju tilviki er nafn breytu skipti út fyrir gildi hennar áður en útreikningurinn er framkvæmdur.
+Í sérhverju tilviki er nafn breytu skipt út fyrir gildi hennar áður en útreikningurinn er framkvæmdur.
 
 \index{segð}
 
@@ -325,7 +323,7 @@ Samlagning, frádráttur og margföldun skila því sem búast má við en deili
   cout << minute/60 << endl;
 \end{verbatim}
 %
-myndi skila eftirfarandi úttaki:
+skilar eftirfarandi úttaki:
 
 \begin{verbatim}
 Number of minutes since midnight: 719
@@ -334,7 +332,7 @@ Fraction of the hour that has passed: 0
 %
 Fyrri línan í úttakinu er það sem við mátti búast en seinni línan er skrýtin.
 Gildi breytunnar {\tt minute} er 59 og 59 deilt með 60 er 0,98333 en ekki 0.
-Ástæðan fyrir þessu misræmi er sú að C++ framkvæmir það sem kallast {\bf heiltöludeiling} (integer division).
+Ástæðan fyrir þessu misræmi er sú að C++ framkvæmir það sem kallast {\bf heiltöludeiling} (e. integer division).
 
 \index{tag!int}
 \index{heiltöludeiling}
@@ -367,7 +365,7 @@ Kommutölubreytur geta geymt brot en við munum skoða kommutölur betur í næs
 %\index{order of operations}
 
 Þegar fleiri en einn virki er notaður í segð þá fer röð aðgerðanna eftir reglum um {\bf forgang} (e. precedence).
-Nákvæm skýring á forgangsreglum getur verið flókin en svona til að byrja með:
+Nákvæm skýring á forgangsreglum getur verið flókin en við getum notað eftirfarandi reglur til að byrja með:
 
 \begin{itemize}
 
@@ -381,7 +379,7 @@ M.ö.o. margfjöldun og deiling eru framkvæmdar áður en samlagning og frádr�
 Ef virkjunum væri beitt frá hægri til vinstri þá yrði niðurstaðan {\tt 59*1} = {\tt 59} sem væri rangt.
 
 \item Ef þú vilt beita annarri forgangsröðun aðgerða en þeirri innbyggðu þá getur þú notað sviga.
-Segðir í svigum eru reiknaðar fyrst og því er niðurstaðan úr {\tt 2 * (3-1)} 4.
+Segðir í svigum eru reiknaðar fyrst og því er niðurstaðan úr {\tt 2 * (3-1)} jafngild 4.
 Einnig er hægt að nota sviga til að gera segðir læsilegri eins og í {\tt (minute * 100) / 60} þó svo að niðurstaðan sé sú sama án þess að nota sviga í þessu tilfelli.
 
 \end{itemize}
@@ -390,7 +388,7 @@ Einnig er hægt að nota sviga til að gera segðir læsilegri eins og í {\tt (
 \index{Stafavirkjar}
 \index{Virki!stafir}
 
-Það er athyglisvert að hægt er að beita sömu stærðfræðivirkjum á heiltölur og stafir.
+Það er athyglisvert að hægt er að beita sömu stærðfræðivirkjum á heiltölur og stafi.
 Dæmi: 
 
 \begin{verbatim}
@@ -400,7 +398,7 @@ Dæmi:
 \end{verbatim}
 %
 Þessi forritsbútur skrifar út stafinn {\tt b}.
-Þrátt fyrir að það sér í raun setningafræðilega löglegt að margfalda stafi þá er nánast aldrei nauðsyn til að gera það.
+Þrátt fyrir að það sé í raun setningafræðilega löglegt að margfalda stafi þá er nánast aldrei nauðsyn til að gera það.
 
 Ég hef áður sagt að það sé eingöngu hægt að gefa heiltölubreytum heiltölugildi og stafabreytum stafagildi en það er ekki alveg rétt.
 Í ákveðnum tilfellum breytir C++ sjálfkrafa um tög.
@@ -416,7 +414,7 @@ Eftirfarandi forritsbútur er til að mynda löglegur:
 Samt sem áður er almennt séð góð regla að meðhöndla stafi sem stafi og heiltölur sem heiltölur og aðeins að breyta einu tagi í annað ef nauðsyn krefur.
 
 Sjálfvirk tagbreyting (e. type conversion) er dæmi um þekkt vandamál við hönnun forritunarmáls --
-annars vegar er áhersla á {\bf formhyggju} (e. formalism) (skilyrði um að formlegt mál skuli hafa einfaldara reglur með fáum undantekningum) 
+annars vegar er áhersla á {\bf formhyggju} (e. formalism) (skilyrði um að formlegt mál skuli hafa einfaldar reglur með fáum undantekningum) 
 og hins vegar áhersla á {\bf þægindi} (e. convenience) (skilyrði um að forritunarmál skuli vera þægilegt í notkun).
 
 Oftar en ekki vinna þægindin sem er yfirleitt gott fyrir vana forritara sem er þá hlíft við strangri formhyggju.
@@ -451,7 +449,7 @@ Hvaða segð sem er getur einnig komið fyrir á hægri hlið gildisveitingarset
   percentage = (minute * 100) / 60;
 \end{verbatim}
 %
-Þessi eiginleiki virðist kannski ekki mikilvægur núna en við munum sjá önnur dæmi þar sem samsetning gerir okkur kleift að tjá (e. express) útreikninga á ``snyrtilegan'' og samþjappaðan hátt.
+Þessi eiginleiki virðist kannski ekki mikilvægur núna en við munum sjá önnur dæmi þar sem samsetning gerir okkur kleift að tjá (e. express) útreikninga á ``snyrtilegan'' og hnitmiðaðan hátt.
 
 VIÐVÖRUN: 
 Það eru takmarkanir á því hvar hægt er að nota segðir.
@@ -469,9 +467,9 @@ Allar breytur í C++ hafa tag sem ákvarðar hvers konar gildi breytan getur gey
 
 \item[gildi (e. value):] Stafur, tala eða aðrir hlutir sem hægt er að geyma í breytu.
 
-\item[tag (e. type):] Mengi af gildum. Tögin sem við höfum þegar séð eru heiltölur ({\tt int}) og stafir ({\tt char}).
+\item[tag (e. type):] Mengi af gildum. Tögin sem við höfum þegar séð eru t.d. heiltölur ({\tt int}) og stafir ({\tt char}).
 
-\item[lykilorð (e. keyword):]  Frátkeið orð sem notað er af þýðandanum til að þátta (e. parse) forritið.
+\item[lykilorð (e. keyword):]  Frátkeið orð sem notað er af þýðandanum til að þátta forritið.
 Dæmi um lykilorð: {\tt int}, {\tt void} og {\tt endl}.
 
 \item[setning (e. statement):] Forritseining sem stendur fyrir tiltekna skipun eða aðgerð.
