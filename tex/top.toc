@@ -4,7 +4,7 @@
 \contentsline {section}{\numberline {1.3}Hva\IeC {\dh } er kembing?}{4}
 \contentsline {subsection}{\numberline {1.3.1}\IeC {\TH }\IeC {\'y}\IeC {\dh }ingarvillur}{4}
 \contentsline {subsection}{\numberline {1.3.2}Keyrsluvillur}{4}
-\contentsline {subsection}{\numberline {1.3.3}R\IeC {\"o}kvillur og merking}{4}
+\contentsline {subsection}{\numberline {1.3.3}R\IeC {\"o}kvillur og merking}{5}
 \contentsline {subsection}{\numberline {1.3.4}Tilraunakembun}{5}
 \contentsline {section}{\numberline {1.4}Formleg og n\IeC {\'a}tt\IeC {\'u}ruleg m\IeC {\'a}l}{5}
 \contentsline {section}{\numberline {1.5}Fyrsta forriti\IeC {\dh }}{7}
@@ -19,8 +19,8 @@
 \contentsline {section}{\numberline {2.7}Virkjar}{16}
 \contentsline {section}{\numberline {2.8}Forgangur a\IeC {\dh }ger\IeC {\dh }a}{17}
 \contentsline {section}{\numberline {2.9}Stafavirkjar}{17}
-\contentsline {section}{\numberline {2.10}Composition}{18}
-\contentsline {section}{\numberline {2.11}Glossary}{19}
+\contentsline {section}{\numberline {2.10}Samsetning}{18}
+\contentsline {section}{\numberline {2.11}Or\IeC {\dh }alisti}{19}
 \contentsline {chapter}{\numberline {3}Function}{21}
 \contentsline {section}{\numberline {3.1}Floating-point}{21}
 \contentsline {section}{\numberline {3.2}Converting from {\tt double} to {\tt int}}{22}

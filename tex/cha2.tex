@@ -55,7 +55,6 @@ Eins og hér sést þá er löglegt að setja inn athugasemdir í enda línu sem
 Þeir hlutar setninganna að ofan sem birtir eru innan gæsalappa eru kallaðir {\bf strengir} (e. strings),
 vegna þess að þeir samanstanda af röð (streng) af bókstöfum.
 Reyndar vill svo til að strengir get innhaldið hvað samsetningu sem er af bókstöfum, tölum, greinarmerkjum og öðrum sérstökum táknum.
-because they are made up of a sequence (string) of letters.  Actually,
 
 %\index{newline}
 \index{lína!ný}
@@ -134,7 +133,7 @@ fyrsta gildið er strengur, annað gildi er stafur og þriðja gildið er heilta
 \index{gildi}
 
 Einn öflugasti eiginleiki forritunarmáls er að sá að gera forritara kleift að vinna með {\bf breytur} (e. variables).
-Breyta er í nafn sem stendur fyrir minnissvæði sem geymir gildi. 
+Breyta er nafn sem stendur fyrir minnissvæði sem geymir gildi. 
 
 Ýmsar mismunandi tegundir af breytum eru til (á sama hátt og mismunandi tegundir af gildum).
 Þegar þú býrð til nýja breytu þá þarftu (í C++) að skilgreina af hvaða {\bf tagi} (e. type) breytan er.
@@ -424,108 +423,84 @@ Oftar en ekki vinna þægindin sem er yfirleitt gott fyrir vana forritara sem er
 Aftur á móti er það stundum slæmt fyrir byrjendur í forritun sem finnast oft reglurnar vera flóknar og með fjölda undantekninga.
 Í þessari bók hef ég reynt að einfalda hlutina með því að leggja áherslu á reglurnar og sleppa að fjalla um margar undantekningar.
 
-\section{Composition}
-\index{composition}
-\index{expression}
+\section{Samsetning}
+\index{samsetning}
+\index{segð}
 
-So far we have looked at the elements of a programming
-language---variables, expressions, and statements---in
-isolation, without talking about how to combine them.
+Hingað til höfum við skoðað einstakar einingar forritunarmáls -- breytur, segðir og setningar -- án þess að ræða hvernig þær eru settar saman.
 
-One of the most useful features of programming languages
-is their ability to take small building blocks and
-{\bf compose} them.  For example, we know how to multiply
-integers and we know how to output values; it turns out we can
-do both at the same time:
+Einn gagnlegasti eiginleiki forritunarmála er geta þeirra til að setja saman litlar forritseiningar og mynda þannig heildstætt forrit.
+Við vitum t.d. hvernig á að margfalda saman heiltölur og við vitum hvernig á að skrifa út gildi; svo vill reyndar til að við getum gert hvort tveggja á sama tíma:
 
 \begin{verbatim}
     cout << 17 * 3;
 \end{verbatim}
 %
-Actually, I shouldn't say ``at the same time,'' since in reality
-the multiplication has to happen before the output, but
-the point is that any expression, involving numbers, characters,
-and variables, can be used inside an output statement.  We've
-already seen one example:
+Reyndar ætti ég ekki að segja ``á sama tíma'' því í raun á margföldunin sér stað áður en niðurstaðan er skrifuð út 
+en punkturinn er sá að að sérhver segð, sem inniheldur tölur, stafi og breytur, getur verið notuð í úttakssetningu.
+Við höfum þegar séð eitt dæmi um þetta:
 
 \begin{verbatim}
   cout << hour*60 + minute << endl;
 \end{verbatim}
 %
-You can also put arbitrary expressions on the right-hand
-side of an assignment statement:
+Hvaða segð sem er getur einnig komið fyrir á hægri hlið gildisveitingarsetningar (e. assignment statement): 
 
 \begin{verbatim}
   int percentage;
   percentage = (minute * 100) / 60;
 \end{verbatim}
 %
-This ability may not seem so impressive now, but we will see
-other examples where composition makes it possible
-to express complex computations neatly and concisely.
+Þessi eiginleiki virðist kannski ekki mikilvægur núna en við munum sjá önnur dæmi þar sem samsetning gerir okkur kleift að tjá (e. express) útreikninga á ``snyrtilegan'' og samþjappaðan hátt.
 
-WARNING: There are limits on where you can use certain
-expressions; most notably, the left-hand side of an assignment
-statement has to be a {\em variable} name, not an expression.
-That's because the left side indicates the storage location
-where the result will go.  Expressions
-do not represent storage locations, only values.  So the
-following is illegal:  {\tt minute+1 = hour;}.
+VIÐVÖRUN: 
+Það eru takmarkanir á því hvar hægt er að nota segðir.
+Þetta á sérstaklega við um vinstri hlið gildisveitingarsetningar sem verður að vera nafn á {\bf breytu} en ekki segð.
+Ástæðan er sú að vinstri hliðin stendur fyrir minnissvæði sem geyma mun gildi segðarinnar á hægri hlið.
+Aftur á móti standa segðir ekki fyrir minnissvæði heldur eingöngu gildi.
+Eftirfarandi er því ekki löglegt: {\tt minute+1 = hour;}.
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[variable:] A named storage location for values.  All
-variables have a type, which determines which values it can
-store.
+\item[breyta (e. variable):] Nafn sem stendur fyrir minnissvæði sem geymir gildi. 
+Allar breytur í C++ hafa tag sem ákvarðar hvers konar gildi breytan getur geymt. 
 
-\item[value:] A letter, or number, or other thing that can be
-stored in a variable.  
+\item[gildi (e. value):] Stafur, tala eða aðrir hlutir sem hægt er að geyma í breytu.
 
-\item[type:] A set of values.  The types
-we have seen are integers ({\tt int} in C++) and characters ({\tt
-char} in C++).
+\item[tag (e. type):] Mengi af gildum. Tögin sem við höfum þegar séð eru heiltölur ({\tt int}) og stafir ({\tt char}).
 
-\item[keyword:]  A reserved word that is used by the compiler
-to parse programs.  Examples we have seen include {\tt int},
-{\tt void} and {\tt endl}.
+\item[lykilorð (e. keyword):]  Frátkeið orð sem notað er af þýðandanum til að þátta (e. parse) forritið.
+Dæmi um lykilorð: {\tt int}, {\tt void} og {\tt endl}.
 
-\item[statement:] A line of code that represents a command or
-action.  So far, the statements we have seen are declarations,
-assignments, and output statements.
+\item[setning (e. statement):] Forritseining sem stendur fyrir tiltekna skipun eða aðgerð.
+Þær setningar sem við höfum séð hingað til eru yfirlýsingar, gildisveitingar og úttakssetningar.
 
-\item[declaration:] A statement that creates a new variable and
-determines its type.
+\item[yfirlýsing (e. declaration):] Setning sem býr til nýja breytu og tilgreinir tag hennar.
 
-\item[assignment:] A statement that assigns a value to a variable.
+\item[gildisveiting (e. assignment):] Setning sem gefur tiltekinni breytu gildi.
 
-\item[expression:] A combination of variables, operators and
-values that represents a single result value.  Expressions also
-have types, as determined by their operators and operands.
+\item[segð (e. expression):] Samsetning breytna, virkja og gilda sem í heild sinni stendur fyrir eitt gildi (niðurstöðu).
+Segð hefur tag sem ákvarðast af þeim virkjum og þolendum sem koma fyrir í segðinni. 
 
-\item[operator:] A special symbol that represents a simple
-computation like addition or multiplication.
+\item[virki (e. operator):] Sérstakt tákn sem stendur fyrir tiltekna aðgerð eins og samlagningu eða margföldun.
 
-\item[operand:] One of the values on which an operator operates. 
+\item[þolandi (operand):] Eitt af þeim gildum sem virkja er beitt á. 
 
-\item[precedence:] The order in which operations are evaluated.
+\item[forgangur (e. precedence):] Segir til um í hvaða röð virkjum er beitt. 
 
-\item[composition:] The ability to combine simple
-expressions and statements into compound statements and expressions
-in order to represent complex computations concisely.
+\item[samsetning (e. composition):] Sá eiginleiki að geta sett saman einfaldar segðir og setningar til að tjá flóknar aðgerðir á samþjappaðan hátt.
 
-\index{variable}
-\index{value}
-\index{type}
-\index{keyword}
-\index{statement}
-\index{assignment}
-\index{expression}
-\index{operator}
-\index{operand}
-\index{composition}
+\index{breyta}
+\index{gildi}
+\index{tag}
+\index{lykilorð}
+\index{setning}
+\index{gildisveting}
+\index{segð}
+\index{virki}
+\index{þolandi}
+\index{samsetning}
 
 \end{description}
-
-
