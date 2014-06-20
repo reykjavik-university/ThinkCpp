@@ -22,32 +22,30 @@
 % it from www.gnu.org or by writing to the Free Software Foundation,
 % Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
 
-\chapter{Function}
+\chapter{Föll}
 
-\section{Floating-point}
-\index{floating-point number}
-\index{type!double}
-\index{double (floating-point)}
+\section{Kommutölur}
+\index{kommutölur}
+\index{tag!double}
+%\index{double (floating-point)}
 
-In the last chapter we had some problems dealing with numbers
-that were not integers.  We worked around the problem by measuring
-percentages instead of fractions, but a more general solution is
-to use floating-point numbers, which can represent fractions
-as well as integers.  In C++, there are two floating-point types,
-called {\tt float} and {\tt double}.  In this book we will use
-{\tt double}s exclusively.
+Í síðasta kafla áttum við í nokkrum vandræðum með tölur sem eru ekki heiltölur.
+Við leystum vandamálið að hluta til með því að reikna út prósentur í stað brots.
+Almennari lausn er hins vegar að nota kommutölur (e. floating-point) sem geta staðið fyrir bæði brot og heiltölur.
+Tvenns konar kommutölur eru í C++, {\tt float} og {\tt double}.
+Í þessari bók munum við eingöngu nota {\tt double} tölur.
 
-You can create floating-point variables and assign values to them
-using the same syntax we used for the other types.  For example:
+Þú getur búið til kommutölur og gefið þeim gildi með sömu málskipan og notuð er fyrir önnu tög.
+Dæmi:
 
 \begin{verbatim}
   double pi;
   pi = 3.14159;
 \end{verbatim}
 %
-It is also legal to declare a variable and assign a value to it at the
-same time:
+Það er einnig mögulegt að lýsa yfir breytu og gefa henni gildi á sama tíma:
 
 \begin{verbatim}
   int x = 1;
@@ -55,132 +53,102 @@ same time:
   double pi = 3.14159;
 \end{verbatim}
 %
-In fact, this syntax is quite common.  A combined declaration
-and assignment is sometimes called an {\bf initialization}.
+Reyndar vill svo til að þessi leið er mjög algeng.
+Samsett yfirlýsing (e. declaration) og gildisveiting (e. asssignment) er stundum kölluð {\bf upphafsstilling} (e. initialization).
 
-\index{initialization}
+\index{upphafsstilling}
 
-Although floating-point numbers are useful, they are
-often a source of confusion because there seems to be an
-overlap between integers and floating-point numbers.  For
-example, if you have the value {\tt 1}, is that an integer,
-a floating-point number, or both?
+Þó svo að kommutölur séu nytsamlegar þá valda þær stundum ruglingi vegna þess að svo virðist sem heiltölur og kommutölur skarist. 
+T.d., er gildið {\tt 1} heiltala, kommutala eða hvoru tveggja?
 
-Strictly speaking, C++ distinguishes the integer value {\tt 1}
-from the floating-point value {\tt 1.0}, even though they
-seem to be the same number.  They belong to
-different types, and strictly speaking, you are not allowed
-to make assignments between types.  For example, the following
-is illegal
+C++ gerir greinarmun á heiltölugildinu {\tt 1} og kommutölugildinu {\tt 1.0} þrátt fyrir að þau virðast standa fyrir sömu töluna.
+Ástæðan er sú að gildin tvö tilheyra mismunandi tögum og almennt gildir að ekki er leyfilegt að framkvæma gildisveitingu ``á milli'' taga.
+Þetta er t.d. ekki leyfilegt í C++
 
 \begin{verbatim}
     int x = 1.1;
 \end{verbatim}
 %
-because the variable on the left is an {\tt int}
-and the value on the right is a {\tt double}.  But it is easy
-to forget this rule, especially because there are places where C++
-automatically converts from one type to another.
-For example,
+vegna þess að breytan á vinstri hlið gildisveitingarinnar er af taginu {\tt int} og gildið á hægri hlið er {\tt double}.
+Það er aftur á móti auðvelt að gleyma þessari reglu, sérstaklega vegna þess að í sumum tilvikum breytir C++ þýðandi einu tagi í annað á sjálfvirkan hátt.
+T.d. ætti 
 
 \begin{verbatim}
     double y = 1;
 \end{verbatim}
 %
-should technically not be legal, but C++ allows it by converting the
-{\tt int} to a {\tt double} automatically.  This leniency is
-convenient, but it can cause problems; for example:
+tæknilega séð ekki að vera leyfilegt en C++ þýðandi leyfir þetta með því að breyta sjálfur
+{\tt int} (gildinu 1) í {\tt double}.
+Þessi ``linkind'' af hálfu þýðandans getur verið þægileg fyrir forritarann en getur jafnframt leitt til vandræða:
+Dæmi:
 
 \begin{verbatim}
     double y = 1 / 3;
 \end{verbatim}
 %
-You might expect the variable {\tt y} to be given the value
-{\tt 0.333333}, which is a legal floating-point value, but in
-fact it will get the value {\tt 0.0}.  The reason is that the
-expression on the right appears to be the ratio of two integers,
-so C++ does {\em integer} division, which yields the integer
-value {\tt 0}.  Converted to floating-point, the result is
-{\tt 0.0}.
+Hér gætir þú búist við því að breytan {\tt y} fái gildið {\tt 0.333333}, sem er leyfilegt kommutölugildi, en í raun fær hún gildið {\tt 0.0}.
+Ástæðan er sú að segðin á hægri hlið gildisveitingarinnar er hlutfall tveggja heiltalna og því framkvæmir C++ {\em heiltöludeilingu}, hvers niðurstaða er heiltölugildið {\tt 0}.
+Þegar því gildi er breytt (af þýðandanum) í kommutölu þá er niðurstaðan {\tt 0.0}.
 
-One way to solve this problem (once you figure out what
-it is) is to make the right-hand side a floating-point
-expression:
+Ein leið til að leysa þetta vandamál er að gera gildi segðarinnar á hægri hlið að kommutölu:
 
 \begin{verbatim}
     double y = 1.0 / 3.0;
 \end{verbatim}
 %
-This sets {\tt y} to {\tt 0.333333}, as expected.
+Þetta veldur því að {\tt y} fær gildið {\tt 0.333333} eins og við var að búast.
 
-\index{arithmetic!floating-point}
+\index{útreikningur!kommutala}
 
-All the operations we have seen---addition, subtraction,
-multiplication, and division---work on floating-point values,
-although you might be interested to know that the underlying mechanism
-is completely different.  In fact, most processors have special
-hardware just for performing floating-point operations.
+Allar þær reikniaðgerðir sem við höfum séð hingað til -- samlagning, frádráttur, margföldun og deiling -- virka á kommutölum sem og á heiltölum.
+Það er hins vegar athyglisvert að undirliggjandi vélarmálsútreikningur er mismunandi eftir því hvort um kommutölur eða heiltölur er að ræða.
+Flestir örgjörvar hafa einmitt sérstakan búnað til að framkvæma aðgerðir á kommutölum.
 
-\section{Converting from {\tt double} to {\tt int}}
+\section{Breyting á {\tt double} í {\tt int}}
 \label{rounding}
-\index{rounding}
-\index{typecasting}
+\index{afrúnun}
+\index{tagmótun}
 
-As I mentioned, C++ converts {\tt int}s
-to {\tt double}s automatically if necessary, because no
-information is lost in the translation.  On the other hand,
-going from a {\tt double} to an {\tt int} requires rounding
-off.  C++ doesn't perform this operation automatically, in
-order to make sure that you, as the programmer, are aware
-of the loss of the fractional part of the number.
+Eins og ég nefndi áður þá breytir C++ þýðandinn {\tt int}
+í {\tt double} á sjálfvirkan hátt ef þörf er á vegna þess að engar upplýsingar tapast í breytingunni.
+Á hinn bóginn þá krefst breyting á {\tt double} í {\tt int} afrúnunar (e. rounding off).
+C++ framkvæmir þá aðgerð ekki sjálfvirkt og því þarft þú, sem forritari, að vera meðvitaður um brotið sjálft (þ.e. sá hluti sem kemur á eftir kommunni) tapast.
 
-The simplest way to convert a floating-point value to an integer is to
-use a {\bf typecast}.  Typecasting is so called because it allows you
-to take a value that belongs to one type and ``cast'' it into another
-type (in the sense of molding or reforming, not throwing).
+Einfaldasta leiðin til að breyta kommutölu í heiltölu er að nota {\bf tagmótun} (e. typecast).
+Tagmótun dregur nafn sitt af því að það gefur þér kost á því að ``móta'' gildi sem tilheyrir einu tagi yfir í annað tag.
 
-The syntax for typecasting is like the syntax
-for a function call.  For example:
+Málskipan fyrir tagmótun er eins og málsipan fyrir fallakall.
+Dæmi:
 
 \begin{verbatim}
   double pi = 3.14159;
   int x = int (pi);
 \end{verbatim}
 %
-The {\tt int} function returns an integer, so {\tt x} gets the value
-3.  Converting to an integer always rounds down, even if the fraction
-part is 0.99999999.
+{\tt int} fallið skilar heiltölu þannig að {\tt x} fær gildið 3.
+Að móta kommutölu í heiltölu hefur í för með sér að talan er rúnuð niður (e. rounded down) jafnvel þó svo að brotið sé 0.99999999.
 
-For every type in C++, there is a corresponding function that
-typecasts its argument to the appropriate type.
+Fyrir sérhvert tag í C++ er til samsvarandi fall sem tagmótar sitt viðfang í viðeigandi tag.
 
-\section{Math functions}
+\section{Stærðfræðiföll}
 \index{Math function}
-\index{function!Math}
-\index{expression}
-\index{argument}
+\index{föll!stærðfræði}
+\index{segð}
+\index{viðfang}
 
-In mathematics, you have probably seen functions like $\sin$ and
-$\log$, and you have learned to evaluate expressions like
-$\sin(\pi/2)$ and $\log(1/x)$.  First, you evaluate the
-expression in parentheses, which is called the {\bf argument} of the
-function.  For example, $\pi/2$ is approximately 1.571, and $1/x$ is
-0.1 (if $x$ happens to be 10).
+Í stærðfræði hefur þú væntanlega séð föll eins og $\sin$ and $\log$ og hefur lært að reikna út gildi segða eins og $\sin(\pi/2)$ og $\log(1/x)$.
+Fyrst reiknar þú út gildi segðar innan sviga en það eru kalluð {\bf viðfang} (e. argument} fallsins.
+T.d. er $\pi/2$ u.þ.b. 1,571 og $1/x$ is 0,1 (ef $x$ hefur gildið 10).
 
-Then you can evaluate the function itself, either by looking it up in
-a table or by performing various computations.  The $\sin$ of 1.571 is
-1, and the $\log$ of 0.1 is -1 (assuming that $\log$ indicates the
-logarithm base 10).
+Eftir þetta getur þú ákvarðar gildi fallsins sjálfs, annað hvort með því að fletta upp í töflu eða með því að framkvæma ýmsa útreikninga.
+$\sin$ af 1,571 is 1 og $\log$ af 0,1 is -1 (ef við gerum ráð fyrir því að $\log$ standi fyrir 
+lógariþma með grunn 10).
 
-This process can be applied repeatedly to evaluate more complicated
-expressions like $\log(1/\sin(\pi/2))$.  First we evaluate the
-argument of the innermost function, then evaluate the function,
-and so on.
+Þetta ferli er hægt að endurtaka til að ákvarða gildi flóknari segða eins og $\log(1/\sin(\pi/2))$.
+Fyrst ákvörðum við gildi viðfangs innsta fallsins (þ.e. ($\pi/2$)), síðan reiknum við út gildi fallsins (þ.e. $\sin$), o.s.frv.
 
-C++ provides a set of built-in functions that includes most
-of the mathematical operations you can think of.
-The math functions are invoked using a syntax that is similar to
-mathematical notation:
+C++ býður upp á mengi af innbyggðum (e. built-in) föllum sem innihalda flestar þær stærðfræðilegu aðgeðir sem þú getur ímyndað þér.
+Kallað er á þessi stærðfræðiföll með því að nota málskipan sem er sambærileg við stærðfræðilega táknun: 
 
 \begin{verbatim}
      double log = log (17.0);
