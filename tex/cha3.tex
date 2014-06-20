@@ -117,7 +117,7 @@ C++ framkvæmir þá aðgerð ekki sjálfvirkt og því þarft þú, sem forrita
 Einfaldasta leiðin til að breyta kommutölu í heiltölu er að nota {\bf tagmótun} (e. typecast).
 Tagmótun dregur nafn sitt af því að það gefur þér kost á því að ``móta'' gildi sem tilheyrir einu tagi yfir í annað tag.
 
-Málskipan fyrir tagmótun er eins og málsipan fyrir fallakall.
+Málskipan fyrir tagmótun er eins og málskipan fyrir fallakall.
 Dæmi:
 
 \begin{verbatim}
@@ -132,12 +132,12 @@ Fyrir sérhvert tag í C++ er til samsvarandi fall sem tagmótar sitt viðfang �
 
 \section{Stærðfræðiföll}
 \index{Math function}
-\index{föll!stærðfræði}
+\index{fall!stærðfræði}
 \index{segð}
 \index{viðfang}
 
 Í stærðfræði hefur þú væntanlega séð föll eins og $\sin$ and $\log$ og hefur lært að reikna út gildi segða eins og $\sin(\pi/2)$ og $\log(1/x)$.
-Fyrst reiknar þú út gildi segðar innan sviga en það eru kalluð {\bf viðfang} (e. argument} fallsins.
+Fyrst reiknar þú út gildi segðar innan sviga en það eru kallað {\bf viðfang} (e. argument) fallsins.
 T.d. er $\pi/2$ u.þ.b. 1,571 og $1/x$ is 0,1 (ef $x$ hefur gildið 10).
 
 Eftir þetta getur þú ákvarðar gildi fallsins sjálfs, annað hvort með því að fletta upp í töflu eða með því að framkvæma ýmsa útreikninga.
@@ -147,7 +147,7 @@ lógariþma með grunn 10).
 Þetta ferli er hægt að endurtaka til að ákvarða gildi flóknari segða eins og $\log(1/\sin(\pi/2))$.
 Fyrst ákvörðum við gildi viðfangs innsta fallsins (þ.e. ($\pi/2$)), síðan reiknum við út gildi fallsins (þ.e. $\sin$), o.s.frv.
 
-C++ býður upp á mengi af innbyggðum (e. built-in) föllum sem innihalda flestar þær stærðfræðilegu aðgeðir sem þú getur ímyndað þér.
+C++ býður upp á mengi af innbyggðum (e. built-in) föllum sem innihaldur flestar þær stærðfræðilegu aðgeðir sem þú getur ímyndað þér.
 Kallað er á þessi stærðfræðiföll með því að nota málskipan sem er sambærileg við stærðfræðilega táknun: 
 
 \begin{verbatim}
@@ -156,21 +156,15 @@ Kallað er á þessi stærðfræðiföll með því að nota málskipan sem er s
      double height = sin (angle);
 \end{verbatim}
 %
-The first example sets {\tt log} to the logarithm of 17, base
-$e$.  There is also a function called {\tt log10} that takes
-logarithms base 10.
+Fyrsta setningin að ofan gefur breytunni {\tt log} gildið lógariþmi af 17 (grunnur $e$).
+Það er einnig til fall {\tt log10} sem reiknar út lógariþma miðað við grunn 10.
 
-The second example finds the sine of the value of the variable
-{\tt angle}.  C++ assumes that the
-values you use with {\tt sin} and the other trigonometric functions
-({\tt cos}, {\tt tan}) are in {\em radians}.  To
-convert from degrees to radians, you can divide by 360
-and multiply by $2 \pi$.  
+Þriðja setningin reiknar út sinus af gildinu sem geymt er í breytunni {\tt angle}.
+C++ gerir ráð fyrir því að gildin sem notuð eru með sinus fallinu og öðrum hornaföllum ({\tt cos}, {\tt tan}) séu í {\em radian}.
+Til að breyta gráðum í radian getur þú deilt með 360 og margfaldað með $2 \pi$.  
 
-If you don't happen to know $\pi$ to 15 digits, you can
-calculate it using the {\tt acos} function.  The arccosine
-(or inverse cosine) of -1 is $\pi$, because the cosine of
-$\pi$ is -1.
+Ef þú þekkir ekki gildið á $\pi$ (með 15 aukastöfum!) þá getur þú reiknað það út með því að nota {\tt acos} fallið.
+Arccosinus (eða andhverfa cosinus) af -1 er $\pi$ vegna þess að cosinus af $\pi$ er -1.
 
 \begin{verbatim}
   double pi = acos(-1.0);
@@ -178,103 +172,85 @@ $\pi$ is -1.
   double angle = degrees * 2 * pi / 360.0;
 \end{verbatim}
 %
-Before you can use any of the math functions, you have to
-include the math {\bf header file}.  Header files contain
-information the compiler needs about functions that are defined
-outside your program.  For example, in the ``Hello, world!''
-program we included a header file named {\tt iostream} using
-an {\bf include} statement:
+Áður en þú getur notað eitthvað af stærðfræðiföllunum þarftu að taka inn (e. include) sérstaka {\bf hausaskrá} (e. header file) í forritið þitt.
+Hausaskrá inniheldur upplýsingar um föll, sem eru skilgreind annars staðar en í þínu eigin forriti, og sem þýðandinn þarf á að halda.
+Í ``Hello, world!'' forritunu tókum við t.d. inn haus nefndan {\tt iostream} með því að nota {\bf include} setningu:
 
 \begin{verbatim}
 #include <iostream>
 using namespace std;
 \end{verbatim}
 %
-{\tt iostream} contains information about input and output
-(I/O) streams, including the object named {\tt cout}.
-C++ has a powerful feature called namespaces, that
-allow you to write your own implementation of {\tt cout}.
-But in most cases, we would need to use the standard implementation.
-To convey this to the compiler, we use the line
+{\tt iostream} inniheldur upplýsingar um inntaks- og úttaksstrauma (e. I/O streams), þ.m.t. um úttaksstrauminn {\tt cout}.
+C++ notar öflugan eiginleika sem kallaður er {\bf nafnasvið} (e. namespaces) sem gerir þér t.d. kleift að útfæra {\tt cout} á þinn eigin máta.
+Í flestum tilvikum notum við reyndar hina stöðluðu útfærslu sem skilgreind er í nafnasviðinu std.
+Við látum þýðandann vita af þessu með línunni
 
 \begin{verbatim}
 using namespace std;
 \end{verbatim}
 
-As a rule of the thumb, you should write {\tt using namespace std;} whenever
-you use {\tt iostream}.
-\index{header file}
+Þumalputtareglan er sú að þú átt að skrifa {\tt using namespace std;} í hvert sinn sem þú ætlar að nota {\tt iostream}.
+
+\index{header skrá}
 \index{cmath}
 \index{iostream}
 
-Similarly, the math header file contains information
-about the math functions.  You can include it at the beginning
-of your program along with {\tt iostream}:
+Á sambærilegan hátt inniheldur {\tt cmath} hausaskráin upplýsingar um stærðfræðiföll.
+Þú getur tekið þá skrá inn, ásamt {\tt iostream}, í upphafi forritsins þíns: 
 
 \begin{verbatim}
 #include <cmath>
 \end{verbatim}
 
-Such header files have an initial `c' to signify that these
-header files have been derived from the {\bf C} language.
+Hausaskrár sem byrja á `c' gefa til kynna að þær hafi upphaflega verið búnar til fyrir forritunarmálið {\bf C}.
 
-\section {Composition}
+\section {Samsetning}
 \label{composition}
-\index{composition}
-\index{expression}
+\index{samsetning}
+\index{segð}
 
-Just as with mathematical functions, C++ functions can be {\bf
-composed}, meaning that you use one expression as part of another.
-For example, you can use any expression as an argument to a function:
+Föll í C++ geta verið samsett á sama hátt og stærðfræðiföll.
+Þetta merkir að þú getur notað eina segð sem hluta af annarri.
+Þú getur t.d. notað hvaða segð sem er sem viðfang í fall:
 
 \begin{verbatim}
     double x = cos (angle + pi/2);
 \end{verbatim}
 %
-This statement takes the value of {\tt pi}, divides it by two and
-adds the result to the value of {\tt angle}.  The sum is
-then passed as an argument to the {\tt cos} function.
+Í þessari setningu er deilt í gildið {\tt pi} með tveimur og gildinu á breytunni {\tt angle} bætt við niðurstöðuna.
+Summan er síðan send sem viðfang í fallið {\tt cos}.
 
-You can also take the result of one function and pass it as
-an argument to another:
+Þú getur einnig sent niðurstöðuna úr eini falli sem viðfang í annað fall:
 
 \begin{verbatim}
     double x = exp (log (10.0));
 \end{verbatim}
 %
-This
-statement finds the log base $e$ of 10 and then raises $e$ to that
-power.  The result gets assigned to {\tt x}; I hope you know what it
-is.
+Hér er tekinn lógariþmi (með grunn $e$) af 10 og niðurstaðan (nefnum hana $t$) síðan send inn í exp fallið sem reiknar $e$ í veldinu $t$.
+Breytan {\tt x} fær að lokum gildið úr heildarniðurstöðunni sem ég vona að þú vitir hver er!
 
-\section{Adding new functions}
-\index{function!definition}
+\section{Nýjum föllum bætt við}
+\index{fall!skilgreining}
 \index{main}
-\index{function!main}
+\index{fall!main}
 
-So far we have only been using the functions that are built into C++,
-but it is also possible to add new functions.  Actually, we have already
-seen one function definition: {\tt main}.  The function named {\tt main}
-is special because it indicates where the execution of the program
-begins, but the syntax for {\tt main} is the same as for any other
-function definition:
+Hingað til höfum við eingöngu notað föll sem eru innbyggð í C++ en við getum einnig bætt við nýjum föllum.
+Reyndar vill svo til að við höfum þegar bætt við einu nýju falli: {\tt main}.
+Fallið {\tt main} er sérstakt að því leyti til að það gefur til kynna hvar keyrsla forritsins á að byrja en málskipan fyrir {\tt main} er sú sama og fyrir hvaða aðra fallaskilgreiningu sem er:
 
 \begin{verbatim}
-  void NAME ( LIST OF PARAMETERS ) {
-    STATEMENTS
+  void NAFN ( LISTI AF VIÐFÖNGUM ) {
+    SETNINGAR
   }
 \end{verbatim}
 %
-You can make up any name you want for your function, except
-that you can't call it {\tt main} or any other
-C++ keyword.  The list of
-parameters specifies what information, if any, you have to
-provide in order to use (or {\bf call}) the new function.
+Þú getur gefið fallinu þínu hvaða nafn sem er með þeirri undantekningu að þú getur hvorki kallað það 
+{\tt main} né notað annað C++ lykilorð.
+Listinn af viðföngum skilgreinir hvaða upplýsingar (ef nokkrar) þarf að gefa fallinu þegar það er notað (þegar {\bf kallað} (e. call)) er á það.
 
-{\tt main} doesn't take any parameters, as indicated by
-the empty parentheses {\tt ()} in it's definition.  The first couple
-of functions we are going to write also have no parameters, so the
-syntax looks like this:
+{\tt main} tekur engin viðföng eins og sjá má með tómum svigum {\tt ()} í skilgreiningunni á fallinu.
+Fyrstu tvö föllin sem við munum skrifa taka heldur engin viðföng -- málskipanin lítur þá svona út:
 
 \begin{verbatim}
   void newLine () {
