@@ -258,12 +258,10 @@ Fyrstu tvö föllin sem við munum skrifa taka heldur engin viðföng -- málski
   }
 \end{verbatim}
 %
-This function is named {\tt newLine}; it contains only a single
-statement, which outputs a newline character, represented by
-the special value {\tt endl}.
+Þessu falli hefur verið gefið nafnið {\tt newLine}.
+Það inniheldur aðeins eina setningu, þ.e. skrifar út stafinn {\tt endl} sem stendur fyrir nýja línu.
 
-In {\tt main} we can call this new function using syntax that
-is similar to the way we call the built-in C++ commands:
+Úr {\tt main} getum við kallað á þetta nýja fall með því að nota málskipan sem er svipuð þeirri sem við notum þegar við köllum á innbyggð föll:
 
 \begin{verbatim}
 int main ()
@@ -275,7 +273,7 @@ int main ()
 }
 \end{verbatim}
 %
-The output of this program is
+Úttakið úr forritinu er:
 
 \begin{verbatim}
 First line.
@@ -283,9 +281,9 @@ First line.
 Second line.
 \end{verbatim}
 %
-Notice the extra space between the two lines.  What if we wanted
-more space between the lines?  We could call the same
-function repeatedly:
+Taktu eftir auka (tómu) línunni á milli línanna tveggja.
+En hvað ef við þyrftum að meira bili að halda á milli línanna?
+Við gætum kallað á þetta sama fall nokkrum sinnum:
 
 \begin{verbatim}
 int main ()
@@ -299,8 +297,7 @@ int main ()
 }
 \end{verbatim}
 %
-Or we could write a new function, named {\tt threeLine}, that 
-prints three new lines:
+Annar möguleiki væri sá að skrifa nýtt fall, t.d. með nafninu {\tt threeLine}, sem skrifar út þrjár nýjar línur: 
 
 \begin{verbatim}
 void threeLine ()
@@ -317,49 +314,40 @@ int main ()
 }
 \end{verbatim}
 %
-You should notice a few things about this program:
+Hér eru nokkur atriði sem vert er að gefa gaum:
 
 \begin{itemize}
 
-\item You can call the same procedure repeatedly.  In
-fact, it is quite common and useful to do so.
+\item Hægt er að kalla á sama fallið aftur og aftur. Reyndar vill svo til að það er einmitt algengt og nytsamlegt.
 
-\item You can have one function call another function.  In this
-case, {\tt main} calls {\tt threeLine} and {\tt threeLine}
-calls {\tt newLine}.  Again, this is common and useful.
+\item Hægt er að láta eitt fall kalla á annað.
+Í forritinu að ofan kallar {\tt main} á {\tt threeLine} og {\tt threeLine} kallar á {\tt newLine}.
+Þett er einnig algengt og nytsamlegt. 
 
-\item In {\tt threeLine} I wrote three statements all on the
-same line, which is syntactically legal (remember that spaces
-and new lines usually don't change the meaning of a program).
-On the other hand, it is usually a better idea to put each
-statement on a line by itself, to make your program easy to
-read.  I sometimes break that rule in this book to save space.
+\item Í {\tt threeLine} skrifaði ég þrjár setningar í einni og sömu línunni sem er setningafræðilega rétt (mundu að bil og tómar línur breyta ekki merkingu forrits í C++).
+Á hinn bóginn bendi ég á að það er yfirleitt betra að hafa eina setningu í hverri línu því þannig verður forritið læsilegra.
+Í þessari bók brýt ég stundum þessa reglu til að spara pláss.
 
 \end{itemize}
 
-So far, it may not be clear why it is worth the trouble to
-create all these new functions.  Actually, there are a lot
-of reasons, but this example only demonstrates two:
+Á þessum tímapunkti er kannski ekki ljóst hvað ávinnst með því að búa til öll þessi föll.
+Fyrir því eru margar ástæður en forritið að ofan sýnir fram á tvær þeirra:
 
 \begin{enumerate}
 
-\item Creating a new function gives you an opportunity to
-give a name to a group of statements.  Functions can simplify a program
-by hiding a complex computation behind a single command, and by using
-English words in place of arcane code.  Which is clearer, {\tt
-newLine} or {\tt cout << endl}?
+\item Með því að búa til nýtt fall þá getur þú gefið mengi af setningum nafn.
+Föll geta einfaldað forrit með því að hylja flókna reikninga/aðgerðir ``á bak við'' eina skipun og með því að nota orð sem eru okkur töm í stað ``skrýtinna'' tákna.
+Hvort er læsilegra, {\tt newLine} eða {\tt cout << endl}?
 
-\item Creating a new function can make a program smaller by eliminating
-repetitive code.  For example, a short way to print nine consecutive
-new lines is to call {\tt threeLine} three times.  How would you
-print 27 new lines?
+\item Það að búa til fall getur eytt endurteknum kóða og þar með gert forrit styttra.
+Einföld leið til að prenta t.d. níu nýjar línur í röð væri að kalla á {\tt threeLine} þrisvar sinnum.
+Hvernig myndir þú prenta út 27 nýjar línur?
 
 \end{enumerate}
 
-\section {Definitions and uses}
+\section {Skilgreiningar og notkun}
 
-Pulling together all the code fragments from the previous
-section, the whole program looks like this:
+Ef við tökum saman alla kóðabútana úr kaflanum hér á undan þá lítur forritið í heild sinni svona út:
 
 \begin{verbatim}
 #include <iostream>
@@ -384,66 +372,49 @@ int main ()
 }
 \end{verbatim}
 
-This program contains three function definitions: {\tt newLine},
-{\tt threeLine}, and {\tt main}.
+Þetta forrit inniheldur þrjár fallaskilgreiningar: {\tt newLine}, {\tt threeLine} og {\tt main}.
 
-Inside the definition of {\tt main}, there is a statement that
-uses or calls {\tt threeLine}.  Similarly, {\tt threeLine} calls
-{\tt newLine} three times.  Notice that the definition of each
-function appears above the place where it is used.
+Skilgreiningin á {\tt main} inniheldur setningu sem kallar á {\tt threeLine}.
+Á sama hátt kallar {\tt threeLine} þrisvar sinnum á {\tt newLine}.
 
-This is necessary in C++; the definition of a function must
-appear before (above) the first use of the function.  You
-should try compiling this program with the functions in a
-different order and see what error messages you get.
+Taktu eftir að skilgreiningin á sérhverju falli kemur á undan þeim stað þar sem fallið er notað (þar sem kallað er á það).
+C++ krefst þess að skilgreiningin á falli komi á undan fyrstu noktun þess.
+Þú ættir að prófa að þýða þetta forrit með föllunum í annarri röð til að sjá hvers konar villumeldingar þú færð.
 
-\section {Programs with multiple functions}
+\section {Forrit með mörgum föllum}
 
-When you look at a class definition that contains several functions, it
-is tempting to read it from top to bottom, but that is likely to be
-confusing, because that is not the {\bf order of execution} of the
-program.
+Þegar þú skoðar forrit sem inniheldur nokkur föll þá er ruglandi að lesa forritið frá ``toppi til táar''
+því það endurspeglar ekki {\bf keyrsluröð} (e. order of execution) forritsins.
 
-Execution always begins at the first statement of {\tt main},
-regardless of where it is in the program (often it is at the bottom).
-Statements are executed one at a time, in order, until you reach a
-function call.  Function calls are like a detour in the flow of
-execution.  Instead of going to the next statement, you go to the
-first line of the called function, execute all the statements there,
-and then come back and pick up again where you left off.
+Keyrslan hefst alltaf í fyrstu setningunni í {\tt main}, burtséð frá því hvar {\tt main} er staðsett í forritinu (það er reyndar oft neðst í kóðanum).
+Setningar eru keyrðar, ein í einu, í röð þangað til komið er að fallakalli.
+Fallaköll eru eins og krókur í flæði keyrslunnar.
+Í stað þess að fara í næstu setningu þá er stokkið í fyrstu línu fallsins sem kallað er á, allar setningar fallsins keyrðar og síðan stokkið til baka og þráðurinn tekinn upp þar sem frá var horfið.
 
-That sounds simple enough, except that you have to remember that one
-function can call another.  Thus, while we are in the middle of {\tt
-main}, we might have to go off and execute the statements in {\tt
-threeLine}.  But while we are executing {\tt threeLine}, we get
-interrupted three times to go off and execute {\tt newLine}.
+Þetta hljómar svo sem einfalt en mundu að eitt fall getur kallað á annað.
+Þannig að þegar við eru í miðri keyrslu á {\tt main} gætum við þurft að stökkva burt og keyra setningarnar í {\tt threeLine}.
+En meðan setningarnar í {\tt threeLine} eru keyrðar þá eru við ``trufluð'' (e. interrupted) þrisvar sinnum til að keyra {\tt newLine}.
 
-Fortunately, C++ is adept at keeping track of where it is, so
-each time {\tt newLine} completes, the program picks up where it left
-off in {\tt threeLine}, and eventually gets back to {\tt main} so the
-program can terminate.
+Sem betur fer þurfum við sem forritara ekki að hafa áhyggjur af þessum stökkvum í föll því C++ þýðandinn býr til kóða sem sér um þetta fyrir okkur.
+Þegar {\tt newLine} hættir heldur forritið áfram á réttum stað í {\tt threeLine} og kemst að lokum til baka í {\tt main} þar sem keyrslunni lýkur.
 
-What's the moral of this sordid tale?  When you read a program, don't
-read from top to bottom.  Instead, follow the flow of execution.
+Boðskapurinn er sem sagt sá að þeagar þú lest forritið þá skaltu ekki lesa það frá toppi til táar heldur fylgja keyrsluflæðinu (e. flow of execution).
 
-\section {Parameters and arguments}
-\index{parameter}
-\index{argument}
+\section {Leppar og viðföng}
+\index{leppur}
+\index{viðfang}
 
-Some of the built-in functions we have used have {\bf parameters},
-which are values that you provide to let the function do its
-job.  For example, if you want to find the sine of a number,
-you have to indicate what the number is.  Thus, {\tt sin}
-takes a {\tt double} value as a parameter.
+Sum af þeim innbyggðu föllum sem við höfum skoðað hafa {\bf leppa} (e. formal parameters)
+en þeir geyma þau gildi sem við látum fall hafa til að það geti gert það sem það á að gera.
+Ef þú þarft t.d. að finna sinus af einhverri tölu þá þarftu að gefa til kynna hver talan er.
+Þ.e. {\tt sin} tekur {\tt double} gildi sem viðfang.
 
-Some functions take more than one parameter, like {\tt pow},
-which takes two {\tt doubles}, the base and the exponent.
+Sum föll hafa fleiri en einn lepp.
+Dæmi um það er fallið {\tt pow} sem tekur tvö {\tt double} gildi, grunninn og veldisvísinn.
 
-Notice that in each of these cases we have to specify not
-only how many parameters there are, but also what type they
-are.  So it shouldn't surprise you that when you write a
-class definition, the parameter list indicates the type of
-each parameter.  For example:
+Í sérhverju þessara tilfella þarf bæði að taka fram hversu margir lepparnir eru og af hvaða tagi þeir eru.
+Það ætti því ekki að koma á óvart að þegar þú skrifar fallaskilgreiningu þá inniheldur listinn yfir leppana einnig tag þeirra:
+Dæmi:
 
 \begin{verbatim}
   void printTwice (char phil) {
@@ -451,16 +422,12 @@ each parameter.  For example:
   }
 \end{verbatim}
 %
-This function takes a single parameter, named {\tt phil}, that
-has type {\tt char}.  Whatever that parameter is (and at
-this point we have no idea what it is), it gets printed
-twice, followed by a newline.
-I chose the name {\tt phil} to suggest that the name
-you give a parameter is up to you, but in general you want to
-choose something more illustrative than {\tt phil}.
+Þetta fall er með lepp með nafninu {\tt phil} sem er af taginu {\tt char}.
+Gildið sem kemur inn, hvert svo sem það er (á þessum tímapunkti vitum við það ekki), er prentað tvisvar og ný lína á eftir.
+Ég notaði hér nafnið {\tt phil} til að gefa til kynna að þú getur notað hvaða nafn sem er á leppum en almennt séð þá ættir þú að velja eitthvað meira lýsandi nafn en {\tt phil}.
 
-In order to call this function, we have to provide a {\tt char}.
-For example, we might have a {\tt main} function like this:
+Til að kalla á þetta fall verðum við að gefa því {\tt char} gildi.
+Við gætum t.d. skrifað {\tt main} fallið svona:
 
 \begin{verbatim}
   int main () {
@@ -469,13 +436,11 @@ For example, we might have a {\tt main} function like this:
   }
 \end{verbatim}
 %
-The {\tt char} value you provide is called an {\bf argument}, and we
-say that the argument is {\bf passed} to the function.  In this
-case the value {\tt 'a'} is passed as an argument
-to {\tt printTwice} where it will get printed twice.
+{\tt char} gildið í kallinu á {\tt printTwice} er kallað {\bf viðfang} (e. actual parameter/argument).
+Talað er um að senda viðfangið (e. to pass the argument) til fallsins.
+Í þessu tilviki {\tt 'a'} sent sem viðfang í {\tt printTwice} sem prentar gildið út tvisvar.
 
-Alternatively, if we had a {\tt char} variable, we could
-use it as an argument instead:
+Ef við hefðum breytu af taginu {\tt char} þá gætum við notað hana sem viðfang í staðinn:
 
 \begin{verbatim}
   int main () {
@@ -485,70 +450,54 @@ use it as an argument instead:
   }
 \end{verbatim}
 %
-Notice something very important here: the name of the variable we pass
-as an argument ({\tt argument}) has nothing to do with the name of the
-parameter ({\tt phil}).  Let me say that again:
-
+Hér er eitt mikilvægt atriðið: Nafnið á breytunni sem við sendum sem viðfang hefur ekkert að gera með nafnið á leppnum ({\tt phil}).
+Ég endurtek:
 \begin{quote}
 
-{\bf The name of the variable we pass as an argument has nothing to do
-with the name of the parameter.}
+{\bf Nafnið á breytunni sem við sendum sem viðfang hefur ekkert að gera með nafnið á leppnum.}
 
 \end{quote}
 
-They can be the same or they can be different, but it is important
-to realize that they are not the same thing, except that they happen
-to have the same value (in this case the character {\tt 'b'}).
+Nöfnin geta verið þau sömu en þau geta líka verið mismunandi.
+Það er mikilvægt að gera sér grein fyrir að leppurinn og viðfangið eru ekki sami hluturinn
+þó svo að þau hafi sama gildið (í þessu tilviki stafurinn {\tt 'b'}).
 
-The value you provide as an argument must have the same type as
-the parameter of the function you call.  This rule is
-important, but it is sometimes confusing because C++ sometimes
-converts arguments from one type to another automatically.  For
-now you should learn the general rule, and we will deal with
-exceptions later.
+Gildið sem sent er sem viðfang verður að hafa sama tagið og leppurinn í fallinu sem kallað er á.
+Þessi regla er mikilvæg en getur stundum verið ruglandi því C++ breytir stundum einu tagi í annað á sjálfvirkan hátt.
+Á þessum tímapunkti skaltu muna þessa almennu reglu en við munum ræða undantekningar frá henni síðar.
 
-\section {Parameters and variables are local}
+\section {Leppar og breytur eru staðværar}
 
-Parameters and
-variables only exist inside their own functions.  Within the
-confines of {\tt main}, there is no such thing as {\tt phil}.
-If you try to use it, the compiler will complain.  Similarly,
-inside {\tt printTwice} there is no such thing as {\tt argument}.
+Gildissvið (e. scope) leppar og breytna eru aðeins innan í eigin föllum.
+Innan marka {\tt main} er ekki neinn hlutur með nafninu {\tt phil} aðgengilegur.
+Þýðandinn mun kvarta ef þú reynir að nota það nafn inna í {\tt main}.
+Á sama hátt er enginn hlutur með nafninu {\tt argument} aðgengilegur inni í {\tt printTwice}.
 
-Variables like this are said to be {\bf local}.  In order to
-keep track of parameters and local variables, it is useful to
-draw a {\bf stack diagram}.  Like state diagrams, stack diagrams
-show the value of each variable, but the variables are contained
-in larger boxes that indicate which function they belong to.
+Breytur eins og þessar eru sagðar vera {\bf staðværar} (e. local).
+Það getur verið gott að teikna {\bf staflarit} (e. stack diagram) til að gera sér grein fyrir leppum og staðværum breytum.
+Eins og stöðurit sýna staflarit gildi á sérhverri breytu en breyturnar eru innan í stærri boxum sem gefa til kynna hvaða föllum þær tilheyra.
 
-For example, the state diagram for {\tt printTwice} looks 
-like this:
+Staflarit fyrir {\tt printTwice} lítur svona út:
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=stack.eps}}
 \vspace{0.1in}
 %
-Whenever a function is called, it creates a new {\bf instance}
-of that function.  Each instance of a function contains the
-parameters and local variables for that function.  In the
-diagram an instance of a function is represented by a box
-with the name of the function on the outside and the variables
-and parameters inside.
+Í hvert skipti sem fall er kallað verður til nýtt {\bf tilvik} af fallinu (kallað {\bf kvaðningafærsla} (e. activation record)).
+Sérhvert tilvik af fallinu innheildur leppana og staðværu breyturnar.
+Í myndinni er tilvik af fallinu sýnt sem box með nafni fallsins að utanverðu en að innanverðu eru breytur og leppar.
 
-In the example, {\tt main} has one local variable, {\tt argument}, and
-no parameters.  {\tt printTwice} has no local variables and one
-parameter, named {\tt phil}.
+Í dæminu hefur {\tt main} eina staðværa breytu, {\tt argument}, og enga leppa.
+{\tt printTwice} hefur engar staðværar breytur en einn lepp með nafninu {\tt phil}.
 
-\section {Functions with multiple parameters}
-\index{parameter!multiple}
-\index{function!multiple parameter}
-\index{class!Time}
+\section {Föll með marga leppa}
+\index{leppur!margir}
+\index{fall!margir leppar}
+%\index{class!Time}
 
-The syntax for declaring and invoking functions with multiple
-parameters is a common source of errors.  First, remember
-that you have to declare the type of every parameter.  For
-example
-
+Málskipanin sem notuð er til að lýsa yfir og kalla á föll með mörgum leppum veldur of villum við þýðingu.
+Í fyrsta lagi þarf að muna að það þarf að lýsa yfir tagi á sérhverjum leppi.
+Dæmi:
 \begin{verbatim}
   void printTime (int hour, int minute) {
     cout << hour;
@@ -557,12 +506,10 @@ example
   }
 \end{verbatim}
 %
-It might be tempting to write {\tt (int hour, minute)}, but
-that format is only legal for variable declarations, not
-for parameters.
+Það er freistandi að skrifa {\tt (int hour, minute)} en sá ritháttur er aðeins löglegur fyrir yfirlýsingar á breytum en ekki á leppum!
 
-Another common source of confusion is that you do not have
-to declare the types of arguments.  The following is wrong!
+Annað sem getur valdið ruglingi er að þú þarft ekki að lýsa yfir tagi á viðföngunum.
+Eftirfarandi er rangt:
 
 \begin{verbatim}
     int hour = 11;
@@ -570,72 +517,57 @@ to declare the types of arguments.  The following is wrong!
     printTime (int hour, int minute);   // WRONG!
 \end{verbatim}
 %
-In this case, the compiler can tell the type of {\tt hour}
-and {\tt minute} by looking at their declarations.  It is
-unnecessary and illegal to include the type when you pass them
-as arguments.  The correct
-syntax is {\tt printTime (hour, minute)}.
+Ástæðan er sú að þýðandinn getur séð hvert tagið á viðföngunum, breytunum {\tt hour} og {\tt minute}, er með því að fletta upp í skilgreiningunni á þeim.
+Það er sem sagt óþarfi og óleyfilegt að taka fram tagið á viðföngunum.
+Rétta málskipanin er {\tt printTime (hour, minute)}.
 
-\section {Functions with results}
-\index{fruitful function}
-\index{function!fruitful}
+\section {Föll sem skila gildi}
+\index{frjósöm föll}
+\index{föll!frjósöm}
 
-You might have noticed by now that some of the functions we are using,
-like the math functions, yield results.  Other functions,
-like {\tt newLine}, perform an action but
-don't return a value.  That raises some questions:
+Þú ættir að hafa tekið eftir því að sum af þeim föllum sem við höfum notað, t.d. stærðfræðiföll, skila af sér gildi.
+Önnur föll, eins og {\tt newLine}, framkvæma aðgerð en skila ekki gildi.
+Þetta vekur upp nokkrar spurningar:
 
 \begin{itemize}
 
-\item What happens if you call a function and you don't
-do anything with the result (i.e. you don't assign it to
-a variable or use it as part of a larger expression)?
+\item Hvað gerist ef þú kallar á fall og þú gerir ekkert við niðurstöðuna (þ.e. þú setur niðurstöðuna hvorki inn í breytu né notar hana sem hluta af stærri segð)?
 
-\item What happens if you use a function without a result as part
-of an expression, like {\tt newLine() + 7}?
+\item Hvað gerist ef þú nota fall sem ekki skilar gildi sem hluta af segð, eins og {\tt newLine() + 7}?
 
-\item Can we write functions that yield results, or are we
-stuck with things like {\tt newLine} and {\tt printTwice}?
+\item Getum við skrifað föll sem skila gildum eða sitjum við upp með að skrifa föll eins og {\tt newLine} og {\tt printTwice}?
 
 \end{itemize}
 
-The answer to the third question is ``yes, you can write functions that
-return values,'' and we'll do it in a couple of chapters.  I will
-leave it up to you to answer the other two questions by trying them
-out.  Any time you have a question about what is legal or
-illegal in C++, a good way to find out is to ask the compiler.
+Svarið við þriðju spurningunni er ``já'', þ.e. við getum skrifað föll sem skila gildum og við munum einmitt gera það í næstu köflum.
+Ég mun láta þér eftir að svara fyrstu tveimur spurningunum með prófunum.
+Það er góð leið að spyrja þýðandann í sérhvert sinn sem þig vantar svar varðandi það hvort tiltekið atriði er leyfilegt eður ei í C++.
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[floating-point:] A type of variable (or value) that can contain
-fractions as well as integers.  There are a few floating-point types
-in C++; the one we use in this book is {\tt double}.
+\item[kommutala (e. floating-point):] Tag breytu (eða gildi) sem getur geymt brot svo og heiltölur.
+Það eru nokkur kommutölutög í C++ en við munum nota {\tt double} í þessari bók.
 
-\item[initialization:]  A statement that declares a new variable
-and assigns a value to it at the same time.
+\item[upphafsstilling (e. initialization):]  Setning sem lýsir yfir breytu og gefur henni gildi á sama tíma.
 
-\item[function:]  A named sequence of statements that performs some
-useful function.  Functions may or may not take parameters, and may
-or may not produce a result.
+\item[fall (e. function):]  Röð setninga sem bera tiltekið nafn og framkvæma tiltekna(r) aðgerð(ir).
+Föll taka 0 eða fleiri viðföng og geta skilað af sér gildi.
 
-\item[parameter:]  A piece of information you provide
-in order to call a function.  Parameters are like variables in
-the sense that they contain values and have types.
+\item[leppur (e. parameter):]  Geymir upplýsingar sem gefnar eru upp þegar kallað er á fall.
+Leppar eru eins og breytur í þeim skilningi að þeir innihelda bæði gildi og eru af tilteknu tagi.
 
-\item[argument:]  A value that you provide when you call a
-function.  This value must have the same type as the corresponding
-parameter.
+\item[viðfang (e. argument):]  Gildi sem gefið er upp þegar kallað er á fall.
+Gildið verður að vera af sama tagið og viðkomandi leppur.
 
-\item[call:]  Cause a function to be executed.
+\item[fallakall (e. function call):]  Veldur því að fall er keyrt. 
 
-\index{floating-point}
-\index{function}
-\index{parameter}
-\index{argument}
-\index{call}
-\index{initialization}
+\index{kommutala}
+\index{fall}
+\index{leppur}
+\index{viðfang}
+\index{fallakall}
+\index{upphafsstilling}
 
 \end{description}
-
