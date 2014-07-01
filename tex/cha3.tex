@@ -37,7 +37,7 @@ Almennari lausn er hins vegar að nota kommutölur (e. floating-point) sem geta 
 Tvenns konar kommutölur eru í C++, {\tt float} og {\tt double}.
 Í þessari bók munum við eingöngu nota {\tt double} tölur.
 
-Þú getur búið til kommutölur og gefið þeim gildi með sömu málskipan og notuð er fyrir önnu tög.
+Þú getur búið til kommutölur og gefið þeim gildi með sömu málskipan og notuð er fyrir önnur tög.
 Dæmi:
 
 \begin{verbatim}
@@ -58,7 +58,7 @@ Samsett yfirlýsing (e. declaration) og gildisveiting (e. asssignment) er stundu
 
 \index{upphafsstilling}
 
-Þó svo að kommutölur séu nytsamlegar þá valda þær stundum ruglingi vegna þess að svo virðist sem heiltölur og kommutölur skarist. 
+Þó svo að kommutölur séu gagnlegar þá valda þær stundum ruglingi vegna þess að svo virðist sem heiltölur og kommutölur skarist. 
 T.d., er gildið {\tt 1} heiltala, kommutala eða hvoru tveggja?
 
 C++ gerir greinarmun á heiltölugildinu {\tt 1} og kommutölugildinu {\tt 1.0} þrátt fyrir að þau virðast standa fyrir sömu töluna.
@@ -79,16 +79,16 @@ T.d. ætti
 %
 tæknilega séð ekki að vera leyfilegt en C++ þýðandi leyfir þetta með því að breyta sjálfur
 {\tt int} (gildinu 1) í {\tt double}.
-Þessi ``linkind'' af hálfu þýðandans getur verið þægileg fyrir forritarann en getur jafnframt leitt til vandræða:
+Þessi ``linkind'' af hálfu þýðandans getur verið þægileg fyrir forritarann en getur jafnframt leitt til vandræða.
 Dæmi:
 
 \begin{verbatim}
     double y = 1 / 3;
 \end{verbatim}
 %
-Hér gætir þú búist við því að breytan {\tt y} fái gildið {\tt 0.333333}, sem er leyfilegt kommutölugildi, en í raun fær hún gildið {\tt 0.0}.
+Hér gætir þú búist við því að breytan {\tt y} fái gildið {\tt 0,333333}, sem er leyfilegt kommutölugildi, en í raun fær hún gildið {\tt 0.0}.
 Ástæðan er sú að segðin á hægri hlið gildisveitingarinnar er hlutfall tveggja heiltalna og því framkvæmir C++ {\em heiltöludeilingu}, hvers niðurstaða er heiltölugildið {\tt 0}.
-Þegar því gildi er breytt (af þýðandanum) í kommutölu þá er niðurstaðan {\tt 0.0}.
+Þegar því gildi er breytt (af þýðandanum) í kommutölu þá er niðurstaðan {\tt 0,0}.
 
 Ein leið til að leysa þetta vandamál er að gera gildi segðarinnar á hægri hlið að kommutölu:
 
@@ -96,7 +96,7 @@ Ein leið til að leysa þetta vandamál er að gera gildi segðarinnar á hægr
     double y = 1.0 / 3.0;
 \end{verbatim}
 %
-Þetta veldur því að {\tt y} fær gildið {\tt 0.333333} eins og við var að búast.
+Þetta veldur því að {\tt y} fær gildið {\tt 0,333333} eins og við var að búast.
 
 \index{útreikningur!kommutala}
 
@@ -136,18 +136,18 @@ Fyrir sérhvert tag í C++ er til samsvarandi fall sem tagmótar sitt viðfang �
 \index{segð}
 \index{viðfang}
 
-Í stærðfræði hefur þú væntanlega séð föll eins og $\sin$ and $\log$ og hefur lært að reikna út gildi segða eins og $\sin(\pi/2)$ og $\log(1/x)$.
-Fyrst reiknar þú út gildi segðar innan sviga en það eru kallað {\bf viðfang} (e. argument) fallsins.
-T.d. er $\pi/2$ u.þ.b. 1,571 og $1/x$ is 0,1 (ef $x$ hefur gildið 10).
+Í stærðfræði hefur þú væntanlega séð föll eins og $\sin$ og $\log$ og hefur lært að reikna út gildi segða eins og $\sin(\pi/2)$ og $\log(1/x)$.
+Fyrst reiknar þú út gildi segðar innan sviga en það er kallað {\bf viðfang} (e. argument) fallsins.
+T.d. er $\pi/2$ u.þ.b. 1,571 og $1/x$ er 0,1 (ef $x$ hefur gildið 10).
 
 Eftir þetta getur þú ákvarðar gildi fallsins sjálfs, annað hvort með því að fletta upp í töflu eða með því að framkvæma ýmsa útreikninga.
-$\sin$ af 1,571 is 1 og $\log$ af 0,1 is -1 (ef við gerum ráð fyrir því að $\log$ standi fyrir 
+$\sin$ af 1,571 is 1 og $\log$ af 0,1 er -1 (ef við gerum ráð fyrir því að $\log$ standi fyrir 
 lógariþma með grunn 10).
 
 Þetta ferli er hægt að endurtaka til að ákvarða gildi flóknari segða eins og $\log(1/\sin(\pi/2))$.
 Fyrst ákvörðum við gildi viðfangs innsta fallsins (þ.e. ($\pi/2$)), síðan reiknum við út gildi fallsins (þ.e. $\sin$), o.s.frv.
 
-C++ býður upp á mengi af innbyggðum (e. built-in) föllum sem innihaldur flestar þær stærðfræðilegu aðgeðir sem þú getur ímyndað þér.
+C++ býður upp á mengi af innbyggðum (e. built-in) föllum sem inniheldur flestar þær stærðfræðilegu aðgerðir sem þú getur ímyndað þér.
 Kallað er á þessi stærðfræðiföll með því að nota málskipan sem er sambærileg við stærðfræðilega táknun: 
 
 \begin{verbatim}
@@ -160,7 +160,7 @@ Fyrsta setningin að ofan gefur breytunni {\tt log} gildið lógariþmi af 17 (g
 Það er einnig til fall {\tt log10} sem reiknar út lógariþma miðað við grunn 10.
 
 Þriðja setningin reiknar út sinus af gildinu sem geymt er í breytunni {\tt angle}.
-C++ gerir ráð fyrir því að gildin sem notuð eru með sinus fallinu og öðrum hornaföllum ({\tt cos}, {\tt tan}) séu í {\em radian}.
+C++ gerir ráð fyrir því að gildin sem notuð eru með sinus fallinu, og öðrum hornaföllum ({\tt cos}, {\tt tan}), séu í {\em radian}.
 Til að breyta gráðum í radian getur þú deilt með 360 og margfaldað með $2 \pi$.  
 
 Ef þú þekkir ekki gildið á $\pi$ (með 15 aukastöfum!) þá getur þú reiknað það út með því að nota {\tt acos} fallið.
@@ -174,7 +174,7 @@ Arccosinus (eða andhverfa cosinus) af -1 er $\pi$ vegna þess að cosinus af $\
 %
 Áður en þú getur notað eitthvað af stærðfræðiföllunum þarftu að taka inn (e. include) sérstaka {\bf hausaskrá} (e. header file) í forritið þitt.
 Hausaskrá inniheldur upplýsingar um föll, sem eru skilgreind annars staðar en í þínu eigin forriti, og sem þýðandinn þarf á að halda.
-Í ``Hello, world!'' forritunu tókum við t.d. inn haus nefndan {\tt iostream} með því að nota {\bf include} setningu:
+Í ``Hello, world!'' forritinu tókum við t.d. inn haus nefndan {\tt iostream} með því að nota {\bf include} setningu:
 
 \begin{verbatim}
 #include <iostream>
@@ -221,7 +221,7 @@ Föll í C++ geta verið samsett á sama hátt og stærðfræðiföll.
 Í þessari setningu er deilt í gildið {\tt pi} með tveimur og gildinu á breytunni {\tt angle} bætt við niðurstöðuna.
 Summan er síðan send sem viðfang í fallið {\tt cos}.
 
-Þú getur einnig sent niðurstöðuna úr eini falli sem viðfang í annað fall:
+Þú getur einnig sent niðurstöðuna úr einu falli sem viðfang í annað fall:
 
 \begin{verbatim}
     double x = exp (log (10.0));
@@ -282,7 +282,7 @@ Second line.
 \end{verbatim}
 %
 Taktu eftir auka (tómu) línunni á milli línanna tveggja.
-En hvað ef við þyrftum að meira bili að halda á milli línanna?
+En hvað ef við þyrftum á meira bili að halda á milli línanna?
 Við gætum kallað á þetta sama fall nokkrum sinnum:
 
 \begin{verbatim}
@@ -318,11 +318,11 @@ Hér eru nokkur atriði sem vert er að gefa gaum:
 
 \begin{itemize}
 
-\item Hægt er að kalla á sama fallið aftur og aftur. Reyndar vill svo til að það er einmitt algengt og nytsamlegt.
+\item Hægt er að kalla á sama fallið aftur og aftur. Reyndar vill svo til að það er einmitt algengt og gagnlegt.
 
 \item Hægt er að láta eitt fall kalla á annað.
 Í forritinu að ofan kallar {\tt main} á {\tt threeLine} og {\tt threeLine} kallar á {\tt newLine}.
-Þett er einnig algengt og nytsamlegt. 
+Þetta er einnig algengt og gagnlegt. 
 
 \item Í {\tt threeLine} skrifaði ég þrjár setningar í einni og sömu línunni sem er setningafræðilega rétt (mundu að bil og tómar línur breyta ekki merkingu forrits í C++).
 Á hinn bóginn bendi ég á að það er yfirleitt betra að hafa eina setningu í hverri línu því þannig verður forritið læsilegra.
@@ -335,7 +335,7 @@ Fyrir því eru margar ástæður en forritið að ofan sýnir fram á tvær þe
 
 \begin{enumerate}
 
-\item Með því að búa til nýtt fall þá getur þú gefið mengi af setningum nafn.
+\item Með því að búa til nýtt fall þá getur þú gefið safni setninga nafn.
 Föll geta einfaldað forrit með því að hylja flókna reikninga/aðgerðir ``á bak við'' eina skipun og með því að nota orð sem eru okkur töm í stað ``skrýtinna'' tákna.
 Hvort er læsilegra, {\tt newLine} eða {\tt cout << endl}?
 
@@ -395,10 +395,10 @@ Fallaköll eru eins og krókur í flæði keyrslunnar.
 Þannig að þegar við eru í miðri keyrslu á {\tt main} gætum við þurft að stökkva burt og keyra setningarnar í {\tt threeLine}.
 En meðan setningarnar í {\tt threeLine} eru keyrðar þá eru við ``trufluð'' (e. interrupted) þrisvar sinnum til að keyra {\tt newLine}.
 
-Sem betur fer þurfum við sem forritara ekki að hafa áhyggjur af þessum stökkvum í föll því C++ þýðandinn býr til kóða sem sér um þetta fyrir okkur.
+Sem betur fer þurfum við sem forritarar ekki að hafa áhyggjur af þessum stökkvum í föll því C++ þýðandinn býr til kóða sem sér um þetta fyrir okkur.
 Þegar {\tt newLine} hættir heldur forritið áfram á réttum stað í {\tt threeLine} og kemst að lokum til baka í {\tt main} þar sem keyrslunni lýkur.
 
-Boðskapurinn er sem sagt sá að þeagar þú lest forritið þá skaltu ekki lesa það frá toppi til táar heldur fylgja keyrsluflæðinu (e. flow of execution).
+Boðskapurinn er sem sagt sá að þegar þú lest forritið þá skaltu ekki lesa það frá toppi til táar heldur fylgja keyrsluflæðinu (e. flow of execution).
 
 \section {Leppar og viðföng}
 \index{leppur}
@@ -459,23 +459,23 @@ Hér er eitt mikilvægt atriðið: Nafnið á breytunni sem við sendum sem við
 \end{quote}
 
 Nöfnin geta verið þau sömu en þau geta líka verið mismunandi.
-Það er mikilvægt að gera sér grein fyrir að leppurinn og viðfangið eru ekki sami hluturinn
-þó svo að þau hafi sama gildið (í þessu tilviki stafurinn {\tt 'b'}).
+Það er mikilvægt að gera sér grein fyrir því að leppurinn og viðfangið eru ekki sami hluturinn
+þó svo að þau hafi sama gildið (í þessu tilviki stafinn {\tt 'b'}).
 
 Gildið sem sent er sem viðfang verður að hafa sama tagið og leppurinn í fallinu sem kallað er á.
-Þessi regla er mikilvæg en getur stundum verið ruglandi því C++ breytir stundum einu tagi í annað á sjálfvirkan hátt.
+Þessi regla er mikilvæg en getur verið ruglandi því C++ breytir stundum einu tagi í annað á sjálfvirkan hátt.
 Á þessum tímapunkti skaltu muna þessa almennu reglu en við munum ræða undantekningar frá henni síðar.
 
 \section {Leppar og breytur eru staðværar}
 
-Gildissvið (e. scope) leppar og breytna eru aðeins innan í eigin föllum.
+Gildissvið (e. scope) leppa og breytna er aðeins innan í eigin föllum.
 Innan marka {\tt main} er ekki neinn hlutur með nafninu {\tt phil} aðgengilegur.
-Þýðandinn mun kvarta ef þú reynir að nota það nafn inna í {\tt main}.
+Þýðandinn mun kvarta ef þú reynir að nota það nafn innan í {\tt main}.
 Á sama hátt er enginn hlutur með nafninu {\tt argument} aðgengilegur inni í {\tt printTwice}.
 
 Breytur eins og þessar eru sagðar vera {\bf staðværar} (e. local).
 Það getur verið gott að teikna {\bf staflarit} (e. stack diagram) til að gera sér grein fyrir leppum og staðværum breytum.
-Eins og stöðurit sýna staflarit gildi á sérhverri breytu en breyturnar eru innan í stærri boxum sem gefa til kynna hvaða föllum þær tilheyra.
+Staflarit sýna (eins og stöðurit) gildi á sérhverri breytu en breyturnar eru innan í stærri boxum sem gefa til kynna hvaða föllum þær tilheyra.
 
 Staflarit fyrir {\tt printTwice} lítur svona út:
 
@@ -483,8 +483,8 @@ Staflarit fyrir {\tt printTwice} lítur svona út:
 \centerline{\epsfig{figure=stack.eps}}
 \vspace{0.1in}
 %
-Í hvert skipti sem fall er kallað verður til nýtt {\bf tilvik} af fallinu (kallað {\bf kvaðningafærsla} (e. activation record)).
-Sérhvert tilvik af fallinu innheildur leppana og staðværu breyturnar.
+Í hvert skipti sem kallað er á fall til nýtt {\bf tilvik} af upplýsingum um fallið (kallað {\bf kvaðningafærsla} (e. activation record)).
+Sérhvert tilvik af fallinu inniheldur leppana og staðværu breyturnar.
 Í myndinni er tilvik af fallinu sýnt sem box með nafni fallsins að utanverðu en að innanverðu eru breytur og leppar.
 
 Í dæminu hefur {\tt main} eina staðværa breytu, {\tt argument}, og enga leppa.
@@ -496,7 +496,7 @@ Sérhvert tilvik af fallinu innheildur leppana og staðværu breyturnar.
 %\index{class!Time}
 
 Málskipanin sem notuð er til að lýsa yfir og kalla á föll með mörgum leppum veldur of villum við þýðingu.
-Í fyrsta lagi þarf að muna að það þarf að lýsa yfir tagi á sérhverjum leppi.
+Í fyrsta lagi þarf að muna að það þarf að lýsa yfir tagi á sérhverjum lepp.
 Dæmi:
 \begin{verbatim}
   void printTime (int hour, int minute) {
@@ -535,7 +535,7 @@ Rétta málskipanin er {\tt printTime (hour, minute)}.
 
 \item Hvað gerist ef þú nota fall sem ekki skilar gildi sem hluta af segð, eins og {\tt newLine() + 7}?
 
-\item Getum við skrifað föll sem skila gildum eða sitjum við upp með að skrifa föll eins og {\tt newLine} og {\tt printTwice}?
+\item Getum við skrifað föll sem skila gildum eða sitjum við uppi með að skrifa föll eins og {\tt newLine} og {\tt printTwice}?
 
 \end{itemize}
 
@@ -547,7 +547,7 @@ Svarið við þriðju spurningunni er ``já'', þ.e. við getum skrifað föll s
 
 \begin{description}
 
-\item[kommutala (e. floating-point):] Tag breytu (eða gildi) sem getur geymt brot svo og heiltölur.
+\item[kommutala (e. floating-point):] Tag breytu (eða gildi) sem getur geymt brot sem og heiltölur.
 Það eru nokkur kommutölutög í C++ en við munum nota {\tt double} í þessari bók.
 
 \item[upphafsstilling (e. initialization):]  Setning sem lýsir yfir breytu og gefur henni gildi á sama tíma.
@@ -559,7 +559,7 @@ Föll taka 0 eða fleiri viðföng og geta skilað af sér gildi.
 Leppar eru eins og breytur í þeim skilningi að þeir innihelda bæði gildi og eru af tilteknu tagi.
 
 \item[viðfang (e. argument):]  Gildi sem gefið er upp þegar kallað er á fall.
-Gildið verður að vera af sama tagið og viðkomandi leppur.
+Gildið verður að vera af sama tagi og viðkomandi leppur.
 
 \item[fallakall (e. function call):]  Veldur því að fall er keyrt. 
 

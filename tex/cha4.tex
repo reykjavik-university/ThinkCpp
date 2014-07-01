@@ -22,46 +22,44 @@
 % it from www.gnu.org or by writing to the Free Software Foundation,
 % Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
 
-
-\chapter{Conditionals and recursion}
+\chapter{Skilyrði og endurkvæmni}
 \label{condrecursion}
 
-\section{The modulus operator}
+\section{Modulus virkinn}
 \index{modulus}
-\index{operator!modulus}
+\index{virki!modulus}
 
-The modulus operator works on integers (and integer expressions)
-and yields the {\em remainder} when the first operand is divided
-by the second.  In C++, the modulus operator is a percent sign,
-{\tt \%}.  The syntax is exactly the same as for other operators:
+Modulus virkinn tekur tvær heiltölur sem þolendur og skilar {\em afganginum} sem myndast þegar fyrri þolandanum er deilt með þeim síðari.
+Í C++ er modulus virkinn táknaður með prósentumerkinu {\tt \%}.
+Málskipanin er nákvæmlega sú sama og fyrir aðra virkja: 
 
 \begin{verbatim}
   int quotient = 7 / 3;
   int remainder = 7 % 3;
 \end{verbatim}
 %
-The first operator, integer division, yields 2.  The second
-operator yields 1.  Thus, 7 divided by 3 is 2 with 1 left over.
+Fyrsti virkinn að ofan, heiltöludeiling, skilar 2.
+Seinni virkinn skilar 1.
+Sem sagt, 7 deilt með 3 er 2 en afgangurinn er 1.
 
-The modulus operator turns out to be surprisingly useful.  For
-example, you can check whether one number is divisible by
-another: if {\tt x \% y} is zero, then {\tt x} is divisible
-by {\tt y}.
+Það kann að koma á óvart hversu gagnlegur modulus virkinn er.
+Þú getur t.d. athugað hvort ein tala sé deilanleg með annarri:
+ef {\tt x \% y} er núll, þá er {\tt x} deilanleg með {\tt y}.
 
-Also, you can use the modulus operator to extract the rightmost
-digit or digits from a number.  For example, {\tt x \% 10} yields
-the rightmost digit of {\tt x} (in base 10).  Similarly
-{\tt x \% 100} yields the last two digits.
+Þú getur líka notað modulus virkjann til að draga út tölustaf(i) sem koma fyrir lengst til hægri í tölu.
+T.d. skilar {\tt x \% 10} tölustafnum lengst til hægri í {\tt x}.
+Á sama hátt skilar {\tt x \% 100} þeim tveimur tölustöfum sem eru lengst til hægri.
 
-\section{Conditional execution}
-\index{conditional}
-\index{statement!conditional}
+\section{Skilyrt keyrsla}
+\index{skilyrði}
+\index{setning!skilyrði}
 
-In order to write useful programs, we almost always need the ability
-to check certain conditions and change the behavior of the program
-accordingly.  {\bf Conditional statements} give us this ability.  The
-simplest form is the {\tt if} statement:
+Til að skrifa gagnleg forrit þurfum við nánast alltaf að geta tékkað á ákveðnum skilyrðum og breytt flæði forritsins í samræmi við það.
+
+{\bf Skilyrðissetningar} (e. conditional statements) gera okkur þetta kleift.
+Einfaldasta form þeirra er {\tt if} setning:
 
 \begin{verbatim}
   if (x > 0) {
@@ -69,14 +67,14 @@ simplest form is the {\tt if} statement:
   }
 \end{verbatim}
 %
-The expression in parentheses is called the condition.
-If it is true, then the statements in brackets get executed.
-If the condition is not true, nothing happens.
+Segðin innan sviga er kallað skilyrðið.
+Ef það er satt (e. true) þá er setningin innan slaufusviganna keyrð.
+Ef skilyrðið er ekki satt (e. false) þá gerist ekkert.
 
-\index{operator!comparison}
-\index{comparison!operator}
+\index{virki!samanburður}
+\index{samanburður!virki}
 
-The condition can contain any of the {\tt comparison operators}:
+Skilyrðið sjálft getur innihaldið sérhvern af eftirfarandi {\tt skilyrðisvirkjum} (e. comparison operators):
 
 \begin{verbatim}
     x == y               // x equals y
@@ -87,28 +85,23 @@ The condition can contain any of the {\tt comparison operators}:
     x <= y               // x is less than or equal to y
 \end{verbatim}
 %
-Although these operations are probably familiar to you, the
-syntax C++ uses is a little different from mathematical
-symbols like $=$, $\neq$ and $\le$.  A common error is
-to use a single {\tt =} instead of a double {\tt ==}.  Remember
-that {\tt =} is the assignment operator, and {\tt ==} is
-a comparison operator.  Also, there is no such thing as
-{\tt =<} or {\tt =>}.
+Þú þekkir vafalaust þessar aðgerðir en málskipanin sem C++ notar er aðeins frábrugðin stærðfræðitáknum eins og $=$, $\neq$ and $\le$.
+Algeng forritunarvilla er að nota einfalt {\tt =} í stað tvöfalds {\tt ==}.
+Þú þarft að muna að {\tt =} er gildisveitingarvirki (e. assignment operator) en {\tt ==} er samanburðarvirki (e. comparison operator).
+Einnig er vert að benda á að hvorki {\tt =<} né {\tt =>} er til í C++.
 
-The two sides of a condition operator have to be the same
-type.  You can only compare {\tt ints} to {\tt ints} and
-{\tt doubles} to {\tt doubles}.  Unfortunately, at this
-point you can't compare {\tt String}s at all!  There is
-a way to compare {\tt String}s, but we won't get to it for a couple
-of chapters.
+Segðirnar sitt hvoru megin við samanburðarvirkja þurfa að vera af sama tagi.
+Þú getur eingöngu borið saman {\tt int} og {\tt int} annars vegar og {\tt double} og {\tt double} hins vegar.
+Á þessum tímapunkti getur þú ekki borið saman tvo strengi ({\tt string}).
+Það er reyndar hægt og við munum fjalla um það síðar í bókinni.
 
-\section {Alternative execution}
+\section {Varaleið}
 \label{alternative}
-\index{conditional!alternative}
+\index{skilyrði!varaleið}
 
-A second form of conditional execution is alternative execution,
-in which there are two possibilities, and the condition determines
-which one gets executed.  The syntax looks like:
+Önnur tegund af skilyrtri keyrslu er varaleið (e. alternative execution).
+Í varaleið eru tveir möguleikar og skilyrðissegðin ákvarðar hvor leiðin er farin (keyrð).
+Málskipanin lítur svona út:
 
 \begin{verbatim}
   if (x%2 == 0) {
@@ -118,16 +111,11 @@ which one gets executed.  The syntax looks like:
   }
 \end{verbatim}
 %
-If the remainder when {\tt x} is divided by 2 is zero, then
-we know that {\tt x} is even, and this code displays a message
-to that effect.  If the condition is false, the second
-set of statements is executed.  Since the condition must
-be true or false, exactly one of the alternatives will be
-executed.
+Ef afgangurinn, sem fæst með því að deila {\tt x} með 2, er núll þá vitum við að {\tt x} er slétt tala og kóðinn skrifar út skilaboð þess efnis.
+Ef skilyrðið {\tt (x\%2 == 0)} er ósatt þá keyrast setningarnar í {\tt else} hlutanum. 
+Þar sem skilyrðið er annað hvort satt eða ósatt (true eða false) þá mun önnur hvor leiðin verða keyrð, en ekki báðar.
 
-As an aside, if you think you might want to check the parity
-(evenness or oddness) of numbers often, you might want to
-``wrap'' this code up in a function, as follows:
+Ef þú telur að þú gætir oft þurft að tékka á því hvort tiltekin tala er slétt tala eða oddatala þá væri gott að ``pakka'' (e. ``wrap'') þessum kóða inn í fall, t.d.:
 
 \begin{verbatim}
 void printParity (int x) {
@@ -139,30 +127,26 @@ void printParity (int x) {
 }
 \end{verbatim}
 %
-Now you have a function named {\tt printParity} that will display
-an appropriate message for any integer you care to provide.
-In {\tt main} you would call this function as follows:
+Þar með áttu fall með nafninu {\tt printParity} sem skrifar út viðeigandi skilaboð fyrir hvaða heiltölu sem send er inn sem viðfang.
+Úr {\tt main} gætir þú kallað á þetta fall á eftirfarandi hátt:
 
 \begin{verbatim}
     printParity (17);
 \end{verbatim}
 %
-Always remember that when you {\em call} a function, you do
-not have to declare the types of the arguments you provide.
-C++ can figure out what type they are.  You should resist the
-temptation to write things like:
+Mundu að þegar þú {\em kallar} á fall þá þarftu ekki að tilgreina tagið á viðföngunum því C++ þýðandinn finnur sjálfur út af hvað tagi þau eru.
+Ekki freistast til að skrifa:
 
 \begin{verbatim}
   int number = 17;
   printParity (int number);         // WRONG!!!
 \end{verbatim}
 
-\section {Chained conditionals}
-\index{conditional!chained}
+\section {Skilyrðiskeðjur}
+\index{skilyrði!keðjur}
 
-Sometimes you want to check for a number of related conditions
-and choose one of several actions.  One way to do this is by
-{\bf chaining} a series of {\tt if}s and {\tt else}s:
+Stundum þarftu að tékka á mörgum tengdum skilyrðum og velja eina af mörgum mögulegum aðgerðum.
+Ein leið til að gera þetta er að tengja saman röð af {\tt if} og {\tt else} og mynda þannig {\bf skilyrðiskeðjur} (e. chained conditional):
 
 \begin{verbatim}
   if (x > 0) {
@@ -174,20 +158,15 @@ and choose one of several actions.  One way to do this is by
   }
 \end{verbatim}
 %
-These chains can be as long as you want, although they can
-be difficult to read if they get out of hand.  One way to
-make them easier to read is to use standard indentation,
-as demonstrated in these examples.  If you keep all the
-statements and squiggly-braces lined up, you are less
-likely to make syntax errors and you can find them more
-quickly if you do.
+Þessar keðjur geta verið eins langar og þú vilt hafa þær en eftir því sem þær eru lengri því ólæsilegri verða þær!
+Ein leið til að gera þær læsilegri er að nota inndrátt (e. indentation) í kóðanum, eins og gert er í dæminu að ofan.
+Ef þú sérð til þess að allar setningarnar og slaufusvigarnir séu með sama inndrátt þá er ólíklegra að þú gerir einhverjar málskipunarvillur og ef þú gerir villur þá finnur þú þær fljótar.
 
-\section{Nested conditionals}
-\index{conditional!nested}
+\section{Hreiðruð skilyrði}
+\index{skilyrði!hreiðruð}
 
-In addition to chaining, you can also nest one conditional
-within another.  We could have written the previous example
-as:
+Í stað þess að tengja skilyrði saman þá getur þú einnig hreiðrað (e. nest) eitt skilyrði inni í öðru.
+Við gætum hafa skrifað dæmið að ofan á þennan hátt:
 
 \begin{verbatim}
   if (x == 0) {
@@ -201,30 +180,23 @@ as:
   }
 \end{verbatim}
 %
-There is now an outer conditional that contains two branches.  The
-first branch contains a simple output statement, but the second
-branch contains another {\tt if} statement, which has two branches
-of its own.  Fortunately, those two branches are both output
-statements, although they could have been conditional statements as
-well.
+Þessi kóði samanstendur af ytra skilyrði ({\tt x == 0}) sem inniheldur tvær mögulegar kvíslir (e. braches).
+Fyrsta kvíslin er einfaldlega úttakssetning en seinni kvíslin samanstendur af annarri {\tt if} setningu sem sjálf hefur tvær kvíslir.
+Þessar tvær kvíslir eru báðar úttakssetnignar en gætu þess vegna líka verið aðrar skilyrðissetningar.
 
-Notice again that indentation helps make the structure
-apparent, but nevertheless, nested conditionals get difficult to read
-very quickly.  In general, it is a good idea to avoid them when you
-can.
+Taktu eftir því að inndrátturinn hjálpar við að sýna uppbyggingu kóðans en samt sem áður geta hreiðruð skilyrði verið ólæsileg.
+Almennt séð ættir þú að forðast að skrifa hreiðruð skilyrði ef þú kemst hjá því.
 
 \index{nested structure}
 
-On the other hand, this kind of {\bf nested structure} is common, and
-we will see it again, so you better get used to it.
+Á hinn bóginn má segja að þar sem þessi tegund af {\bf hreiðruðum strúktúr} er algeng, og við munum sjá hana aftur, þá er gott fyrir þig að venjast þessu strax.
 
-\section{The {\tt return} statement}
+\section{{\tt Return} setningin}
 \index{return}
-\index{statement!return}
+\index{setning!return}
 
-The {\tt return} statement allows you to terminate the execution
-of a function before you reach the end.  One reason to use it
-is if you detect an error condition:
+{\tt Return} setning gerir þér kleift að hætt keyrslu falls áður en komið er að lokum þess.
+Ein ástæða fyrir notkun return setningar er þegar villuskilyrði (e. error condition) reynist satt:
 
 \begin{verbatim}
 #include <cmath>
@@ -240,31 +212,26 @@ void printLogarithm (double x) {
 }
 \end{verbatim}
 %
-This defines a function named {\tt printLogarithm} that takes
-a {\tt double} named {\tt x} as a parameter.  The first thing
-it does is check whether {\tt x} is less than or equal to
-zero, in which case it displays an error message and then uses
-{\tt return} to exit the function.  The flow of execution
-immediately returns to the caller and the remaining lines of
-the function are not executed.
+Í þessu dæmi er skilgreining á fallinu {\tt printLogarithm} sem hefur {\tt double} nefnt {\tt x} sem lepp.
+Fallið byrjar á því að athuga hvort {\tt x} er minna eða jafnt og núll og ef satt reynist þá skrifar það úr villuskilaboð
+og notar síðan {\tt return} til að hætta keyrslu fallsins.
+Keyrsluflæðið (e. flow of execution) færist þá sjálfkrafa til þess sem kallaði á fallið en þær setningar sem eftir standa í fallinu {\tt printLogarithm} eru ekki framkvæmdar.
 
-I used a floating-point value on the right side of the condition
-because there is a floating-point variable on the left.
+Taktu eftir að ég notaði kommutölugildi á hægri hlið skilyrðisins vegna þess að það er breyta af kommutölutagi á vinstri hliðinni.
 
-Remember that any time you want to use one a function from the math
-library, you have to include the header file {\tt math.h}.
+%Remember that any time you want to use one a function from the math
+%library, you have to include the header file {\tt math.h}.
 
-\section{Recursion}
+\section{Endurkvæmni}
 \label{recursion}
-\index{recursion}
+\index{endurkvæmni}
 
-I mentioned in the last chapter that it is legal for one function to
-call another, and we have seen several examples of that.  I neglected
-to mention that it is also legal for a function to call itself.  It
-may not be obvious why that is a good thing, but it turns out to be
-one of the most magical and interesting things a program can do.
+Ég nefndi í síðasta kafla að eitt fall getur kallað á annað og við höfum séð nokkur dæmi um það.
+Ég nefndi hins vegar ekki að fall getur einnig kallað á sjálft sig!
+Það er kannski ekki augljóst af hverju það getur verið gott en svo vill reyndar til að þessi möguleiki er 
+einn af þeim mest töfrandi og áhugaverðustu sem forrit getur gert.
 
-For example, look at the following function:
+Skoðaðu t.d. eftirfarandi fall:
 
 \begin{verbatim}
 void countdown (int n) {
@@ -277,27 +244,14 @@ void countdown (int n) {
 }
 \end{verbatim}
 %
-The name of the function is {\tt countdown} and it takes a single
-integer as a parameter.  If the parameter is zero, it outputs
-the word ``Blastoff.''  Otherwise, it outputs the parameter and
-then calls a function named {\tt countdown}---itself---passing
-{\tt n-1} as an argument.
+Nafnið á þessu falli er {\tt countdown} og það tekur heiltölu sem viðfang.
+Ef viðfangið er núll þá skrifar það út orðið ``Blastoff.''
+Annars skrifar það út gildi leppsins og kallar á fallið {\tt countdown} -- sjálft sig -- og sendir gildið {\tt n-1} sem viðfang.
 
-What happens if we call this function like this:
+Hvað gerist ef við köllum á þetta fall á eftirfarandi hátt:
 
 \begin{verbatim}
 #include <iostream>
-#include <cmath>
-using namespace std;
-void printLogarithm (double x) {
-  if (x <= 0.0) {
-    cout << "Positive numbers only, please." << endl;
-    return;
-  }
-
-  double result = log (x);
-  cout << "The log of x is " << result;
-}
 
 void countdown (int n) {
   if (n == 0) {
@@ -315,38 +269,34 @@ int main ()
 }
 \end{verbatim}
 %
-The execution of {\tt countdown} begins with {\tt n=3}, and
-since {\tt n} is not zero, it outputs the value 3, and then
-calls itself...
+Keyrslan á {\tt countdown} byrjar með {\tt n=3} og þar sem {\tt n} er ekki núll
+þá skrifar það út gildið 3 og kallar síðan á sjálft sig ...
 
 \begin{quote}
-The execution of {\tt countdown} begins with {\tt n=2}, and
-since {\tt n} is not zero, it outputs the value 2, and then
-calls itself...
+Keyrslan á {\tt countdown} byrjar með {\tt n=2} og þar sem {\tt n} er ekki núll
+þá skrifar það út gildið 2 og kallar síðan á sjálft sig ...
 
 \begin{quote}
-The execution of {\tt countdown} begins with {\tt n=1}, and
-since {\tt n} is not zero, it outputs the value 1, and then
-calls itself...
+Keyrslan á {\tt countdown} byrjar með {\tt n=1} og þar sem {\tt n} er ekki núll
+þá skrifar það út gildið 1 og kallar síðan á sjálft sig ...
 
 \begin{quote}
-The execution of {\tt countdown} begins with {\tt n=0}, and
-since {\tt n} is zero, it outputs the word ``Blastoff!''
-and then returns.
+Keyrslan á {\tt countdown} byrjar með {\tt n=0} og þar sem {\tt n} er núll
+þá skrifar það út orðið ``Blastoff!'' og hættir síðan keyrslu.
 \end{quote}
 
-The countdown that got {\tt n=1} returns.
+countdown sem fékk {\tt n=1} sem viðfang hættir keyrslu.
 
 \end{quote}
 
-The countdown that got {\tt n=2} returns.
+countdown sem fékk {\tt n=2} sem viðfang hættir keyrslu.
 
 \end{quote}
 
-The countdown that got {\tt n=3} returns.
+countdown sem fékk {\tt n=3} sem viðfang hættir keyrslu.\\
 
-\noindent And then you're back in {\tt main} (what a trip).  So the
-total output looks like:
+\noindent Og þá erum við aftur komin í {\tt main} (þvílíkt ferðalag!).
+Endanlegt úttak lítur því svona út:
 
 \begin{verbatim}
 3
@@ -355,8 +305,8 @@ total output looks like:
 Blastoff!
 \end{verbatim}
 %
-As a second example, let's look again at the functions
-{\tt newLine} and {\tt threeLine}.
+
+Til að taka annað dæmi um endurkvæmni skulum við líta aftur á föllin {\tt newLine} og {\tt threeLine}.
 
 \begin{verbatim}
 void newLine () {
@@ -368,8 +318,8 @@ void threeLine () {
 }
 \end{verbatim}
 %
-Although these work, they would not be much help if I wanted
-to output 2 newlines, or 106.  A better alternative would be
+Þrátt fyrir að þessi föll virki þá gæti ég ekki notað þau ef ég myndi vilja skrifa út 2 nýjar (auðar) línur eða 106 nýjar línur.
+Betri útfærsla væri:
 
 \begin{verbatim}
 void nLines (int n) {
@@ -380,108 +330,82 @@ void nLines (int n) {
 }
 \end{verbatim}
 %
-This program is similar to {\tt countdown}; as long as {\tt n} is
-greater than zero, it outputs one newline, and then calls itself to
-output {\tt n-1} additional newlines.  Thus, the total number of
-newlines is {\tt 1 + (n-1)}, which usually comes out to roughly {\tt
-n}.
+Þetta fall er sambærilegt við {\tt countdown}.
+Svo lengi sem {\tt n} er stærra en núll þá skrifar það út eina nýja línu og kallar svo aftur á sjálft sig til að skrifa út {\tt n-1} nýjar línur.
+Fjöldi nýrra lína sem fallið skrifar út er sem sagt {\tt 1 + (n-1)} sem er auðvitað = {\tt n}.
 
-\index{recursive}
-\index{newline}
+\index{endurkvæmni}
+\index{ný lína}
 
-The process of a function calling itself is called {\bf recursion}, and
-such functions are said to be {\bf recursive}.
+Það ferli þegar fall kallar á sjálft sig er kallað {\bf endurkvæmni} (e. recursion) og þess konar fall er sagt vera {\bf endurkvæmt} (e. recursive).
 
-\section {Infinite recursion}
+\section {Óendanleg endurkvæmni}
 
-In the examples in the previous section, notice that each time the
-functions get called recursively, the argument gets smaller by one, so
-eventually it gets to zero.  When the argument is zero, the function
-returns immediately, {\em without making any recursive calls}.
-This case---when the function completes without making a recursive
-call---is called the {\bf base case}.
+Þú hefur væntanlega tekið eftir því í dæmunum í síðasta kafla að þegar kallað var á fall endurkvæmt þá minnkaði viðfangið um einn í sérhvert sinn og varð að lokum að núlli.
+Þegar leppurinn fær að lokum gildið 0 þá hættir fallið keyrslu {\em án þess að framkvæma fleiri endurkvæm köll}.
+Þetta tilfelli -- þegar fall hættir án þess að framkvæma endurkvæmt kall -- er kallað {\bf grunnþrep} (e. base case).
 
-If a recursion never reaches a base case, it will go on making recursive
-calls forever and the program will never terminate.  This is known as
-{\bf infinite recursion}, and it is generally not considered a good
-idea.
+Ef endurkvæmnin kemst aldrei í grunnþrepið þá mun viðkomandi fall halda áfram að framkvæma endurkvæm köll aftur og aftur og fallið mun ekki hættta keyrslu!
+Þetta er þekkt sem {\bf óendanleg endurkvæmni} (e. infinite recursion) og er almennt séð ekki talið vera góð latína!
 
-\index{recursion!infinite}
-\index{infinite recursion}
-\index{run-time error}
+\index{endurkvæmni!óendanleg}
+\index{óendanleg endurkvæmni}
+\index{keyrsluvilla}
 
-In most programming environments, a program with an infinite
-recursion will not really run forever.  Eventually, something
-will break and the program will report an error.  This is the
-first example we have seen of a run-time error (an error that
-does not appear until you run the program).
+Í flestum stýrikerfum mun forrit, sem inniheldur óendanlega endurkvæmni, ekki keyra út í hið óendanlega.
+Að lokum mun eitthvað gefa eftir með villutilkynningu.
+Þetta er fyrsta dæmið sem þú sérð um svokallaða {\bf keyrsluvillu} (e. run-time error) þ.e. villu sem kemur ekki í ljós fyrr en forrit er keyrt.
 
-You should write a small program that recurses forever and run
-it to see what happens.
+Þú ættir að prófa að skrifa forrit sem inniheldur óendanlega endurkvæmni til að sjá hvað gerist þegar þú keyrir það.
 
-\section {Stack diagrams for recursive functions}
-\index{stack}
-\index{diagram!state}
-\index{diagram!stack}
+\section {Staflarit fyrir endurkvæm föll}
+\index{stafli}
+\index{staflarit}
+\index{rit!stafli}
 
-In the previous chapter we used a stack diagram to represent the
-state of a program during a function call.  The same kind
-of diagram can make it easier to interpret a recursive function.
+Í kaflanum á undan notuðum við staflarit til að sýna stöðu forrits á meðan á keyrslu falls átti sér stað.
+Við getum einnig notað staflarit til að sýna stöðu endurkvæms falls.
 
-Remember that every time a function gets called it creates
-a new instance that contains
-the function's local variables and parameters.
+Mundu að í hvert sinn sem kallað er á fall þá býr það til nýtt tilvik af kvaðningafærslu sem inniheldur staðværar breytur og leppa.
 
-This figure shows a stack diagram for countdown, called
-with {\tt n = 3}:
+Þessi mynd sýnir staflarit fyrir countdown með {\tt n = 3}:
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=stack2.eps}}
 \vspace{0.1in}
 %
-There is one instance of {\tt main} and four instances of
-{\tt countdown}, each with a different value for the parameter
-{\tt n}.  The bottom of the stack, {\tt countdown} with {\tt n=0}
-is the base case.  It does not make a recursive call, so there
-are no more instances of {\tt countdown}.
+Hér er eitt tilvik af {\tt main} og fjögur tilvik af {\tt countdown}, sérhvert þeirra er með mismunandi gildi á leppnum {\tt n}.
+Á botni staflans er {\tt countdown} með {\tt n=0} en það er einmitt grunnþrepið.
+Það tilvik framkvæmir ekki endurkvæmt kall og því eru ekki fleiri tilvik af {\tt countdown} á staflanum.
 
-The instance of {\tt main} is empty because {\tt main} does not
-have any parameters or local variables.  As an exercise, draw a
-stack diagram for {\tt nLines}, invoked with the parameter {\tt n=4}.
+Tilvikið af {\tt main} er tómt vegna þess að {\tt main} hefur hvorki leppa né staðværar breytur.
+Þú ættir að prófa að teikna staflarit fyrir {\tt nLines} með leppinn {\tt n=4}.
 
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[modulus:]  An operator that works on integers and yields
-the remainder when one number is divided by another.  In C++
-it is denoted with a percent sign ({\tt \%}).
+\item[modulus:]  Virki, sem beitt er á tvær heiltölur, og skilar afganginum þegar einni tölu er deilt með annarri.
+Í C++ er þessi virki táknaður með prósentumerkinu ({\tt \%}).
 
-\item[conditional:]  A block of statements that may or may not
-be executed depending on some condition.
+\item[skilyrðissetningar (e. conditional):]  Blokk af setningum hvers keyrsla er háð útkomu úr tilteknu skilyrði.
 
-\item[chaining:]  A way of joining several conditional statements
-in sequence.
+\item[tenging skilyrða (e. chaining):]  Leið til að tengja saman í röð nokkrar skilyrðissetningar.
 
-\item[nesting:] Putting a conditional statement inside one or both
-branches of another conditional statement.
+\item[hreiðrun (e. nesting):] Að setja nokkrar skilyrðissetningar innan í eina eða fleiri kvíslir á annarri skilyrðissetningu.
 
-\item[recursion:]  The process of calling the same function you
-are currently executing.
+\item[endurkvæmni (e. recursion):]  Það ferli að kalla á sama fall og nú er þegar verið að keyra.
 
-\item[infinite recursion:]  A function that calls itself
-recursively without every reaching the base case.  Eventually
-an infinite recursion will cause a run-time error.
+\item[óendanleg endurkvæmni (e. infinite recursion):]  Gerist þegar fall, sem kallar á sjálft sig, kemst aldrei í grunnþrepið.
+Að lokum mun óendanleg endurkvæmni hafa keyrsluvillu í för með sér.
 
 \index{modulus}
-\index{conditional}
-\index{conditional!chained}
-\index{conditional!nested}
-\index{recursion}
-\index{recursion!infinite}
-\index{infinite recursion}
+\index{skilyrðissetning}
+\index{skilyrði!tenging}
+\index{skilyrði!hreiðrað}
+\index{endurkvæmni}
+\index{endurkvæmni!óendanleg}
+\index{óendanleg endurkvæmni}
 
 \end{description}
-
-
