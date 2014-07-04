@@ -156,6 +156,9 @@ Kallað er á þessi stærðfræðiföll með því að nota málskipan sem er s
      double height = sin (angle);
 \end{verbatim}
 %
+\index{stærðfræðifall!log}
+\index{stærðfræðifall!sin}
+
 Fyrsta setningin að ofan gefur breytunni {\tt log} gildið lógariþmi af 17 (grunnur $e$).
 Það er einnig til fall {\tt log10} sem reiknar út lógariþma miðað við grunn 10.
 
@@ -171,6 +174,7 @@ Arccosinus (eða andhverfa cosinus) af -1 er $\pi$ vegna þess að cosinus af $\
   double degrees = 90;
   double angle = degrees * 2 * pi / 360.0;
 \end{verbatim}
+\index{pi}
 %
 Áður en þú getur notað eitthvað af stærðfræðiföllunum þarftu að taka inn (e. include) sérstaka {\bf hausaskrá} (e. header file) í forritið þitt.
 Hausaskrá inniheldur upplýsingar um föll, sem eru skilgreind annars staðar en í þínu eigin forriti, og sem þýðandinn þarf á að halda.
@@ -217,6 +221,7 @@ Föll í C++ geta verið samsett á sama hátt og stærðfræðiföll.
 \begin{verbatim}
     double x = cos (angle + pi/2);
 \end{verbatim}
+\index{stærðfræðifall!cos}
 %
 Í þessari setningu er deilt í gildið {\tt pi} með tveimur og gildinu á breytunni {\tt angle} bætt við niðurstöðuna.
 Summan er síðan send sem viðfang í fallið {\tt cos}.
@@ -226,6 +231,7 @@ Summan er síðan send sem viðfang í fallið {\tt cos}.
 \begin{verbatim}
     double x = exp (log (10.0));
 \end{verbatim}
+\index{stærðfræðifall!exp}
 %
 Hér er tekinn lógariþmi (með grunn $e$) af 10 og niðurstaðan (nefnum hana $t$) síðan send inn í exp fallið sem reiknar $e$ í veldinu $t$.
 Breytan {\tt x} fær að lokum gildið úr heildarniðurstöðunni sem ég vona að þú vitir hver er!

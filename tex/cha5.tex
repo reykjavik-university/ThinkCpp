@@ -22,49 +22,44 @@
 % it from www.gnu.org or by writing to the Free Software Foundation,
 % Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
 
-\chapter{Fruitful functions}
+\chapter{Föll sem skila gildi}
 
-\section{Return values}
+\section{Skilagildi}
 \index{return}
-\index{statement!return}
-\index{function!fruitful}
-\index{fruitful function}
-\index{return value}
+\index{setning!return}
+\index{fall!skilagildi}
+%\index{fruitful function}
+\index{skilagildi}
 \index{void}
-\index{function!void}
+\index{fall!void}
 
-Some of the built-in functions we have used, like the math
-functions, have produced results.  That is, the effect of
-calling the function is to generate a new value, which we
-usually assign to a variable or use as part of an expression.
-For example:
+Sum af þeim föllum sem við höfum notað, eins og t.d. stærðfræðiföllin, skila af sér einhverju gildi.
+Tilgangurinn með því að kalla á þess konar fall er að búa til nýtt gildi sem er síðan notað til að gefa breytu gildi eða sem hluta af segð.
+Dæmi:
 
-\index{math function!exp}
-\index{math function!sin}
+\index{stærðfræðifall!exp}
+\index{stærðfræðifall!sin}
 
 \begin{verbatim}
   double e = exp (1.0);
   double height = radius * sin (angle);
 \end{verbatim}
 %
-But so far all the functions we have written have been {\bf void}
-functions; that is, functions that return no value.  When you call
-a void function, it is typically on a line by itself, with
-no assignment:
+Hins vegar vill svo til að öll þau föll sem við höfum sjálf skrifað hingað til eru {\bf void} föll, þ.e. föll sem skila ekki neinu gildi.
+Kall í void fall er yfirleitt gert án nokkurrar gildisveitingar (því ekkert gildi kemur til baka úr fallinu!):
 
 \begin{verbatim}
   nLines (3);
   countdown (n-1);
 \end{verbatim}
 %
-In this chapter, we are going to write functions that return things,
-which I will refer to as {\bf fruitful} functions, for want of a
-better name.  The first example is {\tt area}, which takes a {\tt
-double} as a parameter, and returns the area of a circle with the
-given radius:
+Í þessum kafla munum við skrifa föll sem skila af sér gildum.
+Það mætti segja að þessi föll beri ávöxt!
+Fyrsta dæmið er {\tt area}, sem tekur {\tt double} sem viðfang, og skilar flatarmáli hrings með gefinn radíus:
 
-\index{math function!acos}
+\index{stærðfræðifall!acos}
 \index{pi}
 
 \begin{verbatim}
@@ -75,17 +70,12 @@ double area (double radius) {
 }
 \end{verbatim}
 %
-The first thing you should notice is that the beginning of the
-function definition is different.  Instead of {\tt void}, which
-indicates a void function, we see {\tt double}, which indicates that
-the return value from this function will have type {\tt double}.
+Það fyrsta sem þú ættir að taka eftir er að byrjun fallaskilgreiningarinnar er öðruvísi.
+Í stað {\tt void}, sem gefur til kynna void fall, þá sjáum við hér {\tt double} sem gefur til kynna að skilagildið úr þessu falli sé af taginu {\tt double}.
 
-Also, notice that the last line is an alternate form of the
-{\tt return} statement that includes a return value.  This
-statement means, ``return immediately from this function and
-use the following expression as a return value.''  The
-expression you provide can be arbitrarily complicated,
-so we could have written this function more concisely:
+Taktu líka eftir að síðasta línan í fallinu er önnur útgáfa af {\tt return} setningu sem inniheldur skilagildi.
+Þessi setning þýðir ``hætta strax keyrslu þessa falls og nota eftirfarandi segð sem skilagildið.''
+Segðin. sem kemur á eftir lykilorðinu return. getur verið eins flókin og verða vill þannig að við gætum hafa skrifað fallið á samþjappaðri hátt:
 
 \begin{verbatim}
 double area (double radius) {
@@ -93,20 +83,15 @@ double area (double radius) {
 }
 \end{verbatim}
 %
-On the other hand, {\bf temporary} variables like {\tt area} often
-make debugging easier.  In either case, the type of the expression in
-the {\tt return} statement must match the return type of the function.
-In other words, when you declare that the return type is {\tt double},
-you are making a promise that this function will eventually
-produce a {\tt double}.  If you try to {\tt return} with no
-expression, or an expression with the wrong type, the compiler will
-take you to task.
+Á hinn bóginn má segja að, {\bf tímabundnar} (e. temporary) breytur eins og {\tt area} gera aflúsun oft auðveldari.
+Í báðum tilvikum þarf tag segðarinnar í return setningunni að passa við skilatag fallsins.
+M.ö.o., þegar þú skilgreinir að skilagildið sé af taginu {\tt double} þá ert ``lofar'' þú því að fallið muni að endingu skila {\tt double}.
+Þýðandinn mun kvarta ef þú reynir að skila engri segð eða segð af röngu tagi. 
 
-\index{temporary variable}
-\index{variable!temporary}
+\index{tímabundin breyta}
+\index{breyta!tímabundin}
 
-Sometimes it is useful to have multiple return
-statements, one in each branch of a conditional:
+Stundum getur verið hentug að hafa margar return setningar í falli -- eina fyrir sérhverja kvísl í skilyrðissetningu:Sometimes it is useful to have multiple return
 
 \begin{verbatim}
 double absoluteValue (double x) {
@@ -118,21 +103,16 @@ double absoluteValue (double x) {
 }
 \end{verbatim}
 %
-Since these returns statements are in an alternative conditional, only
-one will be executed.  Although it is legal to have more than one
-{\tt return} statement in a function, you should keep in mind that as soon
-as one is executed, the function terminates without executing any
-subsequent statements.
+Aðeins ein af þessum return setningum mun verða keyrð þar sem return setningarnar eru í mismunandi kvíslum.
+Þrátt fyrir að það sé leyfilegt að hafa fleiri en eina {\tt return} setningu í falli þá skaltu muna að um leið og ein þeirra er keyrð þá hættir fallið keyrslu og mun ekki keyra þær setningar sem á eftir koma.
 
-Code that appears after a {\tt return} statement, or any place else
-where it can never be executed, is called {\bf dead code}.  Some
-compilers warn you if part of your code is dead.
+Kóði sem kemur á eftir {\tt return} setningu, eða á stað sem flæðið mun ekki komast í, er kallaður {\bf dauður kóði} (e. dead code}.
+Sumir þýðendur gefa einmitt aðvaranir ef hluti kóða er ``dauður''.
 
-\index{dead code}
+\index{dauður kóði}
 
-If you put return statements inside a conditional, then
-you have to guarantee that {\em every possible path} through
-the program hits a return statement.  For example:
+Ef þú setur return setningu innan í skilyrðissetningu þá þarftu að sjá til þess að {\em sérhver möguleg leið} gegnum forritið lendi að lokum á return setningu.
+Dæmi: 
 
 \begin{verbatim}
 double absoluteValue (double x) {
@@ -144,46 +124,35 @@ double absoluteValue (double x) {
 }
 \end{verbatim}
 %
-This program is not correct because if {\tt x} happens to be 0, then
-neither condition will be true and the function will end without hitting
-a return statement.  Unfortunately, many C++ compilers do not catch
-this error.  As a result, the program may compile and run, but the
-return value when {\tt x==0} could be anything, and will probably
-be different in different environments.
+Þetta forrit er ekki rétt vegna þess að ef {\tt x} er 0 þá er hvorugt skilyrðanna satt og fallið mun þá hætta keyrslu án þess að framkvæma return setningu. then
+Því miður þá grípa ekki allir C++ þýðendur þessa villu.
+Því má vera að forritið þýðist og keyrist en þegar {\tt x==0} þá getur skilagildið í raun verið hvað sem er og líklega mismunandi eftir ólíkum umhverfum.
 
-\index{absolute value}
-\index{error!compile-time}
-\index{compile-time error}
+\index{tölugildi}
+\index{villa!á þýðandatíma}
+%\index{compile-time error}
 
-By now you are probably sick of seeing compiler errors, but as you
-gain more experience, you will realize that the only thing worse
-than getting a compiler error is {\em not} getting a compiler error
-when your program is wrong.
+Núna ert þú líklega orðin(n) hundleið(ur) á þýðandavillum en eftir því sem reynslan eykst þá áttar þú þig á því 
+að það eina sem er verra en að fá þýðandavillu er að fá {\em ekki} þýðandavillu þegar forritið er ekki rétt!
 
-Here's the kind of thing that's likely to happen: you test {\tt
-absoluteValue} with several values of {\tt x} and it seems to work
-correctly.  Then you give your program to someone else and they run it
-in another environment.  It fails in some mysterious way, and it
-takes days of debugging to discover that the problem is an
-incorrect implementation of {\tt absoluteValue}.  If only the
-compiler had warned you!
+Hér er dæmi um eitthvað sem gæti gerst: Þú prófar {\tt absoluteValue} með ýmsum mismunandi gildum á {\tt x} og það virðist virka rétt.
+Þú lætur síðan einhvern annan fá forritið og viðkomandi prófar það í öðru umhverfi.
+Á einhvern dularfullan hátt skilar það ekki réttu gildi og eftir nokkra daga aflúsun kemstu að því að útfærslan á {\tt absoluteValue} er ekki rétt.
+Bara ef þýðandinn hefði aðvarað þig!
 
-\index{compile-time error}
-\index{error!compile-time}
-\index{debugging}
+%\index{compile-time error}
+%\index{error!compile-time}
+\index{aflúsun}
 
-From now on, if the compiler points out an error in your program, you
-should not blame the compiler.  Rather, you should thank the compiler
-for finding your error and sparing you days of debugging.  Some
-compilers have an option that tells them to be extra strict and report
-all the errors they can find.  You should turn this option on all the
-time.
+Framvegis skaltu ekki álasa þýðandanum ef hann bendir á villu í forritinu þínu.
+Þú skalt frekar þakka honum fyrir a finna villu og spara þér nokkrar daga vinnu við aflúsun.
+Sumum þýðendur hafa valkost sem segir þeiim að vera sérstaklega ``strangur'' og greina frá öllum villum sem þeir finna.
+Þú ættir alltaf að velja þennan valkost í þínum þýðanda.
 
-\index{math function!fabs}
+\index{stærðfræðifall!fabs}
 
-As an aside, you should know that there is a function in the
-math library called {\tt fabs} that calculates the absolute
-value of a {\tt double}---correctly.
+Sem innskot þá bendi ég á að það er fall í math safninu sem heitir {\tt fabs}.
+Það reiknar tölugildið á {\tt double} -- á réttan hátt.
 
 \section{Program development}
 \label{distance}
