@@ -317,23 +317,20 @@ double fred (double xc, double yc, double xp, double yp) {
 } 
 \end{verbatim}
 
-\section{Overloading}
+\section{Fjölbinding}
 \label{overloading}
-\index{overloading}
+\index{fjölbinding}
 
-In the previous section you might have noticed that {\tt fred}
-and {\tt area} perform similar functions---finding
-the area of a circle---but take different parameters.  For
-{\tt area}, we have to provide the radius; for {\tt fred}
-we provide two points.
+Þú hefur kannski tekið eftir því, í kaflanum hér á undan, að föllin
+{\tt fred} og {\tt area} hafa sama hlutverk -- finna flatarmál hrings -- en taka samt mismunandi viðföng. 
+Við sendum radíus sem viðfang í {\tt area} en tvo punkta sem viðfögn í {\tt fred}.
 
-If two functions do the same thing, it is natural to give them
-the same name.  In other words, it would make more sense if
-{\tt fred} were called {\tt area}.
+Ef tvö föll framkvæma sömu aðgerð þá er eðlilegt að gefa þeim sama nafn.
+M.ö.o, það væri eðlilegra ef fallið {\tt fred} væri kallað {\tt area}.
 
-Having more than one function with the same name, which is called {\bf
-overloading}, is legal in C++ {\em as long as each version takes
-different parameters}.  So we can go ahead and rename {\tt fred}:
+Það er leyfilegt í C++ að hafa fleiri en eitt fall með sama nafninu svo framarlega sem sérhver útgáfa taki mismunandi viðföng.
+Þessi eiginleiki er kallaður {\bf fjölbinding} (e. overloading).
+Við getum því endurskýrt {\tt fred}:
 
 \begin{verbatim}
 double area (double xc, double yc, double xp, double yp) {
@@ -341,60 +338,48 @@ double area (double xc, double yc, double xp, double yp) {
 } 
 \end{verbatim}
 %
-This looks like a recursive function, but it is not.  Actually,
-this version of {\tt area} is calling the other version.
-When you call an overloaded function, C++ knows which version you
-want by looking at the arguments that you provide.  If you write:
+Nú lítur þetta út eins og endurkvæmt fall en svo er ekki.
+Það vill svo til að þessi útgáfa af {\tt area} kallar á hina útgáfuna!
+Þegar þú kallar á fjölbundið fall þá veit C++ þýðandinn hvaða útgáfu verið er að kalla á með því að skoða viðföngin sem notuð eru.
+Ef þú skrifar
 
 \begin{verbatim}
     double x = area (3.0);
 \end{verbatim}
 %
-C++ goes looking for a function named {\tt area} that
-takes a {\tt double} as an argument, and so it uses the
-first version.  If you write
+þá mun C++ þýðandinn leita að fall með nafninu {\tt area} sem tekur {\tt double} sem viðfang og notar því fyrri úgáfuna.
+Ef þú skrifar
 
 \begin{verbatim}
     double x = area (1.0, 2.0, 4.0, 6.0);
 \end{verbatim}
 %
-C++ uses the second version of {\tt area}.  
+þá notar þýðandinn seinni útgáfuna af {\tt area}.  
 
-Many of the built-in C++ commands are overloaded, meaning that there
-are different versions that accept different numbers or types of
-parameters.
+Margar af innbyggðu C++ aðgerðunum eru fjölbundnar sem þýðir að það eru til mismunandir útgáfur sem taka mismunandi fjölda af viðföngunum eða mismunandi að tag viðfanganna er mismunandi.
 
-Although overloading is a useful feature, it should be used with
-caution.  You might get yourself nicely confused if you are trying to
-debug one version of a function while accidently calling a different
-one.
+Fjölbinding er gagnlegur eiginleiki en skal samt sem áður nota með varúð.
+Það getur verið ruglandi ef þú kembir eina útgáfu af falli sem síðan kallar á aðra útgáfu þess.
 
-Actually, that reminds me of one of the cardinal rules of debugging:
-{\bf make sure that the version of the program you are looking at is
-the version of the program that is running!}  Some time you may find
-yourself making one change after another in your program, and seeing
-the same thing every time you run it.  This is a warning sign that for
-one reason or another you are not running the version of the program
-you think you are.  To check, stick in an output statement (it
-doesn't matter what it says) and make sure the behavior of the
-program changes accordingly.
+Þetta minnir mig reyndar á eina grundvallarreglu varðandi kembingu:
+{\bf vertu viss um að útgáfan af forritun sem þú ert að skoða sé útgáfan sem er í raun keyrandi!}
+Stundum lendur þú í því að gera breytingu eftir breytingu á forritinu þínu en samt sem áður sérðu alltaf sama úttak þegar þú keyrir það.
+Þetta er merki um það að af einhverjum ástæðum þá ertu ekki að keyra þá útgáfu af forritun sem þú heldur að þú sért að keyra.
+Til að vera viss þá getur þú skotið inn úttakssetningu (það skiptir í raun ekki máli hvað þú skrifar út) og þannig gengið úr skugga um að rétta útgáfan af forritinu sé keyrandi.
 
-\section{Boolean values}
+\section{Boole gildi}
 \index{boolean}
-\index{value!boolean}
+\index{gildi!boole}
 
-The types we have seen so far are pretty big.  There are a lot
-of integers in the world, and even more floating-point numbers.
-By comparison, the set of characters is pretty small.  Well, there
-is another type in C++ that is even smaller.  It is called
-{\bf boolean}, and the only values in it are
-{\tt true} and {\tt false}.
+Tögin sem við höfum hingað til séð eru frekar stór.
+Það eru ansi margar heiltölur til í heiminum og enn fleiri kommutölur.
+Í samanburði er mengi stafa hins vegar frekar smátt.
+Það er reyndar eitt C++ tag sem er enn smærra.
+Það er kallað {\bf boole} og einu leyfilegu gildi þess eru gildin {\tt true} og {\tt false}.
 
-Without thinking about it, we have been using boolean values for the
-last couple of chapters.  The condition inside an {\tt if}
-statement or a {\tt while} statement is a boolean expression.
-Also, the result of a comparison operator is a boolean value.
-For example:
+Í síðustu tveimur köflum höfum við notað boole gildi án þess að fjalla sérstaklega um það.
+Skilyrðið innan í {\tt if} setningu er einmitt boole segð og niðurstaðan af beitingu samanburðarvirkja er boole gildi.
+Dæmi:
 
 \begin{verbatim}
   if (x == 5) {
@@ -402,15 +387,14 @@ For example:
   }
 \end{verbatim}
 %
-The operator {\tt ==} compares two integers and produces a
-boolean value.
+Samanburðarvirkinn {\tt ==} ber hér saman tvö heiltölugildi og skilar boole gildi.
 
-\index{operator!comparison}
-\index{comparison operator}
+\index{virki!samanburður}
+\index{samanburðarvirki}
 
-The values {\tt true} and {\tt false} are keywords in C++,
-and can be used anywhere a boolean expression is called for.
-For example, 
+Gildin {\tt true} og {\tt false} eru lykilorð í C++ 
+og geta verið notuð hvar sem gert er ráð fyrir boole segð.
+Dæmi:  
 
 \begin{verbatim}
   while (true) {
@@ -418,15 +402,14 @@ For example,
   }
 \end{verbatim}
 %
-is a standard idiom for a loop that should run forever (or
-until it reaches a {\tt return} or {\tt break} statement).
+Þetta er staðlað sniðmát fyrir lykkju sem ætti að keyra endalaust (eða þangað til að komið er að {\tt return} eða {\tt break} setningu).
 
-\section{Boolean variables}
-\index{type!{\tt bool}}
+\section{Boole breytur}
+\index{tag!{\tt bool}}
 
-As usual, for every type of value, there is a corresponding
-type of variable.  In C++ the boolean type is called {\bf bool}.
-Boolean variables work just like the other types:
+Fyrir sérhvert tag á gildi er samsvarandi tag á breytu.
+Í C++ er boole tagið kallað {\bf bool}.
+Breytur af taginu bool eru skilgreindar á sama hátt og breytur sem af öðru tagi:
 
 \begin{verbatim}
   bool fred;
@@ -434,23 +417,20 @@ Boolean variables work just like the other types:
   bool testResult = false;
 \end{verbatim}
 %
-The first line is a simple variable declaration;
-the second line is an assignment, and the third line is a
-combination of a declaration and as assignment, 
-called an initialization.
+Fyrsta línan er einföld yfirlýsing á breytu.
+Önnur línan er gildisveiting og þriðja línan er samsetning á yfirlýsingu og gildisveitingu, þ.e. upphafsstilling.
 
-\index{initialization}
-\index{statement!initialization}
+\index{upphafsstilling}
+\index{setning!upphafsstilling}
 
-As I mentioned, the result of a comparison operator is a boolean,
-so you can store it in a {\tt bool} variable
+Eins og ég nefndi að ofan þá er niðurstaðan úr samanburði alltaf booole gildi þannig að hægt er að geyma hana í {\tt bool} breytu
 
 \begin{verbatim}
   bool evenFlag = (n%2 == 0);     // true if n is even
   bool positiveFlag = (x > 0);    // true if x is positive
 \end{verbatim}
 %
-and then use it as part of a conditional statement later
+og nota breytuna síðar í skilyrðissetningu 
 
 \begin{verbatim}
   if (evenFlag) {
@@ -458,36 +438,31 @@ and then use it as part of a conditional statement later
   }
 \end{verbatim}
 %
-A variable used in this way is called a {\bf flag},
-since it flags the presence or absence of some condition.
+Breyta sem notuð er á þennan hátt er oft kölluð {\bf flagg} (e. flag),
+vegna þess að hún gefur til kynna (``flaggar'') að eitthvað skilyrði sé til staðar eður ei.
 
-\index{flag}
+\index{flagg}
 
-\section{Logical operators}
-\index{logical operator}
-\index{operator!logical}
+\section{Rökvirkjar}
+\index{rökvirki}
+\index{virki!rök}
 
-There are three {\bf logical operators} in C++: AND, OR and NOT,
-which are denoted by the symbols {\tt \&\&}, {\tt ||} and
-{\tt !}.  The semantics (meaning) of these operators is similar
-to their meaning in English.  For example {\tt x > 0 \&\& x < 10}
-is true only if {\tt x} is greater than zero AND less than 10.
+Í C++ eru þrír {\bf rökvirkjar} (e. logical operators): AND, OR og NOT,
+sem eru táknaðir með {\tt \&\&}, {\tt ||} og {\tt !}.
+Merking þessar virkja er svipuð og merking þeirra í náttúrulegu máli (ensku).
+T.d. er {\tt x > 0 \&\& x < 10} true (satt) aðeins ef {\tt x} er stærra en 0 OG (AND) minna en 10.
 
-\index{semantics}
+\index{merking}
 
-{\tt evenFlag || n\%3 == 0} is true if {\em either} of
-the conditions is true, that is, if {\tt evenFlag} is true OR the
-number is divisible by 3.
+{\tt evenFlag || n\%3 == 0} er true ef {\em annað} skilyrðanna er true, þ.e. ef {\tt evenFlag} er true EÐA (OR) að talan er deilanleg með 3.
 
-Finally, the NOT operator has the effect of negating or
-inverting a bool expression, so {\tt !evenFlag} is true
-if {\tt evenFlag} is false; that is, if the number is odd.
+Að lokum hefur NOT virkinn þau áhrif að neita eða snúa við gildi boole segðar.
+Þannig er {\tt !evenFlag} true ef {\tt evenFlag} er false,  þ.e. ef talan er oddatala.
 
-\index{nested structure}
+\index{hreiðruð skilyrði}
 
-Logical operators often provide a way to simplify nested
-conditional statements.  For example, how would you write
-the following code using a single conditional?
+Rökvirkjar gefa oft möguleika á því að einfalda hreiðraðar skilyrðissetningar.
+Hvernig myndir þú t.d. skrifa eftirfarandi kóða með því að nota eitt skilyrði sem samsett er úr rökvirkjum?
 
 \begin{verbatim}
   if (x > 0) {
@@ -497,14 +472,14 @@ the following code using a single conditional?
   }
 \end{verbatim}
 
-\section{Bool functions}
+\section{Boole föll}
 \label{bool}
-\index{bool}
-\index{function!bool}
+\index{boole}
+\index{fall!boole}
 
-Functions can return {\tt bool} values just like any other type,
-which is often convenient for hiding complicated tests inside
-functions.  For example:
+Föll geta skilað {\tt bool} gildum eins og hvaða öðru gildi.
+Það er oft hentugt þegar hylja þarf flókið skilyrði innan í falli:
+Dæmi:
 
 \begin{verbatim}
 bool isSingleDigit (int x)
@@ -517,15 +492,12 @@ bool isSingleDigit (int x)
 }
 \end{verbatim}
 %
-The name of this function is {\tt isSingleDigit}.  It is common
-to give boolean functions names that sound like yes/no questions.
-The return type is {\tt bool}, which means that every return
-statement has to provide a {\tt bool} expression.
+Nafnið á þessu falli er {\tt isSingleDigit}.
+Algengt er að gefa boole föllum nöfn sem hljóma eins og já/nei spurningar.
+Skilagildið er {\tt bool} sem þýðir að sérhver return setningar þarf að hafa segð af taginu {\tt bool} í för með sér.
 
-The code itself is straightforward, although it is a bit longer than
-it needs to be.  Remember that the expression {\tt x >= 0 \&\& x < 10}
-has type {\tt bool}, so there is nothing wrong with returning it
-directly, and avoiding the {\tt if} statement altogether:
+Kóðinn sjálfur er einfaldur þrátt fyrir að vera aðeins lengri en nauðsynlegt er.
+Mundu að segðin {\tt x >= 0 \&\& x < 10} hefur tagið {\tt bool} þannig að það er ekkert athugavert við það að skila henni beint og þar með sleppa {\tt if} setningunni:
 
 \begin{verbatim}
 bool isSingleDigit (int x)
@@ -534,24 +506,21 @@ bool isSingleDigit (int x)
 }
 \end{verbatim}
 %
-In {\tt main} you can call this function in the usual ways:
+Í {\tt main} getur þú kallað á þetta fall á venjulegan hátt:
 
 \begin{verbatim}
   cout << isSingleDigit (2) << endl;
   bool bigFlag = !isSingleDigit (17);
 \end{verbatim}
 %
-The first line outputs the value {\tt true} because 2 is a
-single-digit number.  Unfortunately, when C++ outputs {\tt bool}s, it
-does not display the words {\tt true} and {\tt false}, but rather the
-integers {\tt 1} and {\tt 0}.\footnote{There is a way to fix that
-using the {\tt boolalpha} flag, but it is too hideous to mention.}
+Fyrsta línan skrifar út gildið {\tt true} vegna þess að talan 2 samanstendur af einum tölustaf.
+Það vill reyndar svo til að þegar C++ skrifar út {\tt bool} gildi þá eru orðin {\tt true} og {\tt false} ekki skrifuð út 
+heldur frekar heiltölurnar {\tt 1} og {\tt 0}.
+%\footnote{There is a way to fix that using the {\tt boolalpha} flag, but it is too hideous to mention.}
 
-The second line assigns the value {\tt true} to {\tt bigFlag}
-only if 17 is {\em not} a single-digit number.
+Í annarri línunni fær breytan {\tt bigFlag} gildið {\tt true} vegna þess að talan 17 er {\em ekki} (not) tala með einum tölustaf.
 
-The most common use of {\tt bool} functions is inside conditional
-statements
+Algengasta notkun á {\tt bool} föllum er innan í skilyrðissetningu: 
 
 \begin{verbatim}
   if (isSingleDigit (x)) {
