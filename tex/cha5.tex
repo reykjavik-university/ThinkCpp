@@ -36,7 +36,7 @@
 \index{fall!void}
 
 Sum af þeim föllum sem við höfum notað, eins og t.d. stærðfræðiföllin, skila af sér einhverju gildi.
-Tilgangurinn með því að kalla á þess konar fall er að búa til nýtt gildi sem er síðan notað til að gefa breytu gildi eða sem hluta af segð.
+Tilgangurinn með því að kalla á þess konar fall er að búa til nýtt gildi sem er síðan notað til að gefa breytu gildi eða notað sem hluti af segð.
 Dæmi:
 
 \index{stærðfræðifall!exp}
@@ -48,7 +48,7 @@ Dæmi:
 \end{verbatim}
 %
 Hins vegar vill svo til að öll þau föll sem við höfum sjálf skrifað hingað til eru {\bf void} föll, þ.e. föll sem skila ekki neinu gildi.
-Kall í void fall er yfirleitt gert án nokkurrar gildisveitingar (því ekkert gildi kemur til baka úr fallinu!):
+Kall í void fall er yfirleitt gert án nokkurrar gildisveitingar (því ekkert gildi kemur til baka úr fallinu):
 
 \begin{verbatim}
   nLines (3);
@@ -73,9 +73,9 @@ double area (double radius) {
 Það fyrsta sem þú ættir að taka eftir er að byrjun fallaskilgreiningarinnar er öðruvísi.
 Í stað {\tt void}, sem gefur til kynna void fall, þá sjáum við hér {\tt double} sem gefur til kynna að skilagildið úr þessu falli sé af taginu {\tt double}.
 
-Taktu líka eftir að síðasta línan í fallinu er önnur útgáfa af {\tt return} setningu sem inniheldur skilagildi.
+Taktu líka eftir að síðasta línan í fallinu er önnur útgáfa af {\tt return} setningu, return setning sem inniheldur skilagildi.
 Þessi setning þýðir ``hætta strax keyrslu þessa falls og nota eftirfarandi segð sem skilagildið.''
-Segðin. sem kemur á eftir lykilorðinu return. getur verið eins flókin og verða vill þannig að við gætum hafa skrifað fallið á samþjappaðri hátt:
+Segðin, sem kemur á eftir lykilorðinu return, getur verið eins flókin og verða vill þannig að við gætum hafa skrifað fallið á samþjappaðri hátt:
 
 \begin{verbatim}
 double area (double radius) {
@@ -83,15 +83,15 @@ double area (double radius) {
 }
 \end{verbatim}
 %
-Á hinn bóginn má segja að, {\bf tímabundnar} (e. temporary) breytur eins og {\tt area} gera kembingu oft auðveldari.
+Á hinn bóginn má segja að {\bf tímabundnar} (e. temporary) breytur eins og {\tt area} geri kembingu (e. debugging) oft auðveldari.
 Í báðum tilvikum þarf tag segðarinnar í return setningunni að passa við skilatag fallsins.
-M.ö.o., þegar þú skilgreinir að skilagildið sé af taginu {\tt double} þá ert ``lofar'' þú því að fallið muni að endingu skila {\tt double}.
+M.ö.o., þegar þú skilgreinir að skilagildið sé af taginu {\tt double} þá ``lofar'' þú því að fallið muni að endingu skila {\tt double}.
 Þýðandinn mun kvarta ef þú reynir að skila engri segð eða segð af röngu tagi. 
 
 \index{tímabundin breyta}
 \index{breyta!tímabundin}
 
-Stundum getur verið hentug að hafa margar return setningar í falli -- eina fyrir sérhverja kvísl í skilyrðissetningu:Sometimes it is useful to have multiple return
+Stundum getur verið hentug að hafa margar return setningar í falli -- eina fyrir sérhverja kvísl í skilyrðissetningu:
 
 \begin{verbatim}
 double absoluteValue (double x) {
@@ -124,9 +124,9 @@ double absoluteValue (double x) {
 }
 \end{verbatim}
 %
-Þetta forrit er ekki rétt vegna þess að ef {\tt x} er 0 þá er hvorugt skilyrðanna satt og fallið mun þá hætta keyrslu án þess að framkvæma return setningu. then
+Þetta forrit er ekki rétt vegna þess að ef {\tt x} er 0 þá er hvorugt skilyrðanna satt og fallið mun þá hætta keyrslu án þess að framkvæma return setningu.
 Því miður þá grípa ekki allir C++ þýðendur þessa villu.
-Því má vera að forritið þýðist og keyrist en þegar {\tt x==0} þá getur skilagildið í raun verið hvað sem er og líklega mismunandi eftir ólíkum umhverfum.
+Því má vera að forritið þýðist og keyrist en þegar {\tt x==0} þá getur skilagildið í raun verið hvað sem er og líklega mismunandi eftir ólíkum keyrsluumhverfum.
 
 \index{tölugildi}
 \index{villa!á þýðandatíma}
@@ -147,7 +147,7 @@ Bara ef þýðandinn hefði aðvarað þig!
 
 Framvegis skaltu ekki álasa þýðandanum ef hann bendir á villu í forritinu þínu.
 Þú skalt frekar þakka honum fyrir a finna villu og spara þér nokkrar daga vinnu við aflúsun.
-Sumum þýðendur hafa valkost sem segir þeiim að vera sérstaklega ``strangur'' og greina frá öllum villum sem þeir finna.
+Sumir þýðendur hafa valkost sem segir þeim að vera sérstaklega ``strangur'' og greina frá öllum villum sem þeir finna.
 Þú ættir alltaf að velja þennan valkost í þínum þýðanda.
 
 \index{stærðfræðifall!fabs}
@@ -166,20 +166,20 @@ Aftur á móti er þér kannski ekki ljóst hvernig eigi að skrifa þau.
 \index{stigvaxandi þróun}
 \index{þróun forrits}
 
-Gefum okkur t.d. að þú þurfir að skrifa fall sem reiknar fjarlægðina á milli tveggja punkta sem gefnir eru með hitunum $(x_1, y_1)$ og $(x_2, y_2)$.
-Hefðbundna skilgreiningin á fjarlægð tveggja punkta er:
+Gefum okkur t.d. að þú þurfir að skrifa fall sem reiknar fjarlægðina á milli tveggja punkta sem gefnir eru með hnitunum $(x_1, y_1)$ og $(x_2, y_2)$.
+Hefðbundna skilgreiningin á fjarlægð á milli tveggja punkta er:
 
 \begin{equation}
 distance = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 \end{equation}
 %
 Fyrsta skrefið er að íhuga hvernig {\tt distance} fall ætti að líta út í C++.
-M.ö.o., hvert er inntakið (leppar/viðföng) og hvert er úttakið (return gildið).
+M.ö.o., hvert er inntakið (leppar/viðföng) og hvert er úttakið (skilagildið).
 
-Í þessu tilvik eru punktarnir tveir auðvitað viðföngin inn í fallið og það er eðlilegt að nota fjóra leppa af taginu {\tt double}.
+Í þessu tilviki eru punktarnir tveir auðvitað viðföngin inn í fallið og það er eðlilegt að nota fjóra leppa af taginu {\tt double}.
 Skilagildið er fjarlægð sem er líka eðlilegt að beri tagið {\tt double}.
 
-Nú þegar getum við því skrifað drög að fallinu:
+Nú getum við því skrifað drög að fallinu:
 
 \begin{verbatim}
 double distance (double x1, double y1, double x2, double y2) {
@@ -206,7 +206,7 @@ Einhversstaðar í {\tt main} myndi ég bæta við:
 Svo þýðum við og keyrum forritið eftir sérhverja (stigvaxandi) breytingu.
 Ef villa kemur upp þá vitum við nákvæmlega hvar hún er -- í síðustu línunni sem við bættum við.
 
-Næsta skref í útreikningnum okkar er að finna mismuninn á $x_2 - x_1$ og $y_2 - y_1$.
+Næsta skref í útreikningnum okkar er að finna gildin á $x_2 - x_1$ og $y_2 - y_1$.
 Ég mun geyma þessi gildi (milliniðurstöður) í tímabundnum breytum sem ég nefni {\tt dx} og {\tt dy}.
 
 \begin{verbatim}
@@ -230,7 +230,7 @@ Kóði eins og þessi er einsskonar {\bf stoðbúnaður} (e. scaffolding) vegna 
 Stundum er reyndar gott að fjarlægja ekki stoðbúnaðinn algerlega heldur setja hann inn í athugasemdir (e. comments) ef ske kynni að við þyrftum á honum að halda síðar.
 
 Næsta skref í þróun fallsins er þá að setja {\tt dx} og {\tt dy} í annað veldi og leggja niðurstöðurnar saman.
-Við gætum notað {\tt pow} fallið en það er einfaldara og fljótvirkara að margfalda hvorn liðinn með sjálfu sér.
+Við gætum notað {\tt pow} fallið en það er einfaldara og fljótvirkara að margfalda hvorn liðinn með sjálfum sér.
 
 \begin{verbatim}
 double distance (double x1, double y1, double x2, double y2) {
@@ -306,10 +306,10 @@ double fred (double xc, double yc, double xp, double yp) {
 \end{verbatim}
 %
 Nafnið á þessu falli er {\tt fred} sem er vissulega skrýtið.
-Í næsta kafla mun ég skýra út af hverju nanfið er undarlegt.
+Í næsta kafla mun ég skýra út af hverju nafnið er undarlegt.
 
 Tímabundnu breyturnar {\tt radius} og {\tt area} eru gagnlegar í þróuninni og í kembun 
-en þegar við erum viss um að fallið virki þá getum skrifað það á samþjappaðra hátt með því að setja saman fallaköllin tvö:
+en þegar við erum viss um að fallið virki þá getum skrifað það á samþjappaðri hátt með því að setja saman fallaköllin tvö:
 
 \begin{verbatim}
 double fred (double xc, double yc, double xp, double yp) {
@@ -322,13 +322,13 @@ double fred (double xc, double yc, double xp, double yp) {
 \index{fjölbinding}
 
 Þú hefur kannski tekið eftir því, í kaflanum hér á undan, að föllin
-{\tt fred} og {\tt area} hafa sama hlutverk -- finna flatarmál hrings -- en taka samt mismunandi viðföng. 
-Við sendum radíus sem viðfang í {\tt area} en tvo punkta sem viðfögn í {\tt fred}.
+{\tt fred} og {\tt area} hafa sama hlutverk -- að finna flatarmál hrings -- en taka samt mismunandi viðföng. 
+Við sendum radíus sem viðfang í {\tt area} en tvo punkta sem viðföng í {\tt fred}.
 
 Ef tvö föll framkvæma sömu aðgerð þá er eðlilegt að gefa þeim sama nafn.
 M.ö.o, það væri eðlilegra ef fallið {\tt fred} væri kallað {\tt area}.
 
-Það er leyfilegt í C++ að hafa fleiri en eitt fall með sama nafninu svo framarlega sem sérhver útgáfa taki mismunandi viðföng.
+Í C++ er leyfilegt að hafa fleiri en eitt fall með sama nafninu svo framarlega sem sérhver útgáfa taki mismunandi viðföng.
 Þessi eiginleiki er kallaður {\bf fjölbinding} (e. overloading).
 Við getum því endurskýrt {\tt fred}:
 
@@ -347,7 +347,7 @@ Ef þú skrifar
     double x = area (3.0);
 \end{verbatim}
 %
-þá mun C++ þýðandinn leita að fall með nafninu {\tt area} sem tekur {\tt double} sem viðfang og notar því fyrri úgáfuna.
+þá mun C++ þýðandinn leita að falli með nafninu {\tt area} sem tekur {\tt double} sem viðfang og notar því fyrri úgáfuna.
 Ef þú skrifar
 
 \begin{verbatim}
@@ -356,14 +356,14 @@ Ef þú skrifar
 %
 þá notar þýðandinn seinni útgáfuna af {\tt area}.  
 
-Margar af innbyggðu C++ aðgerðunum eru fjölbundnar sem þýðir að það eru til mismunandir útgáfur sem taka mismunandi fjölda af viðföngunum eða mismunandi að tag viðfanganna er mismunandi.
+Margar af innbyggðu C++ aðgerðunum eru fjölbundnar sem þýðir að það eru til mismunandir útgáfur sem taka mismunandi fjölda af viðföngunum eða að tag viðfanganna er mismunandi.
 
 Fjölbinding er gagnlegur eiginleiki en skal samt sem áður nota með varúð.
 Það getur verið ruglandi ef þú kembir eina útgáfu af falli sem síðan kallar á aðra útgáfu þess.
 
 Þetta minnir mig reyndar á eina grundvallarreglu varðandi kembingu:
-{\bf vertu viss um að útgáfan af forritun sem þú ert að skoða sé útgáfan sem er í raun keyrandi!}
-Stundum lendur þú í því að gera breytingu eftir breytingu á forritinu þínu en samt sem áður sérðu alltaf sama úttak þegar þú keyrir það.
+{\bf Vertu viss um að útgáfan af forritun sem þú ert að skoða sé útgáfan sem er í raun keyrandi!}
+Stundum lendir þú í því að gera breytingu eftir breytingu á forritinu þínu en samt sem áður sérðu alltaf sama úttak þegar þú keyrir það.
 Þetta er merki um það að af einhverjum ástæðum þá ertu ekki að keyra þá útgáfu af forritun sem þú heldur að þú sért að keyra.
 Til að vera viss þá getur þú skotið inn úttakssetningu (það skiptir í raun ekki máli hvað þú skrifar út) og þannig gengið úr skugga um að rétta útgáfan af forritinu sé keyrandi.
 
@@ -409,7 +409,7 @@ Dæmi:
 
 Fyrir sérhvert tag á gildi er samsvarandi tag á breytu.
 Í C++ er boole tagið kallað {\bf bool}.
-Breytur af taginu bool eru skilgreindar á sama hátt og breytur sem af öðru tagi:
+Breytur af taginu bool eru skilgreindar á sama hátt og breytur af öðru tagi:
 
 \begin{verbatim}
   bool fred;
@@ -438,7 +438,7 @@ og nota breytuna síðar í skilyrðissetningu
   }
 \end{verbatim}
 %
-Breyta sem notuð er á þennan hátt er oft kölluð {\bf flagg} (e. flag),
+Breyta sem notuð er á þennan hátt er oft kölluð {\bf flagg} (e. flag)
 vegna þess að hún gefur til kynna (``flaggar'') að eitthvað skilyrði sé til staðar eður ei.
 
 \index{flagg}
@@ -494,7 +494,7 @@ bool isSingleDigit (int x)
 %
 Nafnið á þessu falli er {\tt isSingleDigit}.
 Algengt er að gefa boole föllum nöfn sem hljóma eins og já/nei spurningar.
-Skilagildið er {\tt bool} sem þýðir að sérhver return setningar þarf að hafa segð af taginu {\tt bool} í för með sér.
+Skilagildið er {\tt bool} sem þýðir að sérhver return setning þarf að hafa segð af taginu {\tt bool} í för með sér.
 
 Kóðinn sjálfur er einfaldur þrátt fyrir að vera aðeins lengri en nauðsynlegt er.
 Mundu að segðin {\tt x >= 0 \&\& x < 10} hefur tagið {\tt bool} þannig að það er ekkert athugavert við það að skila henni beint og þar með sleppa {\tt if} setningunni:
@@ -530,11 +530,11 @@ Algengasta notkun á {\tt bool} föllum er innan í skilyrðissetningu:
   }
 \end{verbatim}
 
-\section {Returning from {\tt main}}
+\section {Skilagildi úr {\tt main}}
 
-Now that we have functions that return values, I can let you in
-on a secret.  {\tt main} is not really supposed to be a {\tt void}
-function.  It's supposed to return an integer:
+Nú þegar við höfum kynnst föllum sem skila gildum þá get ég sagt þér frá litlu leyndarmáli.
+{\tt main} á í raun ekki að vera {\tt void} fall.
+Það á nefnilega að skila heiltölu:
 
 \begin{verbatim}
 int main ()
@@ -543,81 +543,59 @@ int main ()
 }  
 \end{verbatim}
 %
-The usual return value from {\tt main} is 0, which indicates that
-the program succeeded at whatever it was supposed to to.  If something
-goes wrong, it is common to return -1, or some other value that
-indicates what kind of error occurred.
+Yfirleitt er skilagildið úr {\tt main} 0 sem gefur til kynna að forritið endaði eðlilega.
+Ef eitthvað fer úrskeiðis þá er algengt að skila -1 eða einhverju öðru gildi sem gefur til kynna að villa hafi komið upp.
 
-Of course, you might wonder who this value gets returned to, since
-we never call {\tt main} ourselves.  It turns out that when the
-system executes a program, it starts by calling {\tt main}
-in pretty much the same way it calls all the other functions.
+Þá vaknar eðlilega spurningin:
+Hver tekur við skilagildinu þar sem við köllum aldrei sjálf á {\tt main}?
+Það vill svo til að þegar keyrsluumhverfið keyrir C++ forrit þá byrjar það á því að kalla á {\tt main} á sambærilegan hátt og kallað er á hvaða annað fall.
 
-There are even some parameters that are passed to {\tt main}
-by the system, but we are not going to deal with them for a little
-while.
+Það eru meira að segja ákveðin viðföng sem {\tt main} fær frá keyrsluumhverfinu en við munum fjalla um það síðar.
 
-\section {More recursion}
-\index{recursion}
-\index{language!complete}
+\section {Meiri endurkvæmni}
+\index{endurkvæmni}
+\index{mál!fullkomið}
 
-So far we have only learned a small subset of C++, but you
-might be interested to know that this subset is now
-a {\bf complete} programming language, by which I
-mean that anything that can be computed can be expressed in this
-language.  Any program ever written could be rewritten
-using only the language features we have used so far (actually, we
-would need a few commands to control devices like the keyboard, mouse,
-disks, etc., but that's all).
+Fram að þessu höfum við aðeins lært lítið hlutmengi af C++.
+Það er hins vegar athyglisvert að þetta hlutmengi er núna {\bf fullkomið} (e. complete) forritunarmál í þeim skilningi að allt það sem hægt er að reikna (e. compute) eða framkvæma með tölvu er hægt að tjá (e. express) í þessu máli.
+Sérhvert forrit sem hefur verið skrifað eða mun verða skrifað er hægt að endurskrifa með því að nota þá eiginleika C++ sem við höfum skoðað fram að þessu 
+(við þyrftum reyndar nokkrar skipanir í viðbót til að stjórna jaðartækjum eins og lyklaborði, mús, hörðum diski, o.s.frv., en það er allt og sumt).
 
 \index{Turing, Alan}
 
-Proving that claim is a non-trivial exercise first
-accomplished by Alan Turing, one of the first computer scientists
-(well, some would argue that he was a mathematician, but a lot of the
-early computer scientists started as mathematicians).  Accordingly, it
-is known as the Turing thesis.  If you take a course on the Theory of
-Computation, you will have a chance to see the proof.
+Að sanna þessa staðhæfingu er reyndar ekki einfalt en það gerði Alan Turing, einn fyrsti tölvunarfræðingurinn\footnote{Sumir myndu nú reyndar segja að Alan Turing hefði verið stærðfræðingur en margir af fyrstu tölvunarfræðingunum voru það nú reyndar.}, fyrstur manna.
+Í kjölfarið nefnist þessi staðhæfing ``Turing thesis''.
+Ef þú tekur námskeið í reiknanleika (e. Theory of Computation) þá færðu tækifæri til að sjá sönnunina.
 
-To give you an idea of what you can do with the tools we have learned
-so far, we'll evaluate a few recursively-defined
-mathematical functions.  A recursive definition is similar to a
-circular definition, in the sense that the definition contains a
-reference to the thing being defined.  A truly circular definition is
-typically not very useful:
+Til að gefa þér hugmynd um hvað þú getur gert með þeim tólum sem við höfum lært hingað til þá ætla ég að útfæra nokkur stærðfræðiföll sem skilgreind eru endurkvæmin hátt.
+Endurkvæm skilgreining svipar til hringskilgreiningar í þeim skilningi að skilgreiningin inniheldur tilvísun í það sem verið er að skilgreina!
+Skilgreining sem er eingöngu hringskilgreining er yfirleitt ekki mjög gagnleg:
 
 \begin{description}
 
-\item[frabjuous:] an adjective used to describe
-something that is frabjuous.
+\item[skeflulegur:] lýsingarorð sem notað til að lýsa einhverju sem er skeflulegt.
 
 \index{frabjuous}
 
 \end{description}
 
-If you saw that definition in the dictionary, you might be
-annoyed.  On the other hand, if you looked up the definition
-of the mathematical function {\bf factorial}, you might
-get something like:
+Ef þú sæir þessa skilgreiningu í orðabók þá yrðir þú væntanlega pirraður.
+Á hinn bóginn, ef þú flettir upp skilgreiningu á stærðfræðifallinu {\bf hrópmerkt} (e. factorial) þá sæir þú eitthvað þessu líkt:
 
 \begin{eqnarray*}
 &&  0! = 1 \\
 &&  n! = n \cdot (n-1)!
 \end{eqnarray*}
 
-(Factorial is usually denoted with the symbol $!$, which is
-not to be confused with the C++ logical operator {\tt !} which
-means NOT.)  This definition says that the factorial of 0 is 1,
-and the factorial of any other value, $n$, is $n$ multiplied
-by the factorial of $n-1$.  So $3!$ is 3 times $2!$, which is 2 times
-$1!$, which is 1 times 0!.  Putting it all together, we get
-$3!$ equal to 3 times 2 times 1 times 1, which is 6.
+(Hrópmerkt er yfirleitt táknað með $!$ sem ekki má rugla saman við C++ rökvirkjann {\tt !} sem merkir NOT.)
+Þessi skilgreining segir að 0 hrópmerkt er 1 og að hrópmerkt af hvaða öðru gildi, $n$, er $n$ margfaldað með $n-1$ hrópmerkt.
+$3!$ er þá 3 margfaldað með $2!$, sem er 2 margfaldað með
+$1!$, sem er 1 margfaldað með 0!.
+Ef við tökum þetta allt saman þá fáum við $3!$ = 3 * 2 * 1 * 1, sem er 6.
 
-If you can write a recursive definition of something, you can usually
-write a C++ program to evaluate it.  The first step is to decide what
-the parameters are for this function, and what the return type is.
-With a little thought, you should conclude that factorial takes an
-integer as a parameter and returns an integer:
+Ef þú getur skrifað endurkvæma skilgreiningu fyrir eitthvað vandamál þá getur þú yfirleitt skrifað C++ forrit sem leysir það.
+Fyrst þarf að ákveða hver viðföngin eru í fallið og hvert skilagildið er.
+Þú ættir að sjá að fallið factorial tekur heiltölu sem viðfang og skilar af sér heiltölu:
 
 \begin{verbatim}
 int factorial (int n)
@@ -625,8 +603,7 @@ int factorial (int n)
 }
 \end{verbatim}
 %
-If the argument happens to be zero, all we have to do is
-return 1:
+Ef leppurinn hefur gildið 0 þá þurfum við einfaldlega að skila 1 (þetta er grunnþrepið):
 
 \begin{verbatim}
 int factorial (int n)
@@ -637,9 +614,7 @@ int factorial (int n)
 }
 \end{verbatim}
 %
-Otherwise, and this is the interesting part, we have to make
-a recursive call to find the factorial of $n-1$, and then
-multiply it by $n$.
+Annars framkvæmum við endurkvæmt kall til að finna $n-1$ hrópmerkt og margföldum það gildi með $n$.
 
 \begin{verbatim}
 int factorial (int n)
@@ -654,99 +629,74 @@ int factorial (int n)
 }
 \end{verbatim}
 %
-If we look at the flow of execution for this program,
-it is similar to {\tt nLines} from the previous chapter.
-If we call {\tt factorial} with the value 3:
+Ef við skoðum keyrsluflæðið fyrir þetta fall þá sjáum við að það svipar til fallsins {\tt nLines} úr síðasta kafla.
+Hvað gerist ef við köllum á {\tt factorial} með gildinu 3:
 
-Since 3 is not zero, we take the second branch and calculate
-the factorial of $n-1$...
+Þar sem 3 er ekki núll þá keyrist {\tt else} kvíslin sem reiknar $n-1$ hrópmerkt ...
 
 \begin{quote}
-Since 2 is not zero, we take the second branch and calculate
-the factorial of $n-1$...
+Þar sem 2 er ekki núll þá keyrist {\tt else} kvíslin sem reiknar $n-1$ hrópmerkt ...
 
 \begin{quote}
-Since 1 is not zero, we take the second branch and calculate
-the factorial of $n-1$...
+Þar sem 1 er ekki núll þá keyrist {\tt else} kvíslin sem reiknar $n-1$ hrópmerkt ...
 
 \begin{quote}
-Since 0 {\em is} zero, we take the first branch and return
-the value 1 immediately without making any more recursive
-calls.
+Þar sem 0 {\em er} núll þá keyrist fyrsta kvíslin og gildinu 1 er skilað án þess að fleiri endurkvæm köll séu framkvæmd.
 
 \end{quote}
 
-The return value (1) gets multiplied by {\tt n}, which is 1,
-and the result is returned.
+Skilagildið 1 er margfaldað með {\tt n} sem er 1 og niðurstöðunni skilað.
 
 \end{quote}
 
-The return value (1) gets multiplied by {\tt n}, which is 2,
-and the result is returned.
+Skilagildið 1 er margfaldað með {\tt n} sem er 2 og niðurstöðunni skilað.
 
 \end{quote}
 
-\noindent The return value (2) gets multiplied by {\tt n}, which is 3,
-and the result, 6, is returned to {\tt main}, or whoever
-called {\tt factorial (3)}.
+\noindent Skilagildið 2 er margfaldað með {\tt n} sem er 3 og niðurstaðan 6 er skilað til {\tt main}, eða til þess sem kallaði á {\tt factorial (3)}.
 
-\index{stack}
-\index{diagram!state}
-\index{diagram!stack}
+\index{stafli}
+\index{rit!staða}
+\index{rit!stafli}
 
-Here is what the stack diagram looks like for this sequence of
-function calls:
+Hér sjáum við staflarit fyrir röð fallakallanna:
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=stack3.eps}}
 \vspace{0.1in}
 %
-The return values are shown being passed back up the stack.
+Við sjáum að skilagildin eru send upp staflann.
 
-Notice that in the last instance of {\tt factorial}, the local
-variables {\tt recurse} and {\tt result} do not exist because
-when {\tt n=0} the branch that creates them does not execute.
+Taktu eftir að í síðasta tilvikinu á {\tt factorial} (neðst á staflanum) eru staðværu breyturnar {\tt recurse} og {\tt result} ekki til því þegar 
+{\tt n=0} þá er kvíslin (blokkin) sem býr þau til ekki keyrð.
 
-\section{Leap of faith}
-\index{leap of faith}
+\section{Að taka trúanlegt}
+\index{taka trúanlegt}
 
-Following the flow of execution is one way to read programs, but as
-you saw in the previous section, it can quickly become labarynthine.
-An alternative is what I call the ``leap of faith.''  When you come to
-a function call, instead of following the flow of execution, you
-{\em assume} that the function works correctly and returns the
-appropriate value.
+Ein leið til að lesa forrit er að fylgja keyrsluflæði þess en eins og þú sást í kaflanum hér á undan þá getur það stundum verið eins og að finna leið út úr völundarhúsi.
+Önnur leið er það sem ég kalla ``að taka trúanlegt'' (e. leap of faith).
+Þegar þú kemur að fallakalli þá, í stað þess að fylgja flæðinu inn í fallið, \textit{gerir þú ráð fyrir} að fallið virki rétt og skili réttu gildi.
 
-In fact, you are already practicing this leap of faith
-when you use built-in functions.  When you call {\tt cos}
-or {\tt exp}, you don't examine the implementations of 
-those functions.  You just assume that they work, because the people
-who wrote the built-in libraries were good programmers.
+Reyndar vill svo til að þú tekur virkni þegar trúanlega þegar þú notar innbyggð föll.
+Þegar þú kallar á {\tt cos} eða {\tt exp} fallið þá skoðar þú ekki útfærsluna á þeim.
+Þú hreinlega gerir ráð fyrir að þau virki vegna þess að fólkið sem skrifaði þessi innbyggðu forritunarsöfn eru góðir forritarar.
 
-Well, the same is true when you call one of your own functions.
-For example, in Section~\ref{bool} we wrote a function called
-{\tt isSingleDigit} that determines whether a number is between
-0 and 9.  Once we have convinced ourselves that this function
-is correct---by testing and examination of the code---we can
-use the function without ever looking at the code again.
+Sama gildir um þín eigin föll.
+Í kafla~\ref{bool} skrifuðum við fallið {\tt isSingleDigit} sem ákvarðar hvort tala er á milli 0 og 9.
+Þegar við höfðum fullvissað okkur um að þetta fall væri rétt -- með prófunum og með því að skoða kóðann -- þá gátum við notað fallið án þess að þurfa að skoða kóðann á ný.
 
-The same is true of recursive programs.  When you get to the recursive
-call, instead of following the flow of execution, you should {\em
-assume} that the recursive call works (yields the correct result), and
-then ask yourself, ``Assuming that I can find the factorial of $n-1$,
-can I compute the factorial of $n$?''  In this case, it is clear that
-you can, by multiplying by $n$.
+Sama gildir um endurkvæm föll.
+Þegar komið er að endurkvæma kallinu þá ættir þú, í stað þess að fylgja keyrsluflæðinu, \textit{að gera ráð fyrir} að endurkvæma kallið virki (skili réttu gildi)
+og síðan spyrja sjálfan þig:
+``Að því gefnu að ég geti reiknað $n-1$ hrópmerkt, get ég reiknað $n$ hrópmerkt?''
+Í þessu tilviki er ljóst að það er hægt með því að margfalda með $n$.
 
-Of course, it is a bit strange to assume that the function works
-correctly when you have not even finished writing it, but that's why
-it's called a leap of faith!
+Það er auðvitað dálítið skrýtið að gera ráð fyrir að fall virki rétt þegar maður hefur ekki einu sinni klárað að skrifa það en þetta er einmitt ástæðan fyrir því að ég segi ``taktu það trúanlegt''!
 
-\section{One more example}
+\section{Eitt dæmi í viðbót}
 \index{factorial}
 
-In the previous example I used temporary variables to spell out the
-steps, and to make the code easier to debug, but I could have saved a
-few lines:
+Í síðasta dæmi notaði ég tímabundnar breytur í sérhverju skrefi til að gera kóðann auðveldari í kembingu en ég gæti hafa sparað nokkrar línur:
 
 \begin{verbatim}
 int factorial (int n) {
@@ -758,14 +708,10 @@ int factorial (int n) {
 }
 \end{verbatim}
 %
-From now on I will tend to use the more concise version, but
-I recommend that you use the more explicit version while you
-are developing code.   When you have it working, you can
-tighten it up, if you are feeling inspired.
+Héðan í frá mun ég nota samþjappaðri útgáfur af föllum en ég mæli með að þú notir ``skilmerkilegri'' (e. explicit) útgáfur á með þú ert að þróa fallið þitt.
+Þegar fallið er tilbúið og þú ert viss um að það virki rétt þá getur þú gert kóðann samþjappaðri.
 
-After {\tt factorial}, the classic example of a recursively-defined
-mathematical function is {\tt fibonacci}, which has the
-following definition:
+Annað klassískt dæmi um stærðfræðifall sem skilgreint er á endurkvæman hátt er {\tt fibonacci} -- skilgreint á eftirfarandi hátt:
 
 \begin{eqnarray*}
 && fibonacci(0) = 1 \\
@@ -773,7 +719,7 @@ following definition:
 && fibonacci(n) = fibonacci(n-1) + fibonacci(n-2);
 \end{eqnarray*}
 %
-Translated into C++, this is
+Ef við þýðum þetta yfir á C++ þá fáum við
 
 \begin{verbatim}
 int fibonacci (int n) {
@@ -785,58 +731,43 @@ int fibonacci (int n) {
 }
 \end{verbatim}
 %
-If you try to follow the flow of execution here, even for fairly small
-values of {\tt n}, your head explodes.  But according to the leap of
-faith, if we assume that the two recursive calls (yes, you can make
-two recursive calls) work correctly, then it is clear that we get the
-right result by adding them together.
+Ef þú reynir að fylgja keyrsluflæðinu í þessu falli, meira að segja fyrir lág gildi á {\tt n}, þá mun rjúka úr höfðinu á þér!
+En ef við fylgjum ``taktu það trúanlegt'' og gerum ráð fyrir að endurkvæmu köllin tvö
+(já, þú getur framkvæmt tvö endurkvæm köll!) virki rétt þá er ljóst að við fáum rétta niðurstöðu þegar við leggjum saman gildin úr köllunum tveimur.
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[return type:]  The type of value a function returns.
+\item[skilatag (e. return type):]  Tagið á gildinu sem fallið skilar. 
 
-\item[return value:]  The value provided as the result of a function
-call.
+\item[skilagildi (e. return value):]  Gildið sem fallið skilar.
 
-\item[dead code:]  Part of a program that can never be executed,
-often because it appears after a {\tt return} statement.
+\item[dauður kóði (e. dead code):]  Hluti forrits sem er aldrei keyrður, oft vegna þess að hann fylgir á eftir {\tt return} setningu.
+\item[stoðbúnaður (e. scaffolding):]  Kóði sem er notaður í þróunarferlinu en er ekki hluti endanlegrar útgáfu.
 
-\item[scaffolding:]  Code that is used during program development
-but is not part of the final version.
+\item[void:]  Sérstakt skilatag sem gefur til kynna void fall, þ.e. fall sem skilar ekki neinu gildi.
 
-\item[void:]  A special return type that indicates a void function;
-that is, one that does not return a value.
+\item[fjölbinding (e. overloading):]  Það að hafa fleiri en eitt fall með sama nafni en með mismunandi leppa.  C++ þekkir hvaða útgáfu falls er verið að kalla á með því að skoða viðföngin.
 
-\item[overloading:]  Having more than one function with the same name
-but different parameters.  When you call an overloaded function,
-C++ knows which version to use by looking at the arguments you
-provide.
+\item[boole (e. boolean):]  Gildi eða breyta sem getur einungis haft tvær mögulegar stöður, $true$ eða $false$.
+Í C++ eru boole gildi geymd í breytum af taginu {\tt bool}.
 
-\item[boolean:]  A value or variable that can take on one of
-two states, often called $true$ and $false$.  In C++, boolean
-values can be stored in a variable type called {\tt bool}.
+\item[flagg (e. flag):] Breyta (af taginu {\tt bool}) sem geymir útkomu úr tilteknu skilyrði.
 
-\item[flag:]  A variable (usually type {\tt bool}) that records
-a condition or status information.
+\item[samanburðarvirki (e. comparison operator):]  Virki sem ber saman tvö gildi og skilar boole gildi sem gefur til kynna samband á milli þolandanna.
 
-\item[comparison operator:]  An operator that compares two values
-and produces a boolean that indicates the relationship between the
-operands.
+\item[rökvirki (e. logical operator):]  Virki sem sameinar boole gildi til að prófa samsett skilyrði.
 
-\item[logical operator:]  An operator that combines boolean values
-in order to test compound conditions.
-
-\index{return type}
-\index{return value}
-\index{dead code}
-\index{scaffolding}
+\index{skilatag}
+\index{skilagildi}
+\index{dauður kóði}
+\index{stoðbúnaður}
 \index{void}
-\index{overloading}
-\index{bool}
-\index{operator!conditional}
-\index{operator!logical}
+\index{fjölbinding}
+\index{boole}
+\index{virki!skilyrði}
+\index{virki!rök}
 
 \end{description}
 
