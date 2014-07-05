@@ -83,7 +83,7 @@ double area (double radius) {
 }
 \end{verbatim}
 %
-Á hinn bóginn má segja að, {\bf tímabundnar} (e. temporary) breytur eins og {\tt area} gera aflúsun oft auðveldari.
+Á hinn bóginn má segja að, {\bf tímabundnar} (e. temporary) breytur eins og {\tt area} gera kembingu oft auðveldari.
 Í báðum tilvikum þarf tag segðarinnar í return setningunni að passa við skilatag fallsins.
 M.ö.o., þegar þú skilgreinir að skilagildið sé af taginu {\tt double} þá ert ``lofar'' þú því að fallið muni að endingu skila {\tt double}.
 Þýðandinn mun kvarta ef þú reynir að skila engri segð eða segð af röngu tagi. 
@@ -106,7 +106,7 @@ double absoluteValue (double x) {
 Aðeins ein af þessum return setningum mun verða keyrð þar sem return setningarnar eru í mismunandi kvíslum.
 Þrátt fyrir að það sé leyfilegt að hafa fleiri en eina {\tt return} setningu í falli þá skaltu muna að um leið og ein þeirra er keyrð þá hættir fallið keyrslu og mun ekki keyra þær setningar sem á eftir koma.
 
-Kóði sem kemur á eftir {\tt return} setningu, eða á stað sem flæðið mun ekki komast í, er kallaður {\bf dauður kóði} (e. dead code}.
+Kóði sem kemur á eftir {\tt return} setningu, eða á stað sem flæðið mun ekki komast í, er kallaður {\bf dauður kóði} (e. dead code).
 Sumir þýðendur gefa einmitt aðvaranir ef hluti kóða er ``dauður''.
 
 \index{dauður kóði}
@@ -137,12 +137,13 @@ að það eina sem er verra en að fá þýðandavillu er að fá {\em ekki} þ�
 
 Hér er dæmi um eitthvað sem gæti gerst: Þú prófar {\tt absoluteValue} með ýmsum mismunandi gildum á {\tt x} og það virðist virka rétt.
 Þú lætur síðan einhvern annan fá forritið og viðkomandi prófar það í öðru umhverfi.
-Á einhvern dularfullan hátt skilar það ekki réttu gildi og eftir nokkra daga aflúsun kemstu að því að útfærslan á {\tt absoluteValue} er ekki rétt.
+Á einhvern dularfullan hátt skilar það ekki réttu gildi og eftir nokkra daga kembingu kemstu að því að útfærslan á {\tt absoluteValue} er ekki rétt.
 Bara ef þýðandinn hefði aðvarað þig!
 
 %\index{compile-time error}
 %\index{error!compile-time}
 \index{aflúsun}
+\index{kembing}
 
 Framvegis skaltu ekki álasa þýðandanum ef hann bendir á villu í forritinu þínu.
 Þú skalt frekar þakka honum fyrir a finna villu og spara þér nokkrar daga vinnu við aflúsun.
@@ -154,35 +155,31 @@ Sumum þýðendur hafa valkost sem segir þeiim að vera sérstaklega ``strangur
 Sem innskot þá bendi ég á að það er fall í math safninu sem heitir {\tt fabs}.
 Það reiknar tölugildið á {\tt double} -- á réttan hátt.
 
-\section{Program development}
+\section{Þróun forrits}
 \label{distance}
-\index{program development}
+\index{þróun forrits}
 
-At this point you should be able to look at complete C++ functions
-and tell what they do.  But it may not be clear yet how to go
-about writing them.  I am going to suggest one technique that
-I call {\bf incremental development}.
+Á þessum tímapunkti ættir þú að geta skoðað C++ föll í heild sinni og sagt til um hvað þau gera.
+Aftur á móti er þér kannski ekki ljóst hvernig eigi að skrifa þau.
+Ég mun núna stinga upp á einni aðferð við þróun forrits sem ég kalla {\bf stigvaxandi þróun} (e. incremental development).
 
-\index{incremental development}
-\index{program development}
+\index{stigvaxandi þróun}
+\index{þróun forrits}
 
-As an example, imagine you want to find the distance between two
-points, given by the coordinates $(x_1, y_1)$ and $(x_2, y_2)$.  By
-the usual definition,
+Gefum okkur t.d. að þú þurfir að skrifa fall sem reiknar fjarlægðina á milli tveggja punkta sem gefnir eru með hitunum $(x_1, y_1)$ og $(x_2, y_2)$.
+Hefðbundna skilgreiningin á fjarlægð tveggja punkta er:
 
 \begin{equation}
 distance = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 \end{equation}
 %
-The first step is to consider what a {\tt distance} function
-should look like in C++.  In other words, what are the inputs
-(parameters) and what is the output (return value).
+Fyrsta skrefið er að íhuga hvernig {\tt distance} fall ætti að líta út í C++.
+M.ö.o., hvert er inntakið (leppar/viðföng) og hvert er úttakið (return gildið).
 
-In this case, the two points are the parameters, and it is natural to
-represent them using four {\tt double}s.  The return value is the
-distance, which will have type {\tt double}.
+Í þessu tilvik eru punktarnir tveir auðvitað viðföngin inn í fallið og það er eðlilegt að nota fjóra leppa af taginu {\tt double}.
+Skilagildið er fjarlægð sem er líka eðlilegt að beri tagið {\tt double}.
 
-Already we can write an outline of the function:
+Nú þegar getum við því skrifað drög að fallinu:
 
 \begin{verbatim}
 double distance (double x1, double y1, double x2, double y2) {
@@ -190,35 +187,27 @@ double distance (double x1, double y1, double x2, double y2) {
 }
 \end{verbatim}
 %
-The {\tt return} statement is a placekeeper so that the function will
-compile and return something, even though it is not the right answer.
-At this stage the function doesn't do anything useful, but it is
-worthwhile to try compiling it so we can identify any syntax errors
-before we make it more complicated.
+{\tt Return} setningin er þarna að forminu til svo að fallið þýðist og keyri þrátt fyrir að setningin skili ekki réttu gildi.
+Á þessu stigi gerir fallið í raun ekkert gagnlegt en það er þess virði að reyna að þýða það strax svo við getum fundið málskipunarvillur áður en fallið verður flóknara.
 
-In order to test the new function, we have to call it with
-sample values.  Somewhere in {\tt main} I would add:
+Til að prófa nýja fallið verðum við að kalla á það með einhverjum tilraunagildum (viðföngum).
+Einhversstaðar í {\tt main} myndi ég bæta við:
 
 \begin{verbatim}
   double dist = distance (1.0, 2.0, 4.0, 6.0);
   cout << dist << endl;
 \end{verbatim}
 %
-I chose these values so that the horizontal
-distance is 3 and the vertical distance is 4; that way,
-the result will be 5 (the hypotenuse of a 3-4-5 triangle).
-When you are testing a function, it is useful to know the right
-answer.
+Ég valdi gildin þannig að lárétta fjarlægðin er 3 og lóðrétta fjarlægðin er 4.
+Þá ætti niðurstaðan að vera 5 (langhliðin í 3-4-5 þríhyrningi).
+Það er gagnlegt að vita rétta svarið þegar maður prófar fall!
 
-Once we have checked the syntax of the function definition, we
-can start adding lines of code one at a time.  After each
-incremental change, we recompile and run the program.  That
-way, at any point we know exactly where the error must be---in
-the last line we added.
+Þegar við höfum athugað að málskipanin í fallaskilgreiningunni okkar er rétt getum við byrjað á því að bæta við setningum í fallið, einni í einu.
+Svo þýðum við og keyrum forritið eftir sérhverja (stigvaxandi) breytingu.
+Ef villa kemur upp þá vitum við nákvæmlega hvar hún er -- í síðustu línunni sem við bættum við.
 
-The next step in the computation is to find the differences
-$x_2 - x_1$ and $y_2 - y_1$.  I will store those values in
-temporary variables named {\tt dx} and {\tt dy}.
+Næsta skref í útreikningnum okkar er að finna mismuninn á $x_2 - x_1$ og $y_2 - y_1$.
+Ég mun geyma þessi gildi (milliniðurstöður) í tímabundnum breytum sem ég nefni {\tt dx} og {\tt dy}.
 
 \begin{verbatim}
 double distance (double x1, double y1, double x2, double y2) {
@@ -230,21 +219,18 @@ double distance (double x1, double y1, double x2, double y2) {
 }
 \end{verbatim}
 %
-I added output statements that will let me check the intermediate
-values before proceeding.  As I mentioned, I already know that they
-should be 3.0 and 4.0.
+Ég bætti við úttakssetningum sem skrifa út gildin á tímabundnu breytunum. 
+Eins og ég nefndi að ofan þá veit ég þegar að þessi gildi ættu að vera 3,0 og 4,0.
 
-\index{scaffolding}
+\index{stoðbúnaður}
 
-When the function is finished I will remove the output statements.  Code
-like that is called {\bf scaffolding}, because it is helpful for
-building the program, but it is not part of the final product.
-Sometimes it is a good idea to keep the scaffolding around, but
-comment it out, just in case you need it later.
+Ég mun síðan fjarlægja þessar úttakssetningar þegar ég hef lokið við þróun fallsins.
+Kóði eins og þessi er einsskonar {\bf stoðbúnaður} (e. scaffolding) vegna þess að hann hjálpar til við þróun fallsins en er ekki hluti af endanlegri útgáfu þess.
 
-The next step in the development is to square {\tt dx} and {\tt dy}.
-We could use the {\tt pow} function, but it is simpler and
-faster to just multiply each term by itself.
+Stundum er reyndar gott að fjarlægja ekki stoðbúnaðinn algerlega heldur setja hann inn í athugasemdir (e. comments) ef ske kynni að við þyrftum á honum að halda síðar.
+
+Næsta skref í þróun fallsins er þá að setja {\tt dx} og {\tt dy} í annað veldi og leggja niðurstöðurnar saman.
+Við gætum notað {\tt pow} fallið en það er einfaldara og fljótvirkara að margfalda hvorn liðinn með sjálfu sér.
 
 \begin{verbatim}
 double distance (double x1, double y1, double x2, double y2) {
@@ -256,11 +242,9 @@ double distance (double x1, double y1, double x2, double y2) {
 }
 \end{verbatim}
 %
-Again, I would compile and run the program at this stage
-and check the intermediate value (which should be 25.0).
+Hér myndi ég aftur þýða og keyra forritið og athuga milliniðurstöðuna (tímabundna gildið) sem ætti að vera 25,0.
 
-Finally, we can use the {\tt sqrt} function to compute and
-return the result.
+Að lokum notum við {\tt sqrt} fallið til að reikna og skila lokaniðurstöðunni.
 
 \begin{verbatim}
 double distance (double x1, double y1, double x2, double y2) {
@@ -272,59 +256,46 @@ double distance (double x1, double y1, double x2, double y2) {
 }
 \end{verbatim}
 %
-Then in {\tt main}, we should output and check the value of the result.
+Í {\tt main} ættum við síðan að skrifa út og athuga gildið sem við fáum til baka úr kallinu á fallið distance.
 
-As you gain more experience programming, you might find yourself
-writing and debugging more than one line at a time.  Nevertheless,
-this incremental development process can save you a lot of
-debugging time.
+Eftir því sem reynslan þín eykst þá muntu skrifa og kemba fleiri en eina línu í einu.
+Samt sem áður mun þetta stigvaxandi þróunarferli spara þér mikinn tíma við kembingu síðar meir.
 
-The key aspects of the process are:
+Megin þættir í þessu ferli eru:
 
 \begin{itemize}
 
-\item Start with a working program and make small, incremental
-changes.  At any point, if there is an error, you will know
-exactly where it is.
+\item Byrjaðu með forrit sem keyrir og gerðu litlar, stigvaxtandi breytingar.
+Ef einhver villa kemur upp þá veistu nákvæmlega hvar hún er.
 
-\item Use temporary variables to hold intermediate values so
-you can output and check them.
+\item Notaðu tímabundnar breytur til að geyma milliniðurstöður þannig að þú getir skrifað þær út.
 
-\item Once the program is working, you might want to remove
-some of the scaffolding or consolidate multiple statements into
-compound expressions, but only if it does not make the program
-difficult to read.
+\item Þegar forritið er tilbúið þá viltu kannski fjarlægja stoðbúnaðinn eða skipta mörgum setningum út fyrir samsettar segðir (e. compound expressions), en þó aðeins ef það gerir forritið þitt ekki ólæsilegra.
 
 \end{itemize}
 
-\section{Composition}
-\index{composition}
+\section{Samsetning}
+\index{samsetning}
 
-As you should expect by now, once you define a new function,
-you can use it as part of an expression, and you can build
-new functions using existing functions.  For example, what if someone
-gave you two points, the center of the circle and a point on
-the perimeter, and asked for the area of the circle?
+Þegar þú hefur skilgreint nýtt fall þá getur þú notað það sem hluta af segð og þú getur einnig skilgreint ný föll með því að nota þau föll sem eru þegar til.
+Hvað ef t.d. einhver gæfi þér tvo punkta, miðju hrings og punkt á hringnum, og spyrði um flatarmál hringsins?
 
-Let's say the center point is stored in the variables {\tt xc}
-and {\tt yc}, and the perimeter point is in {\tt xp} and
-{\tt yp}.  The first step is to find the radius of the circle, which
-is the distance between the two points.  Fortunately, we have
-a function, {\tt distance}, that does that.
+Gefum okkur að miðjan sé geymd í breytunum {\tt xc} og {\tt yc} og punkturinn á hringnum í {\tt xp} og {\tt yp}.
+Fyrsta skrefið er þá að finna radíus hringsins, þ.e. fjarlægðina á milli punktanna tveggja.
+Við eigum einmitt fall, {\tt distance}, sem gerir það!
 
 \begin{verbatim}
   double radius = distance (xc, yc, xp, yp);
 \end{verbatim}
 %
-The second step is to find the area of a circle with that
-radius, and return it.
+Næsta skref er síðan að finna flatarmál hrings með þennan radíus og skila því.
 
 \begin{verbatim}
   double result = area (radius);
   return result;
 \end{verbatim}
 %
-Wrapping that all up in a function, we get:
+Ef við setjum þennan kóða inn í sér fall þá fáum við:
 
 \begin{verbatim}
 double fred (double xc, double yc, double xp, double yp) {
@@ -334,13 +305,11 @@ double fred (double xc, double yc, double xp, double yp) {
 } 
 \end{verbatim}
 %
-The name of this function is {\tt fred}, which may seem odd.  I will
-explain why in the next section.
+Nafnið á þessu falli er {\tt fred} sem er vissulega skrýtið.
+Í næsta kafla mun ég skýra út af hverju nanfið er undarlegt.
 
-The temporary variables {\tt radius} and {\tt area} are
-useful for development and debugging, but once the program is
-working we can make it more concise by composing
-the function calls:
+Tímabundnu breyturnar {\tt radius} og {\tt area} eru gagnlegar í þróuninni og í kembun 
+en þegar við erum viss um að fallið virki þá getum skrifað það á samþjappaðra hátt með því að setja saman fallaköllin tvö:
 
 \begin{verbatim}
 double fred (double xc, double yc, double xp, double yp) {
