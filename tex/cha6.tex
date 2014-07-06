@@ -22,18 +22,17 @@
 % it from www.gnu.org or by writing to the Free Software Foundation,
 % Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
 
-\chapter{Iteration}
+\chapter{Ítrun}
 
-\section{Multiple assignment}
-\index{assignment}
-\index{statement!assignment}
-\index{multiple assignment}
+\section{Fjölgildisveiting}
+\index{gildisveiting}
+\index{setning!gildisveiting}
+\index{fjölgildisveiting}
 
-I haven't said much about it, but it is legal in C++ to
-make more than one assignment to the same variable.  The
-effect of the second assignment is to replace the old value
-of the variable with a new value.
+Ég hef ekki nefnt það áður að í C++ er leyfilegt að gefa breytu gildi oftar en einu sinni.
+Tilgangur gildisveitingar nr. 2 er að skipta út gömlu gildi tiltekinnar breytu fyrir nýtt gildi.
 
 \begin{verbatim}
   int fred = 5;
@@ -42,34 +41,28 @@ of the variable with a new value.
   cout << fred;
 \end{verbatim}
 %
-The output of this program is {\tt 57}, because the first
-time we print {\tt fred} his value is 5, and the second time
-his value is 7.
+Úttakið úr þessu forriti er {\tt 57} vegna þess að í fyrra skiptið sem við skrifum út {\tt fred}
+þá er gildi breytunnar 5 en í síðari skiptið er gildið 7.
 
-This kind of {\bf multiple assignment} is the reason I
-described variables as a {\em container} for values.  When
-you assign a value to a variable, you change the contents of
-the container, as shown in the figure:
+Þessi tegund af {\bf fjölgildisveitingu} (e. multiple assignment) er ástæðan fyrir því að
+ég lýsti breytum sem einskonar {\em gámi} (e. container) fyrir gildi.
+Þegar þú gefur breytu gildi þá breytir þú innihaldi gámsins eins og sést á eftirfarandi mynd:
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=assign2.eps}}
 \vspace{0.1in}
 
-When there are multiple assignments to a variable, it is especially
-important to distinguish between an assignment statement and a
-statement of equality.  Because C++ uses the {\tt =} symbol for
-assignment, it is tempting to interpret a statement like {\tt a = b}
-as a statement of equality.  It is not!
+Þegar um fjölgildisveitingu er að ræða þá er sérstaklega mikilvægt að gera greinarmun á gildisveitingu og samanburði.
+C++ notar {\tt =} táknið fyrir gildisveitingu en það er freistandi að túlka setningu eins og {\tt a = b} sem samanburð (jöfnuð).
+Svo er hins vegar ekki!
 
-First of all, equality is commutative, and assignment is not.
-For example, in mathematics if $a = 7$ then $7 = a$.  But in
-C++ the statement {\tt a = 7;} is legal, and {\tt 7 = a;}
-is not.
+Í fyrsta lagi þá er samanburður víxlin (e. commutative) en gildisveiting er það ekki.
+Í stærðfræði ef t.d. $a = 7$ þá er $7 = a$.
+En í C++ þá er setningin {\tt a = 7;} lögleg en {\tt 7 = a;} aftur á móti ekki. Af hverju ekki?
 
-Furthermore, in mathematics, a statement of equality is true
-for all time.  If $a = b$ now, then $a$ will always equal $b$.
-In C++, an assignment statement can make two variables equal,
-but they don't have to stay that way!
+Jafnframt gildir í stærðfræði að setning um jöfnuð (e. statement of equality) er sönn án tillits til tímasetningar.
+Ef $a = b$ núna, þá verður $a$ alltaf jafnt $b$.
+Í C++ getur gildisveiting gert tvær breytur jafnar en þær þurfa hins vegar ekki alltaf að vera jafnar eftir það!
 
 \begin{verbatim}
   int a = 5;
@@ -77,39 +70,29 @@ but they don't have to stay that way!
   a = 3;         // a and b are no longer equal
 \end{verbatim}
 %
-The third line changes the value of {\tt a} but it does not
-change the value of {\tt b}, and so they are no longer equal.
-In many programming languages an alternate symbol is used
-for assignment, such as {\tt <-} or {\tt :=}, in order to
-avoid confusion.
+Þriðja línan breytir gildinu á {\tt a} en breytir hins vegar ekki gildinu á {\tt b} og því eru breyturnar tvær ekki lengur jafnar.
+Í mörgum forritunarmálum er annað tákn notar fyrir gildisveitingu, t.d. {\tt <-} eða {\tt :=}, til að koma í veg fyrir rugling.
 
-Although multiple assignment is frequently useful, you should
-use it with caution.  If the values of variables are changing
-constantly in different parts of the program, it can make
-the code difficult to read and debug.
+Þrátt fyrir að fjölgildisveiting sé oft gagnleg þá skaltu nota hana með varúð.
+Ef gildi breytna eru að stöðugt að breytast á mismunandi stöðum í forritunu þínu þá getur það orðið til þess að erfitt verði að lesa og kemba forritið.
 
-\section{Iteration}
-\index{iteration}
+\section{Ítrun}
+\index{ítrun}
 
-One of the things computers are often used for is the automation
-of repetitive tasks.  Repeating identical or similar tasks without
-making errors is something that computers do well and people do
-poorly.
+Eitt af því sem tölvur eru oft notaðar í er að sjálfvirknivæða einhæf verkefni.
+Tölvur er, ólíkt fólki, góðar í því að endurtaka sama eða svipað verkefni án þess að gera villur.
 
-We have seen programs that use recursion to perform
-repetition, such as {\tt nLines} and {\tt countdown}.  This
-type of repetition is called {\bf iteration}, and C++ provides
-several language features that make it easier to write iterative
-programs.
+Við höfum hingað til séð forrit sem beitir endurkvæmni til að framkvæma endurtekningar, t.d. {\tt nLines} og {\tt countdown}.
+Þessi tegund af endurtekningum er kölluð {\bf ítrun} (e. iteration) og C++ hefur ýmsa innbyggða eiginleika sem gera okkur auðveldara að skrifa forrit sem notar ítranir.
 
-The two features we are going to look at are the {\tt while}
-statement and the {\tt for} statement.
+Við ætlum nú að skoða tvo af þessum eiginleikum:
+{\tt while} setningu og {\tt for} setningu.
 
-\section{The {\tt while} statement}
-\index{statement!while}
-\index{while statement}
+\section{{\tt While} setning}
+\index{setning!while}
+\index{while setning}
 
-Using a {\tt while} statement, we can rewrite {\tt countdown}:
+Með því að nota {\tt while} setningu getum við endurskrifað {\tt countdown} fallið:
 
 \begin{verbatim}
 int countdown (int n) {
@@ -122,47 +105,38 @@ int countdown (int n) {
 }
 \end{verbatim}
 %
-You can almost read a {\tt while} statement as if it were
-English.  What this means is, ``While {\tt n} is greater than
+Þú getur nánast lesið {\tt while} setningu eins og um væri að ræða enskan texta.
+Merkingin hér er: ``While {\tt n} is greater than
 zero, continue displaying the value of {\tt n} and then reducing
 the value of {\tt n} by 1.  When you get to zero, output the
 word `Blastoff!'''
 
-More formally, the flow of execution for a {\tt while} statement
-is as follows:
+Við getum lýst keyrsluflæðinu í {\tt while} setningu á formlegri hátt:
 
 \begin{enumerate}
 
-\item Evaluate the condition in parentheses, yielding {\tt true}
-or {\tt false}.
+\item Gildið á skilyrðinu innan í svigunum er ákvarðað. Útkoman er annaðhvort {\tt true} eða {\tt false}.
 
-\item If the condition is false, exit the {\tt while} statement
-and continue execution at the next statement.
+\item Ef skilyrðið er ósatt (false), þá er hætt strax í {\tt while} setningunni og haldið áfram keyrslu í næstu setningu á eftir.
 
-\item If the condition is true, execute each of the statements
-between the squiggly-braces, and then go back to step 1.
+\item Ef skilyrðið er satt (true), þá er sérhver setning í blokkinni sem afmarkast af slaufusvigunum keyrð og síðan farið til baka í skref 1.
 
 \end{enumerate}
 
-This type of flow is called a {\bf loop} because the third step loops
-back around to the top.  Notice that if the condition is false the
-first time through the loop, the statements inside the loop are
-never executed.  The statements inside the loop are called
-the {\bf body} of the loop.
+Þessi tegund af flæði er kölluð {\bf lykkja} (e. loop) vegna þess að þriðja skrefið stekkur til baka í fyrsta skrefið.
+Athugaðu að ef skilyrðið er ósatt (false) strax í upphafi þá eru setningarnar innan lykkjunnar aldrei keyrðar.
+Setningarnar innan í lykkju eru kallaðar {\bf meginmál} (e. body) lykkjunnar.
 
-\index{loop}
-\index{loop!body}
-\index{loop!infinite}
-\index{body!loop}
-\index{infinite loop}
+\index{lykkja}
+\index{lykkja!meginmál}
+\index{lykkja!óendanleg}
+\index{meginmál!lykkja}
+\index{óendanleg lykkja}
 
-The body of the loop should change the value of
-one or more variables so that, eventually, the condition becomes
-false and the loop terminates.  Otherwise the loop will repeat
-forever, which is called an {\bf infinite loop}.  An endless
-source of amusement for computer scientists is the observation
-that the directions on shampoo, ``Lather, rinse, repeat,'' are
-an infinite loop.
+Það er mikilvægt að meginmál lykkjunnar breyti gildi einnar eða fleiri breytna þannig að skilyrðið verði false á einhverjum tímapunkti og lykkjan hætti þá keyrslu.
+Að öðrum kosti mun lykkjan halda áfram sínum ítrunum (að eilífu!) og í því tilviki er um {\bf óendanlega lykkju} (e. infinite loop) að ræða.
+%An endless source of amusement for computer scientists is the observation
+%that the directions on shampoo, ``Lather, rinse, repeat,'' are an infinite loop.
 
 In the case of {\tt countdown}, we can prove that the loop
 will terminate because we know that the value of {\tt n} is
