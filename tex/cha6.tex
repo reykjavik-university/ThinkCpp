@@ -138,12 +138,9 @@ Að öðrum kosti mun lykkjan halda áfram sínum ítrunum (að eilífu!) og í 
 %An endless source of amusement for computer scientists is the observation
 %that the directions on shampoo, ``Lather, rinse, repeat,'' are an infinite loop.
 
-In the case of {\tt countdown}, we can prove that the loop
-will terminate because we know that the value of {\tt n} is
-finite, and we can see that the value of {\tt n} gets smaller
-each time through the loop (each {\bf iteration}), so
-eventually we have to get to zero.  In other cases it is not
-so easy to tell:
+Í tilviki {\tt countdown} getum við sannað að lykkjan mun klárast.
+Við vitum að gildið á {\tt n} minnkar um 1 í hverri {\bf ítrun} lykkjunnar þannig að {\tt n} fær gildið 0 að lokum.
+Í öðrum tilfellum er kannski ekki svo auðvelt að segja til um þetta:
 
 \begin{verbatim}
   void sequence (int n) {
@@ -158,61 +155,43 @@ so easy to tell:
   }
 \end{verbatim}
 %
-The condition for this loop is {\tt n != 1}, so the loop
-will continue until {\tt n} is 1, which will make the condition
-false.
-
-At each iteration, the program outputs the value of {\tt n} and then
-checks whether it is even or odd.  If it is even, the value of
-{\tt n} is divided by two.  If it is odd, the value is replaced
-by $3n+1$.  For example, if the starting value (the argument passed
-to {\tt sequence}) is 3, the resulting sequence is
+Skilyrði fyrir áframhaldi þessarar lykkju er {\tt n != 1} og hún heldur því áfram þangað til {\tt n} is 1 (sem gerir skilyrðin false).
+Í sérhverri ítrun skrifar fallið út gildið á {\tt n} og athugar síðan hvort það er slétt tala eða oddatala.
+Ef{\tt n} er slétt þá er deilt í gildið með tveimur.
+Ef það er oddatala þá er gildinu skipt út fyrir $3n+1$.
+Ef upphafsgildið (þ.e. gildi viðfangsins sem sent er í {\tt sequence}) á {\tt n} er t.d. 3 þá skrifast út eftirfarandi röð:
 3, 10, 5, 16, 8, 4, 2, 1.
 
-Since {\tt n} sometimes increases and sometimes decreases, there is no
-obvious proof that {\tt n} will ever reach 1, or that the program will
-terminate.  For some particular values of {\tt n}, we can prove
-termination.  For example, if the starting value is a power of two, then
-the value of {\tt n} will be even every time through the loop, until
-we get to 1.  The previous example ends with such a sequence,
-starting with 16.
+Þar sem {\tt n} hækkar stundum eða lækkar þá er ekki auðvelt að sanna að {\tt n} fái að lokum gildið 1 og þar með að lykkjan klárist að lokum.
+Fyrir tiltekin gildi á {\tt n} getum við sannað að lykkjan klárist.
+Ef upphafsgildið á {\tt n} er t.d. veldi af tveimur þá mun gildið á {\tt n} vera slétt tala í sérhverri ítrun lykkjunnar þangað til það verður að lokum 1.
+Dæmið að ofan endar með þannig röð, þ.e. röðinni sem byrjar á 16.
 
-Particular values aside, the interesting question is whether
-we can prove that this program terminates for {\em all} values of n.
-So far, no one has been able to prove it {\em or} disprove it!
+Það er hins vegar athyglisvert vandamál að reyna að sanna að lykkjan hætti keyrslu fyrir {\em öll} gildi á {\tt n}.
+Hingað til hefur engum tekist að sanna eða afsanna það!
 
-\section{Tables}
-\index{table}
-\index{logarithm}
+\section{Töflur}
+\index{tafla}
+\index{lógariþmi}
 
-One of the things loops are good for is generating
-tabular data.  For example, before computers were readily available,
-people had to calculate logarithms, sines and cosines, and other
-common mathematical functions by hand.
-To make that easier, there were books containing long tables
-where you could find the values of various functions.
-Creating these tables was slow and boring, and the result
-tended to be full of errors.
+Eitt af því sem hentugt er að nota lykkur í er að búa til töflugögn.
+Fyrir tíma tölvunnar þurfti fólk að reikna lógariþma, sínus og cósínus, og önnur stærðfræðiföll, í höndunum.
+Til að gera þetta auðveldara þá voru til bækur sem innhéldu langar töflur þar sem hægt var að fletta upp gildum fyrir ýmis föll.
+Það var tímafrekt og leiðinlegt að búa þessar töflur til og sumar þeirra innihéldu fullt af villum.
 
-When computers appeared on the scene, one of the initial reactions
-was, ``This is great!  We can use the computers to generate the
-tables, so there will be no errors.''  That turned out to be true
-(mostly), but shortsighted.  Soon thereafter computers and
-calculators were so pervasive that the tables became obsolete.
+Ein fyrstu viðbrögðin við því þegar tölvur komu á sjónarsviðið voru:
+``Þetta er frábært!  Við getum notað tölvurnar til að búa til töflur sem innihalda engar villur.''
+Það reyndist vera (næstum því) rétt en skammsýnt.
+Brátt urðu nefnilega tölvur og reiknivélar svo útbreiddar að það var engin þörf á þessum töflum lengur.
 
-Well, almost.  It turns out that for some operations, computers
-use tables of values to get an approximate answer, and then
-perform computations to improve the approximation.  In some
-cases, there have been errors in the underlying tables, most
-famously in the table the original Intel Pentium used to perform
-floating-point division.
+Jæja, næstum því.
+Það vill reyndar svo að fyrir tilteknar aðgerðir nota tölvur töflur til að nálga svörin og nota síðan útreikninga til að bæta nálganirnar.
+Í sumum tilvikum hafa verið villur í undirliggjandi töflum -- sú þekktasta í töflunni sem fyrsta útgáfa af Intel Pentium örgjörvanum notaði til að framkvæma kommutöludeilingu.
 
-\index{division!floating-point}
+\index{deiling!kommutala}
 
-Although a ``log table'' is not as useful as it once was, it still
-makes a good example of iteration.  The following program outputs a
-sequence of values in the left column and their logarithms in the
-right column:
+Þrátt fyrir að ``log tafla'' sé ekki eins gagnleg og áður fyrr þá má nota hana sem gott dæmi um ítrun.
+Eftirfarandi forrit skrifar út röð gilda í vinstri dálki og samsvarandi lógariþma í hægri dálki:
 
 \begin{verbatim}
   double x = 1.0;
@@ -222,23 +201,18 @@ right column:
   }
 \end{verbatim}
 %
-The sequence \verb+\t+ represents a {\bf tab} character.
-The
-sequence \verb+\n+ represents a newline character.  These sequences
-can be included anywhere in a string, although in these examples
-the sequence is the whole string.
+Stafarunan \verb+\t+ stendur fyrir {\bf dálkastafinn} (e. tab character).
+Runan \verb+\n+ stendur fyrir {\bf newline} (ný lína) stafinn.
+Báðar þessar runur er hægt að setja hvar sem er inn í streng en í þessu dæmi mynda runurnar heilan streng án nokkurra annara stafa.
 
-A tab character causes the cursor to shift to the right until
-it reaches one of the {\bf tab stops}, which are normally every
-eight characters.  As we will see in a minute, tabs are useful
-for making columns of text line up.
+Dálkastafurinn veldur því að bendillinn ``stekkur'' til hægri þangað til hann lendir á einum af {\bf dálkastoppum} (e. tab stops), sem erum yfirleitt eftir hverja átta stafi.
 
-A newline character has exactly the same effect as {\tt endl};
-it causes the cursor to move on to the next line.  Usually if
-a newline character appears by itself, I use {\tt endl}, but
-if it appears as part of a string, I use \verb+\n+.
+Eins og við sjáum hér rétt á eftir þá er dálkastafurinn hentugur til að skrifa út texta sem passar í dálka.
 
-The output of this program is
+Stafurinn {\bf newline} virkar á nákvæmlega sama hátt og {\tt endl}, þ.e. veldur því að bendillinn hoppar í næstu línu fyrir neðan.
+Ég nota yfirleitt {\tt endl} ef newline stafurinn stendur einn og sér en annars nota ég \verb+\n+ ef hann er hluti strengs.
+
+Úttak þessa forrits er:
 
 \begin{verbatim}
 1      0
@@ -252,20 +226,19 @@ The output of this program is
 9      2.19722
 \end{verbatim}
 %
-If these values seem odd, remember that the {\tt log} function uses
-base $e$.  Since powers of two are so important in computer science,
-we often want to find logarithms with respect to base 2.  To do that,
-we can use the following formula:
+Ef þér finnst þessi gildi vera undarleg, mundu þá að {\tt log} fallið notar grunn $e$.
+Vegna þess hversu veldi af tveimur eru mikilvæg í tölvunarfræði þá viljum vio oft reikna út lógariþma með grunn 2.
+Það getum við gert með því að nota eftirfarandi formúlu:
 
 \[ \log_2 x = \frac {log_e x}{log_e 2} \]
 %
-Changing the output statement to
+Með því að breyta úttakssetningunni í 
 
 \begin{verbatim}
       cout << x << "\t" << log(x) / log(2.0) << endl;
 \end{verbatim}
 %
-yields
+þá fáum við:
 
 \begin{verbatim}
 1      0
@@ -279,10 +252,8 @@ yields
 9      3.16993
 \end{verbatim}
 %
-We can see that 1, 2, 4 and 8 are powers of two, because
-their logarithms base 2 are round numbers.  If we wanted to find
-the logarithms of other powers of two, we could modify the
-program like this:
+Hér sjáum við að 1, 2, 4 og 8 eru veldi af tveimur vegna þess að lógariþminn með grunn 2 er heil tala.
+Ef við vildum finna lógariþma af öðrum tölum af veldinu tveimur þá gætum við breytt forritinu á þennan hátt:
 
 \begin{verbatim}
   double x = 1.0;
@@ -292,10 +263,9 @@ program like this:
   }
 \end{verbatim}
 %
-Now instead of adding something to {\tt x} each time through
-the loop, which yields an arithmetic sequence, we multiply
-{\tt x} by something, yielding a {\bf geometric} sequence.
-The result is:
+Í stað þess að bæta einhverju við {\tt x} í sérhverri ítrun lykkjunnar, og fáum þannig {\bf jafnmunarunu} (e. arithmetic sequence),
+þá margföldum við {\tt x} með einhverju og fáum út {\bf kvótarunu} (e. geometric sequence).
+Niðurstaðan er:
 
 \begin{verbatim}
 1      0
@@ -307,14 +277,12 @@ The result is:
 64     6
 \end{verbatim}
 %
-Because we are using tab characters between the columns, the
-position of the second column does not depend on the number
-of digits in the first column.
+Við notum dálkastafinn á milli dálka og því er staðsetning seinni dálksins ekki háð fjölda tölustafa í fyrri dálkinum.
 
-Log tables may not be useful any more, but for computer scientists,
-knowing the powers of two is!  As an exercise, modify this program
-so that it outputs the powers of two up to 65536
-(that's $2^{16}$).  Print it out and memorize it.
+Það má vera að log töflur séu ekki gagnlegar nú til dags en hins vegar er mikilvægt fyrir tölvunarfræðinga að þekkja veldi af tveimur!
+Prófaðu að breyta forritinu þannig að það skrifi út veldi af tveimur upp í 65536 (þ.e. $2^{16}$).
+Prentaðu það út og mundu það!
+
 
 \section{Two-dimensional tables}
 \index{table!two-dimensional}
