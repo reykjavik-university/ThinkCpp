@@ -71,10 +71,10 @@ Ef $a = b$ núna, þá verður $a$ alltaf jafnt $b$.
 \end{verbatim}
 %
 Þriðja línan breytir gildinu á {\tt a} en breytir hins vegar ekki gildinu á {\tt b} og því eru breyturnar tvær ekki lengur jafnar.
-Í mörgum forritunarmálum er annað tákn notar fyrir gildisveitingu, t.d. {\tt <-} eða {\tt :=}, til að koma í veg fyrir rugling.
+Í mörgum forritunarmálum er annað tákn notað fyrir gildisveitingu, t.d. {\tt <-} eða {\tt :=}, til að koma í veg fyrir rugling.
 
 Þrátt fyrir að fjölgildisveiting sé oft gagnleg þá skaltu nota hana með varúð.
-Ef gildi breytna eru að stöðugt að breytast á mismunandi stöðum í forritunu þínu þá getur það orðið til þess að erfitt verði að lesa og kemba forritið.
+Ef gildi breytna eru stöðugt að breytast á mismunandi stöðum í forritunu þínu þá getur það orðið ólæsilegra og erfiðara að kemba.
 
 \section{Ítrun}
 \index{ítrun}
@@ -85,8 +85,10 @@ Tölvur er, ólíkt fólki, góðar í því að endurtaka sama eða svipað ver
 Við höfum hingað til séð forrit sem beitir endurkvæmni til að framkvæma endurtekningar, t.d. {\tt nLines} og {\tt countdown}.
 Þessi tegund af endurtekningum er kölluð {\bf ítrun} (e. iteration) og C++ hefur ýmsa innbyggða eiginleika sem gera okkur auðveldara að skrifa forrit sem notar ítranir.
 
-Við ætlum nú að skoða tvo af þessum eiginleikum:
-{\tt while} setningu og {\tt for} setningu.
+%Við ætlum nú að skoða tvo af þessum eiginleikum:
+%{\tt while} setningu og {\tt for} setningu.
+
+Við ætlum nú að skoða einn af þessum eiginleikum: {\tt while} setningu.
 
 \section{{\tt While} setning}
 \index{setning!while}
@@ -105,7 +107,7 @@ int countdown (int n) {
 }
 \end{verbatim}
 %
-Þú getur nánast lesið {\tt while} setningu eins og um væri að ræða enskan texta.
+Þú getur nánast lesið {\tt while} setningu eins og um enskan texta væri að ræða.
 Merkingin hér er: ``While {\tt n} is greater than
 zero, continue displaying the value of {\tt n} and then reducing
 the value of {\tt n} by 1.  When you get to zero, output the
@@ -117,9 +119,9 @@ Við getum lýst keyrsluflæðinu í {\tt while} setningu á formlegri hátt:
 
 \item Gildið á skilyrðinu innan í svigunum er ákvarðað. Útkoman er annaðhvort {\tt true} eða {\tt false}.
 
-\item Ef skilyrðið er ósatt (false), þá er hætt strax í {\tt while} setningunni og haldið áfram keyrslu í næstu setningu á eftir.
+\item Ef skilyrðið er ósatt (false) þá er strax hætt í {\tt while} setningunni og haldið áfram keyrslu í næstu setningu á eftir.
 
-\item Ef skilyrðið er satt (true), þá er sérhver setning í blokkinni sem afmarkast af slaufusvigunum keyrð og síðan farið til baka í skref 1.
+\item Ef skilyrðið er satt (true) þá er sérhver setning í blokkinni sem afmarkast af slaufusvigunum keyrð og síðan farið til baka í skref 1.
 
 \end{enumerate}
 
@@ -138,7 +140,7 @@ Að öðrum kosti mun lykkjan halda áfram sínum ítrunum (að eilífu!) og í 
 %An endless source of amusement for computer scientists is the observation
 %that the directions on shampoo, ``Lather, rinse, repeat,'' are an infinite loop.
 
-Í tilviki {\tt countdown} getum við sannað að lykkjan mun klárast.
+Í tilviki {\tt countdown} getum við sannað að lykkjan muni klárast.
 Við vitum að gildið á {\tt n} minnkar um 1 í hverri {\bf ítrun} lykkjunnar þannig að {\tt n} fær gildið 0 að lokum.
 Í öðrum tilfellum er kannski ekki svo auðvelt að segja til um þetta:
 
@@ -155,9 +157,9 @@ Við vitum að gildið á {\tt n} minnkar um 1 í hverri {\bf ítrun} lykkjunnar
   }
 \end{verbatim}
 %
-Skilyrði fyrir áframhaldi þessarar lykkju er {\tt n != 1} og hún heldur því áfram þangað til {\tt n} is 1 (sem gerir skilyrðin false).
+Skilyrði fyrir áframhaldi þessarar lykkju er {\tt n != 1} og hún heldur því áfram þangað til {\tt n} er 1 (sem gerir skilyrðin false).
 Í sérhverri ítrun skrifar fallið út gildið á {\tt n} og athugar síðan hvort það er slétt tala eða oddatala.
-Ef{\tt n} er slétt þá er deilt í gildið með tveimur.
+Ef {\tt n} er slétt þá er deilt í gildið með tveimur.
 Ef það er oddatala þá er gildinu skipt út fyrir $3n+1$.
 Ef upphafsgildið (þ.e. gildi viðfangsins sem sent er í {\tt sequence}) á {\tt n} er t.d. 3 þá skrifast út eftirfarandi röð:
 3, 10, 5, 16, 8, 4, 2, 1.
@@ -185,7 +187,7 @@ Ein fyrstu viðbrögðin við því þegar tölvur komu á sjónarsviðið voru:
 Brátt urðu nefnilega tölvur og reiknivélar svo útbreiddar að það var engin þörf á þessum töflum lengur.
 
 Jæja, næstum því.
-Það vill reyndar svo að fyrir tilteknar aðgerðir nota tölvur töflur til að nálga svörin og nota síðan útreikninga til að bæta nálganirnar.
+Það vill reyndar svo til að fyrir tilteknar aðgerðir nota tölvur töflur til að nálga svörin og nota síðan útreikninga til að bæta nálganirnar.
 Í sumum tilvikum hafa verið villur í undirliggjandi töflum -- sú þekktasta í töflunni sem fyrsta útgáfa af Intel Pentium örgjörvanum notaði til að framkvæma kommutöludeilingu.
 
 \index{deiling!kommutala}
@@ -205,7 +207,7 @@ Stafarunan \verb+\t+ stendur fyrir {\bf dálkastafinn} (e. tab character).
 Runan \verb+\n+ stendur fyrir {\bf newline} (ný lína) stafinn.
 Báðar þessar runur er hægt að setja hvar sem er inn í streng en í þessu dæmi mynda runurnar heilan streng án nokkurra annara stafa.
 
-Dálkastafurinn veldur því að bendillinn ``stekkur'' til hægri þangað til hann lendir á einum af {\bf dálkastoppum} (e. tab stops), sem erum yfirleitt eftir hverja átta stafi.
+Dálkastafurinn veldur því að bendillinn ``stekkur'' til hægri þangað til hann lendir á einum af {\bf dálkastoppum} (e. tab stops) sem erum yfirleitt eftir hverja átta stafi.
 
 Eins og við sjáum hér rétt á eftir þá er dálkastafurinn hentugur til að skrifa út texta sem passar í dálka.
 
@@ -227,7 +229,7 @@ Stafurinn {\bf newline} virkar á nákvæmlega sama hátt og {\tt endl}, þ.e. v
 \end{verbatim}
 %
 Ef þér finnst þessi gildi vera undarleg, mundu þá að {\tt log} fallið notar grunn $e$.
-Vegna þess hversu veldi af tveimur eru mikilvæg í tölvunarfræði þá viljum vio oft reikna út lógariþma með grunn 2.
+Vegna þess hversu veldi af tveimur eru mikilvæg í tölvunarfræði þá viljum við oft reikna út lógariþma með grunn 2.
 Það getum við gert með því að nota eftirfarandi formúlu:
 
 \[ \log_2 x = \frac {log_e x}{log_e 2} \]
@@ -263,7 +265,7 @@ Ef við vildum finna lógariþma af öðrum tölum af veldinu tveimur þá gætu
   }
 \end{verbatim}
 %
-Í stað þess að bæta einhverju við {\tt x} í sérhverri ítrun lykkjunnar, og fáum þannig {\bf jafnmunarunu} (e. arithmetic sequence),
+Í stað þess að bæta einhverju við {\tt x} í sérhverri ítrun lykkjunnar, og fá þannig {\bf jafnmunarunu} (e. arithmetic sequence),
 þá margföldum við {\tt x} með einhverju og fáum út {\bf kvótarunu} (e. geometric sequence).
 Niðurstaðan er:
 
@@ -284,16 +286,14 @@ Prófaðu að breyta forritinu þannig að það skrifi út veldi af tveimur upp
 Prentaðu það út og mundu það!
 
 
-\section{Two-dimensional tables}
-\index{table!two-dimensional}
+\section{Tvívíðar töflur}
+\index{tafla!tvívíð}
 
-A two-dimensional table is a table where you choose a row and
-a column and read the value at the intersection.  A multiplication
-table is a good example.  Let's say you wanted to print a
-multiplication table for the values from 1 to 6.
+Í tvívíðri töflu (e. two-dimensional table) getur þú valið röð og dálk og lesið gildið þar sem röðin og dálkurinn mætast.
+Gott dæmi um tvívíða töflu er margföldunartafla.
+Segjum að þig langi til að prenta út margföldunartöflu fyrir gildin 1 til 6.
 
-A good way to start is to write a simple loop that prints
-the multiples of 2, all on one line.
+Þú gætir byrjað með því að skrifa einfalda lykkju sem prentar út margfeldi af 2, öll í sömu línu:
 
 \begin{verbatim}
   int i = 1;
@@ -304,44 +304,34 @@ the multiples of 2, all on one line.
   cout << endl;
 \end{verbatim}
 %
-The first line initializes a variable named {\tt i}, which is
-going to act as a counter, or {\bf loop variable}.  As the
-loop executes, the value of {\tt i} increases from 1 to 6,
-and then when {\tt i} is 7, the loop terminates.  Each
-time through the loop, we print the value {\tt 2*i} followed
-by three spaces.  By omitting the {\tt endl} from the
-first output statement, we get 
-all the output on a single line.
+Fyrsta línan upphafsstillir breytuna {\tt i} en hún er hér notuð sem teljari eða {\bf lykkjubreyta} (e. loop variable).
+Þegar lykkjan keyrir þá hækkar gildið á {\tt i} úr 1 í 6 og lykkjan hættir keyrslu þegar {\tt i} er 7.
+Í sérhverri ítrun lykkjunnar prentum við út gildið {\tt 2*i} ásamt þremur bilum.
+Við skrifum allt úttakið í einni og sömu línunni því við sleppum {\tt endl} úr fyrstu úttakssetningunni.
 
-\index{loop variable}
-\index{variable!loop}
+\index{lykkjubreyta}
+\index{breyta!lykkja}
 
-The output of this program is:
+Úttak þessa forrits er:
 
 \begin{verbatim}
 2   4   6   8   10   12
 \end{verbatim}
 %
-So far, so good.  The next step is to {\bf encapsulate} and {\bf
-generalize}.
+Næsta skref er að {\bf hjúpa} (e. encapsulate) og {\bf alhæfa} (e. generalize).
 
-\section {Encapsulation and generalization}
+\section {Hjúpun og alhæfing}
 
-Encapsulation usually means taking a piece of code and wrapping it up
-in a function, allowing you to take advantage of all the things functions
-are good for.  We have seen two examples of encapsulation, when we
-wrote {\tt printParity} in Section~\ref{alternative} and {\tt
-isSingleDigit} in Section~\ref{bool}.
+Hjúpun (e. encapsulation) merkir yfirleitt að taka hluta af kóða og ``pakka'' (e. wrap) honum inn í fall og þannig nýta kostina sem almennt fylgja föllum.
+Við höfum séð tvö dæmi um hjúpun, þ.e. þegar við skrifuðum {\tt printParity} í kafla~\ref{alternative} og {\tt
+isSingleDigit} í kafla~\ref{bool}.
 
-Generalization means taking something specific, like printing
-multiples of 2, and making it more general, like printing the
-multiples of any integer.
+Alhæfing merkir að taka eitthvað einstakt tilfelli, eins og að prenta út margfeldi af tveimur, og gera það almennara, eins og að prenta út margfeldi af hvaða heiltölu sem er.
 
-\index{encapsulation}
-\index{generalization}
+\index{hjúpun}
+\index{alhæfing}
 
-Here's a function that encapsulates the loop from the previous
-section and generalizes it to print multiples of {\tt n}.
+Hér er fall sem hjúpar lykkjuna að ofan og gerir hana almennari þannig að hún prenti út margeldi af {\tt n}.
 
 \begin{verbatim}
 void printMultiples (int n)
@@ -355,28 +345,25 @@ void printMultiples (int n)
 }
 \end{verbatim}
 %
-To encapsulate, all I had to do was add the first line,
-which declares the name, parameter,
-and return type.  To generalize, all I had to do was replace
-the value 2 with the parameter {\tt n}.
+Eina sem ég þurfti að gera til að hjúpa var að bæta fyrstu línunni við, þ.e. að tilgreina nafn fallsins, lepp og skilagildi.
+Til að alhæfa þurfti ég aðeins að skipta út gildinu 2 fyrir leppinn {\tt n}.
 
-If we call this function with the argument 2, we get the same
-output as before.  With argument 3, the output is:
+Ef við köllum á þetta fall með viðfanginu 2 þá fáum við sama úttak og áður.
+Ef við köllum með viðfanginu 3 fæst úttakið: 
 
 \begin{verbatim}
 3   6   9   12   15   18
 \end{verbatim}
 %
-and with argument 4, the output is
+og með viðfanginu 4 fæst úttakið:
 
 \begin{verbatim}
 4   8   12   16   20   24 
 \end{verbatim}
 %
-By now you can probably guess how we are going to print a
-multiplication table: we'll call {\tt printMultiples} repeatedly with
-different arguments.  In fact, we are going to use another loop to
-iterate through the rows.
+Á þessum tímapunkti ættir þú að sjá hvernig við förum að því að prenta út margföldunartöflu:
+Við munum kalla endurtekið á {\tt printMultiples} með mismunandi viðfögnum.
+Reyndar vill svo til að við munum nota aðra lykkjum til að ítra yfir raðirnar:
 
 \begin{verbatim}
   int i = 1;
@@ -386,11 +373,10 @@ iterate through the rows.
   }    
 \end{verbatim}
 %
-First of all, notice how similar this loop is to the one inside {\tt
-printMultiples}.  All I did was replace the print statement with a
-function call.
+Taktu eftir hversu svipuð þessi lykkja er þeirri inni í fallinu {\tt printMultiples}.
+Eina sem ég gerði var að skipta út úttakssetningunni fyrir fallakall.
 
-The output of this program is
+Úttakið úr þessu forriti er
 
 \begin{verbatim}
 1   2   3   4   5   6   
@@ -401,40 +387,34 @@ The output of this program is
 6   12   18   24   30   36   
 \end{verbatim}
 %
-which is a (slightly sloppy) multiplication table.  If the
-sloppiness bothers you, try replacing the spaces between
-columns with tab characters and see what you get.
+sem er (örlítið bjöguð) margföldunartafla.
+Ef þessi bjögun angrar þig þá ættir þú að prófa að skipta út bilum fyrir dálkastafinn og athuga hvernig taflan lítur út eftir þá breytingu.
 
-\section{Functions}
-\index{function}
+\section{Föll}
+\index{fall}
 
-In the last section I mentioned ``all the things functions
-are good for.''  About this time, you might be wondering
-what exactly those things are.  Here are some of the reasons
-functions are useful:
+Í síðasta kafla nefndi ég ``og þannig nýta kostina sem almennt fylgja föllum''.
+Á þessum tímapunkti veltir þú kannski fyrir þér hvaða kostir þetta eru. 
+Hér er nokkrar ástæður fyrir gagnsemi falla:
 
 \begin{itemize}
 
-\item By giving a name to a sequence of statements, you make
-your program easier to read and debug.
+\item Með því að gefa röð setninga tiltekið nafn þá gerir þú forritið þitt bæði læsilegra og auðveldara að kemba.
 
-\item Dividing a long program into functions allows you to
-separate parts of the program, debug them in isolation, and
-then compose them into a whole.
+\item Með því að brjóta langt forrit upp í föll þá skiptir þú því í mismunandi hluta, getur unnið í einstökum hlutum þess án tillits til annarra hluta,
+og síðan sett þessa hluta saman til að mynda eina heild.
 
-\item Functions facilitate both recursion and iteration.
+\item Föll styðja bæði við endurkvæmni og ítrun.
 
-\item Well-designed functions are often useful for many programs.
-Once you write and debug one, you can reuse it.
+\item Vel hönnuð föll eru oft gagnleg fyrir mörg forrit. Þegar þú hefur skrifað fall þá getur þú oft endurnýtt það í öðrum forritum.
 
 \end{itemize}
 
-\section{More encapsulation}
-\index{encapsulation}
-\index{program development!encapsulation}
+\section{Meira um hjúpun}
+\index{hjúpun}
+\index{forritun!hjúpun}
 
-To demonstrate encapsulation again, I'll take the code
-from the previous section and wrap it up in a function:
+Í þeim tilgangi að sýna hjúpun aftur þá ætla ég núna að taka kóðann úr síðasta kafla og pakka honum inn í fallið {\tt printMultTable}:
 
 \begin{verbatim}
 void printMultTable () {
@@ -446,71 +426,56 @@ void printMultTable () {
 }
 \end{verbatim}
 %
-The process I am demonstrating is a common 
-development plan.  You develop code gradually by adding
-lines to {\tt main} or someplace else, and then when you get
-it working, you extract it and wrap it up in a function.
+Þetta ferli sem ég hef sýnt þér er algengt þróunarferli í forritun.
+Þú þróar forrit smám saman með því að bæta setningu við {\tt main} eða á einhverjum öðrum stað, 
+og þegar forritið virkar þá dregur þú kóðann út og pakkar honum inn í fall.
 
-The reason this is useful is that you sometimes don't know
-when you start writing exactly how to divide the program into
-functions.  This approach lets you design as you go along.
+Ástæðan fyrir því að þetta er gagnlegt er að stundum veistu ekki í upphafi hvernig best er að skipta forritinu þínu upp í einstök föll.
+Þessi aðferð gerir þér kleift að hanna um leið og þú skrifar forritið.
 
-\section{Local variables}
+\section{Staðværar breytur}
 
-About this time, you might be wondering how we can use the same
-variable {\tt i} in both {\tt printMultiples} and {\tt
-printMultTable}.  Didn't I say that you can only declare a variable
-once?  And doesn't it cause problems when one of the functions changes
-the value of the variable?
+Á þessum tímapunkti gætir þú velt því fyrir þér hvernig standi á því að hægt sé að nota sömu breytuna {\tt i}
+í bæði {\tt printMultiples} og {\tt printMultTable}.
+Töluðum við ekki um að eingöngu er hægt að lýsa yfir breytu einu sinni?
+Og veldur það ekki vandræðum ef eitt fall breytir gildinu á breytunni?
 
-The answer to both questions is ``no,'' because the {\tt i} in {\tt
-printMultiples} and the {\tt i} in {\tt printMultTable} are
-{\em not the same variable}.  They have the same name, but
-they do not refer to the same storage location, and changing
-the value of one of them has no effect on the other.
+Svarið við báðum þessum spurningum er ``nei''.
+Ástæðan er sú að {\tt i} í {\tt printMultiples} og {\tt i} í {\tt printMultTable} eru {\em ekki sama breytan}.
+Þær bera vissulega sama nafnið en minnissvæðið sem þær standa fyrir er ekki það sama og þess vegna hefur það ekki áhrif á aðra breytuna að breyta gildi hinnar.
 
-\index{local variable}
-\index{variable!local}
+\index{staðvær breyta}
+\index{breyta!staðvær}
 
-Remember that variables that are declared inside a function definition
-are local.  You cannot access a local variable from outside its
-``home'' function, and you are free to have multiple variables with
-the same name, as long as they are not in the same function.
+Mundu að breyta sem er lýst yfir í falli er staðvær (e. local).
+Það er ekki hægt að nálgast gildi staðværrar breytu utan frá (þ.e. utan fallsins sem skilgreinir breytuna)
+og því getur þú haft margar breytur með sama nafni svo framarlega sem þær eru ekki skilgreindar í sama fallinu.
 
-The stack diagram for this program shows clearly that the
-two variables named {\tt i} are not in the same storage location.
-They can have different values, and changing one does not affect
-the other.
+Staflaritið fyrir þetta forrit sýnir glögglega að breyturnar tvær með nafnið {\tt i} standa ekki fyrir sama minnissvæði.
+Gildi þeirra getur verið mismunandi og breyting á annarri breytunni hefur engin áhrif á hina breytuna.
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=stack4.eps}}
 \vspace{0.1in}
 %
-Notice that the value of the parameter {\tt n} in
-{\tt printMultiples} has to be the same as the value
-of {\tt i} in {\tt printMultTable}.  On the other hand,
-the value of {\tt i} in {\tt printMultiple} goes
-from 1 up to {\tt n}.  In the diagram, it happens to be 3.
-The next time through the loop it will be 4.
+Taktu eftir að gildið á leppnum {\tt n} í {\tt printMultiples} er það sama og gildið á {\tt i} í {\tt printMultTable}.
+Á hinn bóginn hleypur gildið á {\tt i} í {\tt printMultiple} úr 1 upp í {\tt n}.
+Á myndinni þá vill svo til að þetta gildi er 3 en í næstu ítrun lykkjunnar verður það 4.
 
-It is often a good idea to use different variable names in
-different functions, to avoid confusion, but there are good
-reasons to reuse names.  For example, it is common to
-use the names {\tt i}, {\tt j} and {\tt k} as loop variables.
-If you avoid using them in one function just because you
-used them somewhere else, you will probably make the program
-harder to read.
+Til að minnka líkur á ruglingi þá er yfirleitt góð forritunarvenja að nota mismunandi nöfn á breytum í mismunandi föllum.
+Aftur á móti eru líka ástæður fyrir því að nota sömu breytunöfn.
+Það er t.d. algengt að nota nöfnin {\tt i}, {\tt j} og {\tt k} fyrir lykkjubreytur.
+Ef þú forðast að nota þau í einu falli vegna þess að þú notar þau í öðru falli þá verður forritið þitt líklega bara ólæsilegra.
 
-\index{loop variable}
-\index{variable!loop}
+\index{lykkjubreyta}
+\index{breyta!lykkja}
 
-\section{More generalization}
-\index{generalization}
+\section{Meira um alhæfingu}
+\index{alhæfing}
 
-As another example of generalization, imagine you wanted
-a program that would print a multiplication table of any
-size, not just the 6x6 table.  You could add a parameter to
-{\tt printMultTable}:
+Tökum annað dæmi um alhæfingu.
+Gerum ráð fyrir að þú viljir skrifa forrit sem prentar út margföldunartöflu af hvaða stærð sem er, þ.e. ekki bara 6x6 töflu.
+Þú gætir bætt leppi við {\tt printMultTable}:
 
 \begin{verbatim}
 void printMultTable (int high) {
@@ -522,8 +487,8 @@ void printMultTable (int high) {
 }
 \end{verbatim}
 %
-I replaced the value 6 with the parameter {\tt high}.  If I
-call {\tt printMultTable} with the argument 7, I get
+Hér hef ég skipt út gildinu 6 með leppnum {\tt high}.
+Með því að kalla á {\tt printMultTable} með viðfanginu 7 þá fæst:
 
 \begin{verbatim}
 1   2   3   4   5   6   
@@ -535,14 +500,10 @@ call {\tt printMultTable} with the argument 7, I get
 7   14   21   28   35   42   
 \end{verbatim}
 %
-which is fine, except that I probably want the table to
-be square (same number of rows and columns), which means
-I have to add another parameter to {\tt printMultiples},
-to specify how many columns the table should have.
+Þetta er ágætt en gott væri ef taflan gæti sýnt jafnmargar raðir og dálka.
+Ég þarf því að bæta öðrum lepp við {\tt printMultiples} sem tilgreinir þann fjölda dálka sem ég vil sjá.
 
-Just to be annoying, I will also call this parameter {\tt high},
-demonstrating that different functions can have parameters
-with the same name (just like local variables):
+Svona til að pirra þig þá ætla ég líka að kalla þennan lepp {\tt high} og þar með sýna að mismunandi föll geta haft leppa (eins og staðværar breytur) með sama nafni:
 
 \begin{verbatim}
 void printMultiples (int n, int high) {
@@ -561,12 +522,15 @@ void printMultTable (int high) {
     i = i + 1;
   }
 }
+
+int main() {
+  printMultTable(7);
+}
+
 \end{verbatim}
 %
-Notice that when I added a new parameter, I had to change the first
-line of the function (the interface or prototype), and I also had to
-change the place where the function is called in {\tt printMultTable}.
-As expected, this program generates a square 7x7 table:
+Taktu eftir því að þegar ég bætti nýjum leppi við þá þurfti ég að breyta fyrstu línunni í fallinu og einnig þeim stað þar sem kallað er á fallið í {\tt printMultTable}.
+Eins og gera mátti ráð fyrir þá skrifar þetta forrit út 7x7 margföldunartöflu:
 
 \begin{verbatim}
 1   2   3   4   5   6   7   
@@ -578,25 +542,23 @@ As expected, this program generates a square 7x7 table:
 7   14   21   28   35   42   49
 \end{verbatim}
 %
-When you generalize a function appropriately, you often find
-that the resulting program has capabilities you did not intend.
-For example, you might notice that the multiplication table
-is symmetric, because $ab = ba$, so all the entries in the
-table appear twice.  You could save ink by printing only
-half the table.  To do that, you only have to change one
-line of {\tt printMultTable}.  Change
+Þegar maður gerir fall almennara þá sér maður stundum að niðurstaðan hefur eiginleika sem ekki voru fyrirséðir.
+Þú tekur kannski eftir því núna að margföldunartaflan er samhverf (e. symmetric) því $ab = ba$ og því birtast öll gildi í töflunni tvisvar.
+Við gætum sparað okkur blekið (að því gefnu að úttakið væri sent á prentara) með því að skrifa bara út helming töflunnar.
+Við þurfum aðeins að breyta einni línu í {\tt printMultTable} til að gera það.
+Breyttu
 
 \begin{verbatim}
       printMultiples (i, high);
 \end{verbatim}
 %
-to
+í
 
 \begin{verbatim}
       printMultiples (i, i);
 \end{verbatim}
 %
-and you get
+og þá færðu
 
 \begin{verbatim}
 1   
@@ -608,57 +570,45 @@ and you get
 7   14   21   28   35   42   49  
 \end{verbatim}
 %
-I'll leave it up to you to figure out how it works.
+Ég læt þig um að finna út hvernig þetta virkar!
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[loop:]  A statement that executes repeatedly while a
-condition is true or until some condition is satisfied.
+\item[lykkja (e. loop):]  Setning sem er endurtekin á meðan að tiltekið skilyrði er satt.
 
-\item[infinite loop:]  A loop whose condition is always true.
+\item[óendanleg lykkja (e. infinite loop):]  Lykkja, hvers skilyrði er ávallt satt.
 
-\item[body:]  The statements inside the loop.
+\item[meginmál (e. body):]  Setningarnar innan í lykkju.
 
-\item[iteration:]  One pass through (execution of) the body
-of the loop, including the evaluation of the condition.
+\item[ítrun (e. iteration):]  Ein umferð í gegnum meginmál lykkju, þ.m.t. ákvörðun á gildi skilyrðisins.
 
-\item[tab:] A special character, written as \verb+\t+ in C++,
-that causes the cursor to move to the next tab stop on the
-current line.
+\item[dálkalykill (e. tab):] Sérstakur stafur, skrifaður sem \verb+\t+ í C++, sem gerir það að verkum að 
+bendillinn færist í næsta dálkastopp í núverandi línu.
 
-\item[encapsulate:]  To divide a large complex program into
-components (like functions) and isolate the components from
-each other (for example, by using local variables).
+\item[hjúpa (e. encapsulate):]  Að setja tiltekna virkni inn í sérstaka einingu, t.d. fall, og einangra virknina (t.d. með því að nota staðværar breytur) frá öðrum hluta forritsins.
 
-\item[local variable:]  A variable that is declared inside
-a function and that exists only within that function.  Local variables
-cannot be accessed from outside their home function, and do not
-interfere with any other functions.
+\item[staðvær breyta (e. local variable):]  Breyta sem er skilgreind inni í falli og hvers líftimi er aðeins innan í fallinu.
+Ekki er hægt að nálgast staðværar breytur utan frá og þær hafa engin áhrif á virkni annarra falla.
 
-\item[generalize:]  To replace something unnecessarily specific
-(like a constant value) with something appropriately general
-(like a variable or parameter).  Generalization makes code more
-versatile, more likely to be reused, and sometimes even easier
-to write.
+\item[alhæfa (e. generalize):]  Að breyta einhverju sem er óþarflega sérstakt (eins og fast gildi) yfir í eitthvað sem er almennara (eins og breytu eða lepp)
+Alhæfing gerir kóðann fjölhæfara og líklegri til að verða endurnýtanlegur.
 
-\item[development plan:]  A process for developing a program.
-In this chapter, I demonstrated a style of development based on
-developing code to do simple, specific things, and then encapsulating
-and generalizing.
+\item[þróunarferli (e. development process):]  Ferli til að þróa forrit.
+Í þessum kafla hef ég sýnt sérstaka aðferð sem byggir á því að skrifa kóða sem framkvæmir einfalda, sérstaka hluti og hef síðan beitt hjúpun og alhæfingu.
 
-\index{loop}
-\index{infinite loop}
-\index{body}
-\index{tab}
-\index{loop!infinite}
-\index{iteration}
-\index{encapsulation}
-\index{generalization}
-\index{local variable}
-\index{variable!local}
-\index{program development}
+\index{lykkja}
+\index{óendanleg lykkja}
+\index{meginmál}
+\index{dálkalykill}
+\index{lykkja!óendanleg}
+\index{ítrun}
+\index{hjúpun}
+\index{alhæfing}
+\index{staðvær breyta}
+\index{breyta!staðvær}
+\index{þróunarferli}
 
 \end{description}
 
