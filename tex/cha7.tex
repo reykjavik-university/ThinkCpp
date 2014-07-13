@@ -64,11 +64,11 @@ ways:
 \end{verbatim}
 %
 The first line creates an {\tt string} without giving it a value.
-The second line assigns it the string value {\tt "Hello."}
+The second line assigns it the string value \verb+"Hello."+
 The third line is a combined declaration and assignment, also
 called an initialization.
 
-Normally when string values like {\tt "Hello, "} or {\tt "world."}
+Normally when string values like \verb+"Hello, "+ or \verb+"world."+
 appear, they are treated as C strings.  In this case, when we assign
 them to an {\tt string} variable, they are converted automatically
 to {\tt string} values.
@@ -111,11 +111,10 @@ get a surprise:
 a
 \end{verbatim}
 %
-{\tt a} is not the first letter of {\tt "banana"}.  Unless you are a
+{\tt a} is not the first letter of \verb+"banana"+.  Unless you are a
 computer scientist.  For perverse reasons, computer scientists always
-start counting from zero.  The 0th letter (``zeroeth'') of {\tt
-"banana"} is {\tt b}.  The 1th letter (``oneth'') is {\tt a} and the
-2th (``twoeth'') letter is {\tt n}.
+start counting from zero.  The 0th letter (``zeroeth'') of \verb+"banana"+ is {\tt b}.
+The 1th letter (``oneth'') is {\tt a} and the 2th (``twoeth'') letter is {\tt n}.
 
 If you want the the zereoth letter of a string, you have to put
 zero in the square brackets:
@@ -158,7 +157,7 @@ try something like
 \end{verbatim}
 %
 That won't work.  The reason is that there is no 6th letter
-in {\tt "banana"}.  Since we started counting at 0, the 6
+in \verb+"banana"+.  Since we started counting at 0, the 6
 letters are numbered from 0 to 5.  To get the last character,
 you have to subtract 1 from {\tt length}.
 
@@ -452,7 +451,7 @@ this error.
 
 Again, be careful to use string concatenation only with {\tt string}s
 and not with native C strings.  Unfortunately, an expression like
-{\tt letter + "ack"} is syntactically legal in C++, although it
+{\tt letter} + \verb+"ack"+ is syntactically legal in C++, although it
 produces a very strange result, at least in my development environment.
 
 \section{{\tt string}s are mutable}
