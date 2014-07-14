@@ -22,40 +22,33 @@
 % it from www.gnu.org or by writing to the Free Software Foundation,
 % Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
 
-\chapter{Strings and things}
+\chapter{Strengir}
 \label{strings}
 
-\section{Containers for strings}
+\section{Geymsla fyrir strengi}
 
-We have seen five types of values---booleans, characters, integers,
-floating-point numbers and strings---but only four types of
-variables---{\tt bool}, {\tt char}, {\tt int} and {\tt double}.  So
-far we have no way to store a string in a variable or perform
-operations on strings.
+Við höfum hingað til séð fimm tegundir af gildum -- boole (e. booleans), stafi (e. characters), heiltölur (e. integers),
+kommutölur (e. floating-point numbers) og strengi (e. strings) -- en aðeins fjórar tegundir af breytum -- {\tt bool}, {\tt char}, {\tt int} og {\tt double}.
+Við höfum því ekki séð neina leið til að geyma streng í breytu og framkvæma aðgerðir á strengjum.
 
-In fact, there are several kinds of variables in C++ that
-can store strings.  One is a basic type that is part of the C++
-language, sometimes called ``a native C string.''  The syntax
-for C strings is a bit ugly, and using them requires some concepts
-we have not covered yet, so for the most part we are going to
-avoid them.
+Það eru reyndar nokkrar tegundir af breytum í C++ sem geta geymt strengi.
+Einn þeirra er grunntag, hluti af C++ málinu, sem er stundum kallað ``a native C string.''
+Málskipanin fyrir C strengi er dálítið skrýtin og þar sem notkun C strengja krefst þekkingar á atriðum sem við höfum ekki fjallað um þá munum við að mestu leyti sleppa C strengjum.
 
-The string type we are going to use is called {\tt string}, which is
-one of the classes that belong to the C++ Standard Library.\footnote{You might be wondering what I mean by {\bf class}.It will be a few
-more chapters before I can give a complete definition, but for now a
-class is a collection of functions that defines the operations we
-can perform on some type.  The {\tt string} class contains all
-the functions that apply to {\tt string}s.}
+Strengjatagið sem við munum notað er kallað {\tt string} en það er einn af þeim klösum (e. classes) sem tilheyra C++ Standard Library.
+\footnote{Þú veltir því vafalaust fyrir þér hvað ég á við með {\bf klasa}. Við eigum eftir að skoða nokkra kafla í viðbót áður en ég get gefið fullnægjandi skilgreiningu
+en að svo stöddu getum við sagt að klasi sé safn falla sem skilgreina aðgerðir sem hægt er að framkvæma á tilteknu tagi.
+{\tt string} klasinn inniheldur öll föll sem hægt er að beita á tagið {\tt string}.}
 
-Unfortunately, it is not possible to avoid C strings altogether.
-In a few places in this chapter I will warn you about some problems
-you might run into using {\tt string}s instead of C strings.
+Því miður vill reyndar svo til að við getum ekki algerlega hunsað C strengi.
+Á nokkrum stöðum í þessum kafla mun ég benda þér á vandamál sem hægt er að rekast á með því að nota
+In a few places in this chapter I will warn you about some problems {\tt string} í stað C stringja.
 
-\section{{\tt string} variables}
+\section{{\tt string} breytur}
 
-You can create a variable with type {\tt string} in the usual
-ways:
+Þú býrð til breytu af taginu {\tt string} á hefðbundin hátt:
 
 \begin{verbatim}
   string first;
@@ -63,38 +56,38 @@ ways:
   string second = "world.";
 \end{verbatim}
 %
-The first line creates an {\tt string} without giving it a value.
-The second line assigns it the string value \verb+"Hello."+
-The third line is a combined declaration and assignment, also
-called an initialization.
+Fyrsta línan lýsir yfir breytu af taginu {\tt string} án þess að gefa henni gildi.
+Önnur línan gefur henni strengjagildið \verb+"Hello."+
+Þrðja línan bæði yfirlýsing (e. declaration) og gildisveiting (e. assignment), þ.e. upphafsstilling (e. initialization).
 
-Normally when string values like \verb+"Hello, "+ or \verb+"world."+
-appear, they are treated as C strings.  In this case, when we assign
-them to an {\tt string} variable, they are converted automatically
-to {\tt string} values.
+Þegar strengjagildi eins og \verb+"Hello, "+ eða \verb+"world."+ koma fyrir þá eru þau venjulega meðhöndluð sem C strengir.
+Í þessu tilviki er þeim hins vegar breytt sjálfvirkt í {\tt string} gildi vegna þess að við notum breytur af taginu {\tt string} til að geyma gildin.
 
-We can output strings in the usual way:
+Við getum skrifað út strengi á hefðbundin máta: 
 
 \begin{verbatim}
   cout << first << second << endl;
 \end{verbatim}
 %
 
-In order to compile this code, you will have to include the
-header file for the {\tt string} class, and you will have
-to add the file {\tt string} to the list of files you
-want to compile.  The details of how to do this depend on your
-programming environment.
+Þú þarft að setja hausaskrá (e. header file) fyrir {\tt string} klasann inn í forritið þitt til að geta þýtt þennan kóða:
+\begin{verbatim}
+  #include <string>
+\end{verbatim}
 
-Before proceeding, you should type in the program above and make
-sure you can compile and run it.
+%In order to compile this code, you will have to include the
+%header file for the {\tt string} class, and you will have
+%to add the file {\tt string} to the list of files you
+%want to compile.  The details of how to do this depend on your
+%programming environment.
 
-\section{Extracting characters from a string}
+Áður en við höldum lengra þá skaltu slá ofangreint forrit inn og vera viss um að þú getir þýtt það og keyrt.
 
-Strings are called ``strings'' because they are made up of a sequence,
-or string, of characters.  The first operation we are going to
-perform on a string is to extract one of the characters.  C++
-uses square brackets ({\tt [} and {\tt ]}) for this operation:
+\section{Útdráttur stafa úr streng}
+
+Strengir eru kallaðir ``strengir'' vegna þess er þeir eru settir saman af röð eða streng af stöfum.
+Fyrsta aðgerðin sem við ætlum að framkvæma á streng er að draga út einn af stöfunum.
+C++ notar hornklofa (e. square brackets) ({\tt [} og {\tt ]}) fyrir þessa aðgerð:
 
 \begin{verbatim}
   string fruit = "banana";
@@ -102,78 +95,70 @@ uses square brackets ({\tt [} and {\tt ]}) for this operation:
   cout << letter << endl;
 \end{verbatim}
 %
-The expression {\tt fruit[1]} indicates that I want character number 1
-from the string named {\tt fruit}.  The result is stored in a {\tt
-char} named {\tt letter}.  When I output the value of {\tt letter}, I
-get a surprise:
+Segðin {\tt fruit[1]} gefur til kynna að ég vilji fá staf nr. 1 í strengnum með nafninu {\tt fruit}.
+Niðurstaðan er geymd í {\tt char} breytu með nafninu {\tt letter}.
+Þegar ég síðan skrifa út gildið á {\tt letter} þá kemur niðurstaðan á óvart:
 
 \begin{verbatim}
 a
 \end{verbatim}
 %
-{\tt a} is not the first letter of \verb+"banana"+.  Unless you are a
-computer scientist.  For perverse reasons, computer scientists always
-start counting from zero.  The 0th letter (``zeroeth'') of \verb+"banana"+ is {\tt b}.
-The 1th letter (``oneth'') is {\tt a} and the 2th (``twoeth'') letter is {\tt n}.
+{\tt a} er ekki fyrsti stafurinn í \verb+"banana"+.
+Nema að þú sért tölvunarfræðingur!
+Af sérstökum ástæðum byrja tölvunarfræðingar alltaf að telja frá núlli.
+Núllti stafurinn í \verb+"banana"+ er {\tt b}.
+Fyrsti stafurinn í er {\tt a} og annar stafurinn er {\tt n}.
 
-If you want the the zereoth letter of a string, you have to put
-zero in the square brackets:
+Þannig að ef þú vilt fá núllta stafinn af streng þá þarftu að setja núll inn í hornklofana: 
 
 \begin{verbatim}
   char letter = fruit[0];
 \end{verbatim}
 
-\section{Length}
-\index{string!length}
-\index{length!string}
+\section{Lengd}
+\index{strengur!lengd}
+\index{lengd!strengur}
 
-To find the length of a string (number of characters), we can
-use the {\tt length} function.  The syntax for calling this
-function is a little different from what we've seen before:
+Við getum notað {\tt length} fallið til að finna lengd (fjölda stafa) strengs.
+Málskipanin sem notuð er til að kalla á þetta fall er dálítið frábrugðin þeirri sem við höfum séð hingað til:
 
 \begin{verbatim}
   int length;
   length = fruit.length();
 \end{verbatim}
 %
-To describe this function call, we would say that we are {\bf
-invoking} the length function on the string named {\tt fruit}.  This
-vocabulary may seem strange, but we will see many more examples where
-we invoke a function on an object.  The syntax for function invocation
-is called ``dot notation,'' because the dot (period) separates the
-name of the object, {\tt fruit}, from the name of the function, {\tt
-length}.
+Til að lýsa þessu fallakalli getum við sagt að við séum að {\bf kalla á} (e. invoking) þetta lengdarfall sem tilheyrir streng með nafninu {\tt fruit}.
+Þetta hjómar kannski undarlega en við munum sjá mörg önnur dæmi um að kalla á fall sem tilheyrir hlut (e. object).
+Málskipanin fyrir þetta er kölluð ``dot notation,'' vegna þess að punktur (e. dot) kemur á milli nafns hlutarins
+{\tt fruit}, og nafns fallsins {\tt length}.
 
-{\tt length} takes no arguments, as indicated by the empty parentheses
-{\tt ()}.  The return value is an integer, in this case 6.  Notice
-that it is legal to have a variable with the same name as a function.
+{\tt length} tekur engin viðfögn eins og sjá má með tómu svigunum {\tt ()}.
+Skilagildið er heiltala, í þessu tilviki 6.
+Taktu eftir að það er leyfilegt að hafa breytu með sama nafn og fall. 
 
-To find the last letter of a string, you might be tempted to
-try something like
+Það gæti verið freistandi að reyna eftirfarandi til að draga út síðasta staf í streng:
 
 \begin{verbatim}
   int length = fruit.length();
   char last = fruit[length];       // WRONG!!
 \end{verbatim}
 %
-That won't work.  The reason is that there is no 6th letter
-in \verb+"banana"+.  Since we started counting at 0, the 6
-letters are numbered from 0 to 5.  To get the last character,
-you have to subtract 1 from {\tt length}.
+Þetta gengur ekki vegna þess að það er enginn stafur nr. 6 í \verb+"banana"+.
+Þar sem við byrjum að telja í 0 þá eru stafirnir 6 númeraðir frá 0 upp í 5.
+Við þurfum að draga 1 frá {\tt length} til að draga út síðasta stafinn.
 
 \begin{verbatim}
   int length = fruit.length();
   char last = fruit[length-1];
 \end{verbatim}
 
-\section{Traversal}
-\index{traverse}
+\section{Að ferðast eftir}
+\index{ferðast eftir}
 
-A common thing to do with a string is
-start at the beginning, select each character in turn, do
-something to it, and continue until the end.  This pattern
-of processing is called a {\bf traversal}.  A natural
-way to encode a traversal is with a {\tt while} statement:
+Þegar unnið er með strengi þá er algengt að byrja á byrjuninni, velja síðan næsta staf, 
+framkvæma einhverja aðgerða á honum, og endurtaka þetta þangað til að komið er að enda strengsins.
+Þetta vinnslumynstur er kallað {\bf að ferðast eftir} (e. traversal).
+Það er einfalt að kóða svona ``rölt'' með {\tt while} setningu:
 
 \begin{verbatim}
   int index = 0;
@@ -184,86 +169,69 @@ way to encode a traversal is with a {\tt while} statement:
   }
 \end{verbatim}
 %
-This loop traverses the string and outputs each letter on
-a line by itself.  Notice that the condition is
-{\tt index < fruit.length()}, which means that when
-{\tt index} is equal to the length of the string, the
-condition is false and the body of the loop is not executed.
-The last character we access is the one with the
-index {\tt fruit.length()-1}.
+Þessi lykkja ferðast um í strengnum og skrifar út sérhvern staf í sér línu.
+Taktu eftir því að skilyrðið er {\tt index < fruit.length()} sem merkir að þegar {\tt index} er jafnt lengd strengsins þá
+er skilyrðið ósatt og meginmál lykkjunnar ekki keyrt.
+Síðasti stafurinn sem við drögum út er sá með vísinn (e. index) {\tt fruit.length()-1}.
 
-\index{loop variable}
-\index{variable!loop}
-\index{index}
+\index{lykkjubreyta}
+\index{breyta!lykkja}
+\index{vísir}
 
-The name of the loop variable is {\tt index}.  An {\bf
-index} is a variable or value used to specify one member of an ordered
-set, in this case the set of characters in the string.  The index
-indicates (hence the name) which one you want.  The set has to be
-ordered so that each letter has an index and each index
-refers to a single character.
+Nafn lykkjubreytunnar er {\tt index}.
+{\bf index} (eða vísir á íslensku) er breyta eða gildi sem notuð er til að tilgreina eitt stak í röðuðu mengi, í þessu tilviki mengi af stöfum í streng.
+Vísirinn tilgreinir hvaða stak maður hefur áhuga á.
+Mengið þarf að vera raðað þannig að sérhver stafur hafi vísi og að visir standi fyrir einn tiltekinn staf.
 
-As an exercise, write a function that takes an {\tt string}
-as an argument and that outputs the letters backwards, all on
-one line.
+Þú ætti núna, svona til að æfa þig, að skrifa fall sem tekur {\tt string} sem viðfang og skrifar út stafi strengsins í öfugri röð, alla í einni og sömu línunni.
 
-\section{A run-time error}
-\index{error!run-time}
-\index{run-time error}
+\section{Keyrsluvilla}
+\index{villa!keyrsla}
+\index{keyrsluvilla}
 
-Way back in Section~\ref{run-time} I talked about run-time errors,
-which are errors that don't appear until a program has started
-running.
+Í kafla~\ref{run-time} talaði ég um keyrsluvillur, þ.e. villur sem koma ekki fram fyrr en við keyrslu forrits.
 
-So far, you probably haven't seen many run-time errors, because we
-haven't been doing many things that can cause one.  Well, now we are.
-If you use the {\tt []} operator and you provide an index that is
-negative or greater than {\tt length-1}, you will get a run-time
-error and a message something like this:
+Hingað til hefur þú líklega ekki séð margar keyrsluvillur vegna þess að við höfum ekki gert marga hluti sem gætu orsakað keyrsluvillur.
+Það breytist núna.
+Ef þú notar {\tt []} virkjann og gefur upp vísi sem er negatífur eða stærri en {\tt length-1} þá færðu keyrsluvillu með villuskilaboðum á þessa leið:
 
 \begin{verbatim}
 index out of range: 6, string: banana
 \end{verbatim}
 %
-Try it in your development environment and see how it looks.
+Prófaðu þetta í þínu þróunarumhverfi til að sjá hvernig villuskilaboðin líta út.
 
-\section{The {\tt find} function}
+\section{{\tt find} fallið}
 \index{find}
 
-The {\tt string} class provides several other functions that you can
-invoke on strings.  The {\tt find} function is like the opposite the
-{\tt []} operator.  Instead of taking an index and extracting the
-character at that index, {\tt find} takes a character and finds the
-index where that character appears.
+{\tt string} klasinn býður upp á ýmis önnur föll sem þú getur beitt á strengi.
+{\tt find} fallið er eins og andhverfan við {\tt []} virkjann.
+Í stað þess að gefa upp vísi og draga út stafinn sem tengist þeim vísi þá tekur {\tt find} fallið staf sem viðfang
+og finnur vísinn þar sem viðkomandi stafur finnst.
 
 \begin{verbatim}
   string fruit = "banana";
   int index = fruit.find('a');
 \end{verbatim}
 %
-This example finds the index of the letter {\tt 'a'} in the string.
-In this case, the letter appears three times, so it is not obvious
-what {\tt find} should do.  According to the documentation, it returns
-the index of the {\em first} appearance, so the result is 1.  If the
-given letter does not appear in the string, {\tt find} returns -1.
+Þetta dæmi finnur vísinn fyrir stafinn {\tt 'a'} í strengnum {\tt fruit}.
+Í þessu tilviki birtist stafurinn þrisvar sinnum í strengnum þannig að það er ekki augljóst hvað {\tt find} eigi að gera.
+Samkvæmt skjölun (e. documentation) um fallið þá skilar það vísinum á {\em fyrsta} tilvikinu, þannig að hér er niðurstaðan 1.
+Ef uppgefinn stafur finnst ekki í strengnum þá skilar {\tt find} -1.
 
-In addition, there is a
-version of {\tt find} that takes another {\tt string} as
-an argument and that finds the index where the substring
-appears in the string.  For example,
+Önnur útgáfa af {\tt find} er til sem tekur annan {\tt string} (hlutstreng) sem viðfang og finnur vísinn sem samsvarar því hvar hlutstrengurinn byrjar í strengnum.
+Dæmi:
 
 \begin{verbatim}
   string fruit = "banana";
   int index = fruit.find("nan");
 \end{verbatim}
 %
-This example returns the value 2.
+Í þessu dæmi er niðurstaðan 2.
 
-You should remember from Section~\ref{overloading} that there
-can be more than one function with the same name, as long as they
-take a different number of parameters or different types.  In
-this case, C++ knows which version of {\tt find} to invoke
-by looking at the type of the argument we provide.
+Þú ættir að muna frá kafla~\ref{overloading} að hægt er að vera með fleiri en eitt fall með sama nafni,
+svo framarlega sem þau taka mismunandi fjölda viðfanga eða mismunandi tög.
+Í þessu tilvik veit C++ þýðandinn hvora útgáfuna af {\tt find} verið er að nota með því að skoða tög viðfanganna í kallinu.
 
 \section{Our own version of {\tt find}}
 
@@ -289,13 +257,12 @@ the first version of {\tt find}, we have to pass the {\tt string}
 as the first argument.  The other arguments are the character
 we are looking for and the index where we should start.
 
-\section{Looping and counting}
+\section{Talning}
 \label{loopcount}
-\index{traverse!counting}
-\index{loop!counting}
+\index{ferðast um!talning}
+\index{lykkja!talning}
 
-The following program counts the
-number of times the letter {\tt 'a'} appears in a string:
+Eftirfarandi forrit telur fjölda tilvika af stafnum {\tt 'a'} í streng:
 
 \begin{verbatim}
   string fruit = "banana";
@@ -312,54 +279,47 @@ number of times the letter {\tt 'a'} appears in a string:
   cout << count << endl;
 \end{verbatim}
 %
-This program demonstrates a common idiom, called a {\bf counter}.  The
-variable {\tt count} is initialized to zero and then incremented each
-time we find an {\tt 'a'}.  (To {\bf increment} is to increase by one;
-it is the opposite of {\bf decrement}, and unrelated to {\bf
-excrement}, which is a noun.)  When we exit the loop, {\tt count}
-contains the result: the total number of a's.
+Þetta forrit er gott dæmi um notkun á {\bf teljara} (e. counter).
+Breytan {\tt count} er upphafsstillt með núlli og síðan hækkuð í sérhvert sinn sem við finnum stafinn {\tt 'a'}.
+(Á ensku er talað um {\bf to increment}, þ.e. að hækka um einn, sem er andstæðan við {\bf to decrement}, að lækka um einn.)
+Þegar við hættum í lykkjunni þá mun {\tt count} innihalda niðurstöðuna: fjöldann af stafnum {\tt 'a'}.
 
-\index{counter}
-\index{increment}
-\index{decrement}
+\index{teljari}
+\index{hækka}
+\index{lækka}
 
-As an exercise, encapsulate this code in a function named
-{\tt countLetters}, and generalize it so that it accepts the
-string and the letter as arguments.
+Svona til að æfa þig þá skaltu núna hjúpa þennan kóða sem fall með nafninu {\tt countLetters} og beita síðan alhæfingu (gera fallið almennt)
+þannig að það taki við streng og staf sem viðföngum.
 
-\index{encapsulation}
-\index{generalization}
+\index{hjúpun}
+\index{alhæfing}
 
-As a second exercise, rewrite this function so that instead
-of traversing the string, it uses the version of
-{\tt find} we wrote in the previous section.
+%As a second exercise, rewrite this function so that instead
+%of traversing the string, it uses the version of
+%{\tt find} we wrote in the previous section.
 
-\section{Increment and decrement operators}
-\index{operator!increment}
-\index{operator!decrement}
+\section{``Increment'' og ``decrement'' virkjar}
+\index{virki!auki}
+\index{virki!frádrag}
 
-Incrementing and decrementing are such common operations that C++
-provides special operators for them.  The {\tt ++} operator adds one
-to the current value of an {\tt int}, {\tt char} or {\tt double}, and
-{\tt --} subtracts one.  Neither operator works on {\tt string}s,
-and neither {\em should} be used on {\tt bool}s.
+Það að bæta við einum (e. incrementing) og draga einn frá (e. decrementing) eru svo algengar aðgerðir að C++ býður upp á sértaka virkja fyrir þær.
+{\tt ++} virkinn (sem kalla má ``auki'' á íslensku) bætir einum við núverandi gildi á {\tt int}, {\tt char} eða {\tt double}, og
+{\tt --} (sem kalla má ``frádrag'' á íslensku) dregur einn frá.
+Hvorugur virkjanna virkar á {\tt string} og hvorugum þeirra {\em ætti} að beita á {\tt bool}.
 
-Technically, it is legal to increment a variable and use it
-in an expression at the same time.  For example, you might see
-something like:
+Tæknilega séð er löglegt að hækka breytu og nota hana í segð á sama tíma.
+Þú gætir t.d. séð svona kóða: 
 
 \begin{verbatim}
   cout << i++ << endl;
 \end{verbatim}
 %
-Looking at this, it is not clear whether the increment will
-take effect before or after the value is displayed.  Because
-expressions like this tend to be confusing, I would discourage
-you from using them.  In fact, to discourage you even more,
-I'm not going to tell you what the result is.  If you really
-want to know, you can try it.
+Þegar við horfum á þetta þá er ekki ljóst hvort hækkun breytunnar muni eiga sér stað fyrir eða eftir að gildi hennar er skrifað út.
+Ég mæli ekki með að þú notir {\tt ++} eða {\tt --} á þennan hátt því þessi notkun getur valdið ruglingi.
+Reyndar ætla ég ekki að segja hver niðurstaðan er.  
+Þú verður bara að prófa þetta ef þú iðar í skinninu að vita það!
 
-Using the increment operators, we can rewrite the letter-counter:
+Með því að nota virkjann auki (e. increment) getum við endurskrifað kóðann sem telur tilvik af staf:
 
 \begin{verbatim}
   int index = 0;
@@ -371,25 +331,23 @@ Using the increment operators, we can rewrite the letter-counter:
   }
 \end{verbatim}
 %
-It is a common error to write something like
+Algeng villa er að skrifa eitthvað á þessa leið:
 
 \begin{verbatim}
   index = index++;             // WRONG!!
 \end{verbatim}
 %
-Unfortunately, this is syntactically legal, so the compiler
-will not warn you.  The effect of this statement is to leave
-the value of {\tt index} unchanged.  This is often a difficult
-bug to track down.
+Því miður vill svo til að þetta er málfræðilega rétt og því mun þýðandinn ekki gera neinar athugasemdir.
+Niðurstaðan af þessari setningu er sú að gildið á {\tt index} helst óbreytt.
+Það er oft erfitt að finna þessa villu.
 
-Remember, you can write {\tt index = index +1;}, or you
-can write {\tt index++;}, but you shouldn't mix them.
+Mundu að þú getur skrifað {\tt index = index +1;} eða {\tt index++;} -- þú ættir hins vegar ekki að blanda þessu tvennu saman.
 
-\section{String concatenation}
+\section{Samskeyting strengja}
 
-Interestingly, the {\tt +} operator can be used on strings;
-it performs string {\bf concatenation}.  To concatenate means to
-join the two operands end to end.  For example:
+Það er athyglisvert að hægt er að beita virkjanum {\tt +} á strengi -- virkinn framkvæmir {\bf samskeytingu} (e. concatenation).
+Samskeyting merkir að skeyta saman tveimur (eða fleiri) strengjum.
+Dæmi:
 
 \begin{verbatim}
   string fruit = "banana";
@@ -398,29 +356,24 @@ join the two operands end to end.  For example:
   cout << dessert << endl;
 \end{verbatim}
 %
-The output of this program is {\tt banana nut bread}.
+Úttakið úr þessu forriti er {\tt banana nut bread}.
 
-Unfortunately, the {\tt +} operator does not work on native
-C strings, so you cannot write something like
+Því miður virkar {\tt +} virkinn hins vegar ekki á ``native C'' strengi og því er ekki hægt að skrifa
 
 \begin{verbatim}
   string dessert = "banana" + " nut bread";
 \end{verbatim}
 %
-because both operands are C strings.  As long as one of the
-operands is an {\tt string}, though, C++ will automatically
-convert the other.
+vegna þess að báðir þolendur {\tt +} virkjans eru hér C strengir (\verb+"banana"+ og \verb+" nut bread"+).
+Svo framarlega sem annar þolandanna er {\tt string} þá mun C++ reyndar breyta hinum sjálfvirkt í {\tt string}.
 
-It is also possible to concatenate a character onto the
-beginning or end of an {\tt string}.  In the following example, we
-will use concatenation and character arithmetic to output
-an abecedarian series.
+Það er líka mögulegt að skeyta stökum staf við byrjun eða enda á {\tt string}.
+Í eftirfarandi dæmi notum við samskeytingu og stafareikning (e. character arithmetic) til að skrifa út ``abecedarian'' röð.
 
-``Abecedarian'' refers to a series or list in which the elements
-appear in alphabetical order.  For example, in Robert McCloskey's book
-{\em Make Way for Ducklings}, the names of the ducklings are Jack,
-Kack, Lack, Mack, Nack, Ouack, Pack and Quack.  Here is a loop that
-outputs these names in order:
+``Abecedarian'' vísar til röð eða lista hvers stök eru í stafrófsröð.
+Í bók Robert McCloskey's {\em Make Way for Ducklings} eru t.d. nöfn andarunganna Jack,
+Kack, Lack, Mack, Nack, Ouack, Pack og Quack.
+Hér er lykkja sem skrifar út þessi nöfn í réttri röð: 
 
 \begin{verbatim}
   string suffix = "ack";
@@ -432,7 +385,7 @@ outputs these names in order:
   }
 \end{verbatim}
 %
-The output of this program is:
+Úttak forritsins er:
 
 \begin{verbatim}
 Jack
@@ -445,14 +398,11 @@ Pack
 Qack
 \end{verbatim}
 %
-Of course, that's not quite right because I've misspelled ``Ouack''
-and ``Quack.''  As an exercise, modify the program to correct
-this error.
+Auðvitað er þetta ekki alveg rétt því ``Ouack'' og ``Quack'' skrifast ekki alveg rétt út.
+Þú ættir að breyta forritinu og leiðrétta þessa villu.
 
-Again, be careful to use string concatenation only with {\tt string}s
-and not with native C strings.  Unfortunately, an expression like
-{\tt letter} + \verb+"ack"+ is syntactically legal in C++, although it
-produces a very strange result, at least in my development environment.
+Hér þurfum við aftur að passa okkur að nota samskeytingu aðeins með {\tt string} taginu en ekki með ``native C'' strengjum.
+Því miður er segð eins og {\tt letter} + \verb+"ack"+ málfræðilega rétt í C++ en útkoman er mjög skrýtin, a.m.k. í mínu þróunarumhverfi.
 
 \section{{\tt string}s are mutable}
 \index{class!string}
