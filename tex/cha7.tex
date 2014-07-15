@@ -34,17 +34,15 @@ kommutölur (e. floating-point numbers) og strengi (e. strings) -- en aðeins fj
 Við höfum því ekki séð neina leið til að geyma streng í breytu og framkvæma aðgerðir á strengjum.
 
 Það eru reyndar nokkrar tegundir af breytum í C++ sem geta geymt strengi.
-Einn þeirra er grunntag, hluti af C++ málinu, sem er stundum kallað ``a native C string.''
-Málskipanin fyrir C strengi er dálítið skrýtin og þar sem notkun C strengja krefst þekkingar á atriðum sem við höfum ekki fjallað um þá munum við að mestu leyti sleppa C strengjum.
+Einn þeirra er grunntag, hluti af C++ málinu, sem er stundum kallað ``a native C-string.''
+Málskipanin fyrir C-strengi er dálítið skrýtin og þar sem notkun C-strengja krefst þekkingar á atriðum sem við höfum ekki fjallað um þá munum við að mestu leyti sleppa C-strengjum.
 
-Strengjatagið sem við munum notað er kallað {\tt string} en það er einn af þeim klösum (e. classes) sem tilheyra C++ Standard Library.
-\footnote{Þú veltir því vafalaust fyrir þér hvað ég á við með {\bf klasa}. Við eigum eftir að skoða nokkra kafla í viðbót áður en ég get gefið fullnægjandi skilgreiningu
+Strengjatagið sem við munum nota er kallað {\tt string} en það er einn af þeim klösum (e. classes) sem tilheyra C++ Standard Library.\footnote{Þú veltir því vafalaust fyrir þér hvað ég á við með {\bf klasa}. Við eigum eftir að skoða nokkra kafla í viðbót áður en ég get gefið fullnægjandi skilgreiningu
 en að svo stöddu getum við sagt að klasi sé safn falla sem skilgreina aðgerðir sem hægt er að framkvæma á tilteknu tagi.
 {\tt string} klasinn inniheldur öll föll sem hægt er að beita á tagið {\tt string}.}
 
-Því miður vill reyndar svo til að við getum ekki algerlega hunsað C strengi.
-Á nokkrum stöðum í þessum kafla mun ég benda þér á vandamál sem hægt er að rekast á með því að nota
-In a few places in this chapter I will warn you about some problems {\tt string} í stað C stringja.
+Því miður vill reyndar svo til að við getum ekki algerlega hunsað C-strengi.
+Á nokkrum stöðum í þessum kafla mun ég benda þér á vandamál sem hægt er að rekast á með því að nota {\tt string} í stað C-strengja.
 
 \section{{\tt string} breytur}
 
@@ -58,9 +56,9 @@ In a few places in this chapter I will warn you about some problems {\tt string}
 %
 Fyrsta línan lýsir yfir breytu af taginu {\tt string} án þess að gefa henni gildi.
 Önnur línan gefur henni strengjagildið \verb+"Hello."+
-Þrðja línan bæði yfirlýsing (e. declaration) og gildisveiting (e. assignment), þ.e. upphafsstilling (e. initialization).
+Þriðja línan er bæði yfirlýsing (e. declaration) og gildisveiting (e. assignment), þ.e. upphafsstilling (e. initialization).
 
-Þegar strengjagildi eins og \verb+"Hello, "+ eða \verb+"world."+ koma fyrir þá eru þau venjulega meðhöndluð sem C strengir.
+Þegar strengjagildi eins og \verb+"Hello, "+ eða \verb+"world."+ koma fyrir þá eru þau venjulega meðhöndluð sem C-strengir.
 Í þessu tilviki er þeim hins vegar breytt sjálfvirkt í {\tt string} gildi vegna þess að við notum breytur af taginu {\tt string} til að geyma gildin.
 
 Við getum skrifað út strengi á hefðbundin máta: 
@@ -109,7 +107,7 @@ Af sérstökum ástæðum byrja tölvunarfræðingar alltaf að telja frá núll
 Núllti stafurinn í \verb+"banana"+ er {\tt b}.
 Fyrsti stafurinn í er {\tt a} og annar stafurinn er {\tt n}.
 
-Þannig að ef þú vilt fá núllta stafinn af streng þá þarftu að setja núll inn í hornklofana: 
+Þannig að ef þú vilt fá núllta stafinn úr streng þá þarftu að setja núll inn í hornklofana: 
 
 \begin{verbatim}
   char letter = fruit[0];
@@ -157,7 +155,7 @@ Við þurfum að draga 1 frá {\tt length} til að draga út síðasta stafinn.
 
 Þegar unnið er með strengi þá er algengt að byrja á byrjuninni, velja síðan næsta staf, 
 framkvæma einhverja aðgerða á honum, og endurtaka þetta þangað til að komið er að enda strengsins.
-Þetta vinnslumynstur er kallað {\bf að ferðast eftir} (e. traversal).
+Þetta vinnslumynstur er kallað {\bf að ferðast eftir} (e. traverse).
 Það er einfalt að kóða svona ``rölt'' með {\tt while} setningu:
 
 \begin{verbatim}
@@ -169,9 +167,9 @@ framkvæma einhverja aðgerða á honum, og endurtaka þetta þangað til að ko
   }
 \end{verbatim}
 %
-Þessi lykkja ferðast um í strengnum og skrifar út sérhvern staf í sér línu.
+Þessi lykkja ferðast eftir strengnum og skrifar út sérhvern staf í sér línu.
 Taktu eftir því að skilyrðið er {\tt index < fruit.length()} sem merkir að þegar {\tt index} er jafnt lengd strengsins þá
-er skilyrðið ósatt og meginmál lykkjunnar ekki keyrt.
+er skilyrðið ósatt og meginmál lykkjunnar er þá ekki keyrt.
 Síðasti stafurinn sem við drögum út er sá með vísinn (e. index) {\tt fruit.length()-1}.
 
 \index{lykkjubreyta}
@@ -183,7 +181,7 @@ Nafn lykkjubreytunnar er {\tt index}.
 Vísirinn tilgreinir hvaða stak maður hefur áhuga á.
 Mengið þarf að vera raðað þannig að sérhver stafur hafi vísi og að visir standi fyrir einn tiltekinn staf.
 
-Þú ætti núna, svona til að æfa þig, að skrifa fall sem tekur {\tt string} sem viðfang og skrifar út stafi strengsins í öfugri röð, alla í einni og sömu línunni.
+Þú ættir núna, svona til að æfa þig, að skrifa fall sem tekur {\tt string} sem viðfang og skrifar út stafi strengsins í öfugri röð, alla í einni og sömu línunni.
 
 \section{Keyrsluvilla}
 \index{villa!keyrsla}
@@ -193,7 +191,7 @@ Mengið þarf að vera raðað þannig að sérhver stafur hafi vísi og að vis
 
 Hingað til hefur þú líklega ekki séð margar keyrsluvillur vegna þess að við höfum ekki gert marga hluti sem gætu orsakað keyrsluvillur.
 Það breytist núna.
-Ef þú notar {\tt []} virkjann og gefur upp vísi sem er negatífur eða stærri en {\tt length-1} þá færðu keyrsluvillu með villuskilaboðum á þessa leið:
+Ef þú notar {\tt []} virkjann og gefur upp vísi sem er negatífur eða stærri en {\tt length-1} þá færðu keyrsluvillu með villuskilaboðum eitthvað á þessa leið:
 
 \begin{verbatim}
 index out of range: 6, string: banana
@@ -233,13 +231,11 @@ Dæmi:
 svo framarlega sem þau taka mismunandi fjölda viðfanga eða mismunandi tög.
 Í þessu tilvik veit C++ þýðandinn hvora útgáfuna af {\tt find} verið er að nota með því að skoða tög viðfanganna í kallinu.
 
-\section{Our own version of {\tt find}}
+\section{Okkar eigin útgáfa af {\tt find}}
 
-If we are looking for a letter in an {\tt string}, we may
-not want to start at the beginning of the string.  One way
-to generalize the {\tt find} function is to write a version
-that takes an additional parameter---the index where we should
-start looking.  Here is an implementation of this function.
+Ef við erum að leita að tilteknum staf í streng þá getur verið að við viljum ekki endilega byrja að leita frá upphafi strengsins. 
+Ein leið til að gera {\tt find} fallið almennara er að skrifa útgáfu af því sem tekur eitt auka viðfang -- vísi sem stendur fyrir þann stað sem við viljum byrja leitina frá.
+Hér er útfærsla af þessu falli:
 
 \begin{verbatim}
 int find (string s, char c, int i)
@@ -252,10 +248,9 @@ int find (string s, char c, int i)
 }
 \end{verbatim}
 %
-Instead of invoking this function on an {\tt string}, like
-the first version of {\tt find}, we have to pass the {\tt string}
-as the first argument.  The other arguments are the character
-we are looking for and the index where we should start.
+Í stað þess að kalla á þetta fall með ``dot notation'' eins og við gerðum fyrir fyrstu útgáfuna af {\tt find}
+þá þurfum við að senda {\tt string} sem fyrsta viðfang.
+Hin viðföngin eru stafurinn sem við erum að leita að og vísirinn sem gefur til kynna hvar við byrjum leitina.
 
 \section{Talning}
 \label{loopcount}
@@ -298,13 +293,13 @@ Svona til að æfa þig þá skaltu núna hjúpa þennan kóða sem fall með na
 %of traversing the string, it uses the version of
 %{\tt find} we wrote in the previous section.
 
-\section{``Increment'' og ``decrement'' virkjar}
+\section{Hækkunar- og lækkunarvirkjar}
 \index{virki!auki}
 \index{virki!frádrag}
 
 Það að bæta við einum (e. incrementing) og draga einn frá (e. decrementing) eru svo algengar aðgerðir að C++ býður upp á sértaka virkja fyrir þær.
 {\tt ++} virkinn (sem kalla má ``auki'' á íslensku) bætir einum við núverandi gildi á {\tt int}, {\tt char} eða {\tt double}, og
-{\tt --} (sem kalla má ``frádrag'' á íslensku) dregur einn frá.
+\verb+--+ (sem kalla má ``frádrag'' á íslensku) dregur einn frá.
 Hvorugur virkjanna virkar á {\tt string} og hvorugum þeirra {\em ætti} að beita á {\tt bool}.
 
 Tæknilega séð er löglegt að hækka breytu og nota hana í segð á sama tíma.
@@ -315,11 +310,11 @@ Tæknilega séð er löglegt að hækka breytu og nota hana í segð á sama tí
 \end{verbatim}
 %
 Þegar við horfum á þetta þá er ekki ljóst hvort hækkun breytunnar muni eiga sér stað fyrir eða eftir að gildi hennar er skrifað út.
-Ég mæli ekki með að þú notir {\tt ++} eða {\tt --} á þennan hátt því þessi notkun getur valdið ruglingi.
+Ég mæli ekki með að þú notir {\tt ++} eða \verb+--+ á þennan hátt því þessi notkun getur valdið ruglingi.
 Reyndar ætla ég ekki að segja hver niðurstaðan er.  
 Þú verður bara að prófa þetta ef þú iðar í skinninu að vita það!
 
-Með því að nota virkjann auki (e. increment) getum við endurskrifað kóðann sem telur tilvik af staf:
+Með því að nota hækkunarvirkjann getum við endurskrifað kóðann sem telur tilvik af staf:
 
 \begin{verbatim}
   int index = 0;
@@ -341,11 +336,12 @@ Algeng villa er að skrifa eitthvað á þessa leið:
 Niðurstaðan af þessari setningu er sú að gildið á {\tt index} helst óbreytt.
 Það er oft erfitt að finna þessa villu.
 
-Mundu að þú getur skrifað {\tt index = index +1;} eða {\tt index++;} -- þú ættir hins vegar ekki að blanda þessu tvennu saman.
+Mundu að þú getur skrifað {\tt index = index +1;} eða {\tt index++;}.
+Þú ættir hins vegar ekki að blanda þessu tvennu saman.
 
 \section{Samskeyting strengja}
 
-Það er athyglisvert að hægt er að beita virkjanum {\tt +} á strengi -- virkinn framkvæmir {\bf samskeytingu} (e. concatenation).
+Það er athyglisvert að hægt er að beita virkjanum {\tt +} á strengi en þá framkvæmir virkinn {\bf samskeytingu} (e. concatenation).
 Samskeyting merkir að skeyta saman tveimur (eða fleiri) strengjum.
 Dæmi:
 
@@ -358,19 +354,19 @@ Dæmi:
 %
 Úttakið úr þessu forriti er {\tt banana nut bread}.
 
-Því miður virkar {\tt +} virkinn hins vegar ekki á ``native C'' strengi og því er ekki hægt að skrifa
+Því miður virkar {\tt +} virkinn hins vegar ekki á ``native'' C-strengi og því er ekki hægt að skrifa
 
 \begin{verbatim}
   string dessert = "banana" + " nut bread";
 \end{verbatim}
 %
-vegna þess að báðir þolendur {\tt +} virkjans eru hér C strengir (\verb+"banana"+ og \verb+" nut bread"+).
+vegna þess að báðir þolendur {\tt +} virkjans eru hér C-strengir (\verb+"banana"+ og \verb+" nut bread"+).
 Svo framarlega sem annar þolandanna er {\tt string} þá mun C++ reyndar breyta hinum sjálfvirkt í {\tt string}.
 
-Það er líka mögulegt að skeyta stökum staf við byrjun eða enda á {\tt string}.
+Það er líka mögulegt að skeyta stökum staf við byrjun eða enda á streng.
 Í eftirfarandi dæmi notum við samskeytingu og stafareikning (e. character arithmetic) til að skrifa út ``abecedarian'' röð.
 
-``Abecedarian'' vísar til röð eða lista hvers stök eru í stafrófsröð.
+``Abecedarian'' vísar til raðar eða lista hvers stök eru í stafrófsröð.
 Í bók Robert McCloskey's {\em Make Way for Ducklings} eru t.d. nöfn andarunganna Jack,
 Kack, Lack, Mack, Nack, Ouack, Pack og Quack.
 Hér er lykkja sem skrifar út þessi nöfn í réttri röð: 
@@ -401,17 +397,16 @@ Qack
 Auðvitað er þetta ekki alveg rétt því ``Ouack'' og ``Quack'' skrifast ekki alveg rétt út.
 Þú ættir að breyta forritinu og leiðrétta þessa villu.
 
-Hér þurfum við aftur að passa okkur að nota samskeytingu aðeins með {\tt string} taginu en ekki með ``native C'' strengjum.
+Hér þurfum við aftur að passa okkur að nota samskeytingu aðeins með {\tt string} taginu en ekki með ``native'' C-strengjum.
 Því miður er segð eins og {\tt letter} + \verb+"ack"+ málfræðilega rétt í C++ en útkoman er mjög skrýtin, a.m.k. í mínu þróunarumhverfi.
 
-\section{{\tt string}s are mutable}
-\index{class!string}
-\index{immutable}
+\section{Strengir eru breytanlegir}
+\index{klasi!string}
+\index{string!breytanlegir}
 \index{string}
 
-You can change the letters in an {\tt string} one at a time
-using the {\tt []} operator on the left side of an assignment.
-For example,
+Þú getur breytt einstökum stöfum í streng með því að nota {\tt []} virkjann á vinstri hlið gildisveitingar:
+Þetta dæmi,
 
 \begin{verbatim}
   string greeting = "Hello, world!";
@@ -419,18 +414,17 @@ For example,
   cout << greeting << endl;
 \end{verbatim}
 %
-produces the output {\tt Jello, world!}.
+skrifar út {\tt Jello, world!}.
 
 
-\section{{\tt string}s are comparable}
+\section{Strengir eru samanburðarhæfir}
 \label{incomparable}
-\index{class!string}
-\index{comparison!string}
+\index{klasi!string}
+\index{samanburður!string}
 \index{string}
 
-All the comparison operators that work on {\tt int}s and
-{\tt double}s also work on {\tt strings}.  For example,
-if you want to know if two strings are equal:
+Allir samanburðarvirkjarnir sem virka fyrir {\tt int} og {\tt double} virka líka fyrir {\tt string}.
+Ef þú vilt t.d. vita hvort tveir strengir eru jafnir:
 
 \begin{verbatim}
   if (word == "banana") {
@@ -438,8 +432,7 @@ if you want to know if two strings are equal:
   }
 \end{verbatim}
 %
-The other comparison operations are useful for putting words
-in alphabetical order.
+Hinir samanburðarvirkjarnir eru t.d. gagnlegir til að raða orðum í stafrófsröð:
 
 \begin{verbatim}
   if (word < "banana") {
@@ -451,28 +444,24 @@ in alphabetical order.
   }
 \end{verbatim}
 %
-You should be aware, though, that the {\tt string} class does
-not handle upper and lower case letters the same way that people
-do.  All the upper case letters come before all the lower case
-letters.  As a result,
-
+Athugaðu þó að {\tt string} klasinn meðhöndlar ekki hástafi og lágstafi á sama hátt og við gerum.
+Allir hástafir koma á undan öllum lágstöfum.
+Þess vegna,
 \begin{verbatim}
 Your word, Zebra, comes before banana.
 \end{verbatim}
 %
-A common way to address this problem is to convert strings to a
-standard format, like all lower-case, before performing the
-comparison.  The next sections explains how.  I will not address the
-more difficult problem, which is making the program realize that
-zebras are not fruit.
+Algeng leið til að bregðast við þessu vandamáli er að breyta strengjum yfir á staðlað form, t.d. yfir í lágstafi, áður en samanburður er framkvæmdur.
+Næsti kafli skýrir hvernig það er gert.
+%I will not address the
+%more difficult problem, which is making the program realize that
+%zebras are not fruit.
 
-\section{Character classification}
+\section{Flokkun stafa}
 
-It is often useful to examine a character and test whether
-it is upper or lower case, or whether it is a character or
-a digit.  C++ provides a library of functions that perform
-this kind of character classification.  In order to use these
-functions, you have to include the header file {\tt ctype.h}.
+Það er oft gagnlegt að skoða staf og athuga hvort hann er hástafur eða lágstafur eða hvort hann er bókstafur eða tölustafur.
+C++ fylgir safn falla (e. library functions) sem getur flokkað stafi á þennan hátt.
+Þú þarf að setja hausaskrána {\tt ctype.h} inn í forritið þitt til að geta notað þessi föll.
 
 \begin{verbatim}
   char letter = 'a';
@@ -481,31 +470,21 @@ functions, you have to include the header file {\tt ctype.h}.
   }
 \end{verbatim}
 %
-You might expect the return value from {\tt isalpha} to
-be a {\tt bool}, but for reasons I don't even want to think
-about, it is actually an integer that is
-0 if the argument is not a letter, and some non-zero value
-if it is.
+Hér er eðlilegt að gera ráð fyrir því að skilagildið úr fallinu {\tt isalpha} sé {\tt bool}, 
+en af skrýtnum ástæðum er skilagildið reyndar heiltala sem er 0 ef viðfangið er ekki bókstafur en einhver önnur tala ef viðfangið er bókstafur.
 
-This oddity is not as inconvenient as it seems, because it is
-legal to use this kind of integer in a conditional, as shown
-in the example.  The value 0 is treated as {\tt false}, and
-all non-zero values are treated as {\tt true}.
+Þessi undarlegheit eru reyndar ekki eins óþægileg eins og kannski virðist því það er leyfilegt að nota svona heiltölu í skilyrði eins og sést í dæminu.
+Gildið 0 er meðhöndlað sem {\tt false} en allar aðrar tölur eru meðhöndlaðar sem {\tt true}.
 
-Technically, this sort of thing should not be allowed---integers are
-not the same thing as boolean values.  Nevertheless, the C++ habit of
-converting automatically between types can be useful.
+Tæknilega séð ætti svona lagað ekki að vera leyfilegt -- heiltölugildi eru frábrugðin boole gildum.
+Samt sem áður getur þessi C++ venja, að breyta sjálfvirkt á milli taga, stundum verið gagnleg.
 
-Other character classification functions include {\tt isdigit}, which
-identifies the digits 0 through 9, and {\tt isspace}, which identifies
-all kinds of ``white'' space, including spaces, tabs, newlines, and a
-few others.  There are also {\tt isupper} and {\tt islower}, which
-distinguish upper and lower case letters.
+Önnur föll sem flokka stafi eru t.d. {\tt isdigit}, sem ber kennsl á tölustafina 0 til 9, 
+og {\tt isspace}, sem ber kennsl á allar tegundir af ``hvítum'' bilum (e. white spaces), þ.m.t. bil, dálkastaf og nýja línu.
+Einnig má nefna föllin {\tt isupper} og {\tt islower} sem gera greinarmun á hástöfum og lágstöfum.
 
-Finally, there are two functions that convert letters from one
-case to the other, called {\tt toupper} and {\tt tolower}.  Both take
-a single character as a parameter and return a (possibly
-converted) character.
+Að lokum nefni ég tvö föll sem breyta stöfum úr eini formi í annað, {\tt toupper} og {\tt tolower}.
+Bæði þessi föll taka einn staf sem viðfang og skila (hugsanlega) breyttum staf. 
 
 \begin{verbatim}
   char letter = 'a';
@@ -513,55 +492,44 @@ converted) character.
   cout << letter << endl;
 \end{verbatim}
 %
-The output of this code is {\tt A}.
+Úttakið úr þessum kóða er {\tt A}.
 
-As an exercise, use the character classification and conversion
-library to write functions named {\tt stringToUpper} and
-{\tt stringToLower} that take a single {\tt string} as
-a parameter, and that modify the string by converting all the
-letters to upper or lower case.  The return type should be
-{\tt void}.
+Til að æfa þig ættir þú að nota ofangreind föll til að skrifa föllin {\tt stringToUpper} og
+{\tt stringToLower} sem bæði taka einn {\tt string} sem viðfang og breyta honum þannig að öllum stöfum er breytt í hástafi eða lágstafi.
+Skilagildi fallanna ætti að vera {\tt void}.
 
-\section{Other {\tt string} functions}
+\section{Önnur strengjaföll}
 
-This chapter does not cover all the {\tt string} functions.
-Two additional ones, {\tt c\_str} and {\tt substr}, are covered
-in Section~\ref{finput} and Section~\ref{parsing}.
+Í þessum kafla höfum við ekki talað um öll strengjaföllin.
+Við munum ræða tvö í viðbót, {\tt c\_str} í kafla ~\ref{finput} og {\tt substr} í kafla~\ref{parsing}.
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[object:] A collection of related data that comes with a set of
-functions that operate on it.  The objects we have used so far are the
-{\tt cout} object provided by the system, and {\tt string}s.
+\item[hlutur (e. object):] Tilvik af tilteknum klasa. Tilvikinu fylgja mengi af föllum sem framkvæma aðgerðir á því.
+Hlutirnir sem við höfum notað hingað til eru {\tt cout} og tilvik af {\tt string}.
 
-\item[index:]  A variable or value used to select one of the
-members of an ordered set, like a character from a string.
+\item[vísir (e. index):]  Breyta eða gildi sem notuð er til að velja eitt stak í röðuðu mengi, t.d. einn staf úr streng.
 
-\item[traverse:]  To iterate through all the elements of a set
-performing a similar operation on each.
+\item[ferðast eftir (e. traverse):]  Að ítra í gegnum öll stök mengis og framkvæma sömu aðgerð á sérhverju staki.
 
-\item[counter:]  A variable used to count something, usually
-initialized to zero and then incremented.
+\item[teljari (e. counter):]  Breyta sem er notuð til að telja eitthvað. Breytan er yfirleitt upphafsstillt með 0 og síðan hækkuð.
 
-\item[increment:]  Increase the value of a variable by one.
-The increment operator in C++ is {\tt ++}.  In fact, that's
-why C++ is called C++, because it is meant to be one better
-than C.
+\item[hækka (e. increment):]  Að hækka gildi breytu um einn.
+Hækkunarvirkinn í C++ er {\tt ++}.  Þetta er einmitt ástæðan fyrir því að C++ er kallað C++, því markmiðið var að það væri einum betra en C!
 
-\item[decrement:]  Decrease the value of a variable by one.
-The decrement operator in C++ is {\tt --}.
+\item[lækka (e. decrement):]  Að lækka gildi breytu um einn.
+Lækkunarvirkinn í C++ er \verb+--+.
 
-\item[concatenate:] To join two operands end-to-end.
+\item[skeyta saman (e. concatenate):] Að sameina tvo þolendur.
 
-\index{object}
-\index{index}
-\index{traverse}
-\index{counter}
-\index{increment}
-\index{decrement}
-\index{concatenate}
+\index{hlutur}
+\index{vísir}
+\index{ferðast um}
+\index{teljari}
+\index{hækka}
+\index{lækka}
+\index{skeyta saman}
 
 \end{description}
-
