@@ -36,12 +36,12 @@ gildi -- heiltölu, kommutölu og boole gildi.
 Strengir eru öðruvísi að því leyti til að þeir eru settir saman úr smærri gildum, þ.e. stöfum.
 Strengir eru því dæmi um {\bf samsett} gildi (e. compound type).
 
-Við gætum þurft að meðhöndla samsett gildi sem einn tiltekinn hlut og við gætum þurft að komast í einstaka hluta (tilvikabreytur (e instance variables)) samsetta gildisins.
+Við gætum þurft að meðhöndla samsett gildi sem einn tiltekinn hlut og við gætum þurft að komast í einstaka hluta samsetta gildisins.
 %This ambiguity is useful.
 
-Það er einnig gagnlegt fyrir þig að geta búið til þín eigin samsett gildi.
+Það er einnig gagnlegt fyrir þig að geta búið til þín eigin samsettu gildi.
 C++ býður upp á tvær leiðir til að gera það: {\bf strúktúra} (e. structures) og {\bf klasa} (e. classes).
-Við munum byrja á því að fjalla um strúktúra og förum síðan í klasa í kafla~\ref{class} (það er ekki mikill munur á milli þeirra.
+Við munum byrja á því að fjalla um strúktúra og förum síðan í klasa í kafla~\ref{class} (það er ekki mikill munur á milli þeirra).
 
 \section{{\tt Point} hlutir}
 \index{Point}
@@ -107,10 +107,10 @@ Að venju birtist nafn breytunnar {\tt blank} utan kassans en gildi hennar innan
     int x = blank.x;
 \end{verbatim}
 %
-Segðin {\tt blank.x} merkri ``farðu í hlutinn með nafninu {\tt blank} og náðu í gildið á {\tt x}.''
+Segðin {\tt blank.x} merkir ``farðu í hlutinn með nafninu {\tt blank} og náðu í gildið á {\tt x}.''
 Í þessu tilviki gefum við staðværri breytu með nafninu {\tt x} það gildi.
-Taktu eftir því að þá er enginn ``árekstur'' á milli staðværu breytunnar {\tt x} og tilvikabreytunnar {\tt x}.
-Tilgangur punktatáknunar er einmitt sá að gefa til kynna hvaða breytu þú ert að vísa í án þess að einhver margræðni sé til staðar.
+Taktu eftir því að það er enginn ``árekstur'' á milli staðværu breytunnar {\tt x} og tilvikabreytunnar {\tt x}.
+Tilgangur punktatáknunar er einmitt sá að gefa til kynna hvaða breytu verið er að vísa í án þess að einhver margræðni sé til staðar.
 
 Hægt er að nota punktatáknun sem hluta af hvaða C++ segð sem er, þannig að eftirfarandi er t.d. löglegt:
 
@@ -119,7 +119,7 @@ Hægt er að nota punktatáknun sem hluta af hvaða C++ segð sem er, þannig a�
   double distance = blank.x * blank.x + blank.y * blank.y;
 \end{verbatim}
 %
-Fyrri línar skrifar út {\tt 3, 4} og seinni línan reiknar út gildið 25.
+Fyrri línan skrifar út {\tt 3, 4} og seinni línan reiknar út gildið 25.
 
 \section{Aðgerðir á strúktúrum}
 \index{struct!aðgerðir}
@@ -149,7 +149,7 @@ Eftirfarandi er því ekki löglegt:
 %
 Það er eðlilegt að velta því fyrir sér hver ástæðan er fyrir því að jafn eðlileg setning sé óleyfileg.
 Ég er ekki alveg viss en vandamálið gæti verið það að þýðandinn veit ekki hvert tagið á hægri hliðinni er.
-Ef þú bætir við tagmótun (e. typecast) þá er allt í fína:
+Ef þú bætir við tagmótun (e. typecast) þá er allt í fína lagi:
 
 \begin{verbatim}
   Point blank;
@@ -157,7 +157,7 @@ Ef þú bætir við tagmótun (e. typecast) þá er allt í fína:
 \end{verbatim}
 %
 
-Það er jafnframt leyfilegt að gefa einum stŕúktúr gildi annars strúkturs. Dæmi: 
+Það er jafnframt leyfilegt að gefa einum strúktúr gildi annars strúkturs. Dæmi: 
 
 \begin{verbatim}
   Point p1 = { 3.0, 4.0 };
@@ -171,7 +171,7 @@ Ef þú bætir við tagmótun (e. typecast) þá er allt í fína:
 \index{viðfang}
 \index{struct!viðfang}
 
-Þú getur haft strúktúr sem lepp í falli, t.d. :
+Þú getur haft strúktúr sem lepp í falli, t.d.:
 
 \begin{verbatim}
 void printPoint (Point p) {
@@ -217,7 +217,7 @@ vegna þess að gildi (e. value) strúktúrsins (eða hvaða tags sem er) er sen
 Önnur aðferð við stikun færibreytna í C++ er ``kall með tilvísun'' (e. ``pass by reference'').
 Þessi aðferð gerir þér kleift að senda strúktúr í fall og breyta gildum hans!
 
-Þú gætir t.d. speglað punkti um 45-gráðu línuna með því að skipta gildum hnitanna tveggja.
+Þú gætir t.d. speglað punkti um 45-gráðu línuna með því að skipta á gildum hnitanna tveggja.
 Augljósasta leiðin (en ekki sú rétta) er að útfæra {\tt reflect} fallið á þennan hátt:
 
 \begin{verbatim}
@@ -258,7 +258,7 @@ Núna getum við kallað á fallið á hefðbundin hátt:
 (4, 3)
 \end{verbatim}
 %
-Svona myndi síðan stöðurit líta út fyrir þetta forrit:
+Svona lítur stöðurit út fyrir þetta forrit:
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=point3.eps}}
@@ -276,25 +276,19 @@ vegna þess að sá sem kallað er á getur breytt strúktúrnum.
 Á hinn bóginn má segja að það sé ekki eins öruggt vegna þess að það er erfiðara að gera sér grein fyrir hvaða breytingar eru gerðar hvar.
 Samt sem áður eru strúktúrar yfirleitt stikaðir með tilvísun í C++ forritum og ég mun fylgja þeirri venju í þessari bók.
 
-\section{Rectangles}
-\index{Rectangle}
-\index{struct!Rectangle}
+\section{Rétthyrningar}
+\index{Rétthyrningur}
+\index{struct!rétthyrningur}
 
-Now let's say that we want to create a structure to represent
-a rectangle.  The question is, what information do I have to
-provide in order to specify a rectangle?  To keep things simple
-let's assume that the rectangle will be oriented vertically or
-horizontally, never at an angle.
+Gerum nú ráð fyrir að við viljum búa til strúktúr sem stendur fyrir rétthyrning.
+Hvaða upplýsingar þurfum við að veita til þess að skilgreina rétthyrning?
+Til að einfalda málið skulum við gera ráð fyrir því að rétthyrningnum sé stillt upp lárétt eða lóðrétt en ekki miðað við tiltekið horn (gráður).
 
-There are a few possibilities: I could specify the center of
-the rectangle (two coordinates) and its size (width and height),
-or I could specify one of the corners and the size, or I
-could specify two opposing corners.
+Það eru nokkrir möguleikar.
+Ég gæti tilgreint miðju rétthyrnings (tvö hnit) og stærð hans (breidd og hæð), eða tilgreint eitt af hornum hans ásamt stærðinni, eða tilgreint hnit tveggja andstæðra horna.
 
-The most common choice in existing programs is to specify the
-upper left corner of the rectangle and the size.  To do that
-in C++, we will define a structure that contains a {\tt Point}
-and two doubles.
+Algeng leið er að tilgreina efra vinstra horn rétthyrningsins ásamt stærðinni.
+Til að gera það í C++ þá skilgreinum við strúktúr sem inniheldur {\tt Point} og tvær kommutölur.
 
 \begin{verbatim}
 struct Rectangle {
@@ -303,75 +297,64 @@ struct Rectangle {
 };  
 \end{verbatim}
 %
-Notice that one structure can contain another.  In fact, this
-sort of thing is quite common.  Of course, this means that in
-order to create a {\tt Rectangle}, we have to create a {\tt Point}
-first:
+Taktu eftir að einn strúktúr getur innifalið annan og það er reyndar mjög algengt.
+Það þýðir auðvitað að til að búa til {\tt Rectangle} þá þurfum við fyrst að búa til {\tt Point}:
 
 \begin{verbatim}
   Point corner = { 0.0, 0.0 };
   Rectangle box = { corner, 100.0, 200.0 };
 \end{verbatim}
 %
-This code creates a new {\tt Rectangle} structure and initializes the
-instance variables.  The figure shows the effect of this assignment.
+Þessi kóði býr til nýjan {\tt Rectangle} strúktúr og upphafsstillir tilvikabreytur hans.
+Myndin sýnir áhrif þess.
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=rectangle.eps}}
 \vspace{0.1in}
 %
-We can access the {\tt width} and {\tt height} in the usual way:
+Við getum nálgast {\tt width} og {\tt height} á venjulegan máta:
 
 \begin{verbatim}
   box.width += 50.0;
   cout << box.height << endl;
 \end{verbatim}
 %
-In order to access the instance variables of {\tt corner}, we can use a
-temporary variable:
+Til að nálgast tilvikabreytur {\tt corner} getum við notað tímabundna breytu:
 
 \begin{verbatim}
   Point temp = box.corner;
   double x = temp.x;
 \end{verbatim}
 %
-Alternatively, we can compose the two statements:
+En við gætum líka sett þessar tvær setningar saman í eina:
 
-\index{composition}
+\index{samsetning}
 
 \begin{verbatim}
   double x = box.corner.x;
 \end{verbatim}
 %
-It makes the most sense to read this statement from right to
-left: ``Extract {\tt x} from the {\tt corner} of the {\tt box},
-and assign it to the local variable {\tt x}.''
+Það er eðlilegast að lesa þessa setningu frá hægri til vinstri: 
+``Sæktu {\tt x} úr {\tt corner} úr {\tt box} og láttu staðværu breytuna {\tt x} fá það gildi.''
 
-While we are on the subject of composition, I should point
-out that you can, in fact, create the {\tt Point} and the
-{\tt Rectangle} at the same time:
+Fyrst við erum að tala um samsetningu setninga þá bendi ég jafnframt á að þú getur reyndar búið til {\tt Point} og {\tt Rectangle} á sama tíma:
 
 \begin{verbatim}
   Rectangle box = { { 0.0, 0.0 }, 100.0, 200.0 };
 \end{verbatim}
 %
-The innermost squiggly braces are the coordinates of the
-corner point; together they make up the first of the three
-values that go into the new {\tt Rectangle}.  This statement
-is an example of {\bf nested structure}.
+Innri slaufusviginn tilgreinir hnit hornsins sem stendur þá fyrir fyrsta gildið af þremur sem þarf fyrir {\tt Rectangle}.
+Þessi setning er dæmi um {\bf hreiðraðan strúktúr} (e. nested structure).
 
-\index{nested structure}
+\index{hreiðraður strúktúr}
 
+\section{Strúktúrar sem skilagildi}
+\index{struct!skilagildi}
+\index{skilagildi}
+\index{setning!skilagildi}
 
-\section{Structures as return types}
-\index{struct!as return type}
-\index{return}
-\index{statement!return}
-
-You can write functions that return structures.  For example,
-{\tt findCenter} takes a {\tt Rectangle} as an argument and
-returns a {\tt Point} that contains the coordinates of the
-center of the {\tt Rectangle}:
+Þú getur skrifað föll sem skila strúktúrum.
+Eftirfarandi fall {\tt findCenter} tekur {\tt Rectangle} sem viðfang og skilar {\tt Point} sem inniheldur hnit miðjunnar á {\tt Rectangle}:
 
 \begin{verbatim}
 Point findCenter (Rectangle& box)
@@ -383,9 +366,7 @@ Point findCenter (Rectangle& box)
 }
 \end{verbatim}
 %
-To call this function, we have to pass a box as an argument
-(notice that it is being passed by reference), and assign the
-return value to a {\tt Point} variable:
+Til að kalla á þetta fall verðum við að senda box sem viðfang (taktu eftir að það er sent með tilvísun) og setjum skilagildið inn í {\tt Point} breytu:
 
 \begin{verbatim}
   Rectangle box = { {0.0, 0.0}, 100, 200 };
@@ -393,16 +374,16 @@ return value to a {\tt Point} variable:
   printPoint (center);
 \end{verbatim}
 %
-The output of this program is {\tt (50, 100)}.
+Úttakið úr þessu forriti er {\tt (50, 100)}.
 
-\section {Passing other types by reference}
-\index{parameter passing}
-\index{call by reference}
-\index{reference}
+\section {Að senda önnur tög með tilvísun}
+\index{stikun færibreytna}
+\index{kall með tilvísun}
+\index{tilvísun}
 
-It's not just structures that can be passed by reference.
-All the other types we've seen can, too.  For example, to swap
-two integers, we could write something like:
+Það eru ekki eingöngu strúktúrar sem hægt er að senda með tilvísun í föll.
+Það sama gildir um öll önnur tög sem við höfum séð.
+Til að skipta á gildum tveggja heiltölubreytna getum við t.d. gert eftirfarandi: 
 
 \begin{verbatim}
 void swap (int& x, int& y)
@@ -413,7 +394,7 @@ void swap (int& x, int& y)
 }
 \end{verbatim}
 %
-We would call this function in the usual way:
+Við myndum kalla á þetta fall á hefðbundin hátt:
 
 \begin{verbatim}
   int i = 7;
@@ -422,16 +403,13 @@ We would call this function in the usual way:
   cout << i << j << endl;
 \end{verbatim}
 %
-The output of this program is {\tt 97}.  Draw a stack
-diagram for this program to convince yourself this is true.
-If the parameters {\tt x} and {\tt y} were declared as
-regular parameters (without the {\tt \&}s), {\tt swap} would
-not work.  It would modify {\tt x} and {\tt y} and have no
-effect on {\tt i} and {\tt j}.
+Úttakið úr þessu forriti er {\tt 97}.
+Teiknaðu stöðurit fyrir þetta forrit til að fullvissa þig um að þetta sé rétt.
+Ef lepparnir {\tt x} og {\tt y} væru skilgreindir sem venjulegir leppar (þ.e. án {\tt \&}), þá myndi {\tt swap} ekki virka rétt.
+Í því tilviki myndi það breyta {\tt x} og {\tt y} án þess að hafa nokkur áhrif á {\tt i} og {\tt j}.
 
-When people start passing things like integers by reference,
-they often try to use an expression
-as a reference argument.  For example:
+Þegar fólk byrjar að senda hluti eins og heiltölur með tilvísun þá reynir það stundum að nota segðir sem tilvísunarviðföng.
+Dæmi:
 
 \begin{verbatim}
   int i = 7;
@@ -439,60 +417,45 @@ as a reference argument.  For example:
   swap (i, j+1);         // WRONG!!
 \end{verbatim}
 %
-This is not legal because the expression {\tt j+1} is not
-a variable---it does not occupy a location that the reference
-can refer to.  It is a little tricky to figure out exactly
-what kinds of expressions can be passed by reference.  For now
-a good rule of thumb is that reference arguments have to be
-variables.
+Þetta er ekki leyfilegt vegna þess að segðin {\tt j+1} er ekki breyta -- hún stendur ekki fyrir minnishólf sem hægt er að vísa til.
+Það getur verið svolítið erfitt að átta sig á því hvers konar segðir er hægt að senda með tilvísun en það er ágætis þumalputtaregla að segja að tilvísunarviðföng þurfa að vera breytur.
 
-\section{Getting user input}
+\section{Að sækja gögn af lyklaborði}
 \label{input}
-\index{input!keyboard}
+\index{inntak!lyklaborð}
 
-The programs we have written so far are pretty predictable;
-they do the same thing every time they run.  Most of the time,
-though, we want programs that take input from the user and
-respond accordingly.
+Forritin sem við höfum skrifað hingað til eru nokkuð fyrirsjáanleg, þ.e. þau gera nákvæmlega það sama í hvert skipti sem þau eru keyrð.
+Í flestum tilvikum viljum við, aftur á móti, forrit sem lesa inntak frá notanda og bregðast við því.
 
-There are many ways to get input, including keyboard
-input, mouse movements and button clicks, as well as more exotic
-mechanisms like voice control and retinal scanning.  In this
-text we will consider only keyboard input.
+Það eru margar leiðir til að sækja gögn, þ.m.t. lyklaborðsinntak, músarhreyfingar og músarsmellir, svo og framandi aðferðir eins og talgreining og sjónhimnuskönnun.
+Í þessari bók munum við aðeins sækja gögn af lyklaborði.
 
-\index{stream}
+\index{straumur}
 \index{cin}
 \index{cout}
 
-In the header file {\tt iostream},
-C++ defines an object named {\tt cin} that handles input in
-much the same way that {\tt cout} handles output.  To get an
-integer value from the user:
+Í hausaskránni {\tt iostream} er hluturinn {\tt cin} skilgreindur en hann meðhöndlar inntak á svipaðan hátt og {\tt cout} meðhöndlar úttak.
+Við getum gert eftirfarandi til að sækja heiltölugildi frá notanda:
 
 \begin{verbatim}
   int x;
   cin >> x;
 \end{verbatim}
 %
-The {\tt >>} operator causes the program to stop executing and
-wait for the user to type something.  If the user types a valid
-integer, the program converts it into an integer value and
-stores it in {\tt x}.
+{\tt >>} virkinn veldur því að forritið stoppar keyrslu og bíður eftir að notandinn slái eitthvað inn af lyklaborði.
+Ef notandi slær inn tölustaf þá breytir forritið honum í heiltölugildi og geymir að í {\tt x}.
 
-\index{operator!{\tt >>}}
+\index{virki!{\tt >>}}
 
-If the user types something other than an integer,
-C++ doesn't report an error, or anything sensible like that.
-Instead, it puts some meaningless value in {\tt x} and continues.
+Ef notandinn slær inn eitthvað annað en tölustaf þá mun keyrsluumhverfið ekki koma með neina villu.
+Í staðinn mun eitthvað merkingarlaust gildi verða sett inn í {\tt x} og keyrslan heldur áfram.
 
-Fortunately, there is a way to check and see if an input
-statement succeeds.  We can invoke the {\tt good} function on
-{\tt cin} to check what is called the {\bf stream state}.
-{\tt good} returns a {\tt bool}: if true, then the last input
-statement succeeded.  If not, we know that some previous operation
-failed, and also that the next operation will fail.
+Sem betur fer höfum við leið til að athuga hvort inntakssetning gekk upp.
+Við getum kallað á {\tt good} fallið sem tileyrir {\tt cin} til að athuga það sem kallað er {\bf stream state}.
+{\tt good} skilar {\tt bool}: ef true, þá gekk síðasta inntakssetning upp.
+Ef ekki þá vitum við að einhver fyrri aðgerð virkaði ekki og jafnframt að næsta aðgerð mun heldur ekki virka.
 
-Thus, getting input from the user might look like this:
+Að sækja inntak frá notanda gæti því litið svona út:
 
 \begin{verbatim}
 #include <iostream>
@@ -521,7 +484,7 @@ int main ()
 }
 \end{verbatim}
 %
-{\tt cin} can also be used to input a {\tt string}:
+Það er einnig hægt að nota {\tt cin} til að lesa {\tt string}:
 
 \begin{verbatim}
   string name;
@@ -531,17 +494,13 @@ int main ()
   cout << name << endl;
 \end{verbatim}
 %
-Unfortunately, this statement only takes the first word of
-input, and leaves the rest for the next input statement.
-So, if you run this program and type your full name, it
-will only output your first name.
+Því miður les þessi setning aðeins fyrsta orðið í inntakinu en næstu orð verða lesin í næstu inntakssetningu.
+Þannig að ef þú keyrir þetta forrit og skrifar inn fullt nafn (með bili á milli fyrra og seinna nafns) þá mun það eingöngu skrifa út fyrra nafnið.
 
-Because of these problems (inability to handle errors and
-funny behavior), I avoid using the {\tt >>} operator altogether,
-unless I am reading data from a source that is known to be
-error-free.
+Vegna þessara vandamála (vanhæfni til að meðhöndla villur og skrýtin virkni) þá forðast ég að nota {\tt >>} virkjann
+nema að ég sé að lesa gögn sem ég veit að innihalda ekki neinar villur.
 
-Instead, I use a function in the header {\tt string} called {\tt getline}.
+Í staðinn nota ég fall sem heitir {\tt getline} og er skilgreint í hausaskránni {\tt string}.
 
 \begin{verbatim}
   string name;
@@ -551,53 +510,40 @@ Instead, I use a function in the header {\tt string} called {\tt getline}.
   cout << name << endl;
 \end{verbatim}
 %
-The first argument to {\tt getline} is {\tt cin}, which is
-where the input is coming from.  The second argument is the
-name of the {\tt string} where you want the result to be
-stored.
+Fyrra viðfangið í {\tt getline} er {\tt cin} sem tilgreinir hvaðan inntakið er að koma.
+Seinna viðfangið er nafnið á strengnum sem á að geyma það sem lesið er.
 
-{\tt getline} reads the entire line until the user hits
-Return or Enter.  This is useful for inputting strings that
-contain spaces.
+{\tt getline} les heila línu allt að Return (Enter) tákninu.
+Þetta fall er sem sagt t.d. gagnlegt að nota fyrir strengi sem innihalda bil.
 
-In fact, {\tt getline} is generally useful for getting input
-of any kind.  For example, if you wanted the user to type an
-integer, you could input a string and then check to see if
-it is a valid integer.  If so, you can convert it to an integer
-value.  If not, you can print an error message and ask the user
-to try again.
+Reyndar er {\tt getline} gagnlegt til að lesa inntak af hvaða tagi sem er.
+Ef þú vildir t.d. að notandinn slæi inn heiltölu þá gætir þú lesið inntakið sem streng og síðan athugað hvort strengurinn stæði fyrir löglega heiltölu.
+Ef inntakið væri löglegt þá myndir þú breyta því í heiltölugildi.
+Ef ekki þá gætir þú prentað út viðeigandi villuskilaboð og beðið notandann að reyna aftur.
 
-To convert a string to an integer you can use the {\tt atoi}
-function defined in the header file {\tt cstdlib}.  We will
-get to that in Section~\ref{parsing}.
+Þú getur notað fallið {\tt atoi} (sem skilgreint er í hausaskránni {\tt cstdlib}) til að breyta streng í heiltölu. 
+Við mun einmitt gera það í kafla~\ref{parsing}.
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[structure:]  A collection of data grouped together and
-treated as a single object.
+\item[strúktúr (e. structure):]  Safn gagna sem eru sett saman til að mynda einn tiltekinn hlut.
 
-\item[instance variable:]  One of the named pieces of data that make up
-a structure.
+\item[tilvikabreyta (e. instance variable):]  Ein af þeim breytum sem tilheyra strúktúr.
 
-\item[reference:]  A value that indicates or refers to a variable
-or structure.  In a state diagram, a reference appears as an arrow.
+\item[tilvísun (e. reference):]  Gildi sem vísar í breytu eða strúktúr. Í stöðuriti er tilvísun táknuð með ör.
 
-\item[pass by value:]  A method of parameter-passing in which the
-value provided as an argument is copied into the corresponding
-parameter, but the parameter and the argument occupy distinct
-locations.
+\item[kall með gildi (e. call/pass by value):]  Aðferð við stikun færibreytna þar sem gildi viðfangsins (e. argument) er afritað inn í leppinn (e. formal parameter) en viðfangið og leppurinn standa fyrir mismunandi minnishólf.
 
-\item[pass by reference:]  A method of parameter-passing in which
-the parameter is a reference to the argument variable.  Changes
-to the parameter also affect the argument variable.
+\item[kall með tilvísun (e. call/pass by reference):]  Aðferð við stikun færibreytna þar sem leppurinn er tilvísun í viðfangið.
+Breytingar á leppnum hafa því áhrif á viðfangið.
 
-\index{structure}
-\index{instance variable}
-\index{reference}
-\index{pass by value}
-\index{pass by reference}
+\index{strúktúr}
+\index{tilvikabreyta}
+\index{tilvísun}
+\index{kall með gildi}
+\index{kall með tilvísun}
 
 \end{description}
 
