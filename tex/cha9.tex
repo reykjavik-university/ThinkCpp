@@ -22,8 +22,9 @@
 % it from www.gnu.org or by writing to the Free Software Foundation,
 % Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
 
-\chapter{More structures}
+\chapter{Meira um strúktúra}
 \label{time}
 \index{struct}
 
@@ -31,17 +32,14 @@
 \index{struct!Time}
 \index{Time}
 
-As a second example of a user-defined structure, we will define a type
-called {\tt Time}, which is used to record the time of day.  The
-various pieces of information that form a time are the hour, minute
-and second, so these will be the instance variables of the structure.
+Í þeim tilgangi að sýna annað dæmi um strúktur munum við nú skilgreina tag með nafnið {\tt Time} sem notað er til að halda utan um tíma innan dags.
+Tími samanstendur af klukkustund (hour), mínúta (minute) og sekúnda (second) þannig að þetta munu verða tilvikabreytur strúktúrsins.
 
-The first step is to decide what type each instance variable should
-be.  It seems clear that {\tt hour} and {\tt minute} should be
-integers.  Just to keep things interesting, let's make {\tt second} a
-{\tt double}, so we can record fractions of a second.
+Fyrsta skrefið er þá að ákveða hvert tag sérhverrar tilvikabreytu á að vera.
+Það virðist ljóst að {\tt hour} og {\tt minute} ætti að vera heiltölur.
+Til að hafa þetta áhugaverðara þá skulum við láta {\tt second} vera {\tt double} þannig að við getum haldið utan um brot af sekúndu.
 
-Here's what the structure definition looks like:
+Svona lítur þá strúktúrinn okkar út: 
 
 \begin{verbatim}
 struct Time {
@@ -50,32 +48,29 @@ struct Time {
 };
 \end{verbatim}
 %
-We can create a {\tt Time} object in the usual way:
+Við getum þá búið til {\tt Time} hlut á venjulegan hátt: 
 
 \begin{verbatim}
   Time time = { 11, 59, 3.14159 };
 \end{verbatim}
 %
-The state diagram for this object looks like this:
+Stöðuritið fyrir þennan hlut lítur svona út:
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=time.eps}}
 \vspace{0.1in}
 
-The word ``instance'' is sometimes used when we talk about objects,
-because every object is an instance (or example) of some type.  The
-reason that instance variables are so-named is that every instance of
-a type has a copy of the instance variables for that type.
+Orðið ``tilvik'' (e. instance) er stundum notað þegar við tölum um hluti (e. objects) vegna þess að sérhver hlutur er tilvik af einhverju tagi.
+Ástæðan fyrir því að tilvikabreytur bera það nafn er að sérhvert tilvik af einhverju tagi eiga sér afrit af tilvikabreytum þess tags.
 
 \section{{\tt printTime}}
 \label{printobject}
-\index{output}
-\index{statement!output}
-\index{object!output}
+\index{úttak}
+\index{setning!úttak}
+\index{hlutur!úttak}
 
-When we define a new type it is a good idea to write
-function that displays the instance variables in a human-readable
-form.  For example:
+Þegar við skilgreinum nýtt tag þá er góð regla að skrifa fall sem skrifar út tilvikabreyturnar á læsilegan hátt.
+Dæmi:
 
 \begin{verbatim}
 void printTime (Time& t) {
@@ -83,8 +78,7 @@ void printTime (Time& t) {
 }
 \end{verbatim}
 %
-The output of this function, if we pass {\tt time}
-an argument, is {\tt 11:59:3.14159}.
+Ef við sendum inn {\tt time} sem viðfang í þetta fall þá er úttakið {\tt 11:59:3.14159}.
 
 \begin{verbatim}
 #include <iostream>
@@ -113,29 +107,23 @@ int main ()
 \end{verbatim}
 %
 
-\section{Functions for objects}
+\section{Föll fyrir hluti}
 \label{objectops}
-\index{object}
-\index{function!for objects}
+\index{hlutur}
+\index{föll!fyrir hluti}
 
-In the next few
-sections, I will demonstrate several possible interfaces for
-functions that operate on objects.  For some operations, you will have a
-choice of several possible interfaces, so you should consider the pros
-and cons of each of these:
+Í næstu köflum mun ég sýna dæmi um nokkur möguleg skil (e. interfaces) fyrir föll sem vinna með hluti.
+Þú mun hafa val um nokkur möguleg skil fyrir tilteknar aðgerðir þannig að þú ættir að meta kosti og galla sérhvers möguleika:
 
 \begin{description}
 
-\item[pure function:]  Takes objects and/or basic types as
-arguments but does not modify the objects.  The return value is
-either a basic type or a new object created inside the function.
+\item[hreint fall (e. pure function):]  Tekur hlut og/eða grunntag sem viðföng en breytir ekki hlutnum.
+Skilagildið er annaðhvort grunntag eða nýr hlutur sem búinn er til í fallinu. 
 
-\item[modifier:]  Takes objects as parameters and modifies some
-or all of them.  Often returns void. \index{void}
+\item[breytir (e. modifier):]  Tekur hluti sem viðföng og breytir sumum eða öllum þeirra.  Skilar oft void. \index{void}
 
-\item[fill-in function:]  One of the parameters is an ``empty''
-object that gets filled in by the function.  Technically, this is
-a type of modifier.
+\item[fyllir (e. fill-in function):]  Eitt af viðföngunum er ``tómur'' hlutur sem fallið fyllir inn í.
+Tæknilega séð er þetta þá í raun tegund af breyti. 
 
 \end{description}
 
