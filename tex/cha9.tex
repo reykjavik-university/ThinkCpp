@@ -127,19 +127,16 @@ Tæknilega séð er þetta þá í raun tegund af breyti.
 
 \end{description}
 
-\section{Pure functions}
-\index{pure function}
-\index{function}
-\index{function!pure function}
+\section{Hrein föll}
+\index{hreint fall}
+\index{fall}
+\index{fall!hreint}
 
-A function is considered a pure function if the result depends only on
-the arguments, and it has no side effects like modifying an argument
-or outputting something.  The only result of calling a pure function is
-the return value.
+Fall er sagt vera hreint ef skilagildi þess er eingöngu háð viðföngunum og að það hafi ekki neinar aukaverkanir (e. side effects)
+eins og að breyta viðfangi eða skrifa út eitthvað.
+Það eina sem gerist þegar kallað er á hreint fall er að skilagildi kemur til baka.
 
-One example is {\tt after}, which compares two {\tt Time}s and
-returns a {\tt bool} that indicates whether the first operand
-comes after the second:
+Eitt dæmi um hreint fall er {\tt after} sem ber saman tvo {\tt Time} hluti og skilar {\tt bool} sem gefur til kynna hvort fyrsta viðfangið komi á eftir því seinna (tímalega séð):
 
 \begin{verbatim}
 bool after (Time& time1, Time& time2) {
@@ -154,17 +151,14 @@ bool after (Time& time1, Time& time2) {
 }
 \end{verbatim}
 %
-What is the result of this function if the two times are equal?  Does
-that seem like the appropriate result for this function?  If you were
-writing the documentation for this function, would you mention that case
-specifically?
+Hvert er skilagildi þessa falls ef tímarnir tveir eru jafnir?
+Finnst þér það vera viðeigandi skilagildi fyrir þetta fall?
+Ef þú værir að skjala þetta fall, myndir þú nefna þetta tilfelli sérstaklega?
 
-A second example is {\tt addTime}, which calculates the sum of two
-times.  For example, if it is {\tt 9:14:30}, and your breadmaker takes
-3 hours and 35 minutes, you could use {\tt addTime} to figure out when
-the bread will be done.
+Annað dæmi er {\tt addTime} sem reiknar summuna af tveimur tímasetningum.
+Ef tíminn er t.d. {\tt 9:14:30} og brauðgerðin þín tekur 3 klukkustundir og 35 mínútur þá gætir þú notað {\tt addTime} til að finna út hvenær brauðið verður tilbúið.
 
-Here is a rough draft of this function that is not quite right:
+Hér eru drög, sem eru reyndar ekki alveg rétt, af þessu falli::
 
 \begin{verbatim}
 Time addTime (Time& t1, Time& t2) {
@@ -176,11 +170,8 @@ Time addTime (Time& t1, Time& t2) {
 }
 \end{verbatim}
 %
-Here is an example of how to use this function.  If {\tt currentTime}
-contains the current time and {\tt breadTime} contains the amount
-of time it takes for your breadmaker to make bread, then you
-could use {\tt addTime} to figure out when the bread will be
-done.
+Hér er dæmi um hvernig hægt er að nota þetta fall.
+Ef {\tt currentTime} inniheldur núverandi tíma og {\tt breadTime} inniheldur tímann sem tekur að baka brauðið þá getur þú notað {\tt addTime} til að reikna út hvenær brauðið verður tilbúið.
 
 \begin{verbatim}
   Time currentTime = { 9, 14, 30.0 };
@@ -189,17 +180,14 @@ done.
   printTime (doneTime);
 \end{verbatim}
 %
-The output of this program is {\tt 12:49:30}, which is
-correct.  On the other hand, there are cases where the result
-is not correct.  Can you think of one?
+Úttak þessa forrits er {\tt 12:49:30} sem er rétt.
+Á hinn bóginn eru tilvik þar sem niðurstaðan er ekki rétt.
+Getur þú fundið dæmi um þess konar tilvik?
 
-The problem is that this function does not deal with cases
-where the number of seconds or minutes adds up to more than
-60.  When that happens we have to ``carry'' the extra seconds
-into the minutes column, or extra minutes into the hours
-column.
+Vandamálið er að þetta fall ræður ekki við þau tilvik þar sem summa sekúndna eða mínútna er stærri en 60.
+Þegar það gerirst þá þurfum við að ``færa'' auka sekúndur yfir í mínútudálkinn eða auka mínútur yfir í klukkustundadálkinn.
 
-Here's a second, corrected version of this function.
+Hér er önnur, nú rétt, útgáfa af fallinu:
 
 \begin{verbatim}
 Time addTime (Time& t1, Time& t2) {
@@ -220,65 +208,54 @@ Time addTime (Time& t1, Time& t2) {
 }
 \end{verbatim}
 %
-Although it's correct, it's starting to get big.  Later,
-I will suggest an alternate approach to this problem that
-will be much shorter.
+Þó svo að þessi útgáfa sé rétt þá er hún orðin dálítið löng.
+Ég mun síðar leggja til aðra lausnaraðferð sem er mun styttri.
 
 \index{increment}
 \index{decrement}
-\index{operator!increment}
-\index{operator!decrement}
+\index{auki}
+\index{frádrag}
+\index{virki!auki}
+\index{virki!frádrag}
 
-This code demonstrates two operators we have not seen before, {\tt +=}
-and {\tt -=}.  These operators provide a concise way to increment and
-decrement variables.  For example, the statement {\tt sum.second -=
-60.0;} is equivalent to {\tt sum.second = sum.second - 60;}
+Kóðinn að ofan sýnir dæmi um tvo virkja sem við höfum ekki séð áður, {\tt +=}og {\tt -=}.
+Þessir virkjar eru notaðir sem samþjöppuð leið til að hækka eða lækka breytur.
+Setningin {\tt sum.second -= 60.0;} er t.d. jafngild setningunni {\tt sum.second = sum.second - 60;}
 
-\section{{\tt const} parameters}
+\section{{\tt const} leppar}
 
-You might have noticed that the parameters for {\tt after}
-and {\tt addTime} are being passed by reference.  Since
-these are pure functions, they do not modify the parameters
-they receive, so I could just as well have passed them by
-value.
+Þú hefur væntanlega tekið eftir því að viðföngin fyrir {\tt after}
+og {\tt addTime} eru send með tilvísun (e. by reference).
+Þar sem um er að ræða hrein föll þá breyta þau ekki viðföngunum og því hefði ég alveg eins getað sent þau sem gildi (e. by value).
 
-The advantage of passing by value is that the calling function
-and the callee are appropriately encapsulated---it is not possible
-for a change in one to affect the other, except by affecting
-the return value.
+Kosturinn við að senda viðföng sem gildi er að fallið sem kallað er á og sá sem kallar eru hjúpuð á viðeigandi hátt -- breyting í öðrum þeirra getur ekki leitt til breytingar í hinum, nema í tengslum við skilagildið.
 
-On the other hand, passing by reference usually is more efficient,
-because it avoids copying the argument.  Furthermore, there is a nice
-feature in C++, called {\tt const}, that can make reference parameters
-just as safe as value parameters.
+Á hinn bóginn er yfirleitt skilvirkara að senda viðföng með tilvísun vegna þess að þá þarf ekki að afrita nein gildi úr viðföngunum yfir í leppana.
+Svo vill líka til að í C++ inniheldur eiginleika sem kallaður er {\tt const} og gerir það að verkum að það er jafn öruggt að senda tilvísunarviðföng eins og gildisviðföng.
 
-If you are writing a function and you do not intend to modify
-a parameter, you can declare that it is a {\bf constant
-reference parameter}.  The syntax looks like this:
+Ef þú skrifar fall og ætlar ekki að breyta viðfangi þá getur þú skilgreint leppinn sem {\bf constant reference parameter}.
+Málskipanin lítur svona út:
 
 \begin{verbatim}
 void printTime (const Time& time) ...
 Time addTime (const Time& t1, const Time& t2) ...
 \end{verbatim}
 %
-I've included only the first line of the functions.  If you tell
-the compiler that you don't intend to change a
-parameter, it can help remind you.  If you try to change one,
-you should get a compiler error, or at least a warning.
+Hér sýni ég aðeins fyrstu línuna í föllunum.
+Ef þú lætur þýðandann vita að þú ætlir ekki að breyta viðfangi í falli þá getur hann minnt þig á það!
+Ef þú reynir að breyta viðfangi þá mun þýðandinn kvarta.
 
-\index{run-time error}
-\index{error!run-time}
+\index{keyrsluvilla}
+\index{villa!við keyrslu}
 
-\section{Modifiers}
+\section{Breytir}
 \index{modifier}
-\index{function!modifier}
+\index{fall!breytir}
 
-Of course, sometimes you {\em want} to modify one of the
-arguments.  Functions that do are called modifiers.
+Auðvitað vill svo til stundum að þú vilt einmitt breyta viðfangi.  Fall sem gerir það eru kallað breytir (e. modifier).
 
-As an example of a modifier, consider {\tt increment},
-which adds a given number of seconds to a {\tt Time} object.
-Again, a rough draft of this function looks like:
+Skoðum fallið {\tt increment} sem dæmi um breyti en það bætir tilteknum fjölda sekúndna við {\tt Time} hlut.
+Gróf drög fyrir þetta fall gæti litið svona út:
 
 \begin{verbatim}
 void increment (Time& time, double secs) {
@@ -295,14 +272,12 @@ void increment (Time& time, double secs) {
 }
 \end{verbatim}
 %
-The first line performs the basic operation; the remainder
-deals with the special cases we saw before.
+Fyrsta línan framkvæmir grunnaðgerð en það sem á eftir kemur sér um sérstök tilfelli, eins og við sáum áður.
 
-Is this function correct?  What happens if the argument {\tt secs}
-is much greater than 60?  In that case, it is not enough to
-subtract 60 once; we have to keep doing it until {\tt second}
-is below 60.  We can do that by replacing the {\tt if}
-statements with {\tt while} statements:
+Er þetta fall rétt? Hvað gerist ef leppurinn {\tt secs} er mikið stærri en 60?
+Í því tilfelli er ekki nóg að draga 60 frá einu sinni -- við þurfum að gera það þangað til {\tt second} er lægra en 60.
+
+Við getum gert það með því að skipta {\tt if} setningum út fyrir {\tt while} setningar:
 
 \begin{verbatim}
 void increment (Time& time, double secs) {
@@ -319,8 +294,8 @@ void increment (Time& time, double secs) {
 }
 \end{verbatim}
 %
-This solution is correct, but not very efficient.
-Can you think of a solution that does not require iteration?
+Þessi lausn er rétt en ekki mjög skilvirk.
+Getur þú séð fyrir þér lausn sem þarfnast ekki ítrunar?
 
 \section{Fill-in functions}
 \index{fill-in function}
