@@ -33,10 +33,10 @@
 \index{Time}
 
 Í þeim tilgangi að sýna annað dæmi um strúktur munum við nú skilgreina tag með nafnið {\tt Time} sem notað er til að halda utan um tíma innan dags.
-Tími samanstendur af klukkustund (hour), mínúta (minute) og sekúnda (second) þannig að þetta munu verða tilvikabreytur strúktúrsins.
+Tími samanstendur af klukkustund (hour), mínútu (minute) og sekúndu (second) þannig að þetta munu verða tilvikabreytur strúktúrsins.
 
 Fyrsta skrefið er þá að ákveða hvert tag sérhverrar tilvikabreytu á að vera.
-Það virðist ljóst að {\tt hour} og {\tt minute} ætti að vera heiltölur.
+Það virðist ljóst að {\tt hour} og {\tt minute} ættu að vera heiltölur.
 Til að hafa þetta áhugaverðara þá skulum við láta {\tt second} vera {\tt double} þannig að við getum haldið utan um brot af sekúndu.
 
 Svona lítur þá strúktúrinn okkar út: 
@@ -61,7 +61,7 @@ Stöðuritið fyrir þennan hlut lítur svona út:
 \vspace{0.1in}
 
 Orðið ``tilvik'' (e. instance) er stundum notað þegar við tölum um hluti (e. objects) vegna þess að sérhver hlutur er tilvik af einhverju tagi.
-Ástæðan fyrir því að tilvikabreytur bera það nafn er að sérhvert tilvik af einhverju tagi eiga sér afrit af tilvikabreytum þess tags.
+Ástæðan fyrir því að tilvikabreytur bera það nafn er að sérhvert tilvik af einhverju tagi eiga sér afrit af breytum þess tags.
 
 \section{{\tt printTime}}
 \label{printobject}
@@ -113,7 +113,7 @@ int main ()
 \index{föll!fyrir hluti}
 
 Í næstu köflum mun ég sýna dæmi um nokkur möguleg skil (e. interfaces) fyrir föll sem vinna með hluti.
-Þú mun hafa val um nokkur möguleg skil fyrir tilteknar aðgerðir þannig að þú ættir að meta kosti og galla sérhvers möguleika:
+Þú munt hafa val um nokkur möguleg skil fyrir tilteknar aðgerðir þannig að þú ættir að meta kosti og galla sérhvers möguleika:
 
 \begin{description}
 
@@ -133,10 +133,10 @@ Tæknilega séð er þetta þá í raun tegund af breyti.
 \index{fall!hreint}
 
 Fall er sagt vera hreint ef skilagildi þess er eingöngu háð viðföngunum og að það hafi ekki neinar aukaverkanir (e. side effects)
-eins og að breyta viðfangi eða skrifa út eitthvað.
-Það eina sem gerist þegar kallað er á hreint fall er að skilagildi kemur til baka.
+eins og að breyta viðfangi eða skrifa eitthvað út.
+Það eina sem gerist þegar kallað er á hreint fall er að skilagildi þess kemur til baka.
 
-Eitt dæmi um hreint fall er {\tt after} sem ber saman tvo {\tt Time} hluti og skilar {\tt bool} sem gefur til kynna hvort fyrsta viðfangið komi á eftir því seinna (tímalega séð):
+Eitt dæmi um hreint fall er {\tt after} sem ber saman tvo {\tt Time} hluti og skilar {\tt bool} sem gefur til kynna hvort fyrra viðfangið komi á eftir því seinna (tímalega séð):
 
 \begin{verbatim}
 bool after (Time& time1, Time& time2) {
@@ -158,7 +158,7 @@ Ef þú værir að skjala þetta fall, myndir þú nefna þetta tilfelli sérsta
 Annað dæmi er {\tt addTime} sem reiknar summuna af tveimur tímasetningum.
 Ef tíminn er t.d. {\tt 9:14:30} og brauðgerðin þín tekur 3 klukkustundir og 35 mínútur þá gætir þú notað {\tt addTime} til að finna út hvenær brauðið verður tilbúið.
 
-Hér eru drög, sem eru reyndar ekki alveg rétt, af þessu falli::
+Hér eru drög, sem eru reyndar ekki alveg rétt, af þessu falli:
 
 \begin{verbatim}
 Time addTime (Time& t1, Time& t2) {
@@ -218,22 +218,22 @@ Time addTime (Time& t1, Time& t2) {
 \index{virki!auki}
 \index{virki!frádrag}
 
-Kóðinn að ofan sýnir dæmi um tvo virkja sem við höfum ekki séð áður, {\tt +=}og {\tt -=}.
+Kóðinn að ofan sýnir dæmi um tvo virkja sem við höfum ekki séð áður, {\tt +=} og {\tt -=}.
 Þessir virkjar eru notaðir sem samþjöppuð leið til að hækka eða lækka breytur.
 Setningin {\tt sum.second -= 60.0;} er t.d. jafngild setningunni {\tt sum.second = sum.second - 60;}
 
 \section{{\tt const} leppar}
 
-Þú hefur væntanlega tekið eftir því að viðföngin fyrir {\tt after}
+Þú hefur væntanlega tekið eftir því að viðföngin í föllin {\tt after}
 og {\tt addTime} eru send með tilvísun (e. by reference).
 Þar sem um er að ræða hrein föll þá breyta þau ekki viðföngunum og því hefði ég alveg eins getað sent þau sem gildi (e. by value).
 
 Kosturinn við að senda viðföng sem gildi er að fallið sem kallað er á og sá sem kallar eru hjúpuð á viðeigandi hátt -- breyting í öðrum þeirra getur ekki leitt til breytingar í hinum, nema í tengslum við skilagildið.
 
 Á hinn bóginn er yfirleitt skilvirkara að senda viðföng með tilvísun vegna þess að þá þarf ekki að afrita nein gildi úr viðföngunum yfir í leppana.
-Svo vill líka til að í C++ inniheldur eiginleika sem kallaður er {\tt const} og gerir það að verkum að það er jafn öruggt að senda tilvísunarviðföng eins og gildisviðföng.
+Svo vill líka til að C++ inniheldur eiginleika sem kallaður er {\tt const} og gerir það að verkum að það er jafn öruggt að senda tilvísunarviðföng eins og gildisviðföng.
 
-Ef þú skrifar fall og ætlar ekki að breyta viðfangi þá getur þú skilgreint leppinn sem {\bf constant reference parameter}.
+Ef þú skrifar fall og ætlar ekki að breyta viðfangi þá getur þú skilgreint leppinn sem {\bf constant reference parameter} (fast tilvísunarviðfang).
 Málskipanin lítur svona út:
 
 \begin{verbatim}
@@ -248,7 +248,7 @@ Ef þú reynir að breyta viðfangi þá mun þýðandinn kvarta.
 \index{keyrsluvilla}
 \index{villa!við keyrslu}
 
-\section{Breytir}
+\section{Breytiföll}
 \index{modifier}
 \index{fall!breytir}
 
@@ -297,16 +297,13 @@ void increment (Time& time, double secs) {
 Þessi lausn er rétt en ekki mjög skilvirk.
 Getur þú séð fyrir þér lausn sem þarfnast ekki ítrunar?
 
-\section{Fill-in functions}
-\index{fill-in function}
-\index{function!fill-in}
+\section{Fylliföll}
+\index{fyllir}
+\index{fall!fyllir}
 
-Occasionally you will see functions like {\tt addTime} written
-with a different interface (different arguments and return values).
-Instead of creating a new object every time {\tt addTime} is
-called, we could require the caller to provide an ``empty''
-object where {\tt addTime} can store the result.  Compare
-the following with the previous version:
+Af og til sérð þú fall eins og {\tt addTime} skrifað með því að nota önnur skil (e. interface), þ.e. önnur viðföng og annað skilagildi.
+Í stað þess að búa til nýjan hlut í sérhvert sinn sem kallað er á {\tt addTime} þá gætum við krafist þess að sá sem kallar útvegi ``tóman'' hlut sem {\tt addTime} getur sett upplýsingar inn í.
+Berðu saman eftirfarandi útgáfu og þá fyrri:
 
 \begin{verbatim}
 void addTimeFill (const Time& t1, const Time& t2, Time& sum) {
@@ -325,68 +322,47 @@ void addTimeFill (const Time& t1, const Time& t2, Time& sum) {
 }
 \end{verbatim}
 %
-One advantage of this approach is that the caller has the option of
-reusing the same object repeatedly to perform a series of additions.
-This can be slightly more efficient, although it can be confusing
-enough to cause subtle errors.  For the vast majority of programming,
-it is worth a spending a little run time to avoid a lot of debugging
-time.
+Kosturinn við þessa útfærslu er að sá sem kallar hefur möguleika á að endurnýta sama hlutinn aftur og aftur til að framkvæma röð af samlagningum á {\tt Time} hlutum.
+Þetta getur verið aðeins skilvirkara þó að þetta geti verið ruglandi og valdið lúmskum villum.
+Fyrir flest forritunarverkekfni getur verið gott að eyða meiri keyrslutíma til að koma í veg fyrir langan kembitíma síðar meir.
 
-Notice that the first two parameters can be declared {\tt const},
-but the third cannot.
+Athugaðu að hægt er að skilgreina fyrstu tvo leppana sem {\tt const} en ekki þann þriðja.
 
-\section{Which is best?}
-\index{programming style}
+\section{Hvað er best?}
+\index{forritunarstíll}
 
-Anything that can be done with modifiers and fill-in functions can also
-be done with pure functions.  In fact, there are programming
-languages, called {\bf functional} programming languages, that only
-allow pure functions.  Some programmers believe that programs that use
-pure functions are faster to develop and less error-prone than
-programs that use modifiers.  Nevertheless, there are times when
-modifiers are convenient, and cases where functional programs
-are less efficient.
+Það sem hægt er að gera með breyti eða fylli er líka hægt að gera með hreinu falli.
+Það vill reyndar svo til að ákveðin tegund forritunarmála, {\bf fallaforritunarmál}, leyfa eingöngu hrein föll.
+Sumir forritarar trúa því að fljótlegra sé að skrifa forrit sem nota eingöngu hrein föll og þau séu líka áreiðanlegri (innihaldi færri villur) en þau sem nota breytiföll.
+Aftur á móti geta breytiföll stundum verið hentug og tilvik koma upp þar sem fallaforrit eru ekki eins skilvirk.
 
-In general, I recommend that you write pure functions whenever
-it is reasonable to do so, and resort to modifiers only if there
-is a compelling advantage.  This approach might be called a
-functional programming style.
+Almennt séð mæli ég með því að þú skrifir hrein föll þar sem það liggur beint við og notir aðeins breytiföll ef það er augljós kostur.
+Þetta viðhorf mætti kalla fallaforritunarstíl (e. functional programming style).
 
-\section{Incremental development versus planning}
-\index{incremental development}
-\index{prototyping}
-\index{program development!incremental}
-\index{program development!planning}
+\section{Stigvaxandi þróun vs. áætlunargerð}
+\index{stigvaxandi þróun}
+\index{frumgerð}
+\index{forritunarþróun!stigvaxandi}
+\index{forritunarþróun!áætlunargerð}
 
-In this chapter I have demonstrated an approach to program
-development I refer to as {\bf rapid prototyping with iterative
-improvement}.  In each case, I wrote a rough draft (or prototype)
-that performed the basic calculation, and then tested it on
-a few cases, correcting flaws as I found them.
+Ég hef í þessum kafla sýnt dæmi um aðferð við forritunarþróun sem leiðir af sér {\bf skjóta frumgerð með stigvaxandi endurbótum} (e. rapid prototyping with iterative improvement).
+Í sérhverju tilviki skrifaði ég drög (frumgerð) sem framkvæmdi grunnútreikninga, síðan prófaði ég þá á nokkrum tilvikum og leiðrétti villur þegar þær komu í ljós.
 
-Although this approach can be effective, it can lead to code
-that is unnecessarily complicated---since it deals with many
-special cases---and unreliable---since it is hard to know if
-you have found all the errors.
+Þó svo að þessi aðferð geti verið markvirk (e. effective) þá getur kóðinn orðið óþarflega flókinn, vegna þess að hann meðhöndlar mörg mismunandi tilvik,
+og óáreiðanlegur, vegna þess að það getur verið erfitt að fullvissa sig um að maður hafi fundið allar villurnar.
 
-An alternative is high-level planning, in which a little insight
-into the problem can make the programming much easier.  In
-this case the insight is that a {\tt Time} is really a three-digit
-number in base 60!  The {\tt second} is the ``ones column,''
-the {\tt minute} is the ``60's column'', and the {\tt hour}
-is the ``3600's column.''
+Önnur aðferð er hönnun eða áætlunargerð sem felur í sér að smá innsýn í vandamálið getur gert forritunina mikið einfaldari.
+Í þessu tilviki er innsýnin sú að {\tt Time} er í raun tala með þremur tölustöfum með grunn 60!
+Sekúndan ({\tt second}) er ``ones column'', mínútan ({\tt minute}) er ``60's column'', og klukkustundin ({\tt hour}) er ``3600's column''.
 
-When we wrote {\tt addTime} and {\tt increment}, we were effectively
-doing addition in base 60, which is why we had to ``carry'' from one
-column to the next.
+Þegar við skrifuðum {\tt addTime} og {\tt increment} þá gerðum við í raun samlagningu með grunn 60, sem er einmitt ástæðan fyrir því að við þurftum að ``færa'' frá einum dálki yfir í annan.
 
-\index{arithmetic!base 60}
-\index{arithmetic!floating-point}
+\index{útreikningur!grunnur 60}
+\index{útreikningur!kommutala}
 
-Thus an alternate approach to the whole problem is to convert
-{\tt Time}s into {\tt double}s and take advantage of the fact that
-the computer already knows how to do arithmetic with {\tt double}s.
-Here is a function that converts a {\tt Time} into a {\tt double}:
+Önnur leið til að leysa vandamálið er því að breyta {\tt Time} hlutum yfir í {\tt double} breytur og 
+nýta sér það að tölvan veit þegar hvernig gera á útreikninga með {\tt double}.
+Hér er fall sem breytir {\tt Time} yfir í {\tt double}:
 
 \begin{verbatim}
 double convertToSeconds (const Time& t) {
@@ -396,8 +372,7 @@ double convertToSeconds (const Time& t) {
 }
 \end{verbatim}
 %
-Now all we need is a way to convert from a {\tt double}
-to a {\tt Time} object:
+Allt sem við þurfum þá til viðbótar er leið til að breyta {\tt double} yfir í {\tt Time} hlut:
 
 \begin{verbatim}
 Time makeTime (double secs) {
@@ -411,9 +386,8 @@ Time makeTime (double secs) {
 }
 \end{verbatim}
 %
-You might have to think a bit to convince yourself that the technique
-I am using to convert from one base to another is correct.  Assuming
-you are convinced, we can use these functions to rewrite {\tt addTime}:
+Þú þarft líklega að hugsa dálítið um þetta til að fullvissa þig um að aðferðin sem ég nota hér til að breyta úr einum grunn yfir í annan sé rétt.
+Að því gefnu að þú sért sannfærð(ur) þá getum við notað þessi föll til að endurskrifa {\tt addTime}:
 
 \begin{verbatim}
 Time addTime (const Time& t1, const Time& t2) {
@@ -422,120 +396,88 @@ Time addTime (const Time& t1, const Time& t2) {
 }
 \end{verbatim}
 %
-This is much shorter than the original version, and it is much easier
-to demonstrate that it is correct (assuming, as usual, that the
-functions it calls are correct).  As an exercise, rewrite {\tt
-increment} the same way.
+Þessi útgáfa er miklu styttri en upphaflega útgáfan og það er líka mun einfaldara að sýna að hún sé rétt.
+Þú ættir núna að æfa þig með því að endurskrifa {\tt increment} á sama hátt.
 
+\section{Alhæfing}
+\index{alhæfing}
 
-\section{Generalization}
-\index{generalization}
+Á vissan hátt er erfiðara að breyta úr grunni 60 yfir í grunn 10, og til baka, en að meðhöndla tíma.
+Breyting á grunni er meira abstrakt, tilfinning okkar fyrir tíma er meiri.
 
-In some ways converting from base 60 to base 10 and back is
-harder than just dealing with times.  Base conversion is more
-abstract; our intuition for dealing with times is better.
+Á hinn bóginn má segja að ef við meðhöndlum tíma sem tölur með grunn 60 og skrifum umbreytingaföllin
+({\tt convertToSeconds} og {\tt makeTime}) þá endum við með forrit sem er styttra, læsilegra og einfaldara að kemba og jafnframt áreiðanlegra.
 
-But if we have the insight to treat times as base 60 numbers,
-and make the investment of writing the conversion functions
-({\tt convertToSeconds} and {\tt makeTime}), we get
-a program that is shorter, easier to read and debug, and more
-reliable.
+Það er jafnframt auðveldara að bæta eiginleikum við forritið síðar.
+Gefum okkur t.d. að við þurfum að geta dregið einn tíma frá öðrum til að finna tímann á milli þeirra.
+Bein leið væri að útfæra frádráttinn með ``láni'' (e. borrowing).
+Það væri hins vegar auðveldara að nota umbreytingaföllin og jafnframt líklegra til að vera rétt.
 
-It is also easier to add more features later.  For example, imagine
-subtracting two {\tt Time}s to find the duration between them.  The
-naive approach would be to implement subtraction with
-borrowing.  Using the conversion functions would be easier and more
-likely to be correct.
+Það er kaldhæðnislegt að stundum verður vandamál auðveldara (færri sérstök tilvik og færri möguleikar á villum) ef það er gert erfiðara (almennara)!
 
-Ironically, sometimes making a problem harder (more general)
-makes is easier (fewer special cases, fewer opportunities for error).
-
-\section{Algorithms}
+\section{Reiknirit}
 \label{algorithm}
-\index{algorithm}
+\index{reiknirit}
 
-When you write a general solution for a class of problems, as opposed
-to a specific solution to a single problem, you have written an {\bf
-algorithm}.  I mentioned this word in Chapter 1, but did not define it
-carefully.  It is not easy to define, so I will try a couple of
-approaches.
+Þegar þú skrifar almenna lausn fyrir safn af vandamálum, í stað þess að skrifa sérstaka lausn fyrir eitt tiltekið vandamál, þá hefur þú útfært 
+{\bf reiknirit} (e. algorithm).
+Ég nefndi þetta orð í kafla 1 en skilgreindi það ekki nákvæmlega.
+Það er reyndar ekki auðvelt að skilgreina en hér mun ég reyna það með tveimur aðferðum.
 
-First, consider something that is not an algorithm.
-When you learned to multiply single-digit numbers, you probably
-memorized the multiplication table.  In effect, you memorized 100
-specific solutions.  That kind of knowledge is not really algorithmic.
+Í fyrsta lagi skaltu hugsa um eitthvað sem er ekki reiknirit.
+Þegar þú lærðir t.d. að margfalda saman tölur með einum tölustaf þá lærðir þú væntanlega margföldunartöfluna utan að.
+Í rauninni settir þú 100 mismunandi lausnir á minnið!
+Þess konar þekking er í raun ekki reikniritanleg.
 
-But if you were ``lazy,'' you probably cheated by learning a few
-tricks.  For example, to find the product of $n$ and 9, you can write
-$n-1$ as the first digit and $10-n$ as the second digit.  This trick
-is a general solution for multiplying any single-digit number by 9.
-That's an algorithm!
+En ef þú varst ``löt/latur'' þá svindlaðir þú líklega og lærðir nokkur trikk.
+Til að finna t.d. margfeldið á $n$ and 9 getur þú skrifað $n-1$ sem fyrri tölustafinn og $10-n$ seinni stafinn.
+Þetta trikk er almenn lausn til að margfalda tölu (með einum tölustaf) með 9.
+Þetta er reiknirit!
 
-Similarly, the techniques you learned for addition with carrying,
-subtraction with borrowing, and long division are all algorithms.  One
-of the characteristics of algorithms is that they do not require any
-intelligence to carry out.  They are mechanical processes in which
-each step follows from the last according to a simple set of rules.
+Á sama hátt eru aðferðirnar sem þú lærðir til að leggja saman, með því færa yfir, og að draga frá, með því að taka að láni, líka reiknirit.
+Eitt sem einkennir reiknirit er að þau krefjast ekki neinnar sérstakar greindar til að framkvæma þau.
+Þau eru sjálfvirk ferli þar sem sérhvert skref er framkvæmd á eftir undanfarandi skrefi í samræmi við einfalt mengi af reglum.
 
-In my opinion, it is embarrassing that humans spend so much time in
-school learning to execute algorithms that, quite literally, require
-no intelligence.
+Það er mín skoðun að það sé í raun vandræðalegt hversu löngum tíma við eyðum í skóla að keyra reiknirit sem þarfnast í raun engrar greindar.
 
-On the other hand, the process of designing algorithms is interesting,
-intellectually challenging, and a central part of what we call
-programming.
+Á hinn bóginn er ferlið við að hanna reiknirit mjög áhugavert og krefjandi og í raun hryggjarstykkið í því sem við köllum forritun.
 
-Some of the things that people do naturally, without difficulty
-or conscious thought, are the most difficult to express
-algorithmically.  Understanding natural language is a good
-example.  We all do it, but so far no one has been able to
-explain {\em how} we do it, at least not in the form of an
-algorithm.
+Sumt af því sem manneskjan gerir á náttúrulegan hátt, án vandræða eða meðvitaðrar hugsunar, er hvað erfiðast að tjá með reikniriti.
+Það að greina og skilja náttúrulegt tungumál er gott dæmi.
+Við gerum það öll en hingað til hefur engum tekist að skýra út {\em hvernig} við gerum það, a.m.k. ekki í formi reiknirits.
 
-Later in this book, you will have the opportunity to design
-simple algorithms for a variety of problems.  If you take
-the next class in the Computer Science sequence, Data Structures,
-you will see some of the most interesting, clever, and
-useful algorithms computer science has produced.
+Seinna í þessari bók færðu tækifæri til að skrifa einföld reiknirit fyrir ýmis vandamál.
+Ef þú ert í tölvunarfræðinámi þá muntu síðar taka námskeiðið Reiknirit (e. Data Structures) og kynnast
+mörgum áhugaverðum, snjöllum og gagnlegum reikniritum sem tölvunarfræðingar hafa þróað.
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[instance:]  An example from a category.  My cat is an
-instance of the category ``feline things.''  Every object is
-an instance of some type.
+\item[tilvik (e.instance):]  Eitt dæmi úr tilteknum flokki.  Kötturinn minn er tilvik úr flokknum ``læður''. 
+Sérhver hlutur (e. object) er tilvik af einhverju tagi.
 
-\item[instance variable:]  One of the named data items that make
-up an structure.  Each structure has its own copy of
-the instance variables for its type.
+\item[tilvikabreyta (e. instance variable):]  Ein af þeim breytum sem mynda strúktúr. Sérhver tilvik af strúktúr á sér eigin afrit af tilvikabreytunum fyrir viðkomandi tag.
 
-\item[constant reference parameter:]  A parameter that is passed
-by reference but that cannot be modified.
+\item[fast tilvísunarviðfang (e. constant reference parameter):]  Viðfang sem er sent sem tilvísun í fall en er samt sem áður ekki hægt að breyta í fallinu.
 
-\item[pure function:]  A function whose result depends only on its
-parameters, and that has so effects other than returning
-a value.
+\item[hreint fall (e. pure function):]  Fall, hvers skilagildi er eingöngu háð viðföngum þess, og sem hefur engar aukaverkanir en þær að skila gildi.
 
-\item[functional programming style:]  A style of program design
-in which the majority of functions are pure.
+\item[fallaforritunarstíll (e. functional programming style):]  Forritunarstíll sem leggur áherslu á að meginhluti falla séu hrein.
 
-\item[modifier:]  A function that changes one or more of the objects
-it receives as parameters, and usually returns {\tt void}.
+\item[breytir (e. modifier):]  Fall sem breytir einu eða fleiri viðföngum og skilar yfirleitt {\tt void}.
 
-\item[fill-in function:]  A function that takes an ``empty''
-object as a parameter and fills it its instance variables instead
-of generating a return value.
+\item[fyllir (e. fill-in function):]  Fall sem tekur ``tóman'' hlut sem viðfang og fyllir inn í tilvikabreytur hlutarins í stað þess að skila gildi.
 
-\item[algorithm:]  A set of instructions for solving a class of
-problems by a mechanical, unintelligent process.
+\item[reiknirit (e. algorithm):]  Eins konar uppskrift til að leysa tiltekna tegund af vandamálum með sjálfvirku ferli.
 
-\index{instance}
-\index{instance variable}
-\index{pure function}
-\index{functional programming}
-\index{modifier}
-\index{algorithm}
+\index{tilvik}
+\index{tilvikabreyta}
+\index{hreint fall}
+\index{fallaforritun}
+\index{breytir}
+\index{fyllir}
+\index{reiknirit}
 
 \end{description}
 
