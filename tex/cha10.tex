@@ -22,53 +22,46 @@
 % it from www.gnu.org or by writing to the Free Software Foundation,
 % Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-\chapter{Vectors}
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
+
+\chapter{Vektorar}
 \label{vectors}
-\index{vector}
-\index{type!vector}
+\index{vektor}
+\index{tag!vektor}
 
-A {\bf vector} is a set of values where each value is identified by a
-number (called an index).  An {\tt string} is similar to a vector,
-since it is made up of an indexed set of characters.  The nice thing
-about vectors is that they can be made up of any type of element,
-including basic types like {\tt int}s and {\tt double}s, 
-and user-defined types like {\tt Point} and {\tt Time}.
+{\bf Vektor} (e. vector) er mengi gilda þar sem hvert þeirra er auðkennt með tölu sem kölluð er vísir (e. index).
+Strengur ({\tt string}) er svipaður og vektor þar sem hann samanstendur af mengi af stöfum sem hægt er að vísa í með tölu.
+Vektorar í C++ eru hentugir í notkun því þeir geta geymt ýmis konar gögn, þ.m.t. grunntög eins og {\tt int} og {\tt double}, 
+eða tög sem skilgreind eru af notanda, eins og {\tt Point} og {\tt Time}.
 
-The {\tt vector} type is defined in the C++ Standard Template Library (STL).
-In order to use it, you have to include the header file {\tt
-vector}; again, the details of how to do that depend on your
-programming environment.
+Tagið {\tt vector} er skilgreint í C++ ``Standard Template Library'' (STL).
+Til að nota það þarf að taka inn (e. include) hausaskrána {\tt vector} -- hvernig það er gert er háð þínu forritunarumhverfi.
 
-You can create a vector the same way you create other variable types:
+Þú getur búið til vektor á sama hátt og þú býrð til breytu af hvaða öðru tagi:
 
 \begin{verbatim}
   vector<int> count;
   vector<double> doubleVector;
 \end{verbatim}
 %
-The type that makes up the vector appears in angle brackets ({\tt <}
-and {\tt >}).  The first line creates a vector of integers named {\tt
-count}; the second creates a vector of {\tt double}s.  Although these
-statements are legal, they are not very useful because they create
-vectors that have no elements (their size is zero).  It is more
-common to specify the size of the vector in parentheses:
+Tagið sem vektorinn mun geyma kemur fram í hornsvigunum (e. angle brackets) ({\tt <} og {\tt >}).
+Fyrri línan býr til vektor af heiltölum með nafnið {\tt count}; seinni línan býr til vektor af {\tt double}.
+Þrátt fyrir að þessar setningar séu löglegar þá eru þær ekki mjög gagnlegar vegna þess að þær búa til vektora sem hafa engin stök (stærð þeirra er núll).
+Það er því mun algengara að skilgreina stærð vektorsins innan sviga: 
 
 \begin{verbatim}
   vector<int> count (4);
 \end{verbatim}
 %
-The syntax here is a little odd; it looks like a combination of a
-variable declarations and a function call.  In fact, that's exactly
-what it is.  The function we are invoking is an {\tt vector}
-constructor.  A {\bf constructor} is a special function that creates
-new objects and initializes their instance variables.  In this case,
-the constructor takes a single argument, which is the size of the new
-vector.
+Málskipanin er hér dálítið skrýtin því hún lítur út eins og samsetning breytuyfirlýsingar og fallakalls.
+Það er reyndar nákvæmlega það sem hún er!
+Fallið sem við erum að kalla á er svokallaður smiður í {\tt vector} klasanum.
+{\bf Smiður} (e. constructor) er sérstakt fall sem býr til nýtt tilvik og upphafsstillir tilvikabreytur þess.
+Í þessu tilviki tekur smiðurinn eitt viðfang sem er stærð vektorsins.
 
-\index{constructor}
+\index{smiður}
 
-The following figure shows how vectors are represented in state
-diagrams:
+Eftirfarandi mynd sýnir hvernig vektorar eru táknaðir á stöðuritum:
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=vector.eps}}
