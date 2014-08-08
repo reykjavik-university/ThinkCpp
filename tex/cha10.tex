@@ -67,33 +67,27 @@ Eftirfarandi mynd sýnir hvernig vektorar eru táknaðir á stöðuritum:
 \centerline{\epsfig{figure=vector.eps}}
 \vspace{0.1in}
 
-The large numbers inside the boxes are the {\bf elements} of
-the vector.  The small numbers outside the boxes are the
-indices used to identify each box.  When you allocate a new
-vector, the elements are not initialized.  They could contain
-any values.
+Stóru tölurnar innan í boxunum eru {\bf stök} (e. elements) vektorsins. 
+Litlu tölurnar fyrir utan boxin eru vísarnir (e. indices) sem notaðir eru til að einkenna sérhvert box.
+Stök vektors eru ekki upphafsstillt þegar nýr vektor er búinn til.
+Þau gætu í raun innihaldið hvaða gildi sem er.
 
-There is another constructor for {\tt vector}s that takes
-two parameters; the second is a ``fill value,'' the
-value that will be assigned to each of the elements.
+Það er til annar smiður fyrir {\tt vector} sem tekur tvö viðföng; seinna viðfangið er ``upphafsstillingargildi'', þ.e. gildið sem sérhvert stak vektorsins fær í upphafi.
 
 \begin{verbatim}
   vector<int> count (4, 0);
 \end{verbatim}
 %
-This statement creates a vector of four elements and initializes
-all of them to zero.
+Þessi setning býr til vektor með fjórum stökum og upphafsstillir öll stökin með núlli.
 
-\section{Accessing elements}
-\index{element}
-\index{vector!element}
+\section{Aðgangur að stökum}
+\index{stak}
+\index{vektor!stak}
 
-The {\tt []} operator reads and writes the elements of a vector in
-much the same way it accesses the characters in an {\tt apstring}.  As
-with {\tt apstring}s, the indices start at zero, so {\tt count[0]}
-refers to the ``zeroeth'' element of the vector, and {\tt count[1]}
-refers to the ``oneth'' element.  You can use the {\tt []} operator
-anywhere in an expression:
+Virkjann {\tt []} er hægt að nota til að lesa og skrifa stök vektors á sambærilegan hátt og gert er með strengi.
+Vísarnir byrja í núlli, þannig að {\tt count[0]} vísar til ``núllta'' staks vektorsins {\tt count} og
+{\tt count[1]} vísar til ``fyrsta'' staksins.
+Þú getur notað virkjann {\tt []} hvar sem er í segð:
 
 \begin{verbatim}
   count[0] = 7;
@@ -102,25 +96,23 @@ anywhere in an expression:
   count[3] -= 60;
 \end{verbatim}
 %
-All of these are legal assignment statements.  Here is the
-effect of this code fragment:
+Allar þessar setningar eru löglegar og áhrif þessa kóða á vektorinn er: 
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=vector2.eps}}
 \vspace{0.1in}
 
-Since elements of this vector are numbered from 0 to 3, there is no
-element with the index 4.  It is a common error to go beyond the
-bounds of a vector, which causes a run-time error.  The program outputs
-an error message like ``Illegal vector index'', and then quits.
+Ekkert stak er með vísinn 4 þar sem stök þessa vektors eru númeruð frá 0 to 3.
+Það er algeng villa að reyna að vísa ``út fyrir'' vektor og það veldur keyrsluvillu.
+Í því tilfelli skrifar forritið út villuskilaboð eins og ``Illegal vector index'', og hættir síðan keyrslu.
 
-\index{run-time error}
-\index{index}
-\index{expression}
+\index{keyrsluvilla}
+\index{vísir}
+\index{segð}
 
-You can use any expression as an index, as long as it has type {\tt
-int}.  One of the most common ways to index a vector is with a loop
-variable.  For example:
+Þú getur notað hvaða segð sem er sem vísi svo framarlega sem hún hefur tagið {\tt int}.
+Eins algengast leiðin til að vísa í stök vektors er að nota lykkjubreytu (e. loop variable).
+Dæmi:
 
 \begin{verbatim}
   int i = 0;
@@ -130,57 +122,46 @@ variable.  For example:
   }
 \end{verbatim}
 %
-This {\tt while} loop counts from 0
-to 4; when the loop variable {\tt i} is 4, the
-condition fails and the loop terminates.  Thus, the body
-of the loop is only executed when {\tt i} is 0, 1, 2 and 3.
+Þessi {\tt while} lykkja ``hleypur'' frá 0 í 4.
+Þegar lykkjubreytan {\tt i} fær gildið 4 þá verður skilyrðið {\tt false} og lykkjan hættir.
+Meginmál lykkjunnar er því eingöngu keyrt þegar {\tt i} er 0, 1, 2 og 3.
 
-\index{loop}
-\index{loop variable}
-\index{variable!loop}
+\index{lykkja}
+\index{lykkjubreyta}
+\index{breyta!lykkja}
 
-Each time through the loop we use {\tt i} as an index into
-the vector, outputting the {\tt i}th element.  This type of
-vector traversal is very common.  Vectors and loops go together
-like fava beans and a nice Chianti.
+Í sérhverri ítrun lykkjunnar notum við {\tt i} sem vísi inn í vektorinn og skrifum út {\tt i}-ta stakið.
+Þessi tegund af ``vektorrölti'' er mjög algeng enda vinna vektorar og lykkjur vel saman.
 
-\section{Copying vectors}
-\index{vector!copying}
+\section{Afritun vektora}
+\index{vektor!afritun}
 
-There is one more constructor for {\tt vector}s, which is
-called a copy constructor because it takes one {\tt vector}
-as an argument and creates a new vector that is the same size,
-with the same elements.
+Það er til einn smiður í viðbót fyrir {\tt vector} sem kallaður ``afritatökusmiður'' (e. copy constructor)
+vegna þess að hann tekur einn {\tt vector} sem viðfang og býr til nýjan vektor af sömu stærð og með sömu stök.
 
 \begin{verbatim}
   vector<int> copy (count);
 \end{verbatim}
 %
-Although this syntax is legal, it is almost never used for
-{\tt vector}s because there is a better alternative:
+Þrátt fyrir að þessi málskipan sé lögleg þá er hún sjaldan notuð fyrir vektorar því til er betri leið:
 
 \begin{verbatim}
   vector<int> copy = count;
 \end{verbatim}
 %
-The {\tt =} operator works on {\tt vector}s in pretty much
-the way you would expect.
+Gildisveitingarvirkinn {\tt =} virkar fyrir vektorar á þann hátt sem ætla má.
 
-\section{{\tt for} loops}
+\section{{\tt for} lykkjur}
 
-The loops we have written so far have a number of elements
-in common.  All of them start by initializing a variable;
-they have a test, or condition, that depends on that variable;
-and inside the loop they do something to that variable,
-like increment it.
+Lykkjurnar sem við höfum skrifað hingað til eiga ýmislegt sameiginlegt.
+Allar byrjar þær á því að upphafsstilla breytur; þær innihalda skilyrði sem er háð breytunni og meginmál lykkjunnar gerir eitthvað við breytuna, eins og að hækka hana. 
 
-\index{loop!for}
+\index{lykkja!for}
 \index{for}
-\index{statement!for}
+\index{setning!for}
 
-This type of loop is so common that there is an alternate
-loop statement, called {\tt for}, that expresses it more
-concisely.  The general syntax looks like this:
+Þessi tegund af lykkju er svo algeng að það er til annars konar lykkjusetning, kölluð {\tt for}-setning, sem tjáir þetta á samþjappaðri hátt.
+Málskipanin lítur svona út:
 
 \begin{verbatim}
   for (INITIALIZER; CONDITION; INCREMENTOR) {
@@ -188,7 +169,7 @@ concisely.  The general syntax looks like this:
   }
 \end{verbatim}
 %
-This statement is exactly equivalent to
+Ofangreind setning er nákvæmlega jafngild þessu:
 
 \begin{verbatim}
   INITIALIZER;
@@ -198,9 +179,8 @@ This statement is exactly equivalent to
   }
 \end{verbatim}
 %
-except that it is more concise and, since it puts all the
-loop-related statements in one place, it is easier to read.
-For example:
+{\tt for}-setningin er aftur á móti gagnorðaðri og læsilegri því í henni eru allar lykkjusetningarnar á einum stað.
+Dæmi:
 
 \begin{verbatim}
   int i;
@@ -209,7 +189,7 @@ For example:
   }
 \end{verbatim}
 %
-is equivalent to 
+er jafngilt:
 
 \begin{verbatim}
   int i = 0;
@@ -219,19 +199,16 @@ is equivalent to
   }
 \end{verbatim}
 
-\section{Vector size}
-\index{size!vector}
-\index{vector!size}
+\section{Stærð vektors}
+\index{stærð!vektor}
+\index{veckor!stærð}
 
-There are a few functions you can invoke on an
-{\tt vector}.  One of them is very useful, though: {\tt size()}.
-Not surprisingly, it returns the size of the vector (the number
-of elements).
+Það eru margvísleg föll sem hægt er að keyra fyrir {\tt vector}.
+Eitt af þeim er þó sérstaklega gagnlegt: {\tt size()}.
+Þetta fall skilar stærð vektors, þ.e. fjölda staka.
 
-It is a good idea to use this value as the upper bound of a loop,
-rather than a constant.  That way, if the size of the vector
-changes, you won't have to go through the program changing all the
-loops; they will work correctly for any size vector.
+Það er góð regla að nota þetta gildi sem efri mörk (e. upper bound) lykkju frekar heldur en einhvern fasta.
+Þannig þarf ekki að breyta lykkjunni ef stærð vektorsins breytist.
 
 \begin{verbatim}
   int i;
@@ -240,28 +217,24 @@ loops; they will work correctly for any size vector.
   }
 \end{verbatim}
 %
-The last time the body of the loop gets executed, the value of {\tt i}
-is {\tt count.size() - 1}, which is the index of the last element.  When
-{\tt i} is equal to {\tt count.size()}, the condition fails and the body
-is not executed, which is a good thing, since it would cause a
-run-time error. One thing that we should notice here is that the
-size() function is called every time the loop is executed. Calling
-a function again and again reduces execution speed, so it would be better
-to store the size in some variable by calling the {\tt size()} function
-before the loop begins, and use this variable to check for the last element.
-You can try this program as an excercise.
+Í síðasta skiptið sem meginmál lykkjunnar er keyrt er gildið á {\tt i} jafnt {\tt count.size() - 1}, sem er vísirinn á síðasta stakinu.
+Þegar {\tt i} er jafnt {\tt count.size()} mun skilyrðið verða {\tt false} og meginmál lykkjunnar verður því ekki keyrt lengur.
+Það er gott því annars myndi keyrsluvilla koma upp!
+Taktu eftir því að kallað er á {\tt size()} fallið í hverri ítrun lykkjunnar.
+Það að kalla á fall aftur og aftur hefur áhrif á keyrslutímann þannig að í raun væri betra að geyma stærð vektorsins í einhverri breytu með því að kalla á 
+{\tt size()} áður en lykkjan hefst og nota síðan breytuna til að tékka á síðasta gildinu.
+Þú ættir að æfa þig með því að prófa að gera þessa breytingu.
 
-\section{Vector functions}
-\index{functions!vector}
-\index{vector!functions}
+\section{Vektorföll}
+\index{föll!vektor}
+\index{vektor!föll}
 
-The best feature of a vector is its resizeability A vector, once declared,
-can be resized from anywhere within the program. Suppose we have a situation
-where we input numbers from the user and store them in a vector till he
-inputs {\tt -1}, and then display them. In such a case, we do not know the size of the
-vector beforehand. So we need wish add new values to the end of
-a vector as the user inputs them. We can use then vector
-function {\tt push\_back()} for that purpose.
+Einn besti eiginleiki vektors er geta hans til að stækka eða minnka að þörf.
+Eftir að vektor hefur verið búinn til þá er hægt að stækka hann eða minnka hvar sem er í forritinu.
+Gerum t.d. ráð fyrir að við lesum inn tölur frá notanda inn í vektor þangað til notandi slær inn {\tt -1} en þá skrifum við tölurnar út.
+Í svona tilviki vitum við ekki stærðina á vektornum fyrirfram.
+Við þurfum því að geta bætt nýjum stökum við enda vektorsins um leið og notandinn slær inn ný gildi.
+Við getum notað fallið {\tt push\_back()} í þessum tilgangi:
 
 \begin{verbatim}
   #include<iostream>
@@ -285,37 +258,29 @@ function {\tt push\_back()} for that purpose.
 
 \end{verbatim}
 
-\section{Random numbers}
+\section{Slembitölur}
 \label{random}
 \label{pseudorandom}
-\index{random number}
-\index{deterministic}
-\index{nondeterministic}
+\index{slembitala}
+%\index{deterministic}
+\index{löggengur}
+%\index{nondeterministic}
+\index{brigðgengur}
 
-Most computer programs do the same thing every time they are executed,
-so they are said to be {\bf deterministic}.  Usually, determinism is a
-good thing, since we expect the same calculation to yield the same
-result.  For some applications, though, we would like the
-computer to be unpredictable.  Games are an obvious example.
+Flestar tölvur gera það sama í hvert sinn sem þær eru keyrðar með sama forritinu og eru kallaðar {\bf löggengar} (e. deterministic). 
+Löggengni er yfirleitt kostur því við viljum jú að sömu útreikningar skili alltaf af sér sömu niðurstöðu.
+Í sumum tilvikum gætum við viljað að tölvur væru óútreiknanlegar.  Tölvuleikir eru gott dæmi um þetta.
 
-Making a program truly {\bf nondeterministic} turns out to be not
-so easy, but there are ways to make it at least seem
-nondeterministic.  One of them is to generate {pseudorandom} numbers and
-use them to determine the outcome of the program.
-Pseudorandom numbers
-are not truly random in the mathematical sense, but 
-for our purposes, they will do.
+Það að gera forrit algerlega {\bf brigðgengt} (e. nondeterministic) er ekki auðvelt en það eru til leiðir til að láta það líta svo út.
+Ein leið er að búa til ``pseudo'' slembitölur (e. random numbers) og nota þær til að stýra útkomunni úr forriti.
+``Pseudo'' slembitölur eru ekki algerlega handahófskenndar í stærðfræðilegum skilningi en þær duga fyrir það sem við ætlum að gera.
 
-C++ provides a function called {\tt random} that generates
-pseudorandom numbers.  It is declared in the
-header file {\tt cstdlib}, which contains a variety of ``standard
-library'' functions, hence the name.
+Í hausaskránni {\tt cstdlib} (sem inniheldur ýmis konar ``standard library'' föll) er fallið {\tt random} skilgreint en það býr til ``pseudo'' slembitölur.
 
-The return value from {\tt random} is an integer between 0 and {\tt
-RAND\_MAX}, where {\tt RAND\_MAX} is a large number (about 2 billion
-on my computer) also defined in the header file.  Each time you call
-{\tt random} you get a different randomly-generated number.  To see a
-sample, run this loop:
+Skilagildið úr {\tt random} er heiltala á milli 0 og {\tt RAND\_MAX}
+en {\tt RAND\_MAX} er stór tala (um það bil 2 milljarðar á minni tölvu) sem einnig er skilgreind í hausaskránni.
+Í sérhvert sinn sem þú kallar á {\tt random} færðu nýja slembitölu.
+Til að sjá dæmi um þetta skaltu keyra eftirfarandi lykkju:
 
 \begin{verbatim}
 #include <iostream>
@@ -334,7 +299,7 @@ int main ()
   
 \end{verbatim}
 %
-On my machine I got the following output:
+Ég fæ eftirfarandi úttak á minni vél: 
 
 \begin{verbatim}
 1804289383
@@ -343,37 +308,32 @@ On my machine I got the following output:
 1714636915
 \end{verbatim}
 %
-You will probably get something similar, but different, on yours.
+Þú færð væntanlega eitthvað annað, en þó svipað, á þinni tölvu.
 
-Of course, we don't always want to work with gigantic integers.
-More often we want to generate integers between 0 and some
-upper bound.  A simple way to do that is with the modulus
-operator.  For example:
+Auðvitað viljum við ekki alltaf vinna með svona stórar heiltölur.
+Það er algengara að búa til heiltölur á milli 0 og einhvers efri marks.
+Einföld leið til að gera það er að nota ``modulus'' virkjann:
+Dæmi:
 
 \begin{verbatim}
   int x = random ();
   int y = x % upperBound;
 \end{verbatim}
 %
-Since {\tt y} is the remainder when {\tt x} is divided by
-{\tt upperBound}, the only possible values for {\tt y}
-are between 0 and {\tt upperBound - 1}, including both
-end points.  Keep in mind, though, that {\tt y} will never
-be equal to {\tt upperBound}.
+Þar sem {\tt y} er afgangurinn sem fæst með þvi að deila {\tt x} með {\tt upperBound} þá liggja gildin fyrir {\tt y} á bilinu 0 og {\tt upperBound - 1} (að báðum meðtöldum).
+Hafðu í huga að {\tt y} er aldrei jafnt og {\tt upperBound}.
 
-It is also frequently useful to generate random floating-point values.
-A common way to do that is by dividing by {\tt RAND\_MAX}.  For
-example:
+Það er einnig oft gagnlegt að búa til slembi kommutölur
+Algeng leið til að gera það er að deila með {\tt RAND\_MAX}.
+Dæmi:
 
 \begin{verbatim}
   int x = random ();
   double y = double(x) / RAND_MAX;
 \end{verbatim}
 %
-This code sets {\tt y} to a random value between 0.0 and 1.0,
-including both end points.  As an exercise, you might want to
-think about how to generate a random floating-point value in
-a given range; for example, between 100.0 and 200.0.
+Þessi kóði gefur {\tt y} gildi slembikommutölu á milli 0.0 and 1.0 (að báðum meðtöldum).
+Þú ættir núna að íhuga hvernig hægt er að búa til slembikommutölu á ákveðnu bili, t.d. á milli 100,0 og 200,0.
 
 \section{Statistics}
 \index{statistics}
