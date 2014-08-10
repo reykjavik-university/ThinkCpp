@@ -30,8 +30,8 @@
 \index{tag!vektor}
 
 {\bf Vektor} (e. vector) er mengi gilda þar sem hvert þeirra er auðkennt með tölu sem kölluð er vísir (e. index).
-Strengur ({\tt string}) er svipaður og vektor þar sem hann samanstendur af mengi af stöfum sem hægt er að vísa í með tölu.
-Vektorar í C++ eru hentugir í notkun því þeir geta geymt ýmis konar gögn, þ.m.t. grunntög eins og {\tt int} og {\tt double}, 
+Strengur ({\tt string}) er svipaður og vektor því hann samanstendur af mengi af stöfum sem hægt er að vísa í með tölu.
+Vektorar í C++ eru hentugir í notkun því þeir geta geymt ýmiss konar gögn, þ.m.t. grunntög eins og {\tt int} og {\tt double}, 
 eða tög sem skilgreind eru af notanda, eins og {\tt Point} og {\tt Time}.
 
 Tagið {\tt vector} er skilgreint í C++ ``Standard Template Library'' (STL).
@@ -45,7 +45,7 @@ Til að nota það þarf að taka inn (e. include) hausaskrána {\tt vector} -- 
 \end{verbatim}
 %
 Tagið sem vektorinn mun geyma kemur fram í hornsvigunum (e. angle brackets) ({\tt <} og {\tt >}).
-Fyrri línan býr til vektor af heiltölum með nafnið {\tt count}; seinni línan býr til vektor af {\tt double}.
+Fyrri línan býr til vektor af heiltölum með nafnið {\tt count} en seinni línan býr til vektor af {\tt double}.
 Þrátt fyrir að þessar setningar séu löglegar þá eru þær ekki mjög gagnlegar vegna þess að þær búa til vektora sem hafa engin stök (stærð þeirra er núll).
 Það er því mun algengara að skilgreina stærð vektorsins innan sviga: 
 
@@ -69,8 +69,7 @@ Eftirfarandi mynd sýnir hvernig vektorar eru táknaðir á stöðuritum:
 
 Stóru tölurnar innan í boxunum eru {\bf stök} (e. elements) vektorsins. 
 Litlu tölurnar fyrir utan boxin eru vísarnir (e. indices) sem notaðir eru til að einkenna sérhvert box.
-Stök vektors eru ekki upphafsstillt þegar nýr vektor er búinn til.
-Þau gætu í raun innihaldið hvaða gildi sem er.
+Stök vektors eru ekki upphafsstillt þegar nýr vektor er búinn til og því gætu þau gætu í raun innihaldið hvaða gildi sem er.
 
 Það er til annar smiður fyrir {\tt vector} sem tekur tvö viðföng; seinna viðfangið er ``upphafsstillingargildi'', þ.e. gildið sem sérhvert stak vektorsins fær í upphafi.
 
@@ -111,7 +110,7 @@ Ekkert stak er með vísinn 4 þar sem stök þessa vektors eru númeruð frá 0
 \index{segð}
 
 Þú getur notað hvaða segð sem er sem vísi svo framarlega sem hún hefur tagið {\tt int}.
-Eins algengast leiðin til að vísa í stök vektors er að nota lykkjubreytu (e. loop variable).
+Ein algengasta leiðin til að vísa í stök vektors er að nota lykkjubreytu (e. loop variable).
 Dæmi:
 
 \begin{verbatim}
@@ -154,7 +153,8 @@ Gildisveitingarvirkinn {\tt =} virkar fyrir vektorar á þann hátt sem ætla m�
 \section{{\tt for} lykkjur}
 
 Lykkjurnar sem við höfum skrifað hingað til eiga ýmislegt sameiginlegt.
-Allar byrjar þær á því að upphafsstilla breytur; þær innihalda skilyrði sem er háð breytunni og meginmál lykkjunnar gerir eitthvað við breytuna, eins og að hækka hana. 
+Allar byrja þær á því að upphafsstilla breytur.
+Þær innihalda jafnframt skilyrði sem er háð breytunni og meginmál lykkjunnar gerir eitthvað við breytuna, eins og að hækka hana. 
 
 \index{lykkja!for}
 \index{for}
@@ -220,6 +220,7 @@ Eitt af þeim er þó sérstaklega gagnlegt: {\tt size()}.
 Í síðasta skiptið sem meginmál lykkjunnar er keyrt er gildið á {\tt i} jafnt {\tt count.size() - 1}, sem er vísirinn á síðasta stakinu.
 Þegar {\tt i} er jafnt {\tt count.size()} mun skilyrðið verða {\tt false} og meginmál lykkjunnar verður því ekki keyrt lengur.
 Það er gott því annars myndi keyrsluvilla koma upp!
+
 Taktu eftir því að kallað er á {\tt size()} fallið í hverri ítrun lykkjunnar.
 Það að kalla á fall aftur og aftur hefur áhrif á keyrslutímann þannig að í raun væri betra að geyma stærð vektorsins í einhverri breytu með því að kalla á 
 {\tt size()} áður en lykkjan hefst og nota síðan breytuna til að tékka á síðasta gildinu.
@@ -269,7 +270,7 @@ Við getum notað fallið {\tt push\_back()} í þessum tilgangi:
 
 Flestar tölvur gera það sama í hvert sinn sem þær eru keyrðar með sama forritinu og eru kallaðar {\bf löggengar} (e. deterministic). 
 Löggengni er yfirleitt kostur því við viljum jú að sömu útreikningar skili alltaf af sér sömu niðurstöðu.
-Í sumum tilvikum gætum við viljað að tölvur væru óútreiknanlegar.  Tölvuleikir eru gott dæmi um þetta.
+Í sumum tilvikum gætum við aftur á móti viljað að tölvur væru óútreiknanlegar.  Tölvuleikir eru gott dæmi um þetta.
 
 Það að gera forrit algerlega {\bf brigðgengt} (e. nondeterministic) er ekki auðvelt en það eru til leiðir til að láta það líta svo út.
 Ein leið er að búa til ``pseudo'' slembitölur (e. random numbers) og nota þær til að stýra útkomunni úr forriti.
@@ -323,7 +324,7 @@ Dæmi:
 Þar sem {\tt y} er afgangurinn sem fæst með þvi að deila {\tt x} með {\tt upperBound} þá liggja gildin fyrir {\tt y} á bilinu 0 og {\tt upperBound - 1} (að báðum meðtöldum).
 Hafðu í huga að {\tt y} er aldrei jafnt og {\tt upperBound}.
 
-Það er einnig oft gagnlegt að búa til slembi kommutölur
+Það er einnig oft gagnlegt að búa til slembikommutölur
 Algeng leið til að gera það er að deila með {\tt RAND\_MAX}.
 Dæmi:
 
@@ -332,34 +333,28 @@ Dæmi:
   double y = double(x) / RAND_MAX;
 \end{verbatim}
 %
-Þessi kóði gefur {\tt y} gildi slembikommutölu á milli 0.0 and 1.0 (að báðum meðtöldum).
+Þessi kóði gefur {\tt y} gildi slembikommutölu á milli 0,0 and 1,0 (að báðum meðtöldum).
 Þú ættir núna að íhuga hvernig hægt er að búa til slembikommutölu á ákveðnu bili, t.d. á milli 100,0 og 200,0.
 
-\section{Statistics}
+\section{Tölfræði}
 \index{statistics}
-\index{distribution}
-\index{mean}
+\index{dreifing}
+\index{meðaltal}
 
-The numbers generated by {\tt random} are supposed to be distributed
-uniformly.  That means that each value in the range should be
-equally likely.  If we count the number of times each value appears,
-it should be roughly the same for all values, provided that we
-generate a large number of values.
+Tölurnar sem {\tt random} fallið býr til eiga að dreifast jafn (e. distributed uniformly).
+Það þýðir að sérhvert gildi á hinu valda bili ætti að vera jafn líklegt.
+Fjöldinn af sérhverju gildi ætti að vera nokkurn veginn sá sami að því gefnu að við látum {\tt random} búa til nógu mörg gildi fyrir okkur.
 
-In the next few sections, we will write programs that generate
-a sequence of random numbers and check whether this property
-holds true.
+Hér á eftir munum við skrifa forrit sem mynda röð af slembitölum og athugar hvort þessi staðhæfing sé rétt.
 
-\section{Vector of random numbers}
+\section{Vektor af slembitölum}
 
-The first step is to generate a large number of random values
-and store them in a vector.  By ``large number,'' of course,
-I mean 20.  It's always a good idea to start with a manageable
-number, to help with debugging, and then increase it later.
+Fyrsta skrefið er að búa til mikinn fjölda af slembitölum og geyma þær í vektor.
+Með ``mikinn fjölda'' á ég auðvitað við 20!  
+Það er góð regla að byrja með lítinn fjölda (sem auðveldar kembun) og fjölga tölum síðar.
 
-The following function takes a single argument, the size of
-the vector.  It allocates a new vector of {\tt int}s, 
-and fills it with random values between 0 and {\tt upperBound-1}.
+Eftirfarandi fall tekur eitt viðfang, stærð vektors.
+Það úthlutar minni fyrir nýjan vektor fyrir {\tt int} og fyllir hann með slembitölum á bilinu 0 og {\tt upperBound-1}.
 
 \begin{verbatim}
 vector<int> randomVector (int n, int upperBound) {
@@ -371,10 +366,8 @@ vector<int> randomVector (int n, int upperBound) {
 }
 \end{verbatim}
 %
-The return type is {\tt vector<int>}, which means that
-this function returns a vector of integers.
-To test this function, it is convenient to have a function that
-outputs the contents of a vector.
+Skilagildið er {\tt vector<int>}, þ.e. vektor af heiltölum.
+Til að prófa þetta fall er þægilegt að hafa fall sem skrifar út innihalds vektors:
 
 \begin{verbatim}
 void printVector (const vector<int>& vec) {
@@ -384,12 +377,11 @@ void printVector (const vector<int>& vec) {
 }
 \end{verbatim}
 %
-Notice that it is legal to pass {\tt vector}s by reference.
-In fact it is quite common, since it makes it unnecessary to
-copy the vector.  Since {\tt printVector} does not modify the
-vector, we declare the parameter {\tt const}.
+Taktu eftir því að það er löglegt að senda {\tt vector} með tilvísun.
+Það er einmitt mjög algengt því þá þarf ekki að afrita öll stök vektorsins (eins og gera þyrfti ef vektorinn væri sendur sem gildi).
+Við skilgreinum leppinn sem {\tt const} þar sem {\tt printVector} breytir ekki viðfangi sínu. 
 
-The following code generates a vector and outputs it:
+Eftirfarandi kóði býr til vektor og skrifar innihald hans út: 
 
 \begin{verbatim}
   int numValues = 20;
@@ -398,71 +390,61 @@ The following code generates a vector and outputs it:
   printVector (vector);
 \end{verbatim}
 %
-On my machine the output is
+Á minni vél er úttakið 
 
 \begin{verbatim}
 3 6 7 5 3 5 6 2 9 1 2 7 0 9 3 6 0 6 2 6 
 \end{verbatim}
 %
-which is pretty random-looking.  Your results may differ.
+sem virðist vera nokkuð handahófskennt.  Þitt úttak er væntanlega öðruvísi.
 
-If these numbers are really random,
-we expect each digit to appear the same number of times---twice
-each.  In fact, the number 6 appears five times, and the numbers 4
-and 8 never appear at all.
+Ef þessar tölur eru raunverulegar slembitölur þá megum við gera ráð fyrir því að sérhver tala komi jafn oft fyrir, þ.e. tvisvar sinnum.
+Það vill reyndar svo til að talan 6 kemur fyrir fimm sinnum og tölurnar 4 og 8 koma ekki fyrir.
 
-Do these results mean the values are not really uniform?  It's
-hard to tell.  With so few values, the chances are slim
-that we would get exactly what we expect.  But as the number
-of values increases, the outcome should be more predictable.
+En þýðir þetta þá að gildin fylgja ekki jafnri dreifingu?
+Það er erfitt að segja til um, því þegar gildin eru svona fá þá eru afskaplega litlar líkur á því að fá nákvæmlega það sem við eigum von á.
+Þegar gildum fjölgar þá ætti útkoman, aftur á móti, að vera fyrirsjáanlegri.
 
-To test this theory, we'll write some programs that count the
-number of times each value appears, and then see what happens
-when we increase {\tt numValues}.
+Til að prófa þessa tilgátu munum við skrifa forrit sem telur hversu oft sérhvert gildi kemur fyrir og síðan athuga hvað gerist
+þegar við hækkum {\tt numValues}.
 
-\section{Counting}
+\section{Talning}
 \label{counting}
-\index{traverse!counting}
-\index{loop!counting}
-\index{counter}
+\index{ferðast um!talning}
+\index{lykkja!talning}
+\index{teljari}
 
-A good approach to problems like this is to think of simple functions
-that are easy to write, and that might turn out to be useful.  Then
-you can combine them into a solution.  This approach is sometimes
-called {\bf bottom-up design}.  Of course, it is not easy to
-know ahead of time which functions are likely to be useful, but as you
-gain experience you will have a better idea.
+Góð leið til að leysa vandamál eins og þetta er að skrifa einföld föll sem er auðvelt að skrifa og gera má ráð fyrir að verði gagnleg.
+Þá er hægt að skrifa heildarlausnina með því að nýta sér þessi einföldu föll.
+Þessi forritunaraðferð er stundum kölluð {\bf neðansækin hönnun} (e. bottom-up deisgn).
+Auðvitað er það svo að það er ekki auðvelt að vita fyrirfram hvaða föll koma til með að verða gagnleg
+en eftir því sem reynslan eykst því auðveldara verður fyrir þig að átta þig á því.
 
-\index{bottom-up design}
-\index{program development!bottom-up}
+\index{neðansækin hönnun}
+\index{forritunarþróun!neðansækin}
 
-Also, it is not always obvious what sort of things are easy to write,
-but a good approach is to look for subproblems that fit a pattern you
-have seen before.
+Að auki er ekki alltaf augljóst hvers konar föll er auðvelt að skrifa en 
+það er góð leið að leita að hlutvandamálum sem passa við eitthvað mynstur sem þú hefur séð áður.
 
-\index{pattern!counter}
+\index{mynstur!teljari}
 
-Back in Section~\ref{loopcount} we looked at a loop that traversed a
-string and counted the number of times a given letter appeared.  You
-can think of this program as an example of a pattern called ``traverse
-and count.''  The elements of this pattern are:
+Í kafla~\ref{loopcount} skoðuðum við lykkju sem ``ferðaðist um'' í streng og taldi hversu oft tiltekinn stafur kom fyrir í strengnum.
+Þú getur litið á það forrit sem dæmi um mynstur sem kallast ``ferðast um og telja''.
+Einstakir hlutar þessa mynsturs eru:
 
 \begin{itemize}
 
-\item A set or container that can be traversed, like a string
-or a vector.
+\item Mengi eða gámur (e. container) sem hægt er að ferðast um í, t.d. strengur eða vektor. 
 
-\item A test that you can apply to each element in the container.
+\item Próf (e. test) sem hægt er að beita á sérhvert stak í gámnum.
 
-\item A counter that keeps track of how many elements pass
-the test.
+\item Teljari sem heldur utan um hversu mörg stök standast prófið. 
 
 \end{itemize}
 
-In this case, I have a function in mind called {\tt howMany} that
-counts the number of elements in a vector that equal a given value.
-The parameters are the vector and the integer value we are looking
-for.  The return value is the number of times the value appears.
+Í þessu tilviki hef ég fall í huga sem ég kalla {\tt howMany} sem telur fjölda staka í vektor sem eru jöfn tilteknu gildi. 
+Viðföngin í fallið eru vektor og heiltalan sem leitað er að.
+Skilagildið er gildi sem segir til um hversu oft heiltalan fannst í vektornum.
 
 \begin{verbatim}
 int howMany (const vector<int>& vec, int value) {
@@ -475,33 +457,29 @@ int howMany (const vector<int>& vec, int value) {
 \end{verbatim}
 
 
-\section{Checking the other values}
+\section{Athugun á öðrum gildum}
 
-{\tt howMany} only counts the occurrences of a particular value, and
-we are interested in seeing how many times each value appears.
-We can solve that problem with a loop:
+{\tt howMany} telur aðeins fjölda tilvika á af tilteknu gildi í vektornum en við höfum áhuga á hversu oft sérhvert gildi kemur fyrir.
+Það getum við leyst með því að nota lykkju:
 
 \begin{verbatim}
   int numValues = 20;
   int upperBound = 10;
   vector<int> vector = randomVector (numValues, upperBound);
 
-  cout << "value\thowMany";
+  cout << "value\thowMany" << endl;
 
   for (int i = 0; i<upperBound; i++) {
     cout << i << '\t' << howMany (vector, i) << endl;
   }
 \end{verbatim}
 %
-Notice that it is legal to declare a variable inside a {\tt for}
-statement.  This syntax is sometimes convenient, but you should
-be aware that a variable declared inside a loop only exists
-inside the loop.  If you try to refer to {\tt i} later, you
-will get a compiler error.
+Taktu eftir því að það er löglegt að skilgreina breytu innan í {\tt for}-setningu.
+Þessi málskipan er stundum hentug en athugaðu að breyta sem skilgreind er innan í lykkju er eingöngu lifandi í lykkjunni.
+Þú færð villu frá þýðandanum ef þú reynir að vísa í {\tt i} utan lykkjunnar.
 
-This code uses the loop variable as an argument to
-{\tt howMany}, in order to check each value between 0 and 9,
-in order.  The result is:
+Þessi kóði sendir lykkjubreytuna sem viðfang í {\tt howMany} í þeim tilgangi að tékka á sérhverju gildi á milli 0 og 9 í réttri röð.
+Niðurstaðan er:
 
 \begin{verbatim}
 value   howMany
@@ -517,9 +495,8 @@ value   howMany
 9       2
 \end{verbatim}
 %
-Again, it is hard to tell if the digits are really appearing
-equally often.  If we increase {\tt numValues} to 100,000 we
-get the following:
+Það er erfitt að segja hvort tölurnar birtast í raun jafn oft.
+Ef við hækkum hins vegar {\tt numValues} í 100.000 þá fæst:
 
 \begin{verbatim}
 value   howMany
@@ -535,25 +512,19 @@ value   howMany
 9       9958
 \end{verbatim}
 %
-In each case, the number of appearances is within about 1\% of
-the expected value (10,000), so we conclude that the random
-numbers are probably uniform.
+Í sérhverju tilviki er fjöldi tilvika innan við 1\% af væntu gildi (10.000) þannig að við getum ályktað sem svo að tölurnar dreifist líklega jafnt.
 
-\section {A histogram}
+\section {Súlurit}
 \index{histogram}
 
-It is often useful to take the data from the previous tables
-and store them for later access, rather than just print them.
-What we need is a way to store 10 integers.  We could create
-10 integer variables with names like {\tt howManyOnes},
-{\tt howManyTwos}, etc.  But that would require a lot of
-typing, and it would be a real pain later if we decided to
-change the range of values.
+Það er oft gagnlegt að geyma gögn, eins og úr töflunni hér að ofan, og sækja þau síðar í stað þess að prenta þau bara út.
+Til þess þurfum við einhverja leið til að geyma 10 heiltölur.
+Við gætum búið til 10 heiltölubreytur með nöfn eins og {\tt howManyOnes}, {\tt howManyTwos}, o.s.frv.
+Þá þyrftum við hins vegar að slá mikið inn og það yrði erfitt fyrir okkur að breyta forritinu ef bilið (nú 0-9) breytist.
 
-A better solution is to use a vector with size 10.  That
-way we can create all ten storage locations at once and we
-can access them using indices, rather than ten different names.
-Here's how:
+Miklu betri lausn er að nota vektor af stærðinni 10.
+Þannig getum við búið til minnið fyrir allar 10 heiltölurnar í einu og getum nálgast þær með því að nota vísa (e. indices) í stað 10 mismunandi breytunafna.
+Hér er dæmi um þetta:
 
 \begin{verbatim}
   int numValues = 100000;
@@ -567,30 +538,24 @@ Here's how:
   }
 \end{verbatim}
 %
-I called the vector {\bf histogram} because that's
-a statistical term for a vector of numbers that counts the
-number of appearances of a range of values.
+Ég kallaði vektorinn {\bf histogram} (súlurit) því það er tölfræðilegt hugtak fyrir vektor af tölum sem heldur utan um fjölda tilvika af gildum á ákveðnu bili.
 
-\index{histogram}
+\index{súlurit}
 
-The tricky thing here is that I am using the loop variable
-in two different ways.  First, it is an argument to {\tt howMany},
-specifying which value I am interested in.  Second, it is
-an index into the histogram, specifying which location I should
-store the result in.
+Taktu eftir að hér nota ég lykkjubreytuna á tvo mismunandi vegu.
+Í fyrsta lagi sem viðfang í {\tt howMany} fallið til að tilgreina hvaða gildi ég hef áhuga á í hverri ítrun.
+Í öðru lagi er breytan notuð sem vísir inn í súluritið, þ.e. til að tilgreina hvar (í súluritinu) geyma eigi fjöldann.
 
-\section{A single-pass solution}
+\section{Skilvirkari lausn}
 
-Although this code works, it is not as efficient as it could
-be.  Every time it calls {\tt howMany}, it traverses the
-entire vector.  In this example we have to traverse the
-vector ten times!
+Þrátt fyrir að þessi kóði virki þá er hann ekki eins skilvirkur eins og hann gæti verið.
+Ferðast er um í öllum vektornum í hvert sinn sem kallað er á {\tt howMany}.
+Í þessu dæmi er því ferðast um í vektornum 10 sinnum!
 
-It would be better to make a single pass through the vector.
-For each value in the vector we could find the corresponding
-counter and increment it.  In other words, we can use the
-value from the vector as an index into the histogram.  Here's
-what that looks like:
+Það væri miklu betra að renna aðeins einu sinni (e. make a single pass) í gegnum vektorinn.
+Fyrir sérhvert gildi í vektornum gætum við fundið samsvarandi teljari og hækkað hann.
+Við getum, m.ö.o., notað gildið í vektornum sem vísi inn í súluritið.
+Svona myndi þetta líta út:
 
 \begin{verbatim}
   vector<int> histogram (upperBound, 0);
@@ -601,88 +566,63 @@ what that looks like:
   }
 \end{verbatim}
 %
-The first line initializes the elements of the histogram to
-zeroes.  That way, when we use the increment
-operator ({\tt ++}) inside the loop, we know we are starting from zero.
-Forgetting to initialize counters is a common error.
+Fyrsta línan upphafsstillir stök súluritsins með núlli.
+Það þýðir að þegar við notum virkjann {\tt ++} innan í lykkjunni þá vitum við að byrjað er í 0.
+Það er einmitt algeng villa að gleyma að upphafsstilla með núlli.
 
-As an exercise, encapsulate this code in a function called {\tt
-histogram} that takes a vector and the range of values in the vector
-(in this case 0 through 10), and that returns a histogram of the
-values in the vector.
+Þú ættir núna að hjúpa þennan kóða í fall sem kallað er {\tt histogram}.
+Fallið tekur vektor og bil (í þessu tilviki 0-9) sem viðföng og skilar súluriti yfir gildin í vektornum.
 
-\section{Random seeds}
-\index{seed}
-\index{random}
+\section{Slembifræ}
+\index{fræ}
+\index{slembitölur}
 
-If you have run the code in this chapter a few times, you might
-have noticed that you are getting the same ``random'' values
-every time.  That's not very random!
+Ef þú hefur keyrt kóðann í þessum kafla nokkrum sinnum þá hefur þú kannski tekið eftir því að þú hefur fengið sömu ``slembitölurnar'' aftur og aftur.
+Það er ekki mjög handahófskennt!
 
-One of the properties of pseudorandom number generators is that
-if they start from the same place they will generate
-the same sequence of values.  The starting place is called
-a {\bf seed}; by default, C++ uses
-the same seed every time you run the program.
+Einn af eiginleikum ``pseudo'' slembitalna er að ef byrjað er á sama stað þá myndast alltaf sama talnaröðin.
+Byrjunarpunkturinn er kallað ``fræ'' (e. seed) og C++ notar allaf sama fræið í hvert sinn sem þú keyrir forritið.
 
-While you are debugging, it is often helpful to
-see the same sequence over and over.  That way, when you make
-a change to the program you can compare the output before and
-after the change.
+Það getur oft verið gagnlegt að sjá sömu niðurstöðu (talnaröðina) aftur og aftur á meðan þú ert að kemba forrit.
+Þannig getur þú auðveldlega séð hvort breyting á forritinu þínu hefur í raun áhrif á úttak þess.
 
-If you want to choose a different seed for the random number
-generator, you can use the {\tt srand} function.  It takes
-a single argument, which is an integer between 0 and {\tt RAND\_MAX}.
+Ef þú vilt hins vegar nota mismunandi fræ fyrir myndun slembitalna þá getur þú notað {\tt srand} fallið.
+Það tekur eitt viðfang sem er heiltala á milli 0 og {\tt RAND\_MAX}.
 
-For many applications, like games, you want to see a different
-random sequence every time the program runs.  A common way to
-do that is to use a library function like {\tt gettimeofday}
-to generate something reasonably unpredictable
-and unrepeatable, like the number of milliseconds since the
-last second tick, and use that number as a seed.  The details
-of how to do that depend on your development environment.
+Í mörgum forritum, t.d. leikjum, er þörf á því að fá mismunandi slembitölurunur í hvert sinn sem forritið er keyrt.
+Algeng leið til að gera það er að nota fall eins og {\tt gettimeofday} sem býr til eitthvað sem er tiltölulega ófyrrisjáanlegt og ekki auðvelt að endurtaka,
+eins og fjöldi millisekúndna síðan kallað var síðast, og nota það gildi sem fræ.
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[vector:]  A named collection of values, where all the
-values have the same type, and each value is identified by
-an index.
+\item[vektor (e. vector):]  Safn af gildum sem öll hafa sama tag. Sérhvert gildi er einkennt með vísi (e. index).
 
-\item[element:]  One of the values in a vector.  The {\tt []}
-operator selects elements of a vector.
+\item[stak (e. element):]  Eitt af gildunum í vektor. Virkinn {\tt []} velur stök í vektor.
 
-\item[index:]  An integer variable or value used to indicate
-an element of a vector.
+\item[vísir (e. index):]  Heiltölubreyta eða gildi sem notað er til að einkenna stak í vektor. 
 
-\item[constructor:]  A special function that creates a new
-object and initializes its instance variables.
+\item[smiður (e. constructor):]  Sérstakt fall sem býr til nýtt tilvik og upphafsstillir tilvikabreytur þess.
 
-\item[deterministic:]  A program that does the same thing every
-time it is run.
+\item[löggengt forrit (e. deterministic program):]  Forrit sem gerir það sama í hvert skipti sem það er keyrt.
 
-\item[pseudorandom:]  A sequence of numbers that appear to be
-random, but which are actually the product of a deterministic
-computation.
+\item[``pseudo'' slembitöluruna (e. pseudorandom):]  Runa af tölum sem virðist vera handahófskennd en er í raun niðurstaðan af löggengum útreikningum.
 
-\item[seed:]  A value used to initialize a random number sequence.
-Using the same seed should yield the same sequence of values.
+\item[fræ (e. seed):]  Gildi sem notað er til að upphafsstilla slembitölurunu.
+Ef sama fræ er notað þá ætti að fást sama slembitöluruna.
 
-\item[bottom-up design:]  A method of program development that
-starts by writing small, useful functions and then assembling
-them into larger solutions.
+\item[neðansækin hönnun (e. bottom-up design):]  Forritunaraðferð sem byggir á því að skrifa fyrst lítil, gagnleg föll, sem síðan eru nýtt í stærri heildarlausn.
 
-\item[histogram:]  A vector of integers where each integer
-counts the number of values that fall into a certain range.
+\item[súlurit (e. histogram):]  Vektor af heiltölugildum þar sem hver tala stendur fyrir fjölda gilda á ákveðnu bili.
 
-\index{vector}
-\index{element}
-\index{index}
-\index{constructor}
-\index{deterministic}
-\index{pseudorandom}
-\index{seed}
-\index{histogram}
+\index{vektor}
+\index{stak}
+\index{vísir}
+\index{smiður}
+\index{löggeng}
+\index{slembitöluruna}
+\index{fræ}
+\index{súlurit}
 
 \end{description}
