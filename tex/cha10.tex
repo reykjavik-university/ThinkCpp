@@ -201,7 +201,7 @@ er jafngilt:
 
 \section{Stærð vektors}
 \index{stærð!vektor}
-\index{veckor!stærð}
+\index{vektor!stærð}
 
 Það eru margvísleg föll sem hægt er að keyra fyrir {\tt vector}.
 Eitt af þeim er þó sérstaklega gagnlegt: {\tt size()}.
@@ -273,10 +273,10 @@ Löggengni er yfirleitt kostur því við viljum jú að sömu útreikningar ski
 Í sumum tilvikum gætum við aftur á móti viljað að tölvur væru óútreiknanlegar.  Tölvuleikir eru gott dæmi um þetta.
 
 Það að gera forrit algerlega {\bf brigðgengt} (e. nondeterministic) er ekki auðvelt en það eru til leiðir til að láta það líta svo út.
-Ein leið er að búa til ``pseudo'' slembitölur (e. random numbers) og nota þær til að stýra útkomunni úr forriti.
-``Pseudo'' slembitölur eru ekki algerlega handahófskenndar í stærðfræðilegum skilningi en þær duga fyrir það sem við ætlum að gera.
+Ein leið er að búa til hermislembitölur (e. pseudo random numbers) og nota þær til að stýra útkomunni úr forriti.
+Hermislembitölur eru ekki algerlega handahófskenndar í stærðfræðilegum skilningi en þær duga fyrir það sem við ætlum að gera.
 
-Í hausaskránni {\tt cstdlib} (sem inniheldur ýmis konar ``standard library'' föll) er fallið {\tt random} skilgreint en það býr til ``pseudo'' slembitölur.
+Í hausaskránni {\tt cstdlib} (sem inniheldur ýmis konar ``standard library'' föll) er fallið {\tt random} skilgreint en það býr til hermislembitölur.
 
 Skilagildið úr {\tt random} er heiltala á milli 0 og {\tt RAND\_MAX}
 en {\tt RAND\_MAX} er stór tala (um það bil 2 milljarðar á minni tölvu) sem einnig er skilgreind í hausaskránni.
@@ -580,7 +580,7 @@ Fallið tekur vektor og bil (í þessu tilviki 0-9) sem viðföng og skilar súl
 Ef þú hefur keyrt kóðann í þessum kafla nokkrum sinnum þá hefur þú kannski tekið eftir því að þú hefur fengið sömu ``slembitölurnar'' aftur og aftur.
 Það er ekki mjög handahófskennt!
 
-Einn af eiginleikum ``pseudo'' slembitalna er að ef byrjað er á sama stað þá myndast alltaf sama talnaröðin.
+Einn af eiginleikum hermislembitalna er að ef byrjað er á sama stað þá myndast alltaf sama talnaröðin.
 Byrjunarpunkturinn er kallað ``fræ'' (e. seed) og C++ notar allaf sama fræið í hvert sinn sem þú keyrir forritið.
 
 Það getur oft verið gagnlegt að sjá sömu niðurstöðu (talnaröðina) aftur og aftur á meðan þú ert að kemba forrit.
@@ -607,7 +607,7 @@ eins og fjöldi millisekúndna síðan kallað var síðast, og nota það gildi
 
 \item[löggengt forrit (e. deterministic program):]  Forrit sem gerir það sama í hvert skipti sem það er keyrt.
 
-\item[``pseudo'' slembitöluruna (e. pseudorandom):]  Runa af tölum sem virðist vera handahófskennd en er í raun niðurstaðan af löggengum útreikningum.
+\item[hermislembitöluruna (e. pseudo random sequence):]  Runa af tölum sem virðist vera handahófskennd en er í raun niðurstaðan af löggengum útreikningum.
 
 \item[fræ (e. seed):]  Gildi sem notað er til að upphafsstilla slembitölurunu.
 Ef sama fræ er notað þá ætti að fást sama slembitöluruna.
