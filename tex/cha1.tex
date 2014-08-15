@@ -40,11 +40,6 @@ Hér er átt við að geta skilgreint verkefni, hugsað á skapandi hátt um lau
 
 Þessi bók er hugsuð sem kennslubók í fyrsta forritunarnámskeiðinu (Forritun) við tölvunarfræðideild Háskólans í Reykjavík (HR).
 Annað markmið bókarinnar er því að kenna þér grundvallaratriði í forritun -- grunn sem er nauðsynlegur fyrir önnur námskeið í tölvunarfræðináminu, eins og Gagnaskipan, Reiknirit og Forritunarmál.
-%Of course, the other goal of this book is to prepare you for the Computer Science AP Exam.
-%We may not take the most direct approach to that goal, though.
-%For example, there are not many exercSo the
-following is illegal: ises in this book that are similar to the AP questions.
-%On the other hand, if you understand the concepts in this book, along with the details of programming in C++, you will have all the tools you need to do well on the exam.
 
 \section{Hvað er forritunarmál?}
 \index{forritunarmál}
@@ -53,7 +48,7 @@ following is illegal: ises in this book that are similar to the AP questions.
 
 Í þessari bók er forritun kennd með því að nota forritunarmálið C++ sem er mjög útbreitt forritunarmál.
 C++ er {\bf æðra forritunarmál} (e. high-level language) en önnur sambærileg forritunarmál sem þú hefur kannski heyrt um eru t.d. Java, C{\#} og Python.
-Einkenni æðri forritunarmála er að smáatriði varðandi innri virkni tölvunnar hafa verið dregin út (e. abstracted away) sem merkir að forritarinn getur hugsað um verkefnið á æðra plani'' í stað þess að þurfa að hugsa um eiginleika tiltekins vélbúnaðar.
+Einkenni æðri forritunarmála er að smáatriði varðandi innri virkni tölvunnar hafa verið dregin út (e. abstracted away) sem merkir að forritarinn getur hugsað um verkefnið á ``æðra plani'' í stað þess að þurfa að hugsa um eiginleika tiltekins vélbúnaðar.
 
 Andstæðan við æðri forritunarmál eru {\bf lágtæknimál} (e. low-level languages), sem stundum eru einnig kölluð vélarmál (e. machine languages) eða smalamál (e. assembly languages).
 Í stuttu máli sagt þá geta tölvur aðeins keyrt forrit sem skrifuð eru í vélarmáli.
@@ -69,11 +64,11 @@ Ef hægt er að tala um einhvern ókost við æðri forritunarmál þá er hann 
 Á hinn bóginn eru kostirnir miklir.
 Í fyrsta lagi er miklu auðveldara að forrita í æðra forritunarmáli heldur en í lágtæknimáli.
 Með ``auðveldara'' er hér átt við að forritunin tekur minni tíma, forritið er styttra og læsilegra og mun líklegra til að vera rétt.
-Í öðru lagi eru æðri forritunarmál oftast {\bf færanleg} (e. portable), í þeim skilningi að hægt er að keyra þau á mismunandi vélum með engum eða litlum breytingum.
-Forrit sem skrifað eru í lágtæknimáli er aftur á móti eingöngu hægt að keyra á einni tiltekinni vél og þarfnast endurskriftar til keyrslu á annarri vélartegund.
+Í öðru lagi eru forrit sem skrifuð eru í æðri forritunarmál oftast {\bf færanleg} (e. portable), í þeim skilningi að hægt er að keyra þau á mismunandi vélum með engum eða litlum breytingum.
+Forrit sem skrifuð eru í lágtæknimáli er aftur á móti eingöngu hægt að keyra á einni tiltekinni vél og þarfnast endurskriftar til keyrslu á annarri vélartegund.
 
 Vegna þessara kosta eru langflest forrit í dag skrifuð í æðri forritunarmálum.
-Lágtæknimál eru notuð við sérstakar aðstæður, t.d. þegar forritið er á móti tilteknum örgjörvum.
+Lágtæknimál eru notuð við sérstakar aðstæður, t.d. þegar forritað er á móti tilteknum örgjörvum.
 
 \index{þýða}
 \index{túlka}
@@ -88,8 +83,7 @@ Túlkur les forrit línu fyrir línu, varpar sérhverri skipun í $S$ yfir í sk
 \centerline{\epsfig{figure=interpret.eps}}
 \vspace{0.1in}
 
-Þýðandi er forrit sem les annað forrit (sem oSo the
-following is illegal: ftast er skrifað í æðra forritunarmáli) og þýðir það yfir á annað mál (oftast lágtæknimál).
+Þýðandi er forrit sem les annað forrit (sem oftast er skrifað í æðra forritunarmáli) og þýðir það yfir á annað mál (oftast lágtæknimál).
 Hið þýdda forrit er þá tilbúið til keyrslu síðar meir.
 Inntakið í þýðandann er kallað {\bf frumkóði} (e. source code) og úttakið er {\bf markkóði} (e. target code).
 
@@ -114,7 +108,7 @@ Yfirleitt þarft þú aðeins að skrifa forritið og ýta síðan á hnapp (eð
 \section{Hvað er forrit?}
 
 Forrit er röð skipana sem segja til um hvernig framkvæma á tiltekna vinnslu.
-Vinnslan gæti t.d. verið stærðfræðileg, eins og að leysa jöfnuhneppi eða að finna rætur á margliðu.
+Vinnslan gæti t.d. verið stærðfræðileg, eins og að leysa jöfnuhneppi eða að finna rætur margliðu.
 Hún gæti jafnframt líka verið táknræn (e. symbolic), t.d. að leita að og skipta út texta í skrá eða að þýða forrit!
 
 \index{setning}
@@ -148,7 +142,7 @@ Forritun er því í raun það ferli að brjóta stórt, flókið verkefni upp 
 Forritun er flókið ferli sem framkvæmt er mönnum (en ekki vélum) og þess vegna eiga forritunarvillur oft sér stað.
 Af sögulegum ástæðum eru forritunarvillur oft kallaðar {\bf böggar} (e. bugs) og ferlið við að finna og leiðrétta þær er kallað {\bf kembing} eða {\bf aflúsun} (e. debugging).
 
-Mismunandi forritunarvillur geta komið upp í forriti og það er mikilvægt að gera greinarmun á þeim til að geta fundið þær og leiðrétt hraðar.
+Mismunandi forritunarvillur geta komið upp í forriti og það er mikilvægt að gera greinarmun á þeim til að geta fundið þær og leiðrétt hratt.
 
 \subsection{Þýðingarvillur}
 %\index{compile-time error}
@@ -354,8 +348,7 @@ Til að byrja með munum við ekki skýra suma þeirra, eins og fyrstu tvær lí
 Athugasemd er texti (oftast skrifaður í náttúrulegu máli) sem hægt er að setja inn hvar sem er í forriti í þeim tilgangi að skýra út hvað forritið, eða hluti þess, gerir.
 Þegar þýðandinn rekst á {\tt //} þá hunsar hann allan textann frá þeim stað og að enda línunnar.
 
-Í fjórðu línunni getur þú, sem stendur, hunsað orðið (tókann) {\tt int} en taktu eftir orðinu (tókanum) {\tt main}.
-sem er sérstakt nafn sem gefur til kynna staðinn þar sem keyrsla forritsins hefst.
+Í fjórðu línunni getur þú, sem stendur, hunsað orðið (tókann) {\tt int} en taktu eftir orðinu (tókanum) {\tt main} sem er sérstakt nafn sem gefur til kynna staðinn þar sem keyrsla forritsins hefst.
 Þegar forritið hefur keyrslu þá mun það byrja með því að keyra fyrstu setninguna í {\tt main}, heldur síðan áfram í réttri röð og hættir eftir framkvæmd síðustu setningarinnar.
 
 \index{úttak}
@@ -365,7 +358,7 @@ sem er sérstakt nafn sem gefur til kynna staðinn þar sem keyrsla forritsins h
 Sú setning er úttakssetning, þ.e. setning sem skrifar tiltekin skilaboð út á skjáinn. 
 
 {\tt cout} er sérstakur hlutur (e. object), innbyggður í C++, sem gerir þér kleift að senda tiltekið úttak á skjáinn (cout er úttaksstraumur).
-Táknið {\tt <<} er {\bf virki} (e. operator) sem beitt er á {\tt cout} og streng, og veldur því að strengurinn er skrifaður út. 
+Táknið {\tt <<} er {\bf virki} (e. operator), sem beitt er á {\tt cout} og streng, og veldur því að strengurinn er skrifaður út. 
 
 \index{virki}
 
@@ -383,7 +376,7 @@ hún er hluti af skilgreiningunni á {\tt main}.
 Einnig er vert að benda á að setninginn er inndregin (e. indented) sem sýnir á skýran hátt hvaða setningar eru hluti af skilgreiningunni.
 
 Á þessum tímapunkti mæli ég með því að þú setjist fyrir framan tölvuna þína og þýðir og keyrir þetta forrit.
-Hvernig það er gert er háð því forritunarumhverfi\footnote{Í fyrsta forritunarnámskeiðinu í tölvunarfræði í HR er forritunarumhverfið Code::Blocks \url{http://www.codeblocks.org/} notað.} sem þú notar en ég mun héðan í frá í þessari bók gera ráð fyrir að þú kunnir að gera það.
+Hvernig það er gert er háð því forritunarumhverfi\footnote{Í fyrsta forritunarnámskeiðinu í tölvunarfræði í HR er forritunarumhverfið Code::Blocks (\url{http://www.codeblocks.org/}) notað.} sem þú notar en ég mun héðan í frá í þessari bók gera ráð fyrir að þú kunnir að gera það.
 
 Eins og ég nefndi áður þá tekur C++ þýðandinn hart á málskipunarvillum.
 Ef þú gerir einhverjar innsláttarvillur í forritinu þá mun forritið líklega ekki þýðast.
@@ -397,7 +390,7 @@ hello.cpp:1: oistream.h: No such file or directory
 Notandavænni þýðandi myndi sjálfsagt segja eitthvað á þessa leið: 
 
 \begin{quote}
-``Í línu 1 í frumkóðanum með nafninu hello.cpp reyndir þú að taka inn `header' skrá með nafninu oistream.
+``Í línu 1 í frumkóðanum með nafninu hello.cpp reyndir þú að taka inn hausaskrá með nafninu oistream.
 Ég fann enga skrá með því nafni en fann aftur á móti skrá með nafninu iostream.
 Getur verið að þú hafir ætlað þér að taka þá skrá inn?''
 \end{quote}
