@@ -54,7 +54,7 @@ Eins og hér sést þá er löglegt að setja inn athugasemdir í enda línu sem
 
 Þeir hlutar setninganna að ofan sem birtir eru innan gæsalappa eru kallaðir {\bf strengir} (e. strings),
 vegna þess að þeir samanstanda af röð (streng) af bókstöfum.
-Reyndar vill svo til að strengir get innhaldið hvað samsetningu sem er af bókstöfum, tölum, greinarmerkjum og öðrum sérstökum táknum.
+Reyndar vill svo til að strengir geta innhaldið hvaða samsetningu sem er af bókstöfum, tölum, greinarmerkjum og öðrum sérstökum táknum.
 
 %\index{newline}
 \index{lína!ný}
@@ -102,7 +102,7 @@ Skil á milli lína og bil eru einmitt gagnleg fyrir okkur því lestur forritsi
 \index{gildi}
 \index{tag}
 
-{\bf Gildi} (e. value) (t.d. bókstafur eða tala) er eitt af þeim megin atriðum sem forrit vinnur með.
+{\bf Gildi} (e. value) (t.d. bókstafur eða tala) er eitt af þeim meginatriðum sem forrit vinnur með.
 Einu gildin sem við höfum unnið með hingað til eru strengjagildi, eins og \verb+"Hello, world."+.
 Þú (og þýðandinn) þekkir strengjagildi frá öðrum gildum vegna þess að strengir eru runa af stöfum innan gæsalappa.
 
@@ -177,7 +177,7 @@ eru bæði heiltölur með tagið {\tt int}.
 \index{gildisveiting}
 \index{setning!gildisveiting}
 
-Þegar við höfum lýst yfir (búið til) breytum þá viljum við gjarnan geyma einhver gildi í þeim.
+Þegar við höfum lýst yfir breytum þá viljum við gjarnan geyma einhver gildi í þeim.
 Það gerum við með svokölluðum {\bf gildisveitingum} (e. assignments):
 
 \begin{verbatim}
@@ -251,12 +251,11 @@ Forritið gefur þessum breytum viðeigandi gildi og notar síðan runu af útta
 The current time is 11:59
 \end{verbatim}
 
-Þegar við tölum um að ``skrifa út breytu'' þá eigum við við að skrifa út 
-{\em gildi} breytunnar.
+Þegar við tölum um að ``skrifa út'' breytu þá eigum við við að skrifa út {\em gildi} breytunnar.
 Til að skrifa út {\em nafn} breytu þurfum við að setja nafnið inni í gæsalappir, t.d. {\tt cout << "hour";}
 
 Eins og við höfum áður séð þá er hægt að hafa fleiri en eitt gildi í einni og sömu úttakssetningunni.
-Það gerir forritið að ofan ``hnitmiðaðra'' (e. concise):
+Það gerir forritið að ofan hnitmiðaðra (samþjappaðra) (e. concise):
 
 \begin{verbatim}
   int hour, minute;
@@ -296,7 +295,7 @@ Ef þú býrð til breytunafn sem birtist í bláum lit þá veistu að um lykil
 \index{virki}
 
 {\bf Virkjar} (e. operators) eru sérstök tákn sem standa fyrir einfalda útreikninga eins og samlagningu og margföldun.
-Flestir virkjar í C++ gera nákvæmalega það sem þú myndir búast við vegna þess að þeir eru þekkt stærðfræðitákn.
+Flestir virkjar í C++ gera nákvæmlega það sem þú myndir búast við vegna þess að þeir eru þekkt stærðfræðitákn.
 T.d. er {\tt +} notað til að leggja saman tvær heiltölur.
 
 Hér má sjá dæmi um leyfilegar segðir (e. expressions) hvers merking ætti að vera augljós:
@@ -370,12 +369,12 @@ Nákvæm skýring á forgangsreglum getur verið flókin en við getum notað ef
 \begin{itemize}
 
 \item Margföldun og deiling hafa hærri forgang en samlagning og frádráttur.
-M.ö.o. margfjöldun og deiling eru framkvæmdar áður en samlagning og frádráttur.
+M.ö.o. margföldun og deiling eru framkvæmdar áður en samlagning og frádráttur.
 Þannig er útkoman úr {\tt 2*3-1} 5 en ekki 4 og {\tt
 2/3-1} skilar -1 en ekki 1 (útkoman úr heiltöludeilingunni {\tt 2/3} er 0).
 
 \item Ef virkjar hafa sama forgang þá eru þeim beitt frá vinstri til hægri.
-Í segðinni {\tt minute*100/60} er margfjölduninni beitt fyrst sem skilar {\tt 5900/60} og lokaniðurstaðan verður þá {\tt 98}.
+Í segðinni {\tt minute*100/60} er margfölduninni beitt fyrst sem skilar {\tt 5900/60} og lokaniðurstaðan verður þá {\tt 98}.
 Ef virkjunum væri beitt frá hægri til vinstri þá yrði niðurstaðan {\tt 59*1} = {\tt 59} sem væri rangt.
 
 \item Ef þú vilt beita annarri forgangsröðun aðgerða en þeirri innbyggðu þá getur þú notað sviga.
@@ -428,7 +427,7 @@ Aftur á móti er það stundum slæmt fyrir byrjendur í forritun sem finnast o
 Hingað til höfum við skoðað einstakar einingar forritunarmáls -- breytur, segðir og setningar -- án þess að ræða hvernig þær eru settar saman.
 
 Einn gagnlegasti eiginleiki forritunarmála er geta þeirra til að setja saman litlar forritseiningar og mynda þannig heildstætt forrit.
-Við vitum t.d. hvernig á að margfalda saman heiltölur og við vitum hvernig á að skrifa út gildi; svo vill reyndar til að við getum gert hvort tveggja á sama tíma:
+Við vitum t.d. hvernig á að margfalda saman heiltölur og við vitum hvernig á að skrifa út gildi -- svo vill reyndar til að við getum gert hvort tveggja á sama tíma:
 
 \begin{verbatim}
     cout << 17 * 3;
@@ -469,7 +468,7 @@ Allar breytur í C++ hafa tag sem ákvarðar hvers konar gildi breytan getur gey
 
 \item[tag (e. type):] Mengi af gildum. Tögin sem við höfum þegar séð eru t.d. heiltölur ({\tt int}) og stafir ({\tt char}).
 
-\item[lykilorð (e. keyword):]  Frátkeið orð sem notað er af þýðandanum til að þátta forritið.
+\item[lykilorð (e. keyword):]  Frátekið orð sem notað er af þýðandanum til að þátta forritið.
 Dæmi um lykilorð: {\tt int}, {\tt void} og {\tt endl}.
 
 \item[setning (e. statement):] Forritseining sem stendur fyrir tiltekna skipun eða aðgerð.
