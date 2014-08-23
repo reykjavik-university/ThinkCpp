@@ -79,7 +79,7 @@ struct Point {
 \end{verbatim}
 %
 Fyrsta línan er hefðbundin yfirlýsing á breytu: {\tt blank} er af taginu {\tt Point}.
-Næstu tvær línur upphafsstilla tilvikabreytur strúktúrsins.
+Næstu tvær línur frumstilla tilvikabreytur strúktúrsins.
 Hér er punktatáknun notuð á svipaðan hátt og þegar kallað er á fall sem tilheyrir tilteknum hlut, eins og í {\tt fruit.length()}.
 Munurinn er auðvitað sá að fallakalli fylgir viðfangalisti, jafnvel þó hann sé tómur.
 
@@ -129,8 +129,8 @@ og samanburðarvirkjarnir (e. comparison operators) ({\tt ==}, {\tt >}, o.s.frv.
 Reyndar er hægt að breyta merkingu þessara virkja fyrir ný tög en við munum ekki fjalla um það í þessari bók.
 
 Gildisveitingarvirkjanum (e. assignment operator) er aftur á móti hægt að beita á strúktúra.
-Hægt er að nota hann á tvo vegu: til að upphafsstilla tilvikabreytu strúktúrs eða til að afrita gildi tilvikabreytu úr einum strúktúr í annan.
-Upphafsstilling lítur svona út:
+Hægt er að nota hann á tvo vegu: til að frumstilla tilvikabreytu strúktúrs eða til að afrita gildi tilvikabreytu úr einum strúktúr í annan.
+Frumstilling lítur svona út:
 
 \begin{verbatim}
   Point blank = { 3.0, 4.0 };
@@ -139,7 +139,7 @@ Upphafsstilling lítur svona út:
 Tilvikabreytur breytunnar {\tt blank} fá hér gildin úr slaufusviganum, í þeirri röð sem þau eru sett fram.
 Þannig að hér fær {\tt blank.x} fyrsta gildið (3.0) og {\tt blank.y} annað gildið (4.0). 
 
-Því miður er eingöngu hægt að nota þessa málskipan í upphafsstillingu en ekki í gildisveitingarsetningu.
+Því miður er eingöngu hægt að nota þessa málskipan í frumstillingu en ekki í gildisveitingarsetningu.
 Eftirfarandi er því ekki löglegt:
 
 \begin{verbatim}
@@ -305,7 +305,7 @@ Taktu eftir að einn strúktúr getur innifalið annan og það er reyndar mjög
   Rectangle box = { corner, 100.0, 200.0 };
 \end{verbatim}
 %
-Þessi kóði býr til nýjan {\tt Rectangle} strúktúr og upphafsstillir tilvikabreytur hans.
+Þessi kóði býr til nýjan {\tt Rectangle} strúktúr og frumstillir tilvikabreytur hans.
 Myndin sýnir áhrif þess.
 
 \vspace{0.1in}

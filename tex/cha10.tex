@@ -56,7 +56,7 @@ Fyrri línan býr til vektor af heiltölum með nafnið {\tt count} en seinni l�
 Málskipanin er hér dálítið skrýtin því hún lítur út eins og samsetning breytuyfirlýsingar og fallakalls.
 Það er reyndar nákvæmlega það sem hún er!
 Fallið sem við erum að kalla á er svokallaður smiður í {\tt vector} klasanum.
-{\bf Smiður} (e. constructor) er sérstakt fall sem býr til nýtt tilvik og upphafsstillir tilvikabreytur þess.
+{\bf Smiður} (e. constructor) er sérstakt fall sem býr til nýtt tilvik og frumstillir tilvikabreytur þess.
 Í þessu tilviki tekur smiðurinn eitt viðfang sem er stærð vektorsins.
 
 \index{smiður}
@@ -69,15 +69,15 @@ Eftirfarandi mynd sýnir hvernig vektorar eru táknaðir á stöðuritum:
 
 Stóru tölurnar innan í boxunum eru {\bf stök} (e. elements) vektorsins. 
 Litlu tölurnar fyrir utan boxin eru vísarnir (e. indices) sem notaðir eru til að einkenna sérhvert box.
-Stök vektors eru ekki upphafsstillt þegar nýr vektor er búinn til og því gætu þau gætu í raun innihaldið hvaða gildi sem er.
+Stök vektors eru ekki frumstillt þegar nýr vektor er búinn til og því gætu þau gætu í raun innihaldið hvaða gildi sem er.
 
-Það er til annar smiður fyrir {\tt vector} sem tekur tvö viðföng; seinna viðfangið er ``upphafsstillingargildi'', þ.e. gildið sem sérhvert stak vektorsins fær í upphafi.
+Það er til annar smiður fyrir {\tt vector} sem tekur tvö viðföng; seinna viðfangið er ``frumstillingargildi'', þ.e. gildið sem sérhvert stak vektorsins fær í upphafi.
 
 \begin{verbatim}
   vector<int> count (4, 0);
 \end{verbatim}
 %
-Þessi setning býr til vektor með fjórum stökum og upphafsstillir öll stökin með núlli.
+Þessi setning býr til vektor með fjórum stökum og frumstillir öll stökin með núlli.
 
 \section{Aðgangur að stökum}
 \index{stak}
@@ -153,7 +153,7 @@ Gildisveitingarvirkinn {\tt =} virkar fyrir vektorar á þann hátt sem ætla m�
 \section{{\tt for} lykkjur}
 
 Lykkjurnar sem við höfum skrifað hingað til eiga ýmislegt sameiginlegt.
-Allar byrja þær á því að upphafsstilla breytur.
+Allar byrja þær á því að frumstilla breytur.
 Þær innihalda jafnframt skilyrði sem er háð breytunni og meginmál lykkjunnar gerir eitthvað við breytuna, eins og að hækka hana. 
 
 \index{lykkja!for}
@@ -566,9 +566,9 @@ Svona myndi þetta líta út:
   }
 \end{verbatim}
 %
-Fyrsta línan upphafsstillir stök súluritsins með núlli.
+Fyrsta línan frumstillir stök súluritsins með núlli.
 Það þýðir að þegar við notum virkjann {\tt ++} innan í lykkjunni þá vitum við að byrjað er í 0.
-Það er einmitt algeng villa að gleyma að upphafsstilla með núlli.
+Það er einmitt algeng villa að gleyma að frumstilla með núlli.
 
 Þú ættir núna að hjúpa þennan kóða í fall sem kallað er {\tt histogram}.
 Fallið tekur vektor og bil (í þessu tilviki 0-9) sem viðföng og skilar súluriti yfir gildin í vektornum.
@@ -603,13 +603,13 @@ eins og fjöldi millisekúndna síðan kallað var síðast, og nota það gildi
 
 \item[vísir (e. index):]  Heiltölubreyta eða gildi sem notað er til að einkenna stak í vektor. 
 
-\item[smiður (e. constructor):]  Sérstakt fall sem býr til nýtt tilvik og upphafsstillir tilvikabreytur þess.
+\item[smiður (e. constructor):]  Sérstakt fall sem býr til nýtt tilvik og frumstillir tilvikabreytur þess.
 
 \item[löggengt forrit (e. deterministic program):]  Forrit sem gerir það sama í hvert skipti sem það er keyrt.
 
 \item[hermislembitöluruna (e. pseudo random sequence):]  Runa af tölum sem virðist vera handahófskennd en er í raun niðurstaðan af löggengum útreikningum.
 
-\item[fræ (e. seed):]  Gildi sem notað er til að upphafsstilla slembitölurunu.
+\item[fræ (e. seed):]  Gildi sem notað er til að frumstilla slembitölurunu.
 Ef sama fræ er notað þá ætti að fást sama slembitöluruna.
 
 \item[neðansækin hönnun (e. bottom-up design):]  Forritunaraðferð sem byggir á því að skrifa fyrst lítil, gagnleg föll, sem síðan eru nýtt í stærri heildarlausn.
