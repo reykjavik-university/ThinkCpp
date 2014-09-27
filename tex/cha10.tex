@@ -135,7 +135,7 @@ Meginmál lykkjunnar er því eingöngu keyrt þegar {\tt i} er 0, 1, 2 og 3.
 \section{Afritun vektora}
 \index{vektor!afritun}
 
-Það er til einn smiður í viðbót fyrir {\tt vector} sem kallaður ``afritatökusmiður'' (e. copy constructor)
+Það er til einn smiður í viðbót fyrir {\tt vector} sem kallaður er ``afritatökusmiður'' (e. copy constructor)
 vegna þess að hann tekur einn {\tt vector} sem viðfang og býr til nýjan vektor af sömu stærð og með sömu stök.
 
 \begin{verbatim}
@@ -179,7 +179,7 @@ Ofangreind setning er nákvæmlega jafngild þessu:
   }
 \end{verbatim}
 %
-{\tt for}-setningin er aftur á móti gagnorðaðri og læsilegri því í henni eru allar lykkjusetningarnar á einum stað.
+{\tt for}-setningin er aftur á móti gagnyrtari og læsilegri því í henni eru allar lykkjusetningarnar á einum stað.
 Dæmi:
 
 \begin{verbatim}
@@ -230,7 +230,7 @@ Taktu eftir því að kallað er á {\tt size()} fallið í hverri ítrun lykkju
 \index{föll!vektor}
 \index{vektor!föll}
 
-Einn besti eiginleiki vektors er geta hans til að stækka eða minnka að þörf.
+Einn besti eiginleiki vektors er geta hans til að stækka eða minnka ef þurfa þykir.
 Eftir að vektor hefur verið búinn til þá er hægt að stækka hann eða minnka hvar sem er í forritinu.
 Gerum t.d. ráð fyrir að við lesum inn tölur frá notanda inn í vektor þangað til notandi slær inn {\tt -1} en þá skrifum við tölurnar út.
 Í svona tilviki vitum við ekki stærðina á vektornum fyrirfram.
@@ -324,7 +324,7 @@ Dæmi:
 Þar sem {\tt y} er afgangurinn sem fæst með þvi að deila {\tt x} með {\tt upperBound} þá liggja gildin fyrir {\tt y} á bilinu 0 og {\tt upperBound - 1} (að báðum meðtöldum).
 Hafðu í huga að {\tt y} er aldrei jafnt og {\tt upperBound}.
 
-Það er einnig oft gagnlegt að búa til slembikommutölur
+Það er einnig oft gagnlegt að búa til slembikommutölur.
 Algeng leið til að gera það er að deila með {\tt RAND\_MAX}.
 Dæmi:
 
@@ -341,7 +341,7 @@ Dæmi:
 \index{dreifing}
 \index{meðaltal}
 
-Tölurnar sem {\tt random} fallið býr til eiga að dreifast jafn (e. distributed uniformly).
+Tölurnar sem {\tt random} fallið býr til eiga að dreifast jafnt.
 Það þýðir að sérhvert gildi á hinu valda bili ætti að vera jafn líklegt.
 Fjöldinn af sérhverju gildi ætti að vera nokkurn veginn sá sami að því gefnu að við látum {\tt random} búa til nógu mörg gildi fyrir okkur.
 
@@ -354,7 +354,7 @@ Með ``mikinn fjölda'' á ég auðvitað við 20!
 Það er góð regla að byrja með lítinn fjölda (sem auðveldar kembun) og fjölga tölum síðar.
 
 Eftirfarandi fall tekur eitt viðfang, stærð vektors.
-Það úthlutar minni fyrir nýjan vektor fyrir {\tt int} og fyllir hann með slembitölum á bilinu 0 og {\tt upperBound-1}.
+Það úthlutar minni fyrir nýjan vektor af heiltölum og fyllir hann með slembitölum á bilinu 0 og {\tt upperBound-1}.
 
 \begin{verbatim}
 vector<int> randomVector (int n, int upperBound) {
@@ -401,8 +401,8 @@ sem virðist vera nokkuð handahófskennt.  Þitt úttak er væntanlega öðruv�
 Ef þessar tölur eru raunverulegar slembitölur þá megum við gera ráð fyrir því að sérhver tala komi jafn oft fyrir, þ.e. tvisvar sinnum.
 Það vill reyndar svo til að talan 6 kemur fyrir fimm sinnum og tölurnar 4 og 8 koma ekki fyrir.
 
-En þýðir þetta þá að gildin fylgja ekki jafnri dreifingu?
-Það er erfitt að segja til um, því þegar gildin eru svona fá þá eru afskaplega litlar líkur á því að fá nákvæmlega það sem við eigum von á.
+En þýðir þetta þá að gildin fylgi ekki jafnri dreifingu?
+Það er erfitt að segja til um því þegar gildin eru svona fá þá eru afskaplega litlar líkur á því að fá nákvæmlega það sem við eigum von á.
 Þegar gildum fjölgar þá ætti útkoman, aftur á móti, að vera fyrirsjáanlegri.
 
 Til að prófa þessa tilgátu munum við skrifa forrit sem telur hversu oft sérhvert gildi kemur fyrir og síðan athuga hvað gerist

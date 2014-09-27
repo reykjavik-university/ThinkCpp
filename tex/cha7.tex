@@ -130,7 +130,7 @@ Til að lýsa þessu fallakalli getum við sagt að við séum að {\bf kalla á
 Málskipanin fyrir þetta er kölluð ``punktatáknun'' (e. dot notation) vegna þess að punktur (e. dot) kemur á milli nafns hlutarins
 {\tt fruit}, og nafns fallsins {\tt length}.
 
-{\tt length} tekur engin viðfögn eins og sjá má með tómu svigunum {\tt ()}.
+{\tt length} tekur engin viðföng eins og sjá má með tómu svigunum {\tt ()}.
 Skilagildið er heiltala, í þessu tilviki 6.
 Taktu eftir að það er leyfilegt að hafa breytu með sama nafn og fall. 
 
@@ -154,7 +154,7 @@ Við þurfum að draga 1 frá {\tt length} til að draga út síðasta stafinn.
 \index{ferðast eftir}
 
 Þegar unnið er með strengi þá er algengt að byrja á byrjuninni, velja síðan næsta staf, 
-framkvæma einhverja aðgerða á honum, og endurtaka þetta þangað til að komið er að enda strengsins.
+framkvæma einhverja aðgerð á honum, og endurtaka þetta þangað til að komið er að enda strengsins.
 Þetta vinnslumynstur er kallað {\bf að ferðast eftir} (e. traverse).
 Það er einfalt að kóða svona ``rölt'' með {\tt while} setningu:
 
@@ -179,7 +179,7 @@ Síðasti stafurinn sem við drögum út er sá með vísinn (e. index) {\tt fru
 Nafn lykkjubreytunnar er {\tt index}.
 {\bf index} (eða vísir á íslensku) er breyta eða gildi sem notuð er til að tilgreina eitt stak í röðuðu mengi, í þessu tilviki mengi af stöfum í streng.
 Vísirinn tilgreinir hvaða stak maður hefur áhuga á.
-Mengið þarf að vera raðað þannig að sérhver stafur hafi vísi og að visir standi fyrir einn tiltekinn staf.
+Mengið þarf að vera raðað þannig að sérhver stafur hafi vísi og að vísir standi fyrir einn tiltekinn staf.
 
 Þú ættir núna, svona til að æfa þig, að skrifa fall sem tekur {\tt string} sem viðfang og skrifar út stafi strengsins í öfugri röð, alla í einni og sömu línunni.
 
@@ -189,7 +189,7 @@ Mengið þarf að vera raðað þannig að sérhver stafur hafi vísi og að vis
 
 Í kafla~\ref{run-time} talaði ég um keyrsluvillur, þ.e. villur sem koma ekki fram fyrr en við keyrslu forrits.
 
-Hingað til hefur þú líklega ekki séð margar keyrsluvillur vegna þess að við höfum ekki gert marga hluti sem gætu orsakað keyrsluvillur.
+Hingað til hefur þú líklega ekki séð margar keyrsluvillur vegna þess að við höfum ekki gert marga hluti sem gætu orsakað þær.
 Það breytist núna.
 Ef þú notar {\tt []} virkjann og gefur upp vísi sem er negatífur eða stærri en {\tt length-1} þá færðu keyrsluvillu með villuskilaboðum eitthvað á þessa leið:
 
@@ -229,7 +229,7 @@ Dæmi:
 
 Þú ættir að muna frá kafla~\ref{overloading} að hægt er að vera með fleiri en eitt fall með sama nafni,
 svo framarlega sem þau taka mismunandi fjölda viðfanga eða mismunandi tög.
-Í þessu tilvik veit C++ þýðandinn hvora útgáfuna af {\tt find} verið er að nota með því að skoða tög viðfanganna í kallinu.
+Í þessu tilviki veit C++ þýðandinn hvora útgáfuna af {\tt find} verið er að nota með því að skoða tög viðfanganna í kallinu.
 
 \section{Okkar eigin útgáfa af {\tt find}}
 
@@ -297,7 +297,7 @@ Svona til að æfa þig þá skaltu núna hjúpa þennan kóða sem fall með na
 \index{virki!auki}
 \index{virki!frádrag}
 
-Það að bæta við einum (e. incrementing) og draga einn frá (e. decrementing) eru svo algengar aðgerðir að C++ býður upp á sértaka virkja fyrir þær.
+Það að bæta við einum (e. incrementing) og draga einn frá (e. decrementing) eru svo algengar aðgerðir að C++ býður upp á sérstaka virkja fyrir þær.
 {\tt ++} virkinn (sem kalla má ``auki'' á íslensku) bætir einum við núverandi gildi á {\tt int}, {\tt char} eða {\tt double}, og
 \verb+--+ (sem kalla má ``frádrag'' á íslensku) dregur einn frá.
 Hvorugur virkjanna virkar á {\tt string} og hvorugum þeirra {\em ætti} að beita á {\tt bool}.
@@ -461,7 +461,7 @@ Næsti kafli skýrir hvernig það er gert.
 
 Það er oft gagnlegt að skoða staf og athuga hvort hann er hástafur eða lágstafur eða hvort hann er bókstafur eða tölustafur.
 C++ fylgir safn falla (e. library functions) sem getur flokkað stafi á þennan hátt.
-Þú þarf að setja hausaskrána {\tt ctype.h} inn í forritið þitt til að geta notað þessi föll.
+%Þú þarf að setja hausaskrána {\tt ctype.h} inn í forritið þitt til að geta notað þessi föll.
 
 \begin{verbatim}
   char letter = 'a';
@@ -510,7 +510,7 @@ Við munum ræða tvö í viðbót, {\tt c\_str} í kafla ~\ref{finput} og {\tt 
 \item[hlutur (e. object):] Tilvik af tilteknum klasa. Tilvikinu fylgja mengi af föllum sem framkvæma aðgerðir á því.
 Hlutirnir sem við höfum notað hingað til eru {\tt cout} og tilvik af {\tt string}.
 
-\item[vísir (e. index):]  Breyta eða gildi sem notuð er til að velja eitt stak í röðuðu mengi, t.d. einn staf úr streng.
+\item[vísir (e. index):]  Breyta eða gildi sem notað er til að velja eitt stak í röðuðu mengi, t.d. einn staf úr streng.
 
 \item[ferðast eftir (e. traverse):]  Að ítra í gegnum öll stök mengis og framkvæma sömu aðgerð á sérhverju staki.
 
