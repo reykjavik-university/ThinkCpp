@@ -62,7 +62,7 @@ struct Point {
 };  
 \end{verbatim}
 %
-{\tt struct} skilgreining kemur yfirleitt fyrir utan fallaskilgreininga, í upphafi forrits (á eftir {\tt include} setningum).
+{\tt struct} skilgreining er yfirleitt sett fram utan fallaskilgreininga, í upphafi forrits (á eftir {\tt include} setningum).
 
 Þessi skilgreining gefur til kynna að í strúktúrnum eru tvö stök (gildi), nefnd {\tt x} og {\tt y}.
 Þessi stök eru kölluð {\bf tilvikabreytur} (e. instance variables), en ég mun skýra síðar hver ástæðan er fyrir því.
@@ -207,7 +207,7 @@ Um er að ræða tvær breytur (önnur í þeim sem kallar (e. caller) og hin í
 Ef {\tt printPoint} breytir annarri (eða báðum) tilvikabreytum {\tt p} þá mun það ekki hafa nein áhrif á {\tt blank} (auðvitað er engin ástæða fyrir {\tt printPoint} að breyta leppnum sínum).
 
 Þessi tegund af {\bf stikun færibreytna} (e. parameter passing) er kölluð ``kall með gildi'' (e. ``pass by value'')
-vegna þess að gildi (e. value) strúktúrsins (eða hvaða tags sem er) er sent til fallsins.
+vegna þess að gildi (e. value) strúktúrsins (eða hvaða tags sem er) er sent til fallsins og afritað yfir í leppinn.
 
 \section{Kallað með tilvísun}
 \index{stikun færibreytna}
@@ -443,7 +443,7 @@ Við getum gert eftirfarandi til að sækja heiltölugildi frá notanda:
 \end{verbatim}
 %
 {\tt >>} virkinn veldur því að forritið stoppar keyrslu og bíður eftir að notandinn slái eitthvað inn af lyklaborði.
-Ef notandi slær inn tölustaf þá breytir forritið honum í heiltölugildi og geymir að í {\tt x}.
+Ef notandi slær inn tölustaf þá breytir forritið honum í heiltölugildi og geymir það í {\tt x}.
 
 \index{virki!{\tt >>}}
 

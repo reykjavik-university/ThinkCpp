@@ -93,7 +93,8 @@ struct Time {
 
 void printTime (Time& t) {
   cout << t.hour << ":" << t.minute << ":" << t.second << endl;
-  cout << "Time is " << t.hour << " hour " << t.minute << " minutes " << t.second << "  seconds  "<<endl;
+  cout << "Time is " << t.hour << " hour " << t.minute << " minutes " 
+       << t.second << "  seconds  "<<endl;
 }
 
 
@@ -430,13 +431,13 @@ Bein leið væri að útfæra frádráttinn með ``láni'' (e. borrowing).
 Þess konar þekking er í raun ekki reikniritanleg.
 
 En ef þú varst ``löt/latur'' þá svindlaðir þú líklega og lærðir nokkur trikk.
-Til að finna t.d. margfeldið á $n$ and 9 getur þú skrifað $n-1$ sem fyrri tölustafinn og $10-n$ seinni stafinn.
+Til að finna t.d. margfeldið af $n$ and 9 getur þú skrifað $n-1$ sem fyrri tölustafinn og $10-n$ seinni stafinn.
 Þetta trikk er almenn lausn til að margfalda tölu (með einum tölustaf) með 9.
 Þetta er reiknirit!
 
 Á sama hátt eru aðferðirnar sem þú lærðir til að leggja saman, með því færa yfir, og að draga frá, með því að taka að láni, líka reiknirit.
 Eitt sem einkennir reiknirit er að þau krefjast ekki neinnar sérstakar greindar til að framkvæma þau.
-Þau eru sjálfvirk ferli þar sem sérhvert skref er framkvæmd á eftir undanfarandi skrefi í samræmi við einfalt mengi af reglum.
+Þau eru sjálfvirk ferli þar sem sérhvert skref er framkvæmt á eftir undanfarandi skrefi í samræmi við einfalt mengi af reglum.
 
 Það er mín skoðun að það sé í raun vandræðalegt hversu löngum tíma við eyðum í skóla að keyra reiknirit sem þarfnast í raun engrar greindar.
 
@@ -457,7 +458,7 @@ mörgum áhugaverðum, snjöllum og gagnlegum reikniritum sem tölvunarfræðing
 \item[tilvik (e.instance):]  Eitt dæmi úr tilteknum flokki.  Kötturinn minn er tilvik úr flokknum ``læður''. 
 Sérhver hlutur (e. object) er tilvik af einhverju tagi.
 
-\item[tilvikabreyta (e. instance variable):]  Ein af þeim breytum sem mynda strúktúr. Sérhver tilvik af strúktúr á sér eigin afrit af tilvikabreytunum fyrir viðkomandi tag.
+\item[tilvikabreyta (e. instance variable):]  Ein af þeim breytum sem mynda strúktúr. Sérhvert tilvik af strúktúr á sér eigin afrit af tilvikabreytunum fyrir viðkomandi tag.
 
 \item[fast tilvísunarviðfang (e. constant reference parameter):]  Viðfang sem er sent sem tilvísun í fall en er samt sem áður ekki hægt að breyta í fallinu.
 
