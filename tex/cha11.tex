@@ -22,89 +22,69 @@
 % it from www.gnu.org or by writing to the Free Software Foundation,
 % Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
 
-\chapter{Member functions}
+\chapter{Meðlimaföll}
 
-\section{Objects and functions}
-\index{member function}
-\index{function!member}
+\section{Hlutir og föll}
+\index{meðlimafall}
+\index{fall!meðlimur}
 
-C++ is generally considered an object-oriented programming language,
-which means that it provides features that support object-oriented
-programming.
+C++ er hlutbundið forritunarmál sem merkir að það hefur eiginleika sem styðja við hlutbundna forritun.
 
-It's not easy to define object-oriented programming, but we have
-already seen some features of it:
+Það er ekki auðvelt að skilgreina hlutbundna forritun en við höfum þó þegar séð suma eiginleika hennar:
 
 \begin{enumerate}
 
-\item Programs are made up of a collection of structure definitions
-and function definitions, where most of the functions operate on
-specific kinds of structures (or objecs).
+\item Forrit samanstanda af safni af strúktúrskilgreiningum og fallaskilgreiningum 
+þar sem flest föllin vinna með tiltekna tegundur af strúktúrum (eða hlutum).
 
-\item Each structure definition corresponds to some
-object or concept in the real world, and the functions that operate
-on that structure correspond to the ways real-world objects interact.
+\item Sérhver strúktúrskilgreining stendur fyrir einhvern hlut eða hugtak í raunveruleikanum og föllin sem framkvæma aðgerðir á viðkomandi strúktúr
+líkja eftir því hvernig raunverulegir hlutir eiga samskipti.
 
 \end{enumerate}
 
-For example, the {\tt Time} structure we defined in Chapter~\ref{time}
-obviously corresponds to the way people record the time of day,
-and the operations we defined correspond to the sorts of things
-people do with recorded times.  Similarly, the {\tt Point} and
-{\tt Rectangle} structures correspond to the mathematical concept
-of a point and a rectangle.
+{\tt Time} strúktúrinn, t.d., sem við skilgreindum í kafla~\ref{time}
+samsvarar augljóslega hvernig fólk skráir tíma innan dagsins og 
+aðgerðirnar sem við skilgreindum samsvara því hvað fólk gerir við hugtakið tími.
 
-So far, though, we have not taken advantage of the features C++
-provides to support object-oriented programming.  Strictly speaking,
-these features are not necessary.  For the most part they provide
-an alternate syntax for doing things we have already done, but
-in many cases the alternate syntax is more concise and more
-accurately conveys the structure of the program.
+Á sambærilegan hátt má segja að {\tt Point} og
+{\tt Rectangle} hlutirnir samsvari stærðfræðilegu hugtökunum hnit og rétthyrningur.
 
-For example, in the {\tt Time} program, there is
-no obvious connection between the structure definition and the
-function definitions that follow.  With some examination, it
-is apparent that every function takes at least one {\tt Time}
-structure as a parameter.
-
-This observation is the motivation for {\bf member functions}.
-Member function differ from the other functions we have written
-in two ways:
+Hingað til höfum við ekki nýtt okkur þá eiginleika sem C++ býður upp á til að styðja við hlutbundna forritun.
+Strangt til tekið eru þessir eiginleikar reyndar ekki nauðsynlegir.
+Að mestu leyti gera þeir forriturum kleift að nota aðra málskipan til að framkvæma eitthvað sem við höfum þegar gert áður
+en í mörgum tilvikum er þessi nýja málskipan samanþjappaðri (e. more concise) og sýnir á nákvæmari hátt högun forritsins. 
+ 
+Í {\tt Time} forritinu er t.d. ekkert augljóst samband á milli strúktúrskilgreiningarinnar og fallanna sem á eftir koma.
+Við nánari athugun sést hins vegar er ljóst að sérhvert fallanna tekur a.m.k. einn {\tt Time} hlut sem viðfang og það leiðir okkur að hugtakinu  {\bf meðlimafall} (e. member function).
+Meðlimaföll eru ólík öðrum föllum sem við höfum skrifað á tvennan hátt:
 
 \begin{enumerate}
 
-\item When we call the function, we {\bf invoke} it on an
-object, rather than just call it.  People sometimes describe
-this process as ``performing an operation on an object,'' or
-``sending a message to an object.''
+\item Þegar við köllum á meðlimafall þá tengjum við kallið við tiltekinn hlut (e. object).
+Stundum er sagt að kall á meðlimafall hafi í för með sér aðgerð á hlut (e. operation on an object) 
+eða verið sé að senda boð til hlutar (e. sending a message to an object).
 
-\item The function is {\em declared} inside the {\tt struct}
-definition, in order to make the relationship between the
-structure and the function explicit.
+\item {\em Yfirlýsing} (e. declaration) meðlimafallsins á sér stað innan {\tt struct}
+skilgreiningar í þeim tilgangi að gera sambandið á milli strúktúrsins og fallsins skýrt (e. explicit). 
 
 \end{enumerate}
 
-In the next few sections, we will take the functions from
-Chapter~\ref{time} and transform them into member functions.
-One thing you should realize is that this transformation is
-purely mechanical; in other words, you can do it just by following
-a sequence of steps.
+Í því sem á eftir kemur munum við taka föllin úr kafla~\ref{time} og umbreyta þeim í meðlimaföll.
+Athugaðu að þessi umbreyting er algerlega vélræn, m.ö.o. hægt er að framkvæma hana með því að fylgja ákveðinni forskrift.
 
-\index{nonmember function}
-\index{function!nonmember}
+%\index{nonmember function}
+\index{fall!nonmember}
 
-As I said, anything that can be done with a member function can
-also be done with a nonmember function (sometimes called a
-{\bf free-standing} function).   But sometimes there is an
-advantage to one over the other.  If you are comfortable converting
-from one form to another, you will be able to choose the best
-form for whatever you are doing.
+Eins og ég nefndi að ofan þá getur allt það sem hægt er að gera með meðlimafalli líka verið gert með falli sem stendur eitt og sér (e. nonmember function / free-standing function).
+Oft eru hins vegar kostir/ókostir sem fylgja notkun annars í stað hins.
+Ef þú getur á auðveldan hátt umbreytt öðru forminu yfir í hitt þá munt þú geta valið betri leiðina fyrir það sem þú vinnur að sérhverju sinni.
 
 \section{{\tt print}}
 
-In Chapter~\ref{time} we defined a structure named {\tt Time}
-and wrote a function named {\tt printTime}
+Í kafla~\ref{time} skilgreindum við strúktúrinn {\tt Time}
+og skrifuðum fallið {\tt printTime}
 
 \begin{verbatim}
 struct Time {
@@ -117,43 +97,33 @@ void printTime (const Time& time) {
 }
 \end{verbatim}
 %
-To call this function, we had to pass a {\tt Time} object as
-a parameter.
+Til að kalla á þetta fall þurftum við að senda {\tt Time} hlut sem viðfang. 
 
 \begin{verbatim}
   Time currentTime = { 9, 14, 30.0 };
   printTime (currentTime);
 \end{verbatim}
 %
-To make {\tt printTime} into a member function, the
-first step is to change the name of the function from {\tt printTime}
-to {\tt Time::print}.  The {\tt ::} operator separates the name
-of the structure from the name of the function; together they
-indicate that this is a function named {\tt print} that can be
-invoked on a {\tt Time} structure.
+Fyrsta skrefið í áttina að gera {\tt printTime} að meðlimafalli er að breyta nafninu á fallinu úr {\tt printTime} í {\tt Time::print}.
+Virkinn {\tt ::} kemur á milli nafns strúktúrsins og nafns fallsins.
+Til saman gefa þessi nöfn til kynna að um sé að ræða fallið {\tt print} sem tilheyrir {\tt Time} strúktúr.
 
-The next step is to eliminate the parameter.  Instead of passing
-an object as an argument, we are going to invoke the function
-on an object.
+Næsta skref felst í því að fjarlægja leppinn.
+Í stað þess að senda hlut inn sem viðfang þá keyrum við fallið á hlut (e. invoke the function on an object).
 
-As a result, inside the function, we no longer have a parameter named
-{\tt time}.  Instead, we have a {\bf current object}, which is the
-object the function is invoked on.  We can refer to the current object
-using the C++ keyword {\tt this}.
+Niðurstaðan er sú að inni í fallinu er ekki lengur leppur með nafnið {\tt time}.
+Í staðinn er um að ræða {\bf núverandi hlut} (e. current object) sem er hluturinn sem fallið er keyrt á.
+Hægt er að vísa í núverandi hlut með því að nota C++ lykilorðið {\tt this}.
 
-\index{current object}
-\index{object!current}
-\index{pointer}
+\index{núverandi hlutur}
+\index{hlutur!núverandi}
+\index{bendir}
 \index{this}
 
-One thing that makes life a little difficult is that {\tt this}
-is actually a {\bf pointer} to a structure, rather than a structure
-itself.  A pointer is similar to a reference, but I don't want
-to go into the details of using pointers yet.  The only pointer
-operation we need for now is the {\tt *} operator, which converts
-a structure pointer into a structure.  In the following
-function, we use it to assign the value of {\tt this} to a local
-variable named {\tt time}:
+Það flækir aðeins málið að {\tt this} er í raun {\bf bendir} á strúktúr frekar en strúktúrinn sjálfur.
+Bendir er svipaður og tilvísun en ég vil þó ekki fjalla nákvæmlega um bendanotkun enn sem komið er.
+Eina bendaaðgerðin sem við þurfum á að halda núna er {\tt *} virkinn (e. dereference operator) sem breytir bendi á strúktúr yfir í strúktur.
+Í eftirfarandi falli notum við þennan virkja til að gefa staðværu (e. local) breytunnni {\tt time} gildið á {\tt this}:
 
 \begin{verbatim}
 void Time::print () {
@@ -162,20 +132,17 @@ void Time::print () {
 }
 \end{verbatim}
 %
-The first two lines of this function changed quite a bit as we
-transformed it into a member function, but notice that the output
-statement itself did not change at all.
+Fyrstu tvær línurnar í þessu falli breyttust þó nokkuð þegar við umbreyttum fallinu yfir í meðlimafall 
+en taktu eftir því að úttakssetningin sjálf breyttist ekki neitt.
 
-In order to invoke the new version of {\tt print}, we have
-to invoke it on a {\tt Time} object:
+Þessa nýju útgáfu af {\tt print} keyrum við síðan á {\tt Time} hlut (taktu eftir punktatáknuninni):
 
 \begin{verbatim}
   Time currentTime = { 9, 14, 30.0 };
   currentTime.print ();
 \end{verbatim}
 %
-The last step of the transformation process is that we have to
-declare the new function inside the structure definition:
+Síðasta skrefið í umbreytingarferlinu er að við þurfum að lýsa yfir fallinu inni í strúktúrskilgreiningunni:
 
 \begin{verbatim}
 struct Time {
@@ -186,30 +153,20 @@ struct Time {
 };
 \end{verbatim}
 %
-A {\bf function declaration} looks just like the first line of the
-function definition, except that it has a semi-colon at the end.  The
-declaration describes the {\bf interface} of the function; that is,
-the number and types of the arguments, and the type of the return
-value.
+{\bf Yfirlýsing} falls lítur eins út og fyrsta línan í skilgreiningu fallsins nema að því leyti að yfirlýsingin er með semíkommu í endann.
+Yfirlýsingin lýsir {\bf skilum} (e. interface) fallsins, þ.e. fjölda og tagi leppa og tagi skilagildisins.
 
-When you declare a function, you are making a promise to the compiler
-that you will, at some point later on in the program, provide a
-definition for the function.  This definition is sometimes called
-the {\bf implementation} of the function, since it contains the
-details of how the function works.  If you omit the definition, or
-provide a definition that has an interface different from what
-you promised, the compiler will complain.
+Þegar þú lýsir yfir falli þá ``lofar'' þú þýðandanum að þú munir, á einhverjum öðrum stað í forritinu, setja skilgreiningu fallsins fram.
+Skilgreiningin sjálf er {\bf útfærsla) (e. implementation) fallsins því hún inniheldur nákvæmar upplýsingar um hvernig fallið virkar.
+Þýðandinn mun kvarta ef þú sleppir skilgreiningunni eða setur fram skilgreiningu sem inniheldur önnur skil en þú lofaðir.
 
-\section {Implicit variable access}
+\section {Dulinn aðgangur að breytum (e. Implicit variable access)}
 
-Actually, the new version of {\tt Time::print} is more complicated
-than it needs to be.  We don't really need to create a local
-variable in order to refer to the instance variables of the current
-object.
+Nýja útgáfan okkar af {\tt Time::print} er reyndar flóknari en hún þarf að vera.
+Við þurfum í raun ekki að búa til staðværa breytu í þeim tilgangi að vísa í tilvikabreytur núverandi hlutar.
 
-If the function refers to {\tt hour}, {\tt minute}, or {\tt second},
-all by themselves with no dot notation, C++ knows that it must
-be referring to the current object.  So we could have written:
+Ef fallið vísar í {\tt hour}, {\tt minute} eða {\tt second}, án þess að nota punktatáknun, þá veit C++ þýðandinn að um er að ræða tilvísun í núverandi hlut.
+Við gætum því skrifað fallið á þennan hátt: 
 
 \begin{verbatim}
 void Time::print ()
@@ -218,10 +175,8 @@ void Time::print ()
 }
 \end{verbatim}
 %
-This kind of variable access is called ``implicit'' because the
-name of the object does not appear explicitly.  Features like
-this are one reason member functions are often more concise
-than nonmember functions.
+Þessi tegund af aðgangi að breytum er kallaður ``dulinn'' (e. implicit) vegna þess að nafn hlutarins er ekki ljóst (e. explicit). 
+Þetta er ein ástæða þess að meðlimaföll eru oft samþjappaðri en föll sem eru ekki meðlimaföll.
 
 \section {Another example}
 
