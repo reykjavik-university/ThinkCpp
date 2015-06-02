@@ -109,7 +109,7 @@ Virkinn {\tt ::} kemur á milli nafns strúktúrsins og nafns fallsins.
 Til saman gefa þessi nöfn til kynna að um sé að ræða fallið {\tt print} sem tilheyrir {\tt Time} strúktúr.
 
 Næsta skref felst í því að fjarlægja leppinn.
-Í stað þess að senda hlut inn sem viðfang þá köllum við á fallið í gegnum tiltekinn hlut (e. invoke the function on an object).
+Í stað þess að senda hlut inn sem viðfang þá vekjum við fallið með tilteknum hlut (e. invoke the function on an object).
 
 Niðurstaðan er sú að inni í fallinu er ekki lengur leppur með nafnið {\tt time}.
 Í staðinn er um að ræða {\bf núverandi hlut} (e. current object) sem er hluturinn sem fallið er keyrt á.
@@ -202,7 +202,7 @@ void Time::increment (double secs) {
 Athugaðu að þessi útfærsla fallsins er ekki sú skilvirkasta.
 Þú ættir núna að skrifa skilvirkari útfærslu ef þú gerðir það ekki þegar þú last kafla~\ref{time}
 
-Til að lýsa fallinu yfir þurfum við aðeins að afrita fyrstu línuna úr strúktúrskilgreiningunni:
+Til að lýsa fallinu yfir þurfum við aðeins að afrita fyrstu línuna úr skilgreiningu þess (og sleppa tilvísuninni í Time strúktúrinn):
 
 \begin{verbatim}
 struct Time {
@@ -214,7 +214,7 @@ struct Time {
 };
 \end{verbatim}
 %
-Nú getum við kallað á fallið í gegnum tiltekinn {\tt Time} hlut:
+Nú getum við kallað á fallið með því að vekja það með tilteknum {\tt Time} hlut:
 
 \begin{verbatim}
   Time currentTime = { 9, 14, 30.0 };
@@ -259,7 +259,7 @@ Fallið {\tt print} í fyrri kafla hefði líka á að lýsa dulda viðfanginu y
 Fallið {\tt after}, t.d., vinnur á tveimur {\tt Time} hlutum (ekki bara einum) og við getum ekki gert þá báða að duldum viðföngum.
 Í staðinn köllum við á fallið í gegnum annan þeirra en sendum hinn sem viðfang.
 
-Inni í fallinu getum við notað dulinn aðgang að breytum hlutarins sem notaður var til að kalla á fallið en fáum síðan aðgang að breytum hins hlutarins með því að nota punktatáknun.
+Inni í fallinu getum við notað dulinn aðgang að breytum hlutarins sem notaður var til að vekja fallið en fáum síðan aðgang að breytum hins hlutarins með því að nota punktatáknun.
 
 \begin{verbatim}
 bool Time::after (const Time& time2) const {
@@ -285,10 +285,9 @@ Svona köllum við þá á þetta fall:
 Það er nánast hægt að lesa þennan kóða eins og ensku:
 ``If the done-time is after the current-time, then...''
 
-\section{Constructors}
+\section{Smiðir}
 
-Another function we wrote in Chapter~\ref{time} was
-{\tt makeTime}:
+Í kafla~\ref{time} skrifuðum við fallið {\tt makeTime}:
 
 \begin{verbatim}
 Time makeTime (double secs) {
@@ -302,11 +301,9 @@ Time makeTime (double secs) {
 }
 \end{verbatim}
 %
-Of course, for every new type, we need to be able to create
-new objects.  In fact, functions like {\tt makeTime} are so
-common that there is a special function syntax for them.  These
-functions are called {\bf constructors} and the syntax looks
-like this:
+Fyrir sérhvert nýtt tag (e. type) þurfum við að geta búið til nýja hluti af því tagi.
+Það vill einmitt reyndar svo til að föll eins og {\tt makeTime} eru svo algeng að sérstök málskipan er notuð fyrir þau.
+Þessi föll eru kölluð {\bf smiðir} (e. constructors} og málskipanin er þessi: 
 
 \begin{verbatim}
 Time::Time (double secs) {
@@ -318,69 +315,56 @@ Time::Time (double secs) {
 }
 \end{verbatim}
 %
-First, notice that the constructor has the same name as the
-class, and no return type.  The arguments haven't changed, though.
+Hér eru tvö atriði sem vert er að minnast á.
+Í fyrsta lagi ber smiðurinn sama nafn og strúktúrinn sjálfur og hann hefur ekkert skilagildi.
+Viðföngin hafa hins vegar ekkert breyst.
 
-Second, notice that we don't have to create a new time object,
-and we don't have to return anything.  Both of these steps are
-handled automatically.  We can refer to the new object---the one
-we are constructing---using the keyword {\tt this}, or implicitly
-as shown here.  When we write values to {\tt hour}, {\tt minute}
-and {\tt second}, the compiler knows we are referring to the instance
-variables of the new object.
+Í öðru lagi þurfum við ekki að búa til nýjan Time hlut og við þurfum ekki að skila neinu.
+Bæði þessi skref eru gerð fyrir okkur af þýðandanum.
+Við getum vísað í nýja hlutinn -- þann sem við erum að smíða -- með því að nota lykilorðið
+{\tt this}, eða á dulinn hátt eins og sést að hér. 
+Þegar við notum nöfnin {\tt hour}, {\tt minute}
+og {\tt second} þá veit þýððandinn að við erum að vísa í meðlimabreytur (tilvikabreytur) nýja hlutarins. 
 
-To invoke the constructor, you use syntax that is a cross
-between a variable declaration and a function call:
+Til að vekja (kalla á) smiðinn þá notum við sérstaka málskipan sem er einhvers konar millivegur á milli breytuyfirlýsingar og fallakalls:
 
 \begin{verbatim}
   Time time (seconds);
 \end{verbatim}
 %
-This statement declares that the variable {\tt time} has
-type {\tt Time}, and it invokes the constructor we just wrote,
-passing the value of {\tt seconds} as an argument.  The system
-allocates space for the new object and the constructor initializes
-its instance variables.  The result is assigned to the variable
-{\tt time}.
+Þessi setning lýsir yfir að breytan {\tt time} hafi tagið {\tt Time} og vekur smiðinn, sem við vorum að skrifa, 
+með því að senda {\tt seconds} sem viðfang.
+Kerfið úthlutar minni fyrir nýja hlutinn og smiðurinn upphafsstillir meðlimabreyturnar.
+Niðurstaðan er gildi sem breytan {\tt time} fær.
 
 
-\section {Initialize or construct?}
+\section {Að upphafsstilla eða smíða?}
 
-Earlier we declared and initialized some {\tt Time} structures
-using squiggly-braces:
+Í fyrri kafla lýstum við yfir og upphafsstilltum {\tt Time} strúktúr með því að nota slaufusviga (e. squiggly-braces):
 
 \begin{verbatim}
   Time currentTime = { 9, 14, 30.0 };
   Time breadTime = { 3, 35, 0.0 };
 \end{verbatim}
 %
-Now, using constructors, we have a different way to declare
-and initialize:
+Með því að nota smiði getum við nú notað aðra aðferð við yfirlýsingu og upphafsstillingu:
 
 \begin{verbatim}
   Time time (seconds);
 \end{verbatim}
 %
-These two functions represent different programming styles, and
-different points in the history of C++.  Maybe
-for that reason, the C++ compiler requires that you use one or
-the other, and not both in the same program.
+Þessar tvær aðferðir standa fyrir mismunandi forritunarstíl og reyndar mismunandi tíma í sögu C++.
+Það er kannski ástæðan fyrir því að C++ þýðandinn krefst þess að þú notar aðra aðferðina, en ekki báðar, í sama forritinu.
 
-If you define a constructor for a structure, then you have to
-use the constructor to initialize all new structures of that
-type.  The alternate syntax using squiggly-braces is no longer
-allowed.
+Ef þú skilgreinir smið fyrir strúktúr þá verður þú að nota smiðinn til að upphafsstilla öll ný tilvik af viðkomandi tagi.
+Hin málskipanin, þ.e. að nota slaufusviga við upphafsstillingu, er þá ekki leyfð.
 
+Sem betur fer er leyfilegt að fjölbinda (e. overload) smiði og sama hátt og hægt er að fjölbinda föll.
+M.ö.o, það geta verið fleiri en einn smiður með sama nafn svo framarlega sem smiðirnir taki mismunandi viðföng.
+Þegar við upphafsstillum nýtjan hlut mun þýðandinn reyna að finna þann smið sem tekur viðeigandi viðföng.
 Fortunately, it is legal to overload constructors in the same
-way we overloaded functions.  In other words, there can be more
-than one constructor with the same ``name,'' as long as they
-take different parameters.  Then, when we initialize a new object
-the compiler will try to find a constructor that takes the
-appropriate parameters.
 
-For example, it is common to have a constructor that takes
-one parameter for each instance variable, and that assigns
-the values of the parameters to the instance variables:
+Það er t.d. algengt að hafa einn smið sem tekur eitt viðfang fyrir sérhverja meðlimabreytu og gefur meðlimabreytunum gildi viðfanganna:
 
 \begin{verbatim}
 Time::Time (int h, int m, double s)
@@ -389,17 +373,15 @@ Time::Time (int h, int m, double s)
 }
 \end{verbatim}
 %
-To invoke this constructor, we use the same funny syntax
-as before, except that the arguments have to be two integers
-and a {\tt double}:
+Við notum sömu skrýtnu málskipanina og áður til að vekja þennan smið nema að nú verða viðföngin að vera tvær heiltölur og ein {\tt double}:
 
 \begin{verbatim}
   Time currentTime (9, 14, 30.0);
 \end{verbatim}
 
-\section {One last example}
+\section {Eitt dæmi að lokum}
 
-The final example we'll look at is {\tt addTime}:
+Síðasta dæmið sem við skoðum er {\tt addTime}:
 
 \begin{verbatim}
 Time addTime2 (const Time& t1, const Time& t2) {
@@ -408,21 +390,19 @@ Time addTime2 (const Time& t1, const Time& t2) {
 }
 \end{verbatim}
 %
-We have to make several changes to this function, including:
+Við þurfum að gera nokkrar breytingar á þessu falli, þ.m.t.:
 
 \begin{enumerate}
 
-\item Change the name from {\tt addTime} to {\tt Time::add}.
+\item Breyta nafninu á fallinu úr {\tt addTime} í {\tt Time::add}.
 
-\item Replace the first parameter with an implicit parameter,
-which should be declared {\tt const}.
+\item Fjarlægja fyrsta viðfangið og gera það að duldu {\tt const} viðfangi.
 
-\item Replace the use of {\tt makeTime} with a constructor
-invocation.
+\item Skipta út kalli í {\tt makeTime} fyrir vakningu á smið. 
 
 \end{enumerate}
 %
-Here's the result:
+Hér er niðurstaðan:
 
 \begin{verbatim}
 Time Time::add (const Time& t2) const {
@@ -432,15 +412,12 @@ Time Time::add (const Time& t2) const {
 }
 \end{verbatim}
 %
-The first time we invoke {\tt convertToSeconds},
-there is no apparent object!  Inside a member function, the compiler
-assumes that we want to invoke the function on the current object.
-Thus, the first invocation acts on {\tt this}; the second
-invocation acts on {\tt t2}.
+Þegar við köllum á {\tt convertToSeconds} í fyrsta sinn þá virðist vanta hlutinn sem vekja á fallið með!
+Inni í meðlimafalli (eins og Time::add) gerir þýðandinn ráð fyrir þvi að við viljum vekja upp föll með núverandi hlut (þ.e. {\tt this}). 
+Þess vegna á fyrsta kallið í {\tt convertToSeconds} við {\tt this} en í seinna kallinu er {\tt convertToSeconds} vakið upp með {\tt t2}.
 
-The next line of the function invokes the constructor that
-takes a single {\tt double} as a parameter; the last line returns
-the resulting object.
+Í næstu línu fallsins er smiður vakinn upp sem tekur eitt {\tt double} sem viðfang.
+Í síðustu línunni er síðan nýja hlutnum (time) skilað til baka úr fallinu.
 
 \section {Header files}
 
