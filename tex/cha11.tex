@@ -109,7 +109,7 @@ Virkinn {\tt ::} kemur á milli nafns strúktúrsins og nafns fallsins.
 Til saman gefa þessi nöfn til kynna að um sé að ræða fallið {\tt print} sem tilheyrir {\tt Time} strúktúr.
 
 Næsta skref felst í því að fjarlægja leppinn.
-Í stað þess að senda hlut inn sem viðfang þá keyrum við fallið á hlut (e. invoke the function on an object).
+Í stað þess að senda hlut inn sem viðfang þá köllum við á fallið í gegnum tiltekinn hlut (e. invoke the function on an object).
 
 Niðurstaðan er sú að inni í fallinu er ekki lengur leppur með nafnið {\tt time}.
 Í staðinn er um að ræða {\bf núverandi hlut} (e. current object) sem er hluturinn sem fallið er keyrt á.
@@ -149,11 +149,11 @@ struct Time {
   int hour, minute;
   double second;
 
-  void Time::print ();
+  void print ();
 };
 \end{verbatim}
 %
-{\bf Yfirlýsing} falls lítur eins út og fyrsta línan í skilgreiningu fallsins nema að því leyti að yfirlýsingin er með semíkommu í endann.
+{\bf Yfirlýsing} falls lítur eins út og fyrsta línan í skilgreiningu fallsins nema að því leyti að yfirlýsingin er með semíkommu í endann og ekki þarf að tiltaka nafn strúktúrsins sem fallið tilheyrir (í þessu tilfelli Time).
 Yfirlýsingin lýsir {\bf skilum} (e. interface) fallsins, þ.e. fjölda og tagi leppa og tagi skilagildisins.
 
 Þegar þú lýsir yfir falli þá ``lofar'' þú þýðandanum að þú munir, á einhverjum öðrum stað í forritinu, setja skilgreiningu fallsins fram.
@@ -178,12 +178,11 @@ void Time::print ()
 Þessi tegund af aðgangi að breytum er kallaður ``dulinn'' (e. implicit) vegna þess að nafn hlutarins er ekki ljóst (e. explicit). 
 Þetta er ein ástæða þess að meðlimaföll eru oft samþjappaðri en föll sem eru ekki meðlimaföll.
 
-\section {Another example}
+\section {Annað dæmi}
 
-Let's convert {\tt increment} to a member function.  Again, we
-are going to transform one of the parameters into the implicit
-parameter called {\tt this}.  Then we can go through the function
-and make all the variable accesses implicit.
+Nú skulum við umbreyta {\tt increment} í meðlimafall.
+Við munum breyta einu viðfanginu í dulda viðfangið {\tt this}.
+Síðan getum við gert allan aðgang að einstökum breytum dulinn. 
 
 \begin{verbatim}
 void Time::increment (double secs) {
@@ -200,25 +199,22 @@ void Time::increment (double secs) {
 }
 \end{verbatim}
 %
-By the way, remember that this is not the most efficient implementation
-of this function.  If you didn't do it back in Chapter~\ref{time}, you
-should write a more efficient version now.
+Athugaðu að þessi útfærsla fallsins er ekki sú skilvirkasta.
+Þú ættir núna að skrifa skilvirkari útfærslu ef þú gerðir það ekki þegar þú last kafla~\ref{time}
 
-To declare the function, we can just copy the first line into the
-structure definition:
+Til að lýsa fallinu yfir þurfum við aðeins að afrita fyrstu línuna úr strúktúrskilgreiningunni:
 
 \begin{verbatim}
 struct Time {
   int hour, minute;
   double second;
 
-  void Time::print ();
-  void Time::increment (double secs);
+  void print ();
+  void increment (double secs);
 };
 \end{verbatim}
 %
-And again, to call it, we have to invoke it on a {\tt Time}
-object:
+Nú getum við kallað á fallið í gegnum tiltekinn {\tt Time} hlut:
 
 \begin{verbatim}
   Time currentTime = { 9, 14, 30.0 };
@@ -226,11 +222,11 @@ object:
   currentTime.print ();
 \end{verbatim}
 %
-The output of this program is {\tt 9:22:50}.
+Útttakið úr þessu forriti er {\tt 9:22:50}.
 
-\section{Yet another example}
+\section{Enn eitt dæmi}
 
-The original version of {\tt convertToSeconds} looked like this:
+Upphaflega útgáfan af {\tt convertToSeconds} leit svona út:
 
 \begin{verbatim}
 double convertToSeconds (const Time& time) {
@@ -240,7 +236,7 @@ double convertToSeconds (const Time& time) {
 }
 \end{verbatim}
 %
-It is straightforward to convert this to a member function:
+Það er einfalt að umbreyta þessu í meðlimafall: 
 
 \begin{verbatim}
 double Time::convertToSeconds () const {
@@ -250,27 +246,20 @@ double Time::convertToSeconds () const {
 }
 \end{verbatim}
 %
-The interesting thing here is that the implicit parameter should
-be declared {\tt const}, since we don't modify it in this function.
-But it is not obvious where we should put information about a
-parameter that doesn't exist.  The answer, as you can see in the
-example, is after the parameter list (which is empty in this case).
+Hér er athyglisvert að dulda viðfanginu er lýst yfir sem 
+{\tt const} vegna þess að við breytum því ekki inni í fallinu. 
+Það er reyndar ekki augljóst hvar setja á upplýsingar um viðfang sem er ekki til!
+Eins og sést í þessu dæmi felst lausnin í því að setja þetta á eftir viðfangalistanum (sem er reyndar tómur í þessu tilviki).
 
-The {\tt print} function in the previous section should also
-declare that the implicit parameter is {\tt const}.
+Fallið {\tt print} í fyrri kafla hefði líka á að lýsa dulda viðfanginu yfir sem {\tt const}.
 
-\section {A more complicated example}
+\section {Flóknara dæmi}
 
-Although the process of transforming functions into member
-functions is mechanical, there are some oddities.  For example,
-{\tt after} operates on two {\tt Time} structures, not just
-one, and we can't make both of them implicit.  Instead, we have
-to invoke the function on one of them and pass the other as
-an argument.
+Þrátt fyrri að ferlið við að umbreyta föllum í meðlimaföll sé vélrænt þá geta aðstæður verið sérkennilegar.
+Fallið {\tt after}, t.d., vinnur á tveimur {\tt Time} hlutum (ekki bara einum) og við getum ekki gert þá báða að duldum viðföngum.
+Í staðinn köllum við á fallið í gegnum annan þeirra en sendum hinn sem viðfang.
 
-Inside the function, we can refer to one of the them implicitly,
-but to access the instance variables of the other we continue
-to use dot notation.
+Inni í fallinu getum við notað dulinn aðgang að breytum hlutarins sem notaður var til að kalla á fallið en fáum síðan aðgang að breytum hins hlutarins með því að nota punktatáknun.
 
 \begin{verbatim}
 bool Time::after (const Time& time2) const {
@@ -285,7 +274,7 @@ bool Time::after (const Time& time2) const {
 }
 \end{verbatim}
 %
-To invoke this function:
+Svona köllum við þá á þetta fall:
 
 \begin{verbatim}
   if (doneTime.after (currentTime)) {
@@ -293,8 +282,8 @@ To invoke this function:
   }
 \end{verbatim}
 %
-You can almost read the invocation like English: ``If the
-done-time is after the current-time, then...''
+Það er nánast hægt að lesa þennan kóða eins og ensku:
+``If the done-time is after the current-time, then...''
 
 \section{Constructors}
 
