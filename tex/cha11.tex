@@ -37,27 +37,27 @@ C++ er hlutbundið forritunarmál sem merkir að það hefur eiginleika sem sty�
 \begin{enumerate}
 
 \item Forrit samanstanda af safni af strúktúrskilgreiningum og fallaskilgreiningum 
-þar sem flest föllin vinna með tiltekna tegundur af strúktúrum (eða hlutum).
+þar sem flest föllin vinna með tiltekna tegundur af strúktúrum (hlutum).
 
 \item Sérhver strúktúrskilgreining stendur fyrir einhvern hlut eða hugtak í raunveruleikanum og föllin sem framkvæma aðgerðir á viðkomandi strúktúr
 líkja eftir því hvernig raunverulegir hlutir eiga samskipti.
 
 \end{enumerate}
 
-{\tt Time} strúktúrinn, t.d., sem við skilgreindum í kafla~\ref{time}
-samsvarar augljóslega hvernig fólk skráir tíma innan dagsins og 
+{\tt Time} strúktúrinn, sem við skilgreindum í kafla~\ref{time},
+samsvarar því hvernig fólk skráir tíma innan dagsins og 
 aðgerðirnar sem við skilgreindum samsvara því hvað fólk gerir við hugtakið tími.
 
 Á sambærilegan hátt má segja að {\tt Point} og
 {\tt Rectangle} hlutirnir samsvari stærðfræðilegu hugtökunum hnit og rétthyrningur.
 
-Hingað til höfum við ekki nýtt okkur þá eiginleika sem C++ býður upp á til að styðja við hlutbundna forritun.
+Hingað til höfum við ekki nýtt okkur þá eiginleika C++ sem styðja við hlutbundna forritun.
 Strangt til tekið eru þessir eiginleikar reyndar ekki nauðsynlegir.
 Að mestu leyti gera þeir forriturum kleift að nota aðra málskipan til að framkvæma eitthvað sem við höfum þegar gert áður
 en í mörgum tilvikum er þessi nýja málskipan samanþjappaðri (e. more concise) og sýnir á nákvæmari hátt högun forritsins. 
  
 Í {\tt Time} forritinu er t.d. ekkert augljóst samband á milli strúktúrskilgreiningarinnar og fallanna sem á eftir koma.
-Við nánari athugun sést hins vegar er ljóst að sérhvert fallanna tekur a.m.k. einn {\tt Time} hlut sem viðfang og það leiðir okkur að hugtakinu  {\bf meðlimafall} (e. member function).
+Við nánari athugun er hins vegar ljóst að sérhvert fallanna tekur a.m.k. einn {\tt Time} hlut sem viðfang og það leiðir okkur að hugtakinu  {\bf meðlimafall} (e. member function).
 Meðlimaföll eru ólík öðrum föllum sem við höfum skrifað á tvennan hátt:
 
 \begin{enumerate}
@@ -79,12 +79,12 @@ Athugaðu að þessi umbreyting er algerlega vélræn, m.ö.o. hægt er að fram
 
 Eins og ég nefndi að ofan þá getur allt það sem hægt er að gera með meðlimafalli líka verið gert með falli sem stendur eitt og sér (e. nonmember function / free-standing function).
 Oft eru hins vegar kostir/ókostir sem fylgja notkun annars í stað hins.
-Ef þú getur á auðveldan hátt umbreytt öðru forminu yfir í hitt þá munt þú geta valið betri leiðina fyrir það sem þú vinnur að sérhverju sinni.
+Ef þú getur á auðveldan hátt umbreytt öðru forminu yfir í hitt þá munt þú geta valið betri leiðina í því forriti sem þú vinnur að sérhverju sinni.
 
 \section{{\tt print}}
 
 Í kafla~\ref{time} skilgreindum við strúktúrinn {\tt Time}
-og skrifuðum fallið {\tt printTime}
+og skrifuðum fallið {\tt printTime}:
 
 \begin{verbatim}
 struct Time {
@@ -109,7 +109,7 @@ Virkinn {\tt ::} kemur á milli nafns strúktúrsins og nafns fallsins.
 Til saman gefa þessi nöfn til kynna að um sé að ræða fallið {\tt print} sem tilheyrir {\tt Time} strúktúr.
 
 Næsta skref felst í því að fjarlægja leppinn.
-Í stað þess að senda hlut inn sem viðfang þá vekjum við fallið með tilteknum hlut (e. invoke the function on an object).
+Í stað þess að senda hlut inn sem viðfang þá vekjum við fallið upp með tilteknum hlut (e. invoke the function on an object).
 
 Niðurstaðan er sú að inni í fallinu er ekki lengur leppur með nafnið {\tt time}.
 Í staðinn er um að ræða {\bf núverandi hlut} (e. current object) sem er hluturinn sem fallið er keyrt á.
@@ -157,10 +157,10 @@ struct Time {
 Yfirlýsingin lýsir {\bf skilum} (e. interface) fallsins, þ.e. fjölda og tagi leppa og tagi skilagildisins.
 
 Þegar þú lýsir yfir falli þá ``lofar'' þú þýðandanum að þú munir, á einhverjum öðrum stað í forritinu, setja skilgreiningu fallsins fram.
-Skilgreiningin sjálf er {\bf útfærsla) (e. implementation) fallsins því hún inniheldur nákvæmar upplýsingar um hvernig fallið virkar.
+Skilgreiningin sjálf er {\bf útfærsla} (e. implementation) fallsins því hún inniheldur nákvæmar upplýsingar um hvernig fallið virkar.
 Þýðandinn mun kvarta ef þú sleppir skilgreiningunni eða setur fram skilgreiningu sem inniheldur önnur skil en þú lofaðir.
 
-\section {Dulinn aðgangur að breytum (e. Implicit variable access)}
+\section {Dulinn aðgangur að breytum}
 
 Nýja útgáfan okkar af {\tt Time::print} er reyndar flóknari en hún þarf að vera.
 Við þurfum í raun ekki að búa til staðværa breytu í þeim tilgangi að vísa í tilvikabreytur núverandi hlutar.
@@ -200,7 +200,7 @@ void Time::increment (double secs) {
 \end{verbatim}
 %
 Athugaðu að þessi útfærsla fallsins er ekki sú skilvirkasta.
-Þú ættir núna að skrifa skilvirkari útfærslu ef þú gerðir það ekki þegar þú last kafla~\ref{time}
+Þú ættir núna að skrifa skilvirkari útfærslu ef þú gerðir það ekki þegar þú last kafla~\ref{time}.
 
 Til að lýsa fallinu yfir þurfum við aðeins að afrita fyrstu línuna úr skilgreiningu þess (og sleppa tilvísuninni í Time strúktúrinn):
 
@@ -214,7 +214,7 @@ struct Time {
 };
 \end{verbatim}
 %
-Nú getum við kallað á fallið með því að vekja það með tilteknum {\tt Time} hlut:
+Nú getum við kallað á fallið með því að vekja það upp með tilteknum {\tt Time} hlut:
 
 \begin{verbatim}
   Time currentTime = { 9, 14, 30.0 };
@@ -249,7 +249,7 @@ double Time::convertToSeconds () const {
 Hér er athyglisvert að dulda viðfanginu er lýst yfir sem 
 {\tt const} vegna þess að við breytum því ekki inni í fallinu. 
 Það er reyndar ekki augljóst hvar setja á upplýsingar um viðfang sem er ekki til!
-Eins og sést í þessu dæmi felst lausnin í því að setja þetta á eftir viðfangalistanum (sem er reyndar tómur í þessu tilviki).
+Eins og sést í þessu dæmi felst lausnin í því að setja þetta á eftir leppalistanum (sem er reyndar tómur í þessu tilviki).
 
 Fallið {\tt print} í fyrri kafla hefði líka á að lýsa dulda viðfanginu yfir sem {\tt const}.
 
@@ -259,7 +259,7 @@ Fallið {\tt print} í fyrri kafla hefði líka á að lýsa dulda viðfanginu y
 Fallið {\tt after}, t.d., vinnur á tveimur {\tt Time} hlutum (ekki bara einum) og við getum ekki gert þá báða að duldum viðföngum.
 Í staðinn köllum við á fallið í gegnum annan þeirra en sendum hinn sem viðfang.
 
-Inni í fallinu getum við notað dulinn aðgang að breytum hlutarins sem notaður var til að vekja fallið en fáum síðan aðgang að breytum hins hlutarins með því að nota punktatáknun.
+Inni í fallinu getum við notað dulinn aðgang að breytum hlutarins sem notaður var til að vekja fallið upp en fáum síðan aðgang að breytum hins hlutarins með því að nota punktatáknun.
 
 \begin{verbatim}
 bool Time::after (const Time& time2) const {
@@ -303,7 +303,7 @@ Time makeTime (double secs) {
 %
 Fyrir sérhvert nýtt tag (e. type) þurfum við að geta búið til nýja hluti af því tagi.
 Það vill einmitt reyndar svo til að föll eins og {\tt makeTime} eru svo algeng að sérstök málskipan er notuð fyrir þau.
-Þessi föll eru kölluð {\bf smiðir} (e. constructors} og málskipanin er þessi: 
+Þessi föll eru kölluð {\bf smiðir} (e. constructors) og málskipanin er þessi: 
 
 \begin{verbatim}
 Time::Time (double secs) {
@@ -322,17 +322,17 @@ Viðföngin hafa hins vegar ekkert breyst.
 Í öðru lagi þurfum við ekki að búa til nýjan Time hlut og við þurfum ekki að skila neinu.
 Bæði þessi skref eru gerð fyrir okkur af þýðandanum.
 Við getum vísað í nýja hlutinn -- þann sem við erum að smíða -- með því að nota lykilorðið
-{\tt this}, eða á dulinn hátt eins og sést að hér. 
+{\tt this}, eða á dulinn hátt eins og gert er hér að ofan. 
 Þegar við notum nöfnin {\tt hour}, {\tt minute}
-og {\tt second} þá veit þýððandinn að við erum að vísa í meðlimabreytur (tilvikabreytur) nýja hlutarins. 
+og {\tt second} þá veit þýðandinn að við erum að vísa í meðlimabreytur (tilvikabreytur) nýja hlutarins. 
 
-Til að vekja (kalla á) smiðinn þá notum við sérstaka málskipan sem er einhvers konar millivegur á milli breytuyfirlýsingar og fallakalls:
+Til að vekja (kalla á) smiðinn upp þá notum við sérstaka málskipan sem er einhvers konar millivegur á milli breytuyfirlýsingar og fallakalls:
 
 \begin{verbatim}
   Time time (seconds);
 \end{verbatim}
 %
-Þessi setning lýsir yfir að breytan {\tt time} hafi tagið {\tt Time} og vekur smiðinn, sem við vorum að skrifa, 
+Þessi setning lýsir yfir að breytan {\tt time} hafi tagið {\tt Time} og vekur smiðinn upp, sem við vorum að skrifa, 
 með því að senda {\tt seconds} sem viðfang.
 Kerfið úthlutar minni fyrir nýja hlutinn og smiðurinn upphafsstillir meðlimabreyturnar.
 Niðurstaðan er gildi sem breytan {\tt time} fær.
@@ -361,8 +361,7 @@ Hin málskipanin, þ.e. að nota slaufusviga við upphafsstillingu, er þá ekki
 
 Sem betur fer er leyfilegt að fjölbinda (e. overload) smiði og sama hátt og hægt er að fjölbinda föll.
 M.ö.o, það geta verið fleiri en einn smiður með sama nafn svo framarlega sem smiðirnir taki mismunandi viðföng.
-Þegar við upphafsstillum nýtjan hlut mun þýðandinn reyna að finna þann smið sem tekur viðeigandi viðföng.
-Fortunately, it is legal to overload constructors in the same
+Þegar við upphafsstillum nýjan hlut mun þýðandinn reyna að finna þann smið sem tekur viðeigandi/rétt viðföng.
 
 Það er t.d. algengt að hafa einn smið sem tekur eitt viðfang fyrir sérhverja meðlimabreytu og gefur meðlimabreytunum gildi viðfanganna:
 
@@ -373,7 +372,7 @@ Time::Time (int h, int m, double s)
 }
 \end{verbatim}
 %
-Við notum sömu skrýtnu málskipanina og áður til að vekja þennan smið nema að nú verða viðföngin að vera tvær heiltölur og ein {\tt double}:
+Við notum sömu skrýtnu málskipanina og áður til að vekja þennan smið upp nema að nú verða viðföngin að vera tvær heiltölur og ein {\tt double}:
 
 \begin{verbatim}
   Time currentTime (9, 14, 30.0);
@@ -412,31 +411,24 @@ Time Time::add (const Time& t2) const {
 }
 \end{verbatim}
 %
-Þegar við köllum á {\tt convertToSeconds} í fyrsta sinn þá virðist vanta hlutinn sem vekja á fallið með!
-Inni í meðlimafalli (eins og Time::add) gerir þýðandinn ráð fyrir þvi að við viljum vekja upp föll með núverandi hlut (þ.e. {\tt this}). 
+Þegar við köllum á {\tt convertToSeconds} í fyrsta sinn þá virðist vanta hlutinn sem vekja á fallið upp með!
+Inni í meðlimafalli (eins og Time::add) gerir þýðandinn ráð fyrir þvi að við viljum vekja föll með núverandi hlut (þ.e. {\tt this}). 
 Þess vegna á fyrsta kallið í {\tt convertToSeconds} við {\tt this} en í seinna kallinu er {\tt convertToSeconds} vakið upp með {\tt t2}.
 
 Í næstu línu fallsins er smiður vakinn upp sem tekur eitt {\tt double} sem viðfang.
 Í síðustu línunni er síðan nýja hlutnum (time) skilað til baka úr fallinu.
 
-\section {Header files}
+\section {Hausaskrár}
 
-It might seem like a nuisance to declare functions inside
-the structure definition and then define the functions later.
-Any time you change the interface to a function, you have
-to change it in two places, even if it is a small change
-like declaring one of the parameters {\tt const}.
+Það kann að virðast undarlegt að lýsa yfir föllum inni í strúktúrskilgreiningu og síðan að skilgreina (útfæra) föllin síðar.
+Í sérhvert sinn sem þú breytir skilum (e. interface) falls þarftu þá að breyta þeim á tveimur stöðum, 
+jafnvel þó um sé að ræða smávægilega breytingu eins og að lýsa einum lepp yfir sem {\tt const}.
 
-There is a reason for the hassle, though, which is that it
-is now possible to separate the structure definition and the
-functions into two files: the {\bf header file},
-which contains the structure definition, and the implementation
-file, which contains the functions.
+Fyrir þessu er sérstök ástæða. Hægt er að setja strúktúrskilgreiningu og fallaútfærslu í tvær mismunandi skrár:
+{\bf hausaskrá} (e. header file), sem geymir strúktúrskilgreininguna, og útfærsluskrá (e. implementation file) sem geymir útfærslu fallanna.
 
-Header files usually have the same name as the implementation
-file, but with the suffix {\tt .h} instead of {\tt .cpp}.  For
-the example we have been looking at, the header file is called
-{\tt Time.h}, and it contains the following:
+Hausaskrár hafa venjulega sama nafn og útfærsluskrár en bera viðskeytið {\tt .h} í stað {\tt .cpp}.
+Fyrir dæmið sem við höfum verið að skoða ber hausaskráin nafnið {\tt Time.h} og hún geymir eftirfarandi skilgreiningu:
 
 \begin{verbatim}
 struct Time {
@@ -459,13 +451,12 @@ struct Time {
 };
 \end{verbatim}
 %
-Notice that in the structure definition I don't really have
-to include the prefix {\tt Time::} at the beginning of every
-function name.  The compiler knows that we are declaring functions
-that are members of the {\tt Time} structure.
+%Notice that in the structure definition I don't really have
+%to include the prefix {\tt Time::} at the beginning of every
+%function name.  The compiler knows that we are declaring functions
+%that are members of the {\tt Time} structure.
 
-{\tt Time.cpp} contains the definitions of the member functions
-(I have elided the function bodies to save space):
+Skráin {\tt Time.cpp} geymir síðan skilgreininguna á meðlimaföllunum (til þess að spara pláss sleppi ég ``líkama'' (e. body) sérhvers falls):
 
 \begin{verbatim}
 #include <iostream>
@@ -487,18 +478,12 @@ Time Time::add (const Time& t2) const ...
 double Time::convertToSeconds () const ...
 \end{verbatim}
 %
-In this case the definitions in {\tt Time.cpp} appear in the
-same order as the declarations in {\tt Time.h}, although it
-is not necessary.
+Í þessu tilviki birtist skilgreiningin á föllum í {\tt Time.cpp} í sömu röð og yfirlýsingin í {\tt Time.h} þó svo að það sé reyndar ekki nauðsynlegt.
 
-On the other hand, it is necessary to include the header
-file using an {\tt include} statement.  That way, while the
-compiler is reading the function definitions, it knows enough
-about the structure to check the code and catch errors.
+Á hinn bóginn er nauðsynlegt að taka inn hausaskrána í .cpp skrána með {\tt include} setningu.
+Þannig getur þýðandinn borið saman yfirlýsingu og skilgreiningu og látið vita um villur ef einhverjar eru.
 
-Finally, {\tt main.cpp} contains the function {\tt main} along
-with any functions we want that are not members of the {\tt Time}
-structure (in this case there are none):
+Skráin {\tt main.cpp} geymir síðan fallið {\tt main} ásamt ýmsum öðrum föllum sem við þurfum á að halda og eru ekki meðlimaföll í {\tt Time} (í þessu tilviki eru það reyndar ekki nein föll):
 
 \begin{verbatim}
 #include <iostream>
@@ -523,101 +508,76 @@ int main ()
 
 \end{verbatim}
 %
-Again, {\tt main.cpp} has to include the header file.
+Taktu eftir því að {\tt main.cpp} þarf líka að taka inn hausaskrána {\tt Time.h} vegna þess að main fallið notar tilvik af {\tt Time} hlut.  
 
-It may not be obvious why it is useful to break such a small
-program into three pieces.  In fact, most of the advantages come
-when we are working with larger programs:
+Það er kannski ekki augljóst af hverju það er gagnlegt að skipta svona litlu forriti upp í þrjár einingar ({\tt Time.h}, {\tt Time.cpp} og {\tt main.cpp}).
+Reyndar er það svo að kostirnir koma helst fram þegar við vinnum með stærri forrit:
 
 \begin{description}
 
-\item[Reuse:]  Once you have written a structure like {\tt Time},
-you might find it useful in more than one program.  By separating
-the definition of {\tt Time} from {\tt main.cpp}, you make is easy
-to include the {\tt Time} structure in another program.
+\item[Endurnýting (e. reuse):]  Þegar þú hefur skrifað einingu eins og {\tt Time} þá gætir þú viljað nýta hana í fleiri en einu forriti.
+Með því að skilja að skilgreininguna á {\tt Time} frá {\tt main.cpp} gerir þú á auðveldan hátt kleift að taka inn (e. include)
+{\tt Time} strúktúrinn í annarri forritsskrá.
 
-\item[Managing interactions:]  As systems become large, the number
-of interactions between components grows and quickly becomes
-unmanageable.  It is often useful to minimize these interactions
-by separating modules like {\tt Time.cpp} from the programs that
-use them.
+\item[Stjórna tengslum (e. manage interactions):]  Eftir því sem kerfi stækka því flóknari verða tengsl á milli einstakra eininga þess
+og það verður fljótt erfitt að stjórna þeim.
+Þess vegna er oft gagnlegt að lágmarka þessi tengsl með því að skilja að einingar eins og {\tt Time.cpp} frá þeim forritum sem nota einingarnar.
 
-\item[Separate compilation:]  Separate files can be compiled
-separately and then linked into a single program later.  The details
-of how to do this depend on your programming environment.  As
-the program gets large, separate compilation can save a lot of time,
-since you usually need to compile only a few files at a time.
+\item[Aðskilin þýðing (e. separate compilation):]  Hægt er að þýða aðskildar skrár sérstaklega og tengja (e. link) þær seinna þannig að úr verði keyrandi forrit.
+Hvernig þetta er gert er háð því forritunarumhverfi sem þú notar.
+Aðskilin þýðing getur sparað mikinn tíma þegar kerfi stækka því þá þarf yfirleitt aðeins að þýða nokkrar skrár í sérhvert sinn en ekki allar skrárnar sem kerfið notar.
 
 \end{description}
 
-For small programs like the ones in this book, there is
-no great advantage to splitting up programs.  But it is good
-for you to know about this feature, especially since it explains
-one of the statements that appeared in the first program we
-wrote:
+Þegar um er að ræða lítil forrit, eins og þau sem sýnd eru í þessari bók, þá eru engir sérstakir kostir þess samfara að skipta forritinu upp í aðskildar skrár.
+Það er hins vegar mjög gott fyrir þig að vita af þessum möguleika, 
+sérstaklega vegna þess að nú ætti að vera skýrt hvaða tilgangi fyrstu setningarnar, sem birtust í fyrsta forritinu sem við skrifuðum, þjóna:
 
 \begin{verbatim}
 #include <iostream>
 using namespace std;
 \end{verbatim}
 %
-{\tt iostream} is the header file that contains declarations
-for {\tt cin} and {\tt cout} and the functions that operate on
-them.  When you compile your program, you need the information
-in that header file.
+{\tt iostream} er hausaskráin sem inniheldur yfirlýsingar á {\tt cin} og {\tt cout} og föllunum sem þessir straumar nota.
+Þegar þú þýðir þitt forrit þarftu á upplýsingum að halda sem geymdar eru í þessari hausaskrá.
 
-The implementations of those functions are stored in a library,
-sometimes called the ``Standard Library'' that gets linked to
-your program automatically.  The nice thing is that you don't
-have to recompile the library every time you compile a program.
-For the most part the library doesn't change, so there is no
-reason to recompile it.
+Útfærslan á þessum föllum er hins vegar geymd í forritunarsafni (e. library) sem kallað er ``Standard Library'' og sú útfærsla er tengd (e. linked) við forritið þitt á sjálfvirkan hátt.
+Athugaðu að það er engin þörf á því að endurþýða þetta forritunarsafn í sérhvert sinn sem þú þýðir forritið þitt.
+Þetta forritunarsafn er einmitt ekki að breytast og því er engin ástæða til að endurþýða það.
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[member function:]  A function that operates on an object
-that is passed as an implicit parameter named {\tt this}.
+\item[meðlimafall (e. member function):]  Fall sem vinnur með hlut (e. object) sem sendur er inn sem ``dulið'' (e. implicit) viðfang með nafninu {\tt this}.
 
-\item[nonmember function:]  A function that is not a member
-of any structure definition.  Also called a ``free-standing''
-function.
+\item[``ekki-meðlimafall'' (e. nonmember function):]  Fall sem tilheyrir ekki tilteknum strúktúr. Líka kallað ``free-standing'' fall.
 
-\item[invoke:] To call a function ``on'' an object, in order to
-pass the object as an implicit parameter.
+\item[vekja upp (e. invoke):] Að kalla á meðlimafall í gegnum tiltekinn hlut í þeim tilgangi að senda hlutinn sem dulið viðfang. 
 
-\item[current object:]  The object on which a member function
-is invoked.  Inside the member function, we can refer to the
-current object implicitly, or by using the keyword {\tt this}.
+\item[núverandi hlutur (e. current object):]  Hluturinn sem tilheyrir því meðlimafalli sem vakið var upp. 
+Inni í meðlimafallinu er hægt að vísa í hlutinn á dulinn máta eða með því að nota lykilorðið {\tt this}.
 
-\item[this:]  A keyword that refers to the current object.
-{\tt this} is a pointer, which makes it difficult to use, since
-we do not cover pointers in this book.
+\item[this:]  Lykilorð sem vísar til núverandi hlutar. 
+{\tt this} er bendir (sem gerir notkun þess erfiða vegna þess að við fjöllum ekki um benda í þessari bók). 
 
-\item[interface:] A description of how a function is used, including
-the number and types of the parameters and the type of the return
-value.
+\item[skil (e. interface):] Lýsing á því hvernig fall er notað, þ.m.t. fjöldi og tag viðfanga og tag skilagildis.
 
-\item[function declaration:] A statement that declares the interface
-to a function without providing the body.  Declarations of
-member functions appear inside structure definitions even if the
-definitions appear outside.
+\item[fallayfirlýsing (e. function declaration):] Setning sem lýsir yfir skilum falls án þess að sýna útfærsluna. 
+Yfirlýsing á meðlimaföllum kemur fram í strúktúrskilgreiningu.
 
-\item[implementation:] The body of a function, or the details of how
-a function works.
+\item[útfærsla (e. implementation):] ``Líkami'' (e. body) falls, þ.e. kóðinn sem sýnir hvernig fallið virkar. 
 
-\item[constructor:] A special function that initializes the instance
-variables of a newly-created object.
+\item[smiður (e. constructor):] Sérstakt fall sem býr til tilvik (e. instance) af tilteknum hlut (e. object) og upphafsstillir meðlimabreytur hans. 
 
-\index{member function}
-\index{nonmember function}
-\index{function!member}
-\index{function!nonmember}
-\index{interface}
-\index{implementation}
-\index{invoke}
-\index{constructor}
+\index{meðlimafall}
+%\index{nonmember function}
+\index{fall!meðlimur}
+%\index{function!nonmember}
+\index{skil}
+\index{útfærsla}
+\index{vekja upp}
+\index{smiður}
 
 \end{description}
 
