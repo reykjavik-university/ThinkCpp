@@ -30,12 +30,12 @@
 \index{samsetning}
 \index{hreiðruð skipan}
 
-Hingað til höfum við séð nokkur dæmi um samsetningu (e. composition), þ.e. þegar eiginleikar forritunarmálsins eru settir saman á ýmsan máta.
+Hingað til höfum við séð nokkur dæmi um samsetningu (e. composition), þ.e. þegar einstakir eiginleikar forritunarmálsins eru settir saman á ýmsan máta.
 Eitt af fyrstu dæmunum sem við sáum var að nota fallakall sem hluta af segð (e. expression).
 Annað dæmi er hreiðruð skipan setninga: hægt er að setja {\tt if} setningu inn í {\tt while} lykkju eða inn í aðra {\tt if} setningu, o.s.frv.
 
-Nú þegar við höfum séð þessi samsetningarmynstur, og lært um vektorara og hluti, þá ætti ekki að koma á óvart að hægt er að búa til vektorara af hlutum.
-Reyndar vill svo til að það er líka hægt að búa til hluti sem innihalda vektora (sem meðlimabreytur) vektorara sem innihalda vektorar; hluti sem innihalda aðra hluti, o.s.frv.
+Nú þegar við höfum séð þessi samsetningarmynstur, og lært um vektorara og hluti, þá ætti ekki að koma á óvart að hægt er að búa til vektora af hlutum.
+Reyndar vill svo til að það er líka hægt að búa til hluti sem innihalda vektora (sem meðlimabreytur) vektora sem innihalda vektora; hluti sem innihalda aðra hluti, o.s.frv.
 
 Í næstu tveimur köflum munum við skoða nokkur dæmi um svona samsetningar með því að nota {\tt Card} hluti sem sýnidæmi. 
 
@@ -43,27 +43,27 @@ Reyndar vill svo til að það er líka hægt að búa til hluti sem innihalda v
 \index{Card}
 \index{hlutur!Card}
 
-Ef þú þekkir ekki handspil (e. playing cards) þá væri nú góður tímapunktur að sækja spilastokk (e. deck) því annars er hætt við því að efni þessa kafla fari fyrir ofan garð og neðan.
+Ef þú þekkir ekki handspil (e. playing cards) þá er nú góður tímapunktur að sækja spilastokk (e. deck) því annars er hætt við því að efni þessa kafla fari fyrir ofan garð og neðan.
 Það eru 52 spil í spilastokki og sérhvert spil tilheyrir einum af fjórum litum (e. suit) og 13 gildum (e. rank).
-Litirnir eru (í lækkandi röð í bridds): Spaðar (e. Spades), Hjörtu (e. Hearts), Tíglar (e. Diamonds) og Lauf (e. Clubs) (
-Gildin eru Ás (e. Ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, Gosi (e. Jack), Drottning (e. Queen) og Kóngur (e. King).
-Það fer eftir því hvaða spil þú ert að spila hvort Ásinn er hærri en Kóngur eða lægri en 2.
+Litirnir eru (í lækkandi röð í bridds): Spaðar (e. Spades), hjörtu (e. Hearts), tíglar (e. Diamonds) og lauf (e. Clubs).
+Gildin eru ás (e. Ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, gosi (e. Jack), drottning (e. Queen) og kóngur (e. King).
+Það fer eftir því hvaða spil þú ert að spila hvort ásinn er hærri en kóngur eða lægri en tvistur.
 
 \index{gildi}
 \index{rank}
 \index{litur}
 \index{suit}
 
-Það er nokkuð augljóst hverjar meðlimabreyturunar eiga að vera ef við viljum skilgreina nýjan hlut sem stendur fyrir tiltekið spil: {\tt rank} og {\tt suit}.
+Það er nokkuð augljóst hverjar meðlimabreyturnar eiga að vera ef við viljum skilgreina nýjan hlut sem stendur fyrir tiltekið spil: {\tt rank} og {\tt suit}.
 Það er hins vegar ekki jafn augljóst hvert tag meðlimabreytnanna ætti að vera.
 Einn möguleiki er að nota {\tt string} sem þá myndi innihalda t.d. \verb+"Spade"+ fyrir lit og \verb+"Queen"+ fyrir gildi.
-Eitt vandamálið við þá útfærslu er að það yrði ekki einfalt að bera saman tvö spil, þ.e. að finna út hvort þeirra væri með hærri lit eða hærra gildi.
+Eitt vandamálið við þá útfærslu er að það yrði ekki einfalt að bera saman tvö spil, þ.e. að finna út hvort þeirra er með hærri lit eða hærra gildi.
 
-\index{umrita}
+\index{kóta}
 \index{varpa}
 
-Annar möguleiki er sá að nota heiltölur til að {\bf umrita} (e. encode) gildin og litina. 
-Það sem tölvunarfræðingar eiga við með ``umrita'' er t.d. að skilgreina vörpun á milli talnarunu og hlutanna sem sérhvert tala raðarinnar stendur fyrir.
+Annar möguleiki er sá að nota heiltölur til að {\bf kóta} (e. encode) gildin og litina. 
+Það sem tölvunarfræðingar eiga við með ``að kóta'' er t.d. að skilgreina vörpun á milli talnarunu og hlutanna sem sérhvert tala raðarinnar stendur fyrir.
 Dæmi:
 
 \vspace{0.1in}
@@ -78,7 +78,7 @@ Clubs & $\mapsto$ & 0
 Táknið $\mapsto$ er stærðfræðileg tákn fyrir ``varpast í''. 
 Það má augljóslega lesa úr þessari vörpun að litirnir varpast í heiltölur í ákveðinni röð.
 Þannig getum við borið saman liti með því að bera saman heiltölur.
-Vörpunin fyrir gildi eru nokkuð augljós: sérhvert talnagildi varpast yfir í viðkomandi heiltölu en fyrir mannspil notum við eftirfarandi vörpun:
+Vörpunin fyrir gildi eru nokkuð augljós: sérhvert spil með talnagildi varpast yfir í viðkomandi heiltölu en fyrir mannspil notum við eftirfarandi vörpun:
 
 \vspace{0.1in}
 \begin{tabular}{l c l}
@@ -125,47 +125,42 @@ Eftirfarandi kóði býr til hlut með nafninu {\tt threeOfClubs} sem stendur fy
    Card threeOfClubs (0, 3);
 \end{verbatim}
 %
-Fyrsta viðfangið, {\tt 0}, stendur fyrir litinn represents the suit Clubs, the
-second, naturally, represents the rank 3.
+Fyrsta viðfangið, {\tt 0}, stendur fyrir litinn lauf og seinna viðfangið fyrir gildið 3.
 
-\section{The {\tt printCard} function}
+\section{{\tt printCard} fallið}
 \index{printCard}
 \index{print!Card}
 
-When you create a new type, the first step is usually to declare the
-instance variables and write constructors.  The second step is often
-to write a function that prints the object in human-readable form.
+Fyrsta skrefið í því að búa til nýtt tag felst yfirleitt í því að lýsa yfir meðlimabreytum og skrifa smiði.
+Annað skrefið felst oft í því að skrifa út viðkomandi hlut á læsilegan máta (e. human-readable).
 
-\index{apstring!vector of}
-\index{vector!of apstring}
+\index{string!vektor af}
+\index{vector!af string}
 
-In the case of {\tt Card} objects, ``human-readable'' means that we
-have to map the internal representation of the rank and suit onto
-words.  A natural way to do that is with a vector of {\tt apstring}s.
-You can create a vector of {\tt apstring}s the same way you create an
-vector of other types:
+Í tilviki {\tt Card} hlutanna þá merkir ``læsilegur máti'' að við verðum að varpa innri framsetningu litar og gildis í orð.
+Eðlileg leið til að gera það er að nota vektor af strengjum ({\tt string}).
+Þú getur búið til vektor af strengjum á sama hátt og þú býrð til vektor af hvaða öðru tagi sem er:
 
 \begin{verbatim}
-  apvector<apstring> suits (4);
+  vector<string> suits (4);
 \end{verbatim}
 %
-Of course, in order to use {\tt apvector}s and {\tt apstring}s, you
-will have to include the header files for both\footnote{{\tt apvector}s
-are a little different from {\tt apstring}s in this regard.
-The file {\tt apvector.cpp} contains a template that allows the
-compiler to create vectors of various kinds.  The first time you
-use a vector of integers, the compiler generates code
-to support that kind of vector.  If you use a vector of {\tt apstring}s,
-the compiler generates different code to handle that kind of
-vector.  As a result, it is usually sufficient to include the
-header file {\tt apvector.h}; you do not have to compile
-{\tt apvector.cpp} at all!  Unfortunately, if you do, you are
-likely to get a long stream of error messages.  I hope this
-footnote helps you avoid an unpleasant surprise, but the details
-in your development environment may differ.}.
+%Of course, in order to use {\tt apvector}s and {\tt apstring}s, you
+%will have to include the header files for both\footnote{{\tt apvector}s
+%are a little different from {\tt apstring}s in this regard.
+%The file {\tt apvector.cpp} contains a template that allows the
+%compiler to create vectors of various kinds.  The first time you
+%use a vector of integers, the compiler generates code
+%to support that kind of vector.  If you use a vector of {\tt apstring}s,
+%the compiler generates different code to handle that kind of
+%vector.  As a result, it is usually sufficient to include the
+%eader file {\tt apvector.h}; you do not have to compile
+%{\tt apvector.cpp} at all!  Unfortunately, if you do, you are
+%likely to get a long stream of error messages.  I hope this
+%footnote helps you avoid an unpleasant surprise, but the details
+%in your development environment may differ.}.
 
-To initialize the elements of the vector, we can use a series of
-assignment statements.
+Við getum notað röð gildisveitingarsetninga (e. assignment statements) til að upphafsstilla stök vektors:
 
 \begin{verbatim}
   suits[0] = "Clubs";
@@ -174,30 +169,28 @@ assignment statements.
   suits[3] = "Spades";
 \end{verbatim}
 %
-A state diagram for this vector looks like this:
+Stöðurit frir þennan vektor lítur þá svona út: 
 
-\index{state diagram}
+\index{stöðurit}
 
 \vspace{0.1in}
 \centerline{\epsfig{figure=apstringvector.eps}}
 \vspace{0.1in}
 
-We can build a similar vector to decode the ranks.
-Then we can select the appropriate elements
-using the {\tt suit} and {\tt rank} as indices.  Finally, we can
-write a function called {\tt print} that outputs the card on which
-it is invoked:
+Við getum búið til sambærilegan vektor til að afkóta (e. decode) gildin.
+Þá getum við valið viðeigandi stök með því að nota {\tt suit} og {\tt rank} sem vísa (e. indices).
+Að lokum getum við síðan skrifað fallið {\tt print} sem skrifar út spilið:
 
 \begin{verbatim}
 void Card::print () const
 {
-  apvector<apstring> suits (4);
+  vector<string> suits (4);
   suits[0] = "Clubs";
   suits[1] = "Diamonds";
   suits[2] = "Hearts";
   suits[3] = "Spades";
 
-  apvector<apstring> ranks (14);
+  vector<string> ranks (14);
   ranks[1] = "Ace";
   ranks[2] = "2";
   ranks[3] = "3";
@@ -216,30 +209,24 @@ void Card::print () const
 }
 \end{verbatim}
 %
-The expression {\tt suits[suit]} means ``use the instance variable
-{\tt suit} from the current object as an index into the vector named
-{\tt suits}, and select the appropriate string.''
+Segðin {\tt suits[suit]} merkir að ``nota meðlimabreytuna {\tt suit} í núverandi hlut sem vísi inn í vektorinn {\tt suits}
+og velja viðeigandi streng.''
 
-Because {\tt print} is a {\tt Card} member function,
-it can refer to the instance variables of the current object
-implicitly (without having to use dot notation to specify the
-object).  The output of this code
+Vegna þess að {\tt print} er meðlimafall í {\tt Card} þá getur það vísað í meðlimbreytur núverandi hlutar á dulinn hátt (án þess að nota punktatáknun og ``this'' til að tilgreina hlutinn).
+Úttakið úr þessum kóða
 
 \begin{verbatim}
   Card card (1, 11);
   card.print ();
 \end{verbatim}
 %
-is {\tt Jack of Diamonds}.
+er {\tt Jack of Diamonds}.
 
-You might notice that we are not using the zeroeth element of the {\tt
-ranks} vector.  That's because the only valid ranks are 1--13.  By
-leaving an unused element at the beginning of the vector, we get an
-encoding where 2 maps to ``2'', 3 maps to ``3'', etc.  From the point
-of view of the user, it doesn't matter what the encoding is, since all
-input and output uses human-readable formats.  On the other hand, it
-is often helpful for the programmer if the mappings are easy
-to remember.
+Þú tekur kannski eftir því að við notum ekki núllta stakið í {\tt ranks} vektornum.
+Ástæðan er sú að leyfileg gildi eru aðeins þau á bilinu 1--13.
+Með því að skilja fyrsta stakið (núllta stakið) eftir ónotað í vektornum þá fáum við vörpun sem varpar 2 í ``2'', 3 í ``3'', o.s.frv.
+Notandi verður ekkert var við þessa vörpun (eða innri framsetningu) sem við notum í forritinu því allt inntak og úttak er sett fram á læsilegan hátt.
+Á hinn bóginn er það oft þægilegt fyrir forritarann ef vörpun er sett fram á máta sem auðvelt er að muna.
 
 \section{The {\tt equals} function}
 \index{same}
