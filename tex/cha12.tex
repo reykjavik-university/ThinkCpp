@@ -22,62 +22,49 @@
 % it from www.gnu.org or by writing to the Free Software Foundation,
 % Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+% This is an Icelandic translation/adaptation of the orginal book by Allen B. Downey
 
-\chapter{Vectors of Objects}
+\chapter{Vektorar af hlutum}
 
-\section{Composition}
-\index{composition}
-\index{nested structure}
+\section{Samsetning}
+\index{samsetning}
+\index{hreiðruð skipan}
 
-By now we have seen several examples of composition (the ability to
-combine language features in a variety of arrangements).  One of the
-first examples we saw was using a function invocation as part of an
-expression.  Another example is the nested structure of statements:
-you can put an {\tt if} statement within a {\tt while} loop, or within
-another {\tt if} statement, etc.
+Hingað til höfum við séð nokkur dæmi um samsetningu (e. composition), þ.e. þegar eiginleikar forritunarmálsins eru settir saman á ýmsan máta.
+Eitt af fyrstu dæmunum sem við sáum var að nota fallakall sem hluta af segð (e. expression).
+Annað dæmi er hreiðruð skipan setninga: hægt er að setja {\tt if} setningu inn í {\tt while} lykkju eða inn í aðra {\tt if} setningu, o.s.frv.
 
-Having seen this pattern, and having learned about vectors and objects,
-you should not be surprised to learn that you can have vectors of
-objects.  In fact, you can also have objects that contain vectors (as
-instance variables); you can have vectors that contain vectors; you can
-have objects that contain objects, and so on.
+Nú þegar við höfum séð þessi samsetningarmynstur, og lært um vektorara og hluti, þá ætti ekki að koma á óvart að hægt er að búa til vektorara af hlutum.
+Reyndar vill svo til að það er líka hægt að búa til hluti sem innihalda vektora (sem meðlimabreytur) vektorara sem innihalda vektorar; hluti sem innihalda aðra hluti, o.s.frv.
 
-In the next two chapters we will look at some examples of these
-combinations, using {\tt Card} objects as a case study.
+Í næstu tveimur köflum munum við skoða nokkur dæmi um svona samsetningar með því að nota {\tt Card} hluti sem sýnidæmi. 
 
-\section{{\tt Card} objects}
+\section{{\tt Card} hlutir}
 \index{Card}
-\index{class!Card}
+\index{hlutur!Card}
 
-If you are not familiar with common playing cards, now would be a good
-time to get a deck, or else this chapter might not make much sense.
-There are 52 cards in a deck, each of which belongs to one of four
-suits and one of 13 ranks.  The suits are Spades, Hearts, Diamonds and
-Clubs (in descending order in Bridge).  The ranks are Ace, 2, 3, 4, 5,
-6, 7, 8, 9, 10, Jack, Queen and King.  Depending on what game you are
-playing, the rank of the Ace may be higher than King or lower than 2.
+Ef þú þekkir ekki handspil (e. playing cards) þá væri nú góður tímapunktur að sækja spilastokk (e. deck) því annars er hætt við því að efni þessa kafla fari fyrir ofan garð og neðan.
+Það eru 52 spil í spilastokki og sérhvert spil tilheyrir einum af fjórum litum (e. suit) og 13 gildum (e. rank).
+Litirnir eru (í lækkandi röð í bridds): Spaðar (e. Spades), Hjörtu (e. Hearts), Tíglar (e. Diamonds) og Lauf (e. Clubs) (
+Gildin eru Ás (e. Ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, Gosi (e. Jack), Drottning (e. Queen) og Kóngur (e. King).
+Það fer eftir því hvaða spil þú ert að spila hvort Ásinn er hærri en Kóngur eða lægri en 2.
 
+\index{gildi}
 \index{rank}
+\index{litur}
 \index{suit}
 
-If we want to define a new object to represent a playing card, it is
-pretty obvious what the instance variables should be: {\tt rank} and
-{\tt suit}.  It is not as obvious what type the instance variables
-should be.  One possibility is {\tt apstring}s, containing things like
-\verb+"Spade"+ for suits and \verb+"Queen"+ for ranks.  One problem with
-this implementation is that it would not be easy to compare cards to
-see which had higher rank or suit.
+Það er nokkuð augljóst hverjar meðlimabreyturunar eiga að vera ef við viljum skilgreina nýjan hlut sem stendur fyrir tiltekið spil: {\tt rank} og {\tt suit}.
+Það er hins vegar ekki jafn augljóst hvert tag meðlimabreytnanna ætti að vera.
+Einn möguleiki er að nota {\tt string} sem þá myndi innihalda t.d. \verb+"Spade"+ fyrir lit og \verb+"Queen"+ fyrir gildi.
+Eitt vandamálið við þá útfærslu er að það yrði ekki einfalt að bera saman tvö spil, þ.e. að finna út hvort þeirra væri með hærri lit eða hærra gildi.
 
-\index{encode}
-\index{encrypt}
-\index{map to}
+\index{umrita}
+\index{varpa}
 
-An alternative is to use integers to {\bf encode} the ranks and
-suits.  By ``encode,'' I do not mean what some people think, which
-is to encrypt, or translate into a secret code.  What a computer
-scientist means by ``encode'' is something like ``define a mapping
-between a sequence of numbers and the things I want to represent.''
-For example,
+Annar möguleiki er sá að nota heiltölur til að {\bf umrita} (e. encode) gildin og litina. 
+Það sem tölvunarfræðingar eiga við með ``umrita'' er t.d. að skilgreina vörpun á milli talnarunu og hlutanna sem sérhvert tala raðarinnar stendur fyrir.
+Dæmi:
 
 \vspace{0.1in}
 \begin{tabular}{l c l}
@@ -88,11 +75,10 @@ Clubs & $\mapsto$ & 0
 \end{tabular}
 \vspace{0.1in}
 
-The symbol $\mapsto$ is mathematical notation for ``maps to.''
-The obvious feature of this mapping is that the suits map to
-integers in order, so we can compare suits by comparing integers.
-The mapping for ranks is fairly obvious; each of the numerical
-ranks maps to the corresponding integer, and for face cards:
+Táknið $\mapsto$ er stærðfræðileg tákn fyrir ``varpast í''. 
+Það má augljóslega lesa úr þessari vörpun að litirnir varpast í heiltölur í ákveðinni röð.
+Þannig getum við borið saman liti með því að bera saman heiltölur.
+Vörpunin fyrir gildi eru nokkuð augljós: sérhvert talnagildi varpast yfir í viðkomandi heiltölu en fyrir mannspil notum við eftirfarandi vörpun:
 
 \vspace{0.1in}
 \begin{tabular}{l c l}
@@ -102,10 +88,9 @@ King & $\mapsto$ & 13 \\
 \end{tabular}
 \vspace{0.1in}
 
-The reason I am using mathematical notation for these mappings is
-that they are not part of the C++ program.  They are part of the
-program design, but they never appear explicitly in the code.
-The class definition for the {\tt Card} type looks like this:
+Ástæðan fyrir því að ég nota stærðfræðilega táknun fyrir þessar varpanir er sú að þær eru ekki hluti af C++ forritunarmálinu.
+Varpanirnar eru hluti af hönnun forritsins en þær koma ekki beint fyrir í forritskóðanum.
+Strúktúrskilgreiningin fyrir {\tt Card} tagið lítur svona út:
 
 \begin{verbatim}
 struct Card
@@ -125,26 +110,22 @@ Card::Card (int s, int r) {
 }
 \end{verbatim}
 %
-There are two constructors for {\tt Card}s.  You can tell that
-they are constructors because they have no return type and their
-name is the same as the name of the structure.  The first
-constructor takes no arguments and initializes the instance
-variables to a useless value (the zero of clubs).
+Það eru tveir smiðir (e. constructors) fyrir {\tt Card}.
+Þú sérð að um er að ræða smiði vegna þess að þeir hafa ekkert skilagildi og nafn þeirra er það sama og nafn strúktúrsins.
+Fyrri smiðurinn tekur engin viðföng og upphafsstillir meðlimabreyturnar í raun með gagnlausum gildum (0 í laufi!).
 
-The second constructor is more useful.  It takes two parameters,
-the suit and rank of the card.
+Seinni smiðurinn er gagnlegri.
+Hann tekur tvö viðföng, lit og gildi spilsins.
 
-\index{constructor}
+\index{smiður}
 
-The following code creates an object named {\tt threeOfClubs}
-that represents
-the 3 of Clubs:
+Eftirfarandi kóði býr til hlut með nafninu {\tt threeOfClubs} sem stendur fyrir laufaþrist: 
 
 \begin{verbatim}
    Card threeOfClubs (0, 3);
 \end{verbatim}
 %
-The first argument, {\tt 0} represents the suit Clubs, the
+Fyrsta viðfangið, {\tt 0}, stendur fyrir litinn represents the suit Clubs, the
 second, naturally, represents the rank 3.
 
 \section{The {\tt printCard} function}
