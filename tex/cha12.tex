@@ -228,23 +228,21 @@ Með því að skilja fyrsta stakið (núllta stakið) eftir ónotað í vektorn
 Notandi verður ekkert var við þessa vörpun (eða innri framsetningu) sem við notum í forritinu því allt inntak og úttak er sett fram á læsilegan hátt.
 Á hinn bóginn er það oft þægilegt fyrir forritarann ef vörpun er sett fram á máta sem auðvelt er að muna.
 
-\section{The {\tt equals} function}
-\index{same}
+\section{Fallið {\tt equals}}
+\index{samanburður}
 
-In order for two cards to be equal, they have to have the same rank
-and the same suit.  Unfortunately, the {\tt ==} operator does not work
-for user-defined types like {\tt Card}, so we have to write a function
-that compares two cards.  We'll call it {\tt equals}.  It is also
-possible to write a new definition for the {\tt ==} operator, but we
-will not cover that in this book.
+Tvö spil eru jöfn ef þau eru með sama gildi og bera sama lit.
+Því miður getum við ekki notað {\tt ==} virkjann til að bera saman tvö spil
+því hann virkar ekki fyrir tög sem notandinn skilgreinir (e. user-defined types) eins og {\tt Card}.
+Við verðum því að skrifa fall sem ber saman tvö spil.
+Köllum það {\tt equals}.
+Það er reyndar hægt að fjölbinda (e. overload) {\tt ==} virkjann en við munu ekki fjalla um þann möguleika í þessari bók. 
 
-It is clear that the return value from {\tt equals} should be a
-boolean that indicates whether the cards are the same.  It is
-also clear that there have to be two {\tt Card}s as parameters.
-But we have one more choice: should {\tt equals} be a member
-function or a free-standing function?
+Það er ljóst að skilagildið úr {\tt equals} ætti að vera bool gildi sem gefur til kynna hvort tvö spil eru jöfn eður ei.
+Það er jafnframt ljóst að fallið þarf að taka tvo {\tt Card} hluti sem viðföng. 
+Nú stöndum við frammi fyrir eftirfarandi vali: Á {\tt equals} að vera meðlimafall (e. member function) eða fall sem stendur eitt og sér (e. free-standing function)?
 
-As a member function, it looks like this:
+Sem meðlimafall lítur {\tt equals} svona út:
 
 \begin{verbatim}
 bool Card::equals (const Card& c2) const
@@ -253,8 +251,7 @@ bool Card::equals (const Card& c2) const
 }
 \end{verbatim}
 %
-To use this function, we have to invoke it on one of the
-cards and pass the other as an argument:
+Til að nota fallið vekjum við það upp með einu spili og sendum hitt spilið sem viðfang: 
 
 \begin{verbatim}
   Card card1 (1, 11);
@@ -265,12 +262,11 @@ cards and pass the other as an argument:
   }
 \end{verbatim}
 %
-This method of invocation always seems strange to me when the
-function is something like {\tt equals}, in which the two
-arguments are symmetric.  What I mean by symmetric is that it
-does not matter whether I ask ``Is A equal to B?'' or
-``Is B equal to A?''  In this case, I think it looks better to rewrite
-{\tt equals} as a nonmember function:
+Mér finnst þessi aðferð við vakningu (e. invocation) alltaf líta dálítið undarlega út
+þegar um er að ræða fall eins og {\tt equals} þar sem viðföngin tvö eru samhverf (e. symmetric).
+Það sem ég á við með samhverf viðföng er að það skiptir ekki máli hvort ég spyr 
+``Is A equal to B?'' eða ``Is B equal to A?''.
+Í þessu tilviki mér finnst því eðlilegra að skrifa {\tt equals} sem ``ekki-meðlimafall'' (e. nonmember function). 
 
 \begin{verbatim}
 bool equals (const Card& c1, const Card& c2)
@@ -279,9 +275,7 @@ bool equals (const Card& c1, const Card& c2)
 }
 \end{verbatim}
 %
-When we call this version of the function, the arguments
-appear side-by-side in a way that makes more logical sense,
-to me at least.
+Þegar við köllum á þessa útgáfu fallsins þá birtast viðföngin hlið við hlið á máta sem mér finnst eðlilegri.
 
 \begin{verbatim}
   if (equals (card1, card2)) {
@@ -289,36 +283,32 @@ to me at least.
   }
 \end{verbatim}
 %
-Of course, this is a matter of taste.  My point here is that
-you should be comfortable writing both member and nonmember
-functions, so that you can choose the interface that works best
-depending on the circumstance.
+Þetta er samt auðvitað bara spurning um smekk.
+Punkturinn hér er sá að þú ættir að geta skrifað hvort sem er meðlimafall eða ``ekki-meðlimafall'' þannig að þú getir ákveðið þau skil (e. interface)
+sem eru hentugust því verkefni sem liggur fyrir hverju sinni.
 
-\section{The {\tt isGreater} function}
+\section{Fallið {\tt isGreater}}
 \index{isGreater}
-\index{operator!comparison}
-\index{comparison operator}
+\index{virki!samanburður}
+\index{samanburðarvirki}
 
-For basic types like {\tt int} and {\tt double}, there are comparison
-operators that compare values and determine when one is greater or
-less than another.  These operators ({\tt <} and {\tt >} and the
-others) don't work for user-defined types.  Just as we did for the
-{\tt ==} operator, we will write a comparison function that plays
-the role of the {\tt >} operator.  Later, we will use this function to
-sort a deck of cards.
+Fyrir grunntög eins og {\tt int} og {\tt double} eru til innbyggðir samanburðarvirkjar
+sem bera saman gildi og ákvarða hvort eitt gildi er stærra eða minna en annað.
+Þessir virkjar ({\tt <} og {\tt >} og fleiri) virka hins vegar ekki fyrir tög sem skilgreind eru af notanda.
+Við þurfum því, á sama hátt og við gerðum í tilviki {\tt ==} virkjans, að skrifa samanburðarfall sem líkir eftir {\tt >} virkjanum.
+Við munum síðar nota þetta fall til að raða spilum spilastokks.
 
-\index{ordering}
-\index{complete ordering}
-\index{partial ordering}
+\index{röðun}
+%\index{complete ordering}
+%\index{partial ordering}
+\index{fullröðun}
+\index{hlutröðun}
 
-Some sets are totally ordered, which means that you can compare any
-two elements and tell which is bigger.  For example, the integers and
-the floating-point numbers are totally ordered.  Some sets are
-unordered, which means that there is no meaningful way to say that one
-element is bigger than another.  For example, the fruits are
-unordered, which is why we cannot compare apples and oranges.  As
-another example, the {\tt bool} type is unordered; we cannot say that
-{\tt true} is greater than {\tt false}.
+Sum mengi eru fullröðuð (e. totally ordered) sem merkir að hægt er að bera saman hvaða tvö stök sem er og segja til um hvort er stærra.
+Heiltölur og kommutölur eru t.d. fullraðaðar.
+Sum mengi eru hins vegar ekki röðuð sem merkir að það er engin nærtæk leið til að segja til um hvort eitt stak sé stærra en annað.
+Ávextir eru t.d. ekki raðaðir sem er einmitt ástæðan fyrir því að við getum ekki borið saman epli og appelsínur!
+Annað dæmi um mengi sem er ekki raðað er {\tt bool} tagið -- við getum ekki sagt að {\tt true} sé stærra en {\tt false}.
 
 The set of playing cards is partially ordered, which means that
 sometimes we can compare cards and sometimes not.  For example, I know
