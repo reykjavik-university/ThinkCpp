@@ -459,139 +459,120 @@ void printDeck (const vector<Card>& deck) {
 Þar sem {\tt deck} hefur tagið {\tt vector<Card>} þá hefur stak í {\tt deck} tagið {\tt Card}.
 Þess vegna er leyfilegt að vekja upp fallið {\tt print} með {\tt deck[i]}.
 
-\section{Searching}
+\section{Leit}
 \label{find}
-\index{searching}
-\index{linear search}
+\index{leit}
+\index{runuleit}
 \index{find}
 
-The next function I want to write is {\tt find}, which searches
-through a vector of {\tt Card}s to see whether it contains a certain
-card.  It may not be obvious why this function would be useful, but it
-gives me a chance to demonstrate two ways to go searching for things,
-a {\tt linear} search and a {\tt bisection} search.
+Það næsta fall sem mig langar til að skrifa er {\tt find} sem leitar í vektor af spilum ({\tt Card}s)
+og athugar hvort tiltekið spil finnst þar.
+Það er kannski ekki augljóst af hverju þetta fall er gagnlegt en það gefur mér þó tilefni til að sýna
+tvær leiðir til að leita að hlutum: {\tt runuleit} (e. linear search) og {\tt tvíundarleit} (e. binary/bisection search).
 
-\index{traverse}
-\index{loop!search}
+\index{ferðast um}
+\index{lykkja!leit}
 
-Linear search is the more obvious of the two; it involves traversing
-the deck and comparing each card to the one we are looking for.  If we
-find it we return the index where the card appears.  If it is not in
-the deck, we return -1.
+Runuleit er einfaldari í útfærslu en tvíundarleit.
+Runuleitin okkar snýst um að ferðast um í spilastokknum, spil fyrir spil, og bera saman sérhvert spil við það spil sem við leitum að.
+Ef við finnum spilið þá skilum við vísinum sem segir til um hvar spilið fannst.
+Ef spilið finnst ekki í spilastokknum þá skilum við -1.
 
 \begin{verbatim}
-int find (const Card& card, const apvector<Card>& deck) {
+int find (const Card& card, const vector<Card>& deck) {
   for (int i = 0; i < deck.length(); i++) {
-    if (equals (deck[i], card)) return i;
+    if (equals (deck[i], card)) 
+      return i;
   }
   return -1;
 }
 \end{verbatim}
 %
-The loop here is exactly the same as the loop in {\tt printDeck}.
-In fact, when I wrote the program, I copied it, which saved me
-from having to write and debug it twice.
+Lykkjan hér er nákvæmlega sú sama og í lykkjunni í {\tt printDeck}.
+Það vill einmitt svo til að þegar ég skrifaði þetta fall þá afritaði ég lykkjuna sem sparaði mér forritun
+og það að þurfa að aflúsa tvisvar.
 
-Inside the loop, we compare each element of the deck to
-{\tt card}.  The function returns as soon as it discovers
-the card, which means that we do not have to traverse the entire
-deck if we find the card we are looking for.  If the loop terminates
-without finding the card, we know the card is not in the deck
-and return {\tt -1}.
+Inni í lykkjunni berum við saman sérhvert stak í spilastokknum (deck) við {\tt card}.
+Fallið hættir keyrslu um leið og það finnur spilið sem leitað er að sem þýðir þá að ekki þarf að ferðast um
+í öllum stokknum ef spilið finnst.
+Ef lykkjan hættir keyrslu án þess að spilið finnist þá vitum við að spilið er ekki í stokknum og skilum {\tt -1}.
 
-\index{pattern!eureka}
-\index{statement!return}
-\index{return!inside loop}
+\index{mynstur!eureka}
+\index{setning!return}
+\index{return!innan lykkju}
 
-To test this function, I wrote the following:
+Ég skrifaði eftirfarandi kóða til að prófa fallið: 
 
 \begin{verbatim}
-  apvector<Card> deck = buildDeck ();
+  vector<Card> deck = buildDeck ();
 
   int index = card.find (deck[17]);
   cout << "I found the card at index = " << index << endl;
 \end{verbatim}
 %
-The output of this code is
-
+Úttakið er:
 \begin{verbatim}
 I found the card at index = 17
 \end{verbatim}
 %
 
+\section{Tvíundarleit}
+\index{tvíundarleit}
 
-\section{Bisection search}
-\index{bisection search}
+Ef spilastokkurinn er ekki raðaður þá er engin önnur leitaraðferð hraðvirkari en runuleit.
+Við verðum að skoða sérhvert spil því annars getum við ekki verið viss um að spilið sem við leitum að sé ekki í stokknum.
 
-If the cards in the deck are not in order, there is no way to search
-that is faster than the linear search.  We have to look at every card,
-since otherwise there is no way to be certain the card we want is not
-there.
-
-But when you look for a word in a dictionary, you don't search
-linearly through every word.  The reason is that the words are in
-alphabetical order.  As a result, you probably use an algorithm that
-is similar to a bisection search:
+Þegar við hins vegar flettum upp orði í orðabók þá beitum við ekki runuleit.
+Ástæðan er sú að orðin eru í stafrófsröð í orðabókinni.
+Það er líklegt að við uppflettingu í orðabók notir þú algrím sem er svipað og tvíundarleit:
 
 \begin {enumerate}
 
-\item Start in the middle somewhere.
+\item Byrja einhvers staðar í miðjunni. 
 
-\item Choose a word on the page and compare it to the word you
-are looking for.
+\item Velja orð á síðunni og bera það saman við leitarorðið.
 
-\item If you found the word you are looking for, stop.
+\item Ef leitarorðið finnst þá er leit lokið. 
 
-\item If the word you are looking for comes after the word on
-the page, flip to somewhere later in the dictionary and go to
-step 2.
+\item Ef leitarorðið kemur á eftir orðinu á síðunni þá er farið á einhverja síðu aftar í bókinni og farið til baka í skref 2. If the word you are looking for comes after the word on
 
-\item If the word you are looking for comes before the word on
-the page, flip to somewhere earlier in the dictionary and go to
-step 2.
+\item Ef leitarorðið kemur á undan orðinu á síðunni þá er farið á einhverja síðu framar í bókinni og farið til baka í skref 2. If the word you are looking for comes after the word on
 
 \end {enumerate}
 
-If you ever get to the point where there are two adjacent words on the
-page and your word comes between them, you can conclude that your word
-is not in the dictionary.  The only alternative is that your word has
-been misfiled somewhere, but that contradicts our assumption that the
-words are in alphabetical order.
+Ef sú staða kemur upp að leitarorðið ætti að vera á milli tveggja samliggjandi orða á síðunni
+þá getur þú ályktað sem svo að leitarorðið sé ekki í orðabókinni.
+Hinn möguleikinn er sá að leitarorðið sé á öðrum stað í orðabókinni
+en það er í mótsögn við forsenduna um að orðin í orðabókinni séu í stafrófsröð.
 
-In the case of a deck of cards, if we know that the cards are in
-order, we can write a version of {\tt find} that is much faster.  The
-best way to write a bisection search is with a recursive function.
-That's because bisection is naturally recursive.
+Ef við vitum að spilastokkurinn er raðaður þá getum við skrifað aðra útgáfu af {\tt find}
+sem er miklu skilvirkari (hraðvirkari).
+Besta leiðin til að útfæra tvíundarleit er að beita endurkvæmni (e. recursion).
+Ástæðan er sú að tvíundarleit er í eðli sínu endurkvæm.
 
 \index{findBisect}
 
-The trick is to write a function called {\tt findBisect} that takes
-two indices as parameters, {\tt low} and {\tt high}, indicating the
-segment of the vector that should be searched (including both
-{\tt low} and {\tt high}).
+``Trikkið'' er að skrifa fall, sem við getum kallað {\tt findBisect}, sem tekur tvo vísa sem viðföng,
+{\tt low} og {\tt high}, sem gefa til kynna bil úr vektornum sem leita skal í. 
 
 \begin{enumerate}
 
-\item To search the vector, choose an index between {\tt low} and {\tt
-high}, and call it {\tt mid}.  Compare the card at {\tt mid} to the
-card you are looking for.
+\item Til að leita í vektornum er vísir valinn á milli {\tt low} og {\tt high} og kallaður {\tt mid}.
+Spilið í {\tt mid} í vektornum er síðan borið saman við leitarspilið. 
 
-\item If you found it, stop.
+\item Ef spilið fannst þá er leit hætt. 
 
-\item If the card at {\tt mid} is higher than your card, search
-in the range from {\tt low} to {\tt mid-1}.
+\item Ef spilið í {\tt mid} er hærra en leitarspilið þá er leitað í bilinu {\tt low} til {\tt mid-1}.
 
-\item If the card at {\tt mid} is lower than your card, search
-in the range from {\tt mid+1} to {\tt high}.
+\item Ef spilið í {\tt mid} er lægra en leitarspilið þá er leitað í bilinu {\tt mid+1} til {\tt high}.
 
 \end{enumerate}
 %
-Steps 3 and 4 look suspiciously like recursive
-invocations.  Here's what this all looks like translated into
-C++:
+Skref 3 og 4 eru grunsamlega lík endurkvæmri kvaðningu!
+Svona mætti útfæra þetta í C++:
 
 \begin{verbatim}
-int findBisect (const Card& card, const apvector<Card>& deck,
+int findBisect (const Card& card, const vector<Card>& deck,
                 int low, int high) {
   int mid = (high + low) / 2;
 
@@ -609,25 +590,22 @@ int findBisect (const Card& card, const apvector<Card>& deck,
 }
 \end{verbatim}
 %
-Although this code contains the kernel of a bisection search, it
-is still missing a piece.  As it is currently written,
-if the card is not in the deck, it will recurse forever.  We
-need a way to detect this condition and deal with it properly
-(by returning {\tt -1}).
+Þó svo að þessi forritskóði innihaldi kjarnann fyrir tvíundarleit þá vantar samt mikilvægan hlut.
+Eins og þetta er núna skrifað þá mun koma upp óendanleg endurkvæmni ef leitarspilið er ekki í stokknum.
+Við þurfum því leið til að mæta þessu skilyrði og meðhöndla það á réttan hátt (með því að skila {\tt -1}).
 
-\index{recursion}
+\index{endurkvæmni}
 
-The easiest way to tell that your card is not in the deck
-is if there are {\em no} cards in the deck, which is the
-case if {\tt high} is less than {\tt low}.  Well, there are
-still cards in the deck, of course, but what I mean is that
-there are no cards in the segment of the deck indicated by
-{\tt low} and {\tt high}.
+Einfaldasta leiðin til að uppgötva að leitarspilið er ekki í stokknum er þegar 
+{\em engin} spil eru í stokknu, þ.e. þegar {\tt high} er minna {\tt low}.
+Það eru auðvitað reyndar spil í stokknum en það sem ég á við er að það eru engin spil á því bili sem 
+{\tt low} og {\tt high} gefa til kynna.
+Þetta er grunnþrepið í endurkvæmninni.
 
-With that line added, the function works correctly:
+Ef við bætum við þessu skilyrði þá virkar fallið rétt:
 
 \begin{verbatim}
-int findBisect (const Card& card, const apvector<Card>& deck,
+int findBisect (const Card& card, const vector<Card>& deck,
                 int low, int high) {
 
   cout << low << ", " << high << endl;
@@ -646,16 +624,15 @@ int findBisect (const Card& card, const apvector<Card>& deck,
 }
 \end{verbatim}
 %
-I added an output statement at the beginning so I could watch
-the sequence of recursive calls and convince myself
-that it would eventually reach the base case.  I tried out the
-following code:
+Ég bætti líka við úttakssetningu í byrjun fallsins þannig að ég geti séð röð endurkvæmu kallanna
+og fullvissað mig um að grunnþrepið myndi að lokum verða virkt.
+Ég prófaði eftirfarandi kóða:
 
 \begin{verbatim}
   cout << findBisect (deck, deck[23], 0, 51));
 \end{verbatim}
 %
-And got the following output:
+Úttakið varð þetta: 
 
 \begin{verbatim}
 0, 51
@@ -666,8 +643,8 @@ And got the following output:
 I found the card at index = 23
 \end{verbatim}
 %
-Then I made up a card that is not in the deck (the 15 of Diamonds),
-and tried to find it.  I got the following:
+Síðan bjó ég til spil sem er ekki í stokknum (tígull með gildið 15),
+og reyndi að finna það. Þá varð útkoman þessi:
 
 \begin{verbatim}
 0, 51
@@ -679,95 +656,90 @@ and tried to find it.  I got the following:
 I found the card at index = -1
 \end{verbatim}
 %
-These tests don't prove that this program is correct.  In fact, no
-amount of testing can prove that a program is correct.  On the other
-hand, by looking at a few cases and examining the code, you might be
-able to convince yourself.
+Þessar prófanir mínar sanna ekki að forritið sé rétt.
+Reyndar er það svo að engar prófanir sem þessar (hversu viðamiklar sem þær eru) geta sannað að forrit sé rétt.
+Ef þú aftur á móti skoðar nokkur tilfelli og skoðar kóðann vel þá ættir þú að geta sannfært sjálfan þig um að forritið sé rétt.
 
-\index{testing}
-\index{correctness}
+\index{prófanir}
+\index{rétt forrit}
 
-The number of recursive calls is fairly small, typically 6 or 7.  That
-means we only had to call {\tt equals} and {\tt isGreater} 6 or 7
-times, compared to up to 52 times if we did a linear search.  In
-general, bisection is much faster than a linear search, especially for
-large vectors.
+Fjöldi endurkvæmra kalla er tiltölulega lítill, yfirleitt 6 eða 7.
+Það þýðir að við þurftum aðeins að kalla á {\tt equals} og {\tt isGreater} 6 eða 7 sinnum, 
+samanborið við allt að 52 sinnum í tilfelli runuleitarinnar.
+Almennt séð er tvíundarleit því miklu skilvirkari en runuleit, sérstaklega þegar um er að ræða stóra vektora.
 
-Two common errors in recursive programs are forgetting to include a
-base case and writing the recursive call so that the base case is never
-reached.  Either error will cause an infinite recursion, in which case
-C++ will (eventually) generate a run-time error.
+Tvær algengar villur við útfærslu á endurkvæmum föllum eru þær að gleyma að setja inn grunnþrep (e. base case)
+og að skrifa endurkvæmu köllinn þannig að grunnþrepið verði aldrei virkt.
+Önnur þessara villna veldur óendanlegri endurkvæmni, sem hefur að lokum í för með sér keyrsluvillu.
 
-\index{recursion!infinite}
-\index{infinite recursion}
-\index{run-time error}
+\index{endurkvæmni!óendanleg}
+\index{óendanleg endurkvæmni}
+\index{keyrsluvilla}
 
-\section{Decks and subdecks}
-\index{deck}
-\index{subdeck}
+\section{Stokkar og hlutstokkar}
+\index{stokkur}
+\index{hlutstokkur}
 
-Looking at the interface to {\tt findBisect}
+Skoðum nánar skilin fyrir {\tt findBisect}:
 
 \begin{verbatim}
-int findBisect (const Card& card, const apvector<Card>& deck,
+int findBisect (const Card& card, const vector<Card>& deck,
 		int low, int high) {
 \end{verbatim}
 %
-it might make sense to treat three of the parameters, {\tt deck}, {\tt
-low} and {\tt high}, as a single parameter that specifies a {\bf
-subdeck}.
+Hér gæti verið eðlilegra að meðhöndla viðföngin þrú, {\tt deck}, {\tt low} og {\tt high},
+sem eitt viðfang sem tilgreinir {\bf hlutstokk} (e. subdeck).
 
-\index{parameter!abstract}
-\index{abstract parameter}
+\index{viðfang!hugrænt}
+\index{hugrænn parameter}
 
-This kind of thing is quite common, and I sometimes think of it as an
-{\bf abstract parameter}.  What I mean by ``abstract,'' is something
-that is not literally part of the program text, but which describes the
-function of the program at a higher level.
+Þetta er nokkuð algengt og ég kalla svona viðfang stundum {\bf hugrænt viðfang}.
+Það sem ég á við með ``hugrænt'' (e. abstract) er eitthvað sem er í raun ekki hluti af forritunartextanum, 
+heldur eitthvað sem lýsir hlutverki forritsins.
 
-For example, when you call a function and pass a vector and the bounds
-{\tt low} and {\tt high}, there is nothing that prevents the called
-function from accessing parts of the vector that are out of bounds.  So
-you are not literally sending a subset of the deck; you are really
-sending the whole deck.  But as long as the recipient plays by the
-rules, it makes sense to think of it, abstractly, as a subdeck.
+Þegar þú kallar t.d. á fall og sendir inn vektor og bilið {\tt low} til {\tt high}
+þá er ekkert sem kemur í veg fyrir að fallið reyni að nálgast stök úr vektornum sem eru
+ekki innan hans (e. out of bounds). 
+Þannig að í raun er ekki verið að senda inn í fallið hlutstokk heldur allan stokkinn í heild sinni.
+Svo framarlega sem fallið ``hagar sér'' rétt þá er eðlilegt að líta á viðföngin, á hugrænan hátt, sem hlutstokk.
 
-There is one other example of this kind of abstraction that you might
-have noticed in Section~\ref{objectops}, when I referred to an
-``empty'' data structure.  The reason I put ``empty'' in quotation
-marks was to suggest that it is not literally accurate.  All variables
-have values all the time.  When you create them, they are given
-default values.  So there is no such thing as an empty object.
+Vel má vera að þú hafir tekið eftir öðru dæmi um svona útdrátt (e. abstraction) í kaflanum~\ref{objectops}
+þar sem vísaði í ``tóman'' hlut.
+Ástæðan fyrir því að ég setti ``tómur'' í gæsalappir var sú að gefa til kynna að þetta væri ekki alls kostar rétt.
+Allar breytur hafa gildi á sérhverjum tíma.
+Þegar þú býrð þær til þá fá þær einhver sjálfgefin gildi.
+Þannig að í raun er ekkert til sem heitir ``tómur'' hlutur.
 
-But if the program guarantees that the current value of a variable is
-never read before it is written, then the current value is irrelevant.
-Abstractly, it makes sense to think of such a variable as ``empty.''
+Ef forrit sér hins vegar til þess að upphafsgildi breytu er aldrei lesið áður en breytunni er gefið gildi
+þá skiptir í raun upphafsgildið ekki máli.
+Á hugrænan hátt má því líta svo á að umræddur hlutur sé ``tómur''.
 
-This kind of thinking, in which a program comes to take on meaning
-beyond what is literally encoded, is a very important part of thinking
-like a computer scientist.  Sometimes, the word ``abstract'' gets used
-so often and in so many contexts that it is hard to interpret.
-Nevertheless, abstraction is a central idea in computer science (as
-well as many other fields).
+Þessi hugsanagangur, þ.e. þegar forrit hefur einhverja merkingu sem ekki er beint hægt að lesa úr forritstextanum,
+er mjög mikilvægur fyrir tölvunarfræðinga.
+Stundum er orðið ``hugrænn'' (e. abstract) notað svo oft og í svo mörgu mismunandi samhengi að það getur verið erfitt að skilja.
+Útdráttur er samt sem áður grunnhugtak í tölvunarfræði (og reynar í mörgum öðrum greinum).
 
-\index{abstraction}
+\index{útdráttur}
 
-A more general definition of ``abstraction'' is ``The process of
-modeling a complex system with a simplified description in order to
-suppress unnecessary details while capturing relevant behavior.''
+Almennari skilgreining á ``útdrætti`` er þessi:
+''Ferlið við að líkja eftir flóknu kerfi með einfaldri lýsingu í þeim tilgangi að fela
+ónauðsynleg smáatriði en á sama tíma grípa mikilvæga virkni``.
+%A more general definition of ``abstraction'' is ``The process of
+%modeling a complex system with a simplified description in order to
+%suppress unnecessary details while capturing relevant behavior.''
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[encode:]  To represent one set of values using another
-set of values, by constructing a mapping between them.
+\item[kóta (e. encode):]
+Að setja fram eitt mengi af gildum með því að nota annað mengi af gildi og vörpun á milli þessara mengja.
 
-\item[abstract parameter:]  A set of parameters that act together
-as a single parameter.
+\item[hugrænt viðfang (e. abstract parameter):]
+Mengi af viðföngum sem til saman hafa hlutverk eins viðfangs.
 
-\index{encode}
-\index{abstract parameter}
+\index{kóta}
+\index{hugrænt viðfang}
 
 \end{description}
 
