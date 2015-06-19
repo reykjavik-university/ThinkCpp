@@ -35,7 +35,7 @@ Eitt af fyrstu dæmunum sem við sáum var að nota fallakall sem hluta af segð
 Annað dæmi er hreiðruð skipan setninga: hægt er að setja {\tt if} setningu inn í {\tt while} lykkju eða inn í aðra {\tt if} setningu, o.s.frv.
 
 Nú þegar við höfum séð þessi samsetningarmynstur, og lært um vektorara og hluti, þá ætti ekki að koma á óvart að hægt er að búa til vektora af hlutum.
-Reyndar vill svo til að það er líka hægt að búa til hluti sem innihalda vektora (sem meðlimabreytur) vektora sem innihalda vektora; hluti sem innihalda aðra hluti, o.s.frv.
+Reyndar vill svo til að það er líka hægt að búa til hluti sem innihalda vektora (sem meðlimabreytur) vektora sem innihalda vektora, hluti sem innihalda aðra hluti, o.s.frv.
 
 Í næstu tveimur köflum munum við skoða nokkur dæmi um svona samsetningar með því að nota {\tt Card} hluti sem sýnidæmi. 
 
@@ -44,7 +44,7 @@ Reyndar vill svo til að það er líka hægt að búa til hluti sem innihalda v
 \index{hlutur!Card}
 
 Ef þú þekkir ekki handspil (e. playing cards) þá er nú góður tímapunktur að sækja spilastokk (e. deck) því annars er hætt við því að efni þessa kafla fari fyrir ofan garð og neðan.
-Það eru 52 spil í spilastokki og sérhvert spil tilheyrir einum af fjórum litum (e. suit) og 13 gildum (e. rank).
+Það eru 52 spil í spilastokki og sérhvert spil tilheyrir einum af fjórum litum (e. suits) og 13 gildum (e. ranks).
 Litirnir eru (í lækkandi röð í bridds): Spaðar (e. Spades), hjörtu (e. Hearts), tíglar (e. Diamonds) og lauf (e. Clubs).
 Gildin eru ás (e. Ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, gosi (e. Jack), drottning (e. Queen) og kóngur (e. King).
 Það fer eftir því hvaða spil þú ert að spila hvort ásinn er hærri en kóngur eða lægri en tvistur.
@@ -169,7 +169,7 @@ Við getum notað röð gildisveitingarsetninga (e. assignment statements) til a
   suits[3] = "Spades";
 \end{verbatim}
 %
-Stöðurit frir þennan vektor lítur þá svona út: 
+Stöðurit fyrir þennan vektor lítur þá svona út: 
 
 \index{stöðurit}
 
@@ -264,9 +264,9 @@ Til að nota fallið vekjum við það upp með einu spili og sendum hitt spili�
 %
 Mér finnst þessi aðferð við vakningu (e. invocation) alltaf líta dálítið undarlega út
 þegar um er að ræða fall eins og {\tt equals} þar sem viðföngin tvö eru samhverf (e. symmetric).
-Það sem ég á við með samhverf viðföng er að það skiptir ekki máli hvort ég spyr 
+Það sem ég á við með samhverfum viðföngum er að það skiptir ekki máli hvort ég spyr 
 ``Is A equal to B?'' eða ``Is B equal to A?''.
-Í þessu tilviki mér finnst því eðlilegra að skrifa {\tt equals} sem ``ekki-meðlimafall'' (e. nonmember function). 
+Í þessu tilviki finnst mér því eðlilegra að skrifa {\tt equals} sem ``ekki-meðlimafall'' (e. nonmember function). 
 
 \begin{verbatim}
 bool equals (const Card& c1, const Card& c2)
@@ -430,7 +430,7 @@ Fyrir hvern lit telur innri lykkjan upp gildin, frá 1 til 13.
 \index{vísir}
 
 Taktu eftir því að við getum sett saman málskipanina til að velja stak úr fylki (með {\tt []} virkjanum)
-og málskipanina sem velur meðlimabreytu úr hlut (punkta táknið).
+og málskipanina sem velur meðlimabreytu úr hlut (punktatáknið).
 Segðin {\tt deck[i].suit} merkir þá ``the suit of the ith card in the deck''.
 
 \index{hjúpun}
@@ -465,7 +465,7 @@ void printDeck (const vector<Card>& deck) {
 \index{runuleit}
 \index{find}
 
-Það næsta fall sem mig langar til að skrifa er {\tt find} sem leitar í vektor af spilum ({\tt Card}s)
+Næsta fall sem mig langar til að skrifa er {\tt find} sem leitar í vektor af spilum ({\tt Card}s)
 og athugar hvort tiltekið spil finnst þar.
 Það er kannski ekki augljóst af hverju þetta fall er gagnlegt en það gefur mér þó tilefni til að sýna
 tvær leiðir til að leita að hlutum: {\tt runuleit} (e. linear search) og {\tt tvíundarleit} (e. binary/bisection search).
@@ -493,7 +493,7 @@ Lykkjan hér er nákvæmlega sú sama og í lykkjunni í {\tt printDeck}.
 og það að þurfa að aflúsa tvisvar.
 
 Inni í lykkjunni berum við saman sérhvert stak í spilastokknum (deck) við {\tt card}.
-Fallið hættir keyrslu um leið og það finnur spilið sem leitað er að sem þýðir þá að ekki þarf að ferðast um
+Fallið hættir keyrslu um leið og það finnur leitarspilið sem þýðir þá að ekki þarf að ferðast um
 í öllum stokknum ef spilið finnst.
 Ef lykkjan hættir keyrslu án þess að spilið finnist þá vitum við að spilið er ekki í stokknum og skilum {\tt -1}.
 
@@ -534,9 +534,9 @@ Við verðum að skoða sérhvert spil því annars getum við ekki verið viss 
 
 \item Ef leitarorðið finnst þá er leit lokið. 
 
-\item Ef leitarorðið kemur á eftir orðinu á síðunni þá er farið á einhverja síðu aftar í bókinni og farið til baka í skref 2. If the word you are looking for comes after the word on
+\item Ef leitarorðið kemur á eftir orðinu á síðunni þá er farið á einhverja síðu aftar í bókinni og farið til baka í skref 2. 
 
-\item Ef leitarorðið kemur á undan orðinu á síðunni þá er farið á einhverja síðu framar í bókinni og farið til baka í skref 2. If the word you are looking for comes after the word on
+\item Ef leitarorðið kemur á undan orðinu á síðunni þá er farið á einhverja síðu framar í bókinni og farið til baka í skref 2.
 
 \end {enumerate}
 
@@ -625,7 +625,7 @@ int findBisect (const Card& card, const vector<Card>& deck,
 \end{verbatim}
 %
 Ég bætti líka við úttakssetningu í byrjun fallsins þannig að ég geti séð röð endurkvæmu kallanna
-og fullvissað mig um að grunnþrepið myndi að lokum verða virkt.
+og fullvissað mig um að grunnþrepið verði að lokum virkt.
 Ég prófaði eftirfarandi kóða:
 
 \begin{verbatim}
@@ -643,7 +643,7 @@ og fullvissað mig um að grunnþrepið myndi að lokum verða virkt.
 I found the card at index = 23
 \end{verbatim}
 %
-Síðan bjó ég til spil sem er ekki í stokknum (tígull með gildið 15),
+Síðan bjó ég til spil sem er ekki í stokknum (tígull með gildið 15)
 og reyndi að finna það. Þá varð útkoman þessi:
 
 \begin{verbatim}
@@ -670,7 +670,7 @@ Almennt séð er tvíundarleit því miklu skilvirkari en runuleit, sérstaklega
 
 Tvær algengar villur við útfærslu á endurkvæmum föllum eru þær að gleyma að setja inn grunnþrep (e. base case)
 og að skrifa endurkvæmu köllinn þannig að grunnþrepið verði aldrei virkt.
-Önnur þessara villna veldur óendanlegri endurkvæmni, sem hefur að lokum í för með sér keyrsluvillu.
+Önnur þessara villna veldur óendanlegri endurkvæmni sem hefur að lokum í för með sér keyrsluvillu.
 
 \index{endurkvæmni!óendanleg}
 \index{óendanleg endurkvæmni}
@@ -711,17 +711,17 @@ Allar breytur hafa gildi á sérhverjum tíma.
 Þannig að í raun er ekkert til sem heitir ``tómur'' hlutur.
 
 Ef forrit sér hins vegar til þess að upphafsgildi breytu er aldrei lesið áður en breytunni er gefið gildi
-þá skiptir í raun upphafsgildið ekki máli.
+þá skiptir upphafsgildið í raun ekki máli.
 Á hugrænan hátt má því líta svo á að umræddur hlutur sé ``tómur''.
 
 Þessi hugsanagangur, þ.e. þegar forrit hefur einhverja merkingu sem ekki er beint hægt að lesa úr forritstextanum,
 er mjög mikilvægur fyrir tölvunarfræðinga.
-Stundum er orðið ``hugrænn'' (e. abstract) notað svo oft og í svo mörgu mismunandi samhengi að það getur verið erfitt að skilja.
+Stundum er orðið ``hugrænn'' notað svo oft og í svo mörgu mismunandi samhengi að það getur verið erfitt að skilja.
 Útdráttur er samt sem áður grunnhugtak í tölvunarfræði (og reynar í mörgum öðrum greinum).
 
 \index{útdráttur}
 
-Almennari skilgreining á ``útdrætti`` er þessi:
+Almennari skilgreining á útdrætti er þessi:
 ''Ferlið við að líkja eftir flóknu kerfi með einfaldri lýsingu í þeim tilgangi að fela
 ónauðsynleg smáatriði en á sama tíma grípa mikilvæga virkni``.
 %A more general definition of ``abstraction'' is ``The process of
