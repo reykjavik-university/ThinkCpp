@@ -177,71 +177,70 @@ að ``falla'' í næsta tilvik.
 Almennt séð er góður forritunarstíll að hafa sjálfgefið ({\tt default}) tilvik í sérhverri     
 {\tt switch} setningu til að meðhöndla villur eða óvænt gildi. 
 
-\section{Decks}
+\section{Stokkar}
 \label{deck}
-\index{deck}
-\index{vector!of Cards}
+\index{stokkur}
+\index{vektor!af spilum}
 
-In the previous chapter, we worked with a vector of objects,
-but I also mentioned that it is possible to have an object
-that contains a vector as an instance variable.  In this
-chapter I am going to create a new object, called a {\tt Deck},
-that contains a vector of {\tt Card}s.
+Í köflunum hér á undan unnum við með vektor af hlutum 
+en ég nefndi það líka að það væri hægt að búa til hluti 
+sem innihalda vektor sem meðlimabreytu.
+Í þessum kafla ætla ég að búa til nýjan hlut, {\tt Deck},
+sem inniheldur vektor af {\tt Card}.
 
-\index{instance variable}
-\index{variable!instance}
+\index{meðlimabreyta}
+\index{breyta!meðlimur}
 
-The structure definition looks like this
+Strúktúrskilgreiningin lítur svona út:
 
 \begin{verbatim}
 struct Deck {
-  apvector<Card> cards;
+  vector<Card> cards;
 
   Deck (int n);
 };
 
 Deck::Deck (int size)
 {
-  apvector<Card> temp (size);
+  vector<Card> temp (size);
   cards = temp;
 }
 \end{verbatim}
 %
-The name of the instance variable is {\tt cards} to help
-distinguish the {\tt Deck} object from the vector of {\tt Card}s
-that it contains.
+Nafnið á meðlimabreytunni er {\tt cards} sem hjálpar okkur að gera
+greinarmun á {\tt Deck} (stokknum) sjálfum og vektor af {\tt Card} sem stokkurinn inniheldur.
 
-\index{constructor}
 
-For now there is only one constructor.  It creates a local variable
-named {\tt temp}, which it initializes by invoking the constructor
-for the {\tt apvector} class, passing the size as a parameter.
-Then it copies the vector from {\tt temp} into the instance
-variable {\tt cards}.
+\index{smiður}
 
-Now we can create a deck of cards like this:
+Sem stendur er aðeins um einn smið að ræða.
+Sá nýtir sér staðværa breytu með nafninu {\tt temp} sem er upphafsstillt
+með því að vekja upp smiðinn í {\tt vector} klasanum (stærðin, size, er send sem viðfang).
+Síðan afritar smiðurinn {\tt temp} yfir í meðlimabreytuna {\tt cards}.
+
+Nú getum við þá búið til stokk af spilum á eftirfarandi hátt: 
 
 \begin{verbatim}
   Deck deck (52);
 \end{verbatim}
 %
-Here is a state diagram showing what a
-{\tt Deck} object looks like:
+Stöðurit fyrir {\tt Deck} hlut lítur svona út:
 
-\index{state diagram}
-\index{constructor}
+\index{stöðurit}
+\index{smiður}
 
 \vspace {0.1in}
 \centerline{\epsfig{figure=deckobject.eps}}
 \vspace {0.1in}
 
-The object named {\tt deck} has a single instance variable named {\tt
-cards}, which is a vector of {\tt Card} objects.  To access the cards
-in a deck we have to compose the syntax for accessing an
-instance variable and the syntax for selecting an element from an
-array.  For example, the expression {\tt deck.cards[i]} is the ith
-card in the deck, and {\tt deck.cards[i].suit} is its suit.
-The following loop
+Hluturinn með nafnið {\tt deck} á sér eina meðlimabreytuna með nafnið {\tt cards}
+sem er vektor af {\tt Card} hlutum.
+Til að nálgast spil í stokknum þurfum við að setja saman málskipanina fyrir að nálgast meðlimabreytu
+og málskipanina fyrir að velja stak úr vektor.
+Segðin {\tt deck.cards[i]} er t.d. i-ta spilið í stokknum og
+{\tt deck.cards[i].suit} er litur þess.
+
+eftirfarandi lykkja
 
 \begin{verbatim}
   for (int i = 0; i<52; i++) {
@@ -249,7 +248,7 @@ The following loop
   }
 \end{verbatim}
 %
-demonstrates how to traverse the deck and output each card.
+sýnir hvernig er hægt að ferðast um í stokknum og prenta út sérhvert spil.
 
 \section {Another constructor}
 \index{constructor}
