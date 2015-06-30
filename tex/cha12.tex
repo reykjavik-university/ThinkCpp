@@ -448,7 +448,7 @@ Við höfum nokkrum sinnum séð mynstur til að ``ferðast um'' í vektor þann
 
 \begin{verbatim}
 void printDeck (const vector<Card>& deck) {
-  for (int i = 0; i < deck.length(); i++) {
+  for (unsigned int i = 0; i < deck.size(); i++) {
     deck[i].print ();
   }
 }
