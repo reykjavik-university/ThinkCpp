@@ -24,25 +24,23 @@
 
 % This is an Icelandic translation/adaptation by Hrafn Loftsson of the orginal book by Allen B. Downey.
 
-\chapter{Objects of Vectors}
+%\chapter{Objects of Vectors}
+\chapter{Hlutir með vektorum}
 
-\section{Enumerated types}
-\index{type!enumerated}
-\index{enumerated type}
-\index{mapping}
+%\section{Enumerated types}
+\section{Upptalningartög}
+\index{tag!upptalning}
+\index{upptalningartag}
+\index{vörpun}
 
-In the previous chapter I talked about mappings between
-real-world values like rank and suit, and internal representations
-like integers and strings.  Although we created a mapping between
-ranks and integers, and between suits and integers, I pointed
-out that the mapping itself does not appear as part of the
-program.
+Í kaflanum hér á undan ræddi ég um vörpun á milli raunverulegra gilda, eins og gilda og lita spila, 
+og innri framsetningar, eins og heiltalna og strengja.
+Þó svo að við höfum annars vegar búið til vörpun á milli gilda og heiltalna og hins vegar á milli lita og heiltalna
+þá benti ég á að vörpunin sjálf kemur ekki beint fram í forritskóðanum.
 
-Actually, C++ provides a feature called and {\bf enumerated type}
-that makes it possible to (1) include a mapping as part of the
-program, and (2) define the set of values that make up the
-mapping.  For example, here is the definition
-of the enumerated types {\tt Suit} and {\tt Rank}:
+Reyndar vill svo til að C++ hefur eiginleika sem kallast {\bf upptalningartag} (e. enumerated type)
+sem gerir kleift (1) að gera vörpun sem hluta af forritskóða og (2) að skilgreina mengi af gildum sem vörpunin samanstendur af.
+Hér er t.d. skilgreiningin á upptalningartagi fyrir {\tt Suit} og {\tt Rank}:
 
 \begin{verbatim}
 enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES };
@@ -51,18 +49,14 @@ enum Rank { ACE=1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE,
 TEN, JACK, QUEEN, KING };
 \end{verbatim}
 %
-By default, the first value in the enumerated type maps to
-0, the second to 1, and so on.  Within the {\tt Suit} type, the value
-{\tt CLUBS} is represented by the integer 0, {\tt DIAMONDS} is
-represented by 1, etc.
+Sjálfgefin vörpun er sú að fyrsta gildið í upptalningartagi varpast í heiltöluna 0, annað gildið í 1, o.s.frv.
+Í {\tt Suit} taginu stendur því gildið {\tt CLUBS} fyrir heiltöluna 0, {\tt DIAMONDS} fyrir 1, o.s.frv.
 
-The definition of {\tt Rank} overrides the default mapping and
-specifies that {\tt ACE} should be represented by the integer 1.
-The other values follow in the usual way.
+Skilgreiningin á {\tt Rank} yfirskrifar sjálfgefnu vörpunina og tilgreinir að {\tt ACE} standi fyrir heiltöluna 1.
+Þar með varpast {\tt TWO} í 2,  {\tt THREE} í 3, o.s.frv.
 
-Once we have defined these types, we can use them anywhere.  For
-example, the instance variables {\tt rank} and {\tt suit} are
-can be declared with type {\tt Rank} and {\tt Suit}:
+Um leið og við höfum skilgreint þessi tög getum við notað þau hvar sem er.
+Meðlimabreytunum {\tt rank} og {\tt suit} getur t.d. verið lýst yfir með tögunum {\tt Rank} og {\tt Suit}:
 
 \begin{verbatim}
 struct Card
@@ -74,27 +68,24 @@ struct Card
 };
 \end{verbatim}
 %
-That the types of the parameters for the constructor
-have changed, too.  Now, to create a card, we can use the values from
-the enumerated type as arguments:
+Taktu eftir að tag leppanna í smiðnum hefur líka breyst.
+Til að ``smíða'' card hlut getum við þá notað gildi úr upptalningartögunum sem viðföng:
 
 \begin{verbatim}
   Card card (DIAMONDS, JACK);
 \end{verbatim}
 %
-By convention, the values in enumerated types have names with
-all capital letters. \index{convention}
-This code is much clearer than the alternative using integers:
+Það er hefð fyrir því að gildi úr upptalningartögum séu nöfn með stórum stöfum.
+Þessi yfirlýsing á card hlut er miklu læsilegri en sú sem við notuðum áður með heiltölum:
 
 \begin{verbatim}
   Card card (1, 11);
 \end{verbatim}
 %
-Because we know that the values in the enumerated types are
-represented as integers, we can use them as indices for a vector.
-Therefore the old {\tt print} function will work without
-modification.  We have to make some changes in {\tt buildDeck},
-though:
+Við getum notað gildi upptalningartaga sem vísi inn í vektora vegna þess að við vitum 
+að þessi gildi standa fyrir heiltölur.
+Af þessum sökum mun gamla {\tt print} fallið okkar virka á nokkurra breytinga.
+Við þurfum hins vegar að gera breytingar á {\tt buildDeck} fallinu:
 
 \begin{verbatim}
   int index = 0;
@@ -107,21 +98,18 @@ though:
   }
 \end{verbatim}
 %
-In some ways, using enumerated types makes this code more readable,
-but there is one complication.  Strictly speaking, we are not
-allowed to do arithmetic with enumerated types, so {\tt suit++}
-is not legal.  On the other hand, in the expression {\tt suit+1},
-C++ automatically converts the enumerated type to integer.  Then
-we can take the result and typecast it back to the enumerated type:
+Með því að nota upptalningartögin er kóðinn læsilegri en það er ein flækja.
+Strangt til tekið getum við ekki beitt útreikningum á upptalningartög þannig að {\tt suit++} er ekki löglegt.
+Hins vegar breytir C++ upptalningargildinu suit í segðinni {\tt suit+1} í heiltölu.
+Þar með getum við tekið niðurstöðuna og notað tagmótun (e. typecast) til að ``kasta'' gildinu til baka í upptalningartag: 
 
 \begin{verbatim}
   suit = Suit(suit+1);
   rank = Rank(rank+1);
 \end{verbatim}
 %
-Actually, there is a better way to do this---we can define
-the {\tt ++} operator for enumerated types---but that is beyond
-the scope of this book.
+Það er reyndar betri leið til að gera þetta með því að yfirskrifa {\tt ++} virkjann fyrir
+upptalningartögin en við fjöllum ekki um það í þessari bók. 
 
 \section{{\tt switch} statement}
 \index{switch statement}
