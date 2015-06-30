@@ -108,17 +108,16 @@ Hins vegar breytir C++ upptalningargildinu suit í segðinni {\tt suit+1} í hei
   rank = Rank(rank+1);
 \end{verbatim}
 %
-Það er reyndar betri leið til að gera þetta með því að yfirskrifa {\tt ++} virkjann fyrir
+Það er reyndar til betri leið til að gera þetta með því að yfirskrifa {\tt ++} virkjann fyrir
 upptalningartögin en við fjöllum ekki um það í þessari bók. 
 
-\section{{\tt switch} statement}
-\index{switch statement}
-\index{statement!switch}
+\section{{\tt switch} setning}
+\index{switch setning}
+\index{setning!switch}
 
-It's hard to mention enumerated types without mentioning {\tt switch}
-statements, because they often go hand in hand.  A {\tt switch} statement
-is an alternative to a chained conditional that is syntactically
-prettier and often more efficient.  It looks like this:
+Það er erfitt að ræða upptalningartög án þess að nefna {\tt switch} setningar því oft haldast þær í hendur.
+{\tt switch} setning er önnur leið til að setja fram keðjur af if-skilyrðissetningum og oft reyndar bæði læsilegri og skilvirkari. 
+Hún lítur svona út:
 
 \begin{verbatim}
   switch (symbol) {
@@ -134,8 +133,7 @@ prettier and often more efficient.  It looks like this:
   }
 \end{verbatim}
 %
-This {\tt switch} statement is equivalent to the following chained
-conditional:
+Þessi {\tt switch} setning er jafngild eftirfarandi keðju af if-setningum:
 
 \begin{verbatim}
   if (symbol == '+') {
@@ -147,20 +145,18 @@ conditional:
   }
 \end{verbatim}
 %
-The {\tt break} statements are necessary in each branch
-in a {\tt switch} statement because otherwise the flow of execution
-``falls through'' to the next case.  Without the {\tt break} statements,
-the symbol {\tt +} would make the program perform addition, and
-then perform multiplication, and then print the error message.
-Occasionally this feature is useful, but most of the time it is
-a source of errors when people forget the {\tt break} statements.
+{\tt break} setningarnar eru nauðsynlegar í sérhverri ``grein'' í 
+{\tt switch} setningu vegna þess að án {\tt break} setningar þá ``fellur'' keyrsluflæðið í næsta tilvik (e. case).
+Án {\tt break} setninga myndi táknið {\tt +} verða þess valdandi að forritið myndi framkvæma
+samlagningu (e. addition), síðan margföldun (e. multiplication) og að lokum prenta út villuskilaboðin.
+Af og til er þessi eiginleiki reyndar gagnlegur en í flestum tilvikum koma upp villur í keyrslu þegar 
+{\tt break} setningar gleymast.
 
-\index{break statement}
-\index{statement!break}
+\index{break setning}
+\index{setning!break}
 
-{\tt switch} statements work with integers, characters, and enumerated
-\mbox{types}.  For example, to convert a {\tt Suit} to the corresponding
-string, we could use something like:
+{\tt switch} setningar virka fyrir heiltölur, stafi og upptalningatög.
+Til að breyta {\tt Suit} í samsvarandi streng þá getum við t.d. gert eftirfarandi: 
 
 \begin{verbatim}
   switch (suit) {
@@ -172,14 +168,14 @@ string, we could use something like:
   }
 \end{verbatim}
 %
-In this case we don't need {\tt break} statements because the
-{\tt return} statements cause the flow of execution to return to
-the caller instead of falling through to the next case.
+Í þessu dæmi þurfum við ekki á {\tt break} setningu að halda vegna þess að 
+{\tt return} setningar valda því að keyrsluflæðið fer til baka til þess sem kallaði í stað þess
+að ``falla'' í næsta tilvik. 
 
 \index{default}
 
-In general it is good style to include a {\tt default} case in
-every {\tt switch} statement, to handle errors or unexpected values.
+Almennt séð er góður forritunarstíll að hafa sjálfgefið ({\tt default}) tilvik í sérhverri     
+{\tt switch} setningu til að meðhöndla villur eða óvænt gildi. 
 
 \section{Decks}
 \label{deck}
