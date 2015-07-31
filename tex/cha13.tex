@@ -360,34 +360,30 @@ struct Deck {
 \end{verbatim}
 
 
-\section{Shuffling}
+\section{Að stokka}
 \label{shuffle}
-\index{shuffling}
+\index{stokka}
 
-For most card games you need to be able to shuffle the deck;
-that is, put the cards in a random order.  In Section~\ref{random}
-we saw how to generate random numbers, but it is not obvious how
-to use them to shuffle a deck.
+Í flestum spilum þarf að vera hægt að stokka spilin, þ.e. setja þau í handahófskennda röð í stokknum.
+Við sáum í kafla~\ref{random} hvernig hægt er að búa til slembitölur en það er ekki augljóst hvernig hægt er 
+að nota þær til að stokka spilin.
 
-One possibility is to model the way humans shuffle, which is usually
-by dividing the deck in two and then reassembling the deck by choosing
-alternately from each deck.  Since humans usually don't shuffle
-perfectly, after about 7 iterations the order of the deck is pretty
-well randomized.  But a computer program would have the annoying
-property of doing a perfect shuffle every time, which is not really
-very random.  In fact, after 8 perfect shuffles, you would find the
-deck back in the same order you started in.  For a discussion of that
-claim, see {\tt http://www.wiskit.com/marilyn/craig.html} or do a web
-search with the keywords ``perfect shuffle.''
+Ein leið er sú að líkja eftir því hvernig við sjálf stokkum, t.d. að skipta stokknum í tvennt
+og setja hann svo saman á ný með því að velja eitt spil í einu frá hvorum helmingnum.
+Þetta er kallað fullkomin stokkun (e. perfect shuffle).
+Það getur tekið okkur um 7 ítranir þangað til spilin eru vel stokkuð með þessari aðferð.
+Forrit hefur hins vegar þann pirrandi eiginleika að stokka fullkomlega í sérhvert sinn sem er í raun ekki mjög handahófskennt!
+Það vill reyndar svo til að eftir 8 fullkomnar stokkanir þá er stokkurinn í sömu röð og þegar byrjað var.
+Þú getur séð umfjöllun um þessa fullyrðingu á {\tt http://www.wiskit.com/marilyn/craig.html} eða leitað á vefnum
+með leitarorðunum ``perfect shuffle.''
 
-A better shuffling algorithm is to traverse the deck one card at a
-time, and at each iteration choose two cards and swap them.
+Betra stokkunaralgrím er að ferðast um í stokknum, spil fyrir spil, og skipta á tveimur spilum í sérhverri ítrun. 
 
-\index{pseudocode}
+\index{sauðakóði}
 
-Here is an outline of how this algorithm works.  To sketch the
-program, I am using a combination of C++ statements and English
-words that is sometimes called {\bf pseudocode}:
+Hér má sjá drög af því hvernig þetta algrím virkar.
+Til að setja fram forritið nota ég sambland af C++ setningum og ensku -- þetta er stundum kallað 
+called {\bf sauðakóði} (e. pseudocode):
 
 \begin{verbatim}
   for (int i=0; i<cards.length(); i++) {
@@ -396,25 +392,21 @@ words that is sometimes called {\bf pseudocode}:
   }
 \end{verbatim}
 %
-The nice thing about using pseudocode is that it often makes it
-clear what functions you are going to need.  In this case, we
-need something like {\tt randomInt}, which chooses a random
-integer between the parameters {\tt low} and {\tt high},
-and {\tt swapCards} which takes two indices and switches the
-cards at the indicated positions.
+Kosturinn við að nota sauðakóða er oft sá að hann gefur skýrt til kynna hvaða föll eru nauðsynleg.
+Í þessu tilviki þurfum við fall eins og {\tt randomInt} sem velur, á handahófskenndan hátt, heiltölu á milli
+viðfanganna {\tt low} og {\tt high}, og fall eins og {\tt swapCards} sem tekur tvo vísa og skiptir á spilunum í viðkomandi sætum.
 
-\index{random number}
+\index{slembitölur}
 
-You can probably figure out how to write {\tt randomInt}
-by looking at Section~\ref{random}, although you will have to
-be careful about possibly generating indices that are out of range.
+Þú ættir að geta fundið út hvernig skrifa á {\tt randomInt} með því að kíkja til baka í kafla~\ref{random}.
+Þú þarft þó að passa þig að búa ekki til vísa sem eru út fyrir bilið (e. out of range). 
 
-\index{swapCards}
-\index{reference}
+%\index{swapCards}
+%\index{reference}
 
-You can also figure out {\tt swapCards} yourself.
-I will leave the remaining implementation of these functions
-as an exercise to the reader.
+Þú ættir líka að geta skrifað {\tt swapCards} sjálf(ur). 
+
+%I will leave the remaining implementation of these functions as an exercise to the reader.
 
 \section{Sorting}
 \label{sorting}
