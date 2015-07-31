@@ -33,7 +33,7 @@
 \index{upptalningartag}
 \index{vörpun}
 
-Í kaflanum hér á undan ræddi ég um vörpun á milli raunverulegra gilda, eins og gilda og lita spila, 
+Í kaflanum hér á undan ræddi ég um vörpun á milli raunverulegra gilda, eins og gilda eða lita tiltekinna spila, 
 og innri framsetningar, eins og heiltalna og strengja.
 Þó svo að við höfum annars vegar búið til vörpun á milli gilda og heiltalna og hins vegar á milli lita og heiltalna
 þá benti ég á að vörpunin sjálf kemur ekki beint fram í forritskóðanum.
@@ -233,14 +233,14 @@ Stöðurit fyrir {\tt Deck} hlut lítur svona út:
 \centerline{\epsfig{figure=deckobject.eps}}
 \vspace {0.1in}
 
-Hluturinn með nafnið {\tt deck} á sér eina meðlimabreytuna með nafnið {\tt cards}
+Hluturinn með nafnið {\tt deck} á sér eina meðlimabreytu með nafnið {\tt cards}
 sem er vektor af {\tt Card} hlutum.
 Til að nálgast spil í stokknum þurfum við að setja saman málskipanina fyrir að nálgast meðlimabreytu
 og málskipanina fyrir að velja stak úr vektor.
 Segðin {\tt deck.cards[i]} er t.d. i-ta spilið í stokknum og
 {\tt deck.cards[i].suit} er litur þess.
 
-eftirfarandi lykkja
+Eftirfarandi lykkja
 
 \begin{verbatim}
   for (int i = 0; i<52; i++) {
@@ -250,21 +250,19 @@ eftirfarandi lykkja
 %
 sýnir hvernig er hægt að ferðast um í stokknum og prenta út sérhvert spil.
 
-\section {Another constructor}
-\index{constructor}
+\section {Annar smiður}
+\index{smiður}
 
-Now that we have a {\tt Deck} object, it would be useful
-to initialize the cards in it.  From the previous chapter we
-have a function called {\tt buildDeck} that we could use
-(with a few adaptations), but it might be more natural to
-write a second {\tt Deck} constructor.
+Það getur verið gagnlegt að upphafsstilla spilin í {\tt Deck} hlutnum.
+Við gætum notað fallið {\tt buildDeck} úr fyrri kafla (með smávægilegum breytingum) 
+en það er líklega eðlilegra að skrifa annan smið í {\tt Deck}.
 
-\index{loop!nested}
+\index{lykkja!hreiðruð}
 
 \begin{verbatim}
 Deck::Deck ()
 {
-  apvector<Card> temp (52);
+  vector<Card> temp (52);
   cards = temp;
 
   int i = 0;
@@ -278,20 +276,17 @@ Deck::Deck ()
 }
 \end{verbatim}
 %
-Notice how similar this function is to {\tt buildDeck}, except
-that we had to change the syntax to make it a constructor.
-Now we can create a standard 52-card deck with the simple
-declaration {\tt Deck deck;}
+Taktu eftir því hversu líkt þetta fall er {\tt buildDeck} -- við þurftum aðeins að breyta málskipaninni til að gera þetta að smið.
+Nú getum við búið til hefðbundinn 52-spila stokk með einfaldri yfirlýsingu: {\tt Deck deck;}
 
-\section {{\tt Deck} member functions}
-\index{member function}
-\index{function!member}
+\section {Meðlimaföll í {\tt Deck}}
+\index{meðlimaföll}
+%\index{function!member}
 
-Now that we have a {\tt Deck} object, it makes sense to put
-all the functions that pertain to {\tt Deck}s in the {\tt Deck}
-structure definition.  Looking at the functions we have written so
-far, one obvious candidate is {\tt printDeck} (Section~\ref{printdeck}).
-Here's how it looks, rewritten as a {\tt Deck} member function:
+Nú þegar við höfum sérstakan {\tt Deck} hlut þá er eðlilegt að gera öll föll, sem hafa með stokk að gera, að
+meðlimaföllum í {\tt Deck}.
+Einn augljós kandídat er fallið {\tt printDeck} (kafli~\ref{printdeck}).
+Svona lítur það út eftir að því hefur verið breytt í meðlimafall í {\tt Deck}:
 
 \index{printDeck}
 
@@ -303,20 +298,18 @@ void Deck::print () const {
 }
 \end{verbatim}
 %
-As usual, we can refer to the instance variables of the current
-object without using dot notation.
+Að venju getum við vísað í meðlimabreytu núverandi hlutar (t.d. {\tt cards}) án þess að nota punktatáknun (e. dot notation).
 
-For some of the other functions, it is not obvious whether they should
-be member functions of {\tt Card}, member functions of {\tt Deck}, or
-nonmember functions that take {\tt Card}s and {\tt Deck}s as parameters.
-For example, the version of {\tt find} in the previous chapter
-takes a {\tt Card} and a {\tt Deck} as arguments, but you could
-reasonably make it a member function of either type.  As an exercise,
-rewrite {\tt find} as a {\tt Deck} member function that takes
-a {\tt Card} as a parameter.
+Það er hins vegar ekki augljóst fyrir sum önnur föll hvort þau ættu að vera
+meðlimaföll í {\tt Card}, í {\tt Deck} eða föll sem standa eitt og sér (e. nonmember function)
+og taka {\tt Card} og {\tt Deck} hluti sem viðföng.
+Útgáfan af {\tt find} úr fyrri kafla tekur t.d. {\tt Card} og {\tt Deck} hluti sem viðföng
+en við gætum gert fallið að meðlimafalli annars hvors hlutarins. 
+Til að æfa þig skaltu núna endurskrifa {\tt find} sem meðlimafall í {\tt Deck} sem tekur
+{\tt Card} hlut sem viðfang. 
 
-Writing {\tt find} as a {\tt Card} member
-function is a little tricky.  Here's my version:
+Það að skrifa {\tt find} sem meðlimafall í {\tt Card} er aftur á móti dálítið snúið.
+Hér er mín útgáfa: 
 
 \begin{verbatim}
 int Card::find (const Deck& deck) const {
@@ -327,18 +320,16 @@ int Card::find (const Deck& deck) const {
 }
 \end{verbatim}
 %
-The first trick is that we have to use the keyword {\tt this}
-to refer to the {\tt Card} the function is invoked on.
+Fyrsta ``vandamálið'' er að við verðum að nota lykilorðið {\tt this}
+til að vísa í það spil sem fallið er vakið upp með.
 
-\index{structure definition}
+\index{strúktúrskilgreining}
 
-The second trick is that C++ does not make it easy to write
-structure definitions that refer to each other.  The problem
-is that when the compiler is reading the first structure
-definition, it doesn't know about the second one yet.
+Annað vandamálið er það að C++ gerir ekki auðvelt að skrifa strúktúrskilgreiningar
+sem vísa hvor á aðra.
+Vandamálið er að þegar þýðandinn les fyrri skilgreininguna þá hefur það ekki séð þá seinni.
 
-One solution is to declare {\tt Deck} before {\tt Card} and
-then define {\tt Deck} afterwards:
+Ein lausn er að lýsa {\tt Deck} yfir (e. declare) á undan {\tt Card} og síðan skilgreina (e. define) {\tt Deck} eftir það:
 
 \begin{verbatim}
 // declare that Deck is a structure, without defining it
@@ -359,7 +350,7 @@ struct Card
 
 // and then later we provide the definition of Deck
 struct Deck {
-  apvector<Card> cards;
+  vector<Card> cards;
 
   Deck ();
   Deck (int n);
