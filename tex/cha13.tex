@@ -377,7 +377,7 @@ Forrit hefur hins vegar þann pirrandi eiginleika að stokka fullkomlega í sér
 Þú getur séð umfjöllun um þessa fullyrðingu á {\tt http://www.wiskit.com/marilyn/craig.html} eða leitað á vefnum
 með leitarorðunum ``perfect shuffle.''
 
-Betra stokkunaralgrím er að ferðast um í stokknum, spil fyrir spil, og skipta á tveimur spilum í sérhverri ítrun. 
+Betra stokkunaralgrím er að ferðast um í stokknum, spil fyrir spil, og skipta á núverandi spili og öðru spili (sem valið er af handahófi) í sérhverri ítrun. 
 
 \index{sauðakóði}
 
@@ -408,21 +408,17 @@ viðfanganna {\tt low} og {\tt high}, og fall eins og {\tt swapCards} sem tekur 
 
 %I will leave the remaining implementation of these functions as an exercise to the reader.
 
-\section{Sorting}
+\section{Röðun}
 \label{sorting}
-\index{sorting}
+\index{röðun}
 
-Now that we have messed up the deck, we need a way to put it
-back in order.  Ironically, there is an algorithm for
-sorting that is very similar to the algorithm for shuffling.
+Nú þegar við getum stokkað spilin þurfum við líka að geta raðað þeim í rétta röð.
+Það vill reyndar svo til að algrímið fyrir röðun er mjög svipað stokkunaralgríminu.
 
-Again, we are going to traverse the deck and at each location
-choose another card and swap.  The only difference is that
-this time instead of choosing the other card at random, we
-are going to find the lowest card remaining in the deck.
+Við munum aftur ferðast um í spilastokknum og skipta á núverandi spili og öðru spili í sérhverri ítrun.
+Eini munurinn er sá að í stað þess að velja annað spil af handahófi þá munum við finna lægsta spilið sem eftir er í stokknum.
 
-By ``remaining in the deck,'' I mean cards that are at or
-to the right of the index {\tt i}.
+Það sem ég á við með ``eftir er í stokknum'' eru spil sem eru jöfn eða hærri heldur er núverandi vísir {\tt i}.
 
 \begin{verbatim}
   for (int i=0; i<cards.length(); i++) {
@@ -431,37 +427,30 @@ to the right of the index {\tt i}.
   }
 \end{verbatim}
 %
-Again, the pseudocode helps with the design of the {\bf helper
-functions}.  In this case we can use {\tt swapCards} again,
-so we only need one new one, called {\tt findLowestCard},
-that takes a vector of cards and an index where it should
-start looking.
+Sauðakóðinn hjálpar hér aftur við hönnunina á {\bf hjálparföllum}.
+Í þessu tilviki getum við aftur notað {\tt swapCards} fallið og við þurfum því einungis eitt nýtt fall, {\tt findLowestCard},
+sem tekur vektor af spilum og vísi sem gefur til kynna hvar byrja á að leita í vektornum.
 
-This process, using pseudocode to figure out what helper
-functions are needed, is sometimes called {\bf top-down
-design}, in contrast to the bottom-up design I discussed
-in Section~\ref{counting}.
+Þetta ferli að nota sauðakóða til að finna út hvaða hjálparföll eru nauðsynleg eru stundum kallað 
+{\bf ofansækin hönnun} (e. top-down design), sem er andstaðan við {\bf neðansækna hönnun} (e. bottom-up design) sem ég ræddi um í kafla~\ref{counting}.
 
-\index{top-down design}
-\index{program development!top-down}
-\index{bottom-up design}
-\index{program development!bottom-up}
-\index{helper function}
-\index{function!helper}
+\index{ofansækin hönnun}
+\index{hönnun!ofansækin}
+\index{neðansækin hönnun}
+\index{hönnun!bottom-up}
+\index{hjálparfall}
+%\index{fall!helper}
 
-Once again, I am going to leave the implementation up to
-the reader.
+Þú ættir núna að spreyta þig á útfærslunni á þessum sauðakóða.
 
-\section {Subdecks}
-\index{subdeck}
+\section {Hlutstokkur}
+\index{hlutstokkur}
 
-How should we represent a hand or some other subset of a full deck?
-One easy choice is to make a {\tt Deck} object that
-has fewer than 52 cards.
+Hvernig ættum við að tákna hönd eða annað hlutmengi af spilastokki?
+Ein einföld leið er að búa til {\tt Deck} hlut sem hefur færri en 52 spil. 
 
-We might want a function, {\tt subdeck}, that takes a vector of cards
-and a range of indices, and that returns a new vector of cards that
-contains the specified subset of the deck:
+Við gætum skrifað fall, {\tt subdeck}, sem tekur vektor af spilum og vísa (sem tákna bil)
+og skilar nýjum vektor af spilum sem innheldur viðkomandi hlutmengi úr stokknum:
 
 \begin{verbatim}
 Deck Deck::subdeck (int low, int high) const {
@@ -474,40 +463,35 @@ Deck Deck::subdeck (int low, int high) const {
 }
 \end{verbatim}
 %
-To create the local variable named {\tt subdeck} we are using
-the {\tt Deck} constructor that takes the size of the deck
-as an argument and that does not initialize the cards.  The
-cards get initialized when they are copied from the original
-deck.
+Til að búa til staðværu breytuna {\tt subdeck} notum við hér {\tt Deck} smiðinn sem tekur stærðina á nýja stokknum (hlutstokknum)
+sem viðfang og upphafsstillir ekki spilin í stokknum.
+Spilin eru í raun upphafsstillt þegar þau eru afrituð úr upphaflega stokknum.
 
-The length of the subdeck is {\tt high-low+1} because both the low
-card and high card are included.  This sort of computation can be
-confusing, and lead to ``off-by-one'' errors.  Drawing a picture is
-usually the best way to avoid them.
+Stærðin á hlutstokknum er {\tt high-low+1} vegna þess að spilin í bæði {\tt low} og {\tt high} eru innifalin.
+Svona útreikningur getur verið ruglandi og hefur oft í för með sér ``off-by-one'' villur.
+Það er oft gott að teikna mynd til að koma í veg fyrir þessar villur.
 
-\index{constructor}
-\index{overloading}
+\index{smiður}
+%\index{overloading}
 
-As an exercise, write a version of {\tt findBisect} that takes a
-subdeck as an argument, rather than a deck and an index range.  Which
-version is more error-prone?  Which version do you think is more
-efficient?
+%As an exercise, write a version of {\tt findBisect} that takes a
+%subdeck as an argument, rather than a deck and an index range.  Which
+%version is more error-prone?  Which version do you think is more
+%efficient?
 
-\section{Shuffling and dealing}
-\index{shuffling}
-\index{dealing}
+\section{Að stokka og gefa}
+\index{stokka}
+\index{gefa}
 
-In Section~\ref{shuffle} I wrote pseudocode for a shuffling algorithm.
-Assuming that we have a function called {\tt shuffleDeck} that takes
-a deck as an argument and shuffles it, we can create and shuffle
-a deck:
+Í kafla~\ref{shuffle} skrifaði ég sauðakóða fyrir stokkunaralgríminu.
+Ef við gerum nú ráð fyrir því að eiga fallið {\tt shuffle}, sem tekur stokk sem viðfang og stokkar hann, þá getum við búið til og stokkað spilastokk: 
 
 \begin{verbatim}
   Deck deck;               // create a standard 52-card deck
   deck.shuffle ();         // shuffle it
 \end{verbatim}
 %
-Then, to deal out several hands, we can use {\tt subdeck}:
+Síðan getum við gefið spil með því að nota {\tt subdeck}:
 
 \begin{verbatim}
   Deck hand1 = deck.subdeck (0, 4);
@@ -515,61 +499,53 @@ Then, to deal out several hands, we can use {\tt subdeck}:
   Deck pack = deck.subdeck (10, 51);
 \end{verbatim}
 %
-This code puts the first 5 cards in one hand, the next 5 cards
-in the other, and the rest into the pack.
+Þessi kóði gefur fyrstu 5 spilin til einnar handar, næstu 5 spil til annnarra handar og afgangurinn fer í bunkann.
 
-When you thought about dealing, did you think we should give out one
-card at a time to each player in the round-robin style that is common
-in real card games?  I thought about it, but then realized that it is
-unnecessary for a computer program.  The round-robin convention is
-intended to mitigate imperfect shuffling and make it more difficult
-for the dealer to cheat.  Neither of these is an issue for a computer.
+Hvarflaði að þér að við ættum að gefa eitt spil í einu til sérhverrar handar eins og algengt er í raunverulegum spilum?
+Ég hugsaði um það en áttaði mig svo á því að það væri ekki nauðsynlegt í forriti.
+Það að gefa eitt spil í einu er yfirleitt gert til að leiðrétta ófullkomna stokkun og gera það að verkum að erfiðara sé fyrir þann sem gefur að svindla.
+Í tilviki tölvu þarf ekki að hugsa um þessi atriði. 
 
-This example is a useful reminder of one of the dangers of engineering
-metaphors: sometimes we impose restrictions on computers that are
-unnecessary, or expect capabilities that are lacking, because we
-unthinkingly extend a metaphor past its breaking point.  Beware of
-misleading analogies.
+%This example is a useful reminder of one of the dangers of engineering
+%metaphors: sometimes we impose restrictions on computers that are
+%unnecessary, or expect capabilities that are lacking, because we
+%unthinkingly extend a metaphor past its breaking point.  Beware of
+%misleading analogies.
 
 
 \section {Mergesort}
-\index{efficiency}
-\index{sorting}
+\index{skilvirkni}
+\index{röðun}
 \index{mergesort}
 
-In Section~\ref{sorting}, we saw a simple sorting algorithm that turns
-out not to be very efficient.  In order to sort $n$ items, it has to
-traverse the vector $n$ times, and each traversal takes an amount of
-time that is proportional to $n$.  The total time, therefore, is
-proportional to $n^2$.
+Í kafla~\ref{sorting} sáum við einfalt röðunaralgrím sem vill svo til að er ekki mjög skilvirkt.
+Til að raða $n$ hlutum (spilum) þarf algrímið að ferðast um í vektornum $n$ sinnum (for-lykkjan) og sérhver umferð tekur tíma sem er í réttu hlutfalli við $n$ (finna lægsta spil).
+Heildartíminn sem algrímið tekur er því í réttu hlutfalli við $n^2$.
 
-In this section I will sketch a more efficient algorithm called {\bf
-mergesort}.  To sort $n$ items, mergesort takes time proportional to
-$n \log n$.  That may not seem impressive, but as $n$ gets big, the
-difference between $n^2$ and $n \log n$ can be enormous.  Try out a
-few values of $n$ and see.
+Í þessum kafla mun ég setja fram mun skilvirkara röðunaralgrím sem kallast {\bf mergesort}.
+Tíminn sem mergesort tekur að raða $n$ hlutum er í réttu hlutfalli við $n \log n$.
+Þetta virðist ekki vera mikil bæting en eftir því sem $n$ stækkar því meiri munur verður á $n^2$ og $n \log n$.
+Prófaðu nokkur gildi fyrir $n$ og sjáðu muninn. 
 
-The basic idea behind mergesort is this: if you have two subdecks,
-each of which has been sorted, it is easy (and fast) to merge them
-into a single, sorted deck.  Try this out with a deck of cards:
+Grundvallarhugmyndin á bak við mergesort er eftirfarandi:
+Ef þú hefur tvo hlutstokka, sem hvor um sig er þegar raðaður, þá er einfalt (og skilvirkt) að setja þá saman (e. merge) í einn raðaðan stokk.
+Prófaðu þetta með raunverulegum spilastokki:
 
 \begin{enumerate}
 
-\item Form two subdecks with about 10 cards each and sort
-them so that when they are face up the lowest cards are on
-top.  Place both decks face up in front of you.
+\item Búðu til tvo hlutstokka með um 10 spilum hvor og raðaðu þeim þannig að þegar spilin snúa upp þá er lægsta spilið efst.
+Settu báða stokkana fyrir framan þig (þannig að spilin snúi upp). 
 
-\item Compare the top card from each deck and choose the
-lower one.  Flip it over and add it to the merged deck.
+\item Berðu saman efstu spilin í hvorum stokki og veldu það lægra. 
+Snúðu því við og bættu því við nýja samsetta stokkinn (sem upphaflega er tómur). 
 
-\item Repeat step two until one of the decks is empty.
-Then take the remaining cards and add them to the merged
-deck.
+\item Endurtaktu skref tvö þangað til annar stokkurinn er tómur. 
+Bættu þá restinni af spilunum við samsetta stokkinn. 
 
 \end{enumerate}
 
-The result should be a single sorted deck.  Here's what this
-looks like in pseudocode:
+Niðurstaðan ætti að vera einn raðaaður stokkur.
+Svona lítur þetta út í sauðakóða:
 
 \begin{verbatim}
   Deck merge (const Deck& d1, const Deck& d2) {
@@ -593,18 +569,15 @@ looks like in pseudocode:
   }
 \end{verbatim}
 %
-I chose to make {\tt merge} a nonmember function because
-the two arguments are symmetric.
+Ég ákvað að gera {\tt merge} að falli sem stendur eitt og sér (e. nonmember function) vegna þess að viðföngin tvö eru samhverf (e. symmetric). 
 
-The best way to test {\tt merge} is to build and shuffle a deck,
-use subdeck to form two (small) hands, and then use the sort
-routine from the previous chapter to sort the two halves.  Then
-you can pass the two halves to {\tt merge} to see if it works.
+Besta leiðin til að prófa {\tt merge} er að búa til stokk, nota subdeck til að búa til tvær (litlar) hendur
+og nota síðan röðunaralgrímið úr síðasta kafla til að raða höndunum tveimur.
+Eftir það getur þú sent hendurnar tvær (hlutstokkana) inn í {\tt merge} til að sjá hvort það virkar. 
 
-\index{testing}
+\index{prófanir}
 
-If you can get that working, try a simple implementation of
-{\tt mergeSort}:
+Ef þú færð þetta til að virka ættir þú að prófa eftirfarandi útfærslu af {\tt mergeSort}:
 
 \begin{verbatim}
 Deck Deck::mergeSort () const {
@@ -615,27 +588,22 @@ Deck Deck::mergeSort () const {
 }
 \end{verbatim}
 %
-Notice that the current object is declared {\tt const} because
-{\tt mergeSort} does not modify it.  Instead, it creates and
-returns a new {\tt Deck} object.
+Taktu eftir því að núverandi hlutur er skilgreindur sem {\tt const} vegna þess að 
+{\tt mergeSort} breytir honum ekki. Í staðinn býr fallið til nýjan {\tt Deck} hlut og skilar honum. 
 
-If you get that version working, the real fun begins!  The magical thing
-about mergesort is that it is recursive.  At the point where you sort
-the subdecks, why should you invoke the old, slow version of {\tt
-sort}?  Why not invoke the spiffy new {\tt mergeSort} you are in the
-process of writing?
+Fjörið byrjar fyrst núna ef þetta gengur hjá þér! 
+Það sem er töfrandi við mergesort er að fallið er endurkvæmt.
+Af hverju ættir þú að kalla á gömlu, óskilvirku útgáfunum af {\tt sort} þegar þú ætlar að raða hlutstokkunum?
+Af hverju ekki að kalla á {\tt mergeSort} sem þú ert einmitt að skrifa? 
 
-\index{recursion}
+\index{endurkvæmni}
 
-Not only is that a good idea, it is {\em necessary} in order to
-achieve the performance advantage I promised.  In order to make it
-work, though, you have to add a base case so that it doesn't recurse
-forever.  A simple base case is a subdeck with 0 or 1 cards.  If {\tt
-mergesort} receives such a small subdeck, it can return it
-unmodified, since it is already sorted.
+Það er ekki einungis góð hugmynd heldur er það {\em nauðsynlegt} til að algrímið í heild sinni verði skilvirkara eins og ég lofaði.
+Til að fá það til að virka verðum við þó að bæta við grunnþrepi þannig að ekki verði um óendanlega endurkvæmni að ræða.
+Einfalt grunnþrep er hlutstokkur með 0 eða einu spili.
+Ef {\tt mergesort} fær svona lítinn hlutstokk þá getur fallið einfaldlega skilað stokknum óbreyttum til baka því hann er þá sannarlega þegar raðaður.
 
-The recursive version of {\tt mergesort} should look something
-like this:
+Endurkvæma útgáfan af {\tt mergesort} lítur einhvern veginn svona út: 
 
 \begin{verbatim}
 Deck Deck::mergeSort (Deck deck) const {
@@ -648,24 +616,18 @@ Deck Deck::mergeSort (Deck deck) const {
 }
 \end{verbatim}
 %
-As usual, there are two ways to think about recursive programs:
-you can think through the entire flow of execution, or you
-can make the ``leap of faith.''  I have deliberately constructed
-this example to encourage you to make the leap of faith.
+Að venju eru tvær leiðir til að hugsa um endurkvæm föll:
+Hægt er fylgja keyrsluflæð þess í heild sinni eða ``taka það trúanlegt'' (e. make the leap of faith).
+Ég setti þetta dæmi fram vísvitandi til að hvetja þig til að ``taka það trúanlegt''.
 
-\index{leap of faith}
+\index{taka trúanlegt}
 
-When you were using {\tt sort} to sort the subdecks, you didn't
-feel compelled to follow the flow of execution, right?  You just
-assumed that the {\tt sort} function would work because you already
-debugged it.  Well, all you did to make {\tt mergeSort} recursive was
-replace one sort algorithm with another.  There is no reason to read
-the program differently.
+Þegar þú notaðir {\tt sort} til að raða hlutstokkum þá fannst þér ekki ástæða til að fylgja keyrsluflæði þess í heild sinni, ekki satt?
+Þú gerðir einfaldlega ráð fyrir því að {\tt sort} fallið virkaði vegna þess að þú hafðir áður aflúsað það. 
+Eina sem þú þurftir að breyta til að gera {\tt mergeSort} endurkvæmt var að skipta út einu röðunaralgrími fyrir annað. 
+Það er engin ástæða til að líta á nýja forritið á annan hátt. 
 
-Well, actually you have to give some thought to getting the
-base case right and making sure that you reach it eventually,
-but other than that, writing the recursive version should be
-no problem.  Good luck!
+Reyndar þurftir þú að hugsa um að ná grunnþrepinu réttu og að það myndi á einhverjum tímapunkti reyna á grunnþrepið en að öðru leyti ætti ekki að vera neitt sérstakt vandamál að skrifa endurkvæmu lausnina.  Gangi þér vel!
 
 \section{Glossary}
 
