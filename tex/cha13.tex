@@ -366,7 +366,7 @@ struct Deck {
 
 Í flestum spilum þarf að vera hægt að stokka spilin, þ.e. setja þau í handahófskennda röð í stokknum.
 Við sáum í kafla~\ref{random} hvernig hægt er að búa til slembitölur en það er ekki augljóst hvernig hægt er 
-að nota þær til að stokka spilin.
+að nota þær til að stokka spil.
 
 Ein leið er sú að líkja eftir því hvernig við sjálf stokkum, t.d. að skipta stokknum í tvennt
 og setja hann svo saman á ný með því að velja eitt spil í einu frá hvorum helmingnum.
@@ -393,13 +393,13 @@ called {\bf sauðakóði} (e. pseudocode):
 \end{verbatim}
 %
 Kosturinn við að nota sauðakóða er oft sá að hann gefur skýrt til kynna hvaða föll eru nauðsynleg.
-Í þessu tilviki þurfum við fall eins og {\tt randomInt} sem velur, á handahófskenndan hátt, heiltölu á milli
+Í þessu tilviki þurfum við fall eins og {\tt randomInt} sem velur heiltölu, á handahófskenndan hátt, á milli
 viðfanganna {\tt low} og {\tt high}, og fall eins og {\tt swapCards} sem tekur tvo vísa og skiptir á spilunum í viðkomandi sætum.
 
 \index{slembitölur}
 
 Þú ættir að geta fundið út hvernig skrifa á {\tt randomInt} með því að kíkja til baka í kafla~\ref{random}.
-Þú þarft þó að passa þig að búa ekki til vísa sem eru út fyrir bilið (e. out of range). 
+Þú þarft þó að passa þig á því að búa ekki til vísa sem eru út fyrir bilið (e. out of range). 
 
 %\index{swapCards}
 %\index{reference}
@@ -417,7 +417,6 @@ Nú þegar við getum stokkað spilin þurfum við líka að geta raðað þeim 
 
 Við munum aftur ferðast um í spilastokknum og skipta á núverandi spili og öðru spili í sérhverri ítrun.
 Eini munurinn er sá að í stað þess að velja annað spil af handahófi þá munum við finna lægsta spilið sem eftir er í stokknum.
-
 Það sem ég á við með ``eftir er í stokknum'' eru spil sem eru jöfn eða hærri heldur er núverandi vísir {\tt i}.
 
 \begin{verbatim}
@@ -446,7 +445,7 @@ sem tekur vektor af spilum og vísi sem gefur til kynna hvar byrja á að leita 
 \section {Hlutstokkur}
 \index{hlutstokkur}
 
-Hvernig ættum við að tákna hönd eða annað hlutmengi af spilastokki?
+Hvernig ættum við að tákna hönd eða annað hlutmengi af spilastokki (hlutstokk)?
 Ein einföld leið er að búa til {\tt Deck} hlut sem hefur færri en 52 spil. 
 
 Við gætum skrifað fall, {\tt subdeck}, sem tekur vektor af spilum og vísa (sem tákna bil)
@@ -463,7 +462,7 @@ Deck Deck::subdeck (int low, int high) const {
 }
 \end{verbatim}
 %
-Til að búa til staðværu breytuna {\tt subdeck} notum við hér {\tt Deck} smiðinn sem tekur stærðina á nýja stokknum (hlutstokknum)
+Til að búa til staðværu breytuna {\tt subdeck} notum við hér smiðinn í {\tt Deck} sem tekur stærðina á nýja stokknum (hlutstokknum)
 sem viðfang og upphafsstillir ekki spilin í stokknum.
 Spilin eru í raun upphafsstillt þegar þau eru afrituð úr upphaflega stokknum.
 
@@ -483,8 +482,8 @@ Svona útreikningur getur verið ruglandi og hefur oft í för með sér ``off-b
 \index{stokka}
 \index{gefa}
 
-Í kafla~\ref{shuffle} skrifaði ég sauðakóða fyrir stokkunaralgríminu.
-Ef við gerum nú ráð fyrir því að eiga fallið {\tt shuffle}, sem tekur stokk sem viðfang og stokkar hann, þá getum við búið til og stokkað spilastokk: 
+Í kafla~\ref{shuffle} skrifaði ég sauðakóða fyrir stokkunaralgrímið.
+Ef við gerum nú ráð fyrir því að eiga fallið {\tt shuffle}, sem stokkar viðfang sitt, þá getum við búið til og stokkað spilastokk: 
 
 \begin{verbatim}
   Deck deck;               // create a standard 52-card deck
@@ -499,7 +498,7 @@ Síðan getum við gefið spil með því að nota {\tt subdeck}:
   Deck pack = deck.subdeck (10, 51);
 \end{verbatim}
 %
-Þessi kóði gefur fyrstu 5 spilin til einnar handar, næstu 5 spil til annnarra handar og afgangurinn fer í bunkann.
+Þessi kóði gefur fyrstu 5 spilin til einnar handar, næstu 5 spil til annarrar handar og afgangurinn fer í bunkann.
 
 Hvarflaði að þér að við ættum að gefa eitt spil í einu til sérhverrar handar eins og algengt er í raunverulegum spilum?
 Ég hugsaði um það en áttaði mig svo á því að það væri ekki nauðsynlegt í forriti.
@@ -519,7 +518,8 @@ Hvarflaði að þér að við ættum að gefa eitt spil í einu til sérhverrar 
 \index{mergesort}
 
 Í kafla~\ref{sorting} sáum við einfalt röðunaralgrím sem vill svo til að er ekki mjög skilvirkt.
-Til að raða $n$ hlutum (spilum) þarf algrímið að ferðast um í vektornum $n$ sinnum (for-lykkjan) og sérhver umferð tekur tíma sem er í réttu hlutfalli við $n$ (finna lægsta spil).
+Til að raða $n$ hlutum (spilum) þarf algrímið að ferðast um í vektornum $n$ sinnum (for-lykkjan)
+og sérhver umferð (finna lægsta spil) tekur tíma sem er í réttu hlutfalli við $n$.
 Heildartíminn sem algrímið tekur er því í réttu hlutfalli við $n^2$.
 
 Í þessum kafla mun ég setja fram mun skilvirkara röðunaralgrím sem kallast {\bf mergesort}.
@@ -533,7 +533,7 @@ Prófaðu þetta með raunverulegum spilastokki:
 
 \begin{enumerate}
 
-\item Búðu til tvo hlutstokka með um 10 spilum hvor og raðaðu þeim þannig að þegar spilin snúa upp þá er lægsta spilið efst.
+\item Búðu til tvo hlutstokka með um 10 spilum í hvorum fyrir sig og raðaðu þeim þannig að þegar spilin snúa upp þá er lægsta spilið efst.
 Settu báða stokkana fyrir framan þig (þannig að spilin snúi upp). 
 
 \item Berðu saman efstu spilin í hvorum stokki og veldu það lægra. 
@@ -544,7 +544,7 @@ Bættu þá restinni af spilunum við samsetta stokkinn.
 
 \end{enumerate}
 
-Niðurstaðan ætti að vera einn raðaaður stokkur.
+Niðurstaðan ætti að vera einn raðaður stokkur.
 Svona lítur þetta út í sauðakóða:
 
 \begin{verbatim}
@@ -617,7 +617,7 @@ Deck Deck::mergeSort (Deck deck) const {
 \end{verbatim}
 %
 Að venju eru tvær leiðir til að hugsa um endurkvæm föll:
-Hægt er fylgja keyrsluflæð þess í heild sinni eða ``taka það trúanlegt'' (e. make the leap of faith).
+Hægt er fylgja keyrsluflæði þess í heild sinni eða ``taka það trúanlegt'' (e. make the leap of faith).
 Ég setti þetta dæmi fram vísvitandi til að hvetja þig til að ``taka það trúanlegt''.
 
 \index{taka trúanlegt}
@@ -629,30 +629,26 @@ Eina sem þú þurftir að breyta til að gera {\tt mergeSort} endurkvæmt var a
 
 Reyndar þurftir þú að hugsa um að ná grunnþrepinu réttu og að það myndi á einhverjum tímapunkti reyna á grunnþrepið en að öðru leyti ætti ekki að vera neitt sérstakt vandamál að skrifa endurkvæmu lausnina.  Gangi þér vel!
 
-\section{Glossary}
+\section{Orðalisti}
 
 \begin{description}
 
-\item[pseudocode:]  A way of designing programs by writing
-rough drafts in a combination of English and C++.
+\item[sauðakóði (e. pseudocode):]  Leið til að hanna forrit með því að skrifa gróf drög í blöndu af náttúrulegu tungumáli og C++.
 
-\item[helper function:]  Often a small function that does not
-do anything enormously useful by itself, but which helps
-another, more useful, function.
+\item[hjálparfall (e. helper function):]  Oftast lítið fall, sem eitt og sér gerir ekki neitt sérlega gagnlegt, en hjálpar öðru gagnlegra falli.
 
-\item[bottom-up design:]  A method of program development that
-uses pseudocode to sketch solutions to large problems and
-design the interfaces of helper functions.
+%\item[bottom-up design:]  A method of program development that
+%uses pseudocode to sketch solutions to large problems and
+%design the interfaces of helper functions.
 
-\item[mergesort:]  An algorithm for sorting a collection of
-values.  Mergesort is faster than the simple algorithm in
-the previous chapter, especially for large collections.
+\item[mergesort:]  Algrím til að raða safni af gildum.
+Mergesort er skilvirkara en hið einfalda röðunaralgrím í fyrri kafla, sérstaklega fyrir stór söfn. 
 
-\index{pseudocode}
-\index{helper function}
-\index{bottom-up design}
-\index{program development!bottom-up}
-\index{function!helper}
+\index{sauðakóði}
+\index{hjálparfall}
+%\index{bottom-up design}
+%\index{program development!bottom-up}
+%\index{function!helper}
 \index{mergesort}
 
 
